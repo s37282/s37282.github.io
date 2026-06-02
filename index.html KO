@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แนะนำตัว</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .card {
+            background: white;
+            width: 350px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        img {
+            width: 150px;
+            border-radius: 50%;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            color: #666;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+            background: #24292e;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            background: #444;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <img src="https://via.placeholder.com/150" alt="รูปโปรไฟล์">
+        <h1>นายเคน</h1>
+        <p>นักเรียนที่สนใจด้านคอมพิวเตอร์และการเขียนโปรแกรม</p>
+        <p>งานอดิเรก: ปั่นจักรยาน 🚴‍♂️ เล่นเกม 🎮 และเขียนโค้ด 💻</p>
+        <a href="https://github.com/username" target="_blank">
+            GitHub ของฉัน
+        </a>
+    </div>
+
+</body>
+</html>
