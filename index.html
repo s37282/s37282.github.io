@@ -3,66 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="เว็บไซต์แสดงผลงานและทักษะของ Somchai">
-    <title>ความภาคภูมิใจของ SOMCHAI</title>
+    <title>แฟ้มสะสมผลงาน</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <!-- ส่วนหัวของเว็บ -->
-    <header>
-        <h1>สวัสดี! ผมชื่อ วรัญชิต วงศ์ศุภเลิศ</h1>
-        <p>นี่คือผลงานและความภาคภูมิใจของผม</p>
-    </header>
+    <!-- หน้าปก -->
+    <section id="cover">
+        <h1>แฟ้มสะสมผลงาน (Portfolio)</h1>
+        <img src="profile.jpg" alt="รูปภาพเจ้าของผลงาน" width="200">
+        <h2>ชื่อ นาย ภัทรพล นามสกุล แม้นอินทร์</h2>
+        <p>โรงเรียน บ้านบึง"อุตสาหกรรมนุเคราะห์"</p>
+    </section>
 
-    <!-- ส่วนเกี่ยวกับตัวเอง -->
-    <section id="about">
-        <h2>เกี่ยวกับผม</h2>
+    <!-- คำนำ -->
+    <section id="preface">
+        <h2>คำนำ</h2>
         <p>
-            ผมเป็นนักพัฒนาซอฟต์แวร์ที่มีความหลงใหลในการสร้างสรรค์สิ่งใหม่ ๆ
-            ผมภูมิใจในผลงานและทักษะที่พัฒนามาอย่างต่อเนื่อง 
+            แฟ้มสะสมผลงานฉบับนี้จัดทำขึ้นเพื่อรวบรวมข้อมูลเกี่ยวกับ
+            ประวัติส่วนตัว ประวัติการศึกษา กิจกรรม และความสามารถพิเศษ
+            เพื่อใช้ประกอบการพิจารณาศึกษาต่อและแสดงศักยภาพของผู้จัดทำ
         </p>
     </section>
 
-    <!-- ส่วนแสดงผลงาน -->
-    <section id="projects">
-        <h2>ผลงานของผม</h2>
-
-        <div class="project">
-            <h3>เว็บไซต์ Portfolio</h3>
-            <p>เว็บไซต์นี้เป็นหนึ่งในผลงานที่ผมสร้างขึ้นเพื่อแสดงความสามารถของผม</p>
-        </div>
-
-        <div class="project">
-            <h3>แอปพลิเคชันจัดการงาน</h3>
-            <p>แอปพลิเคชันที่ช่วยให้ผู้ใช้งานจัดการงานได้อย่างมีประสิทธิภาพ</p>
-        </div>
+    <!-- ประวัติส่วนตัว -->
+    <section id="profile">
+        <h2>ประวัติส่วนตัว</h2>
+        <p><strong>ชื่อ:</strong> นายภัทรพล แ้มนอินทร์</p>
+        <p><strong>วันเกิด:</strong> วันอังคาร 11 พฦศจิกายน</p>
+        <p><strong>อายุ:</strong> 17 ปี</p>
+        <p><strong>งานอดิเรก:</strong> ตกปลา เล่นกีฬา ฟังเพลง</p>
     </section>
 
-    <!-- ส่วนแสดงทักษะ -->
-    <section id="skills">
-        <h2>ทักษะของผม</h2>
+    <!-- ประวัติการศึกษา -->
+    <section id="education">
+        <h2>ประวัติการศึกษา</h2>
+
+        <h3>ระดับประถมศึกษา</h3>
+        <p>โรงเรียนบุญประทีปวิทยาคาร</p>
+
+        <h3>ระดับมัธยมศึกษาตอนต้น</h3>
+        <p>โรงเรียนบ้านบึง"อุตสาหกรรมนุเคราะห์"</p>
+
+        <h3>ระดับมัธยมศึกษาตอนปลาย</h3>
+        <p>โรงเรียนบ้านบึง"อุตสาหกรรมนุเคราะห์"</p>
+    </section>
+
+    <!-- กิจกรรม -->
+    <section id="activities">
+        <h2>กิจกรรม</h2>
         <ul>
-            <li>HTML, CSS, JavaScript</li>
-            <li>Python, Django</li>
-            <li>Git และ GitHub</li>
-            <li>การออกแบบ UI/UX</li>
+            <li>เข้าร่วมการแข่งขันทักษะคอมพิวเตอร์</li>
+            <li>กิจกรรมจิตอาสาพัฒนาชุมชน</li>
+            <li>กิจกรรมกีฬาสีของโรงเรียน</li>
+            <li>ค่ายวิชาการและค่ายอาชีพ</li>
         </ul>
     </section>
 
-    <!-- ส่วนติดต่อ -->
-    <footer>
-        <p>
-            ติดต่อผมได้ที่:
-            <a href="mailto:somchai@example.com">
-                somchai@example.com
-            </a>
-        </p>
+    <!-- ความสามารถพิเศษ -->
+    <section id="skills">
+        <h2>ความสามารถพิเศษ</h2>
+        <ul>
+            <li>ออกแบบเว็บไซต์ด้วย HTML และ CSS</li>
+            <li>เขียนโปรแกรม JavaScript เบื้องต้น</li>
+            <li>ตัดต่อวิดีโอ</li>
+            <li>ใช้โปรแกรม Microsoft Office</li>
+        </ul>
+    </section>
 
-        <p>&copy; <span id="year"></span> SOMCHAI. All rights reserved.</p>
+    <!-- ช่องทางการติดต่อ -->
+    <section id="contact">
+        <h2>ช่องทางการติดต่อ</h2>
+        <p>โทรศัพท์ : 095-083-0532</p>
+        <p>Email : s34866@banbung.ac.th</p>
+        <p>Facebook :Pattaraphon Manin</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Portfolio</p>
     </footer>
 
+    <!-- ลิงก์ไปยัง JavaScript -->
     <script src="script.js"></script>
 
 </body>
