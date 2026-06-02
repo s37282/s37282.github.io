@@ -1,261 +1,69 @@
-# s37282.github.io
-ยินดีต้อนรับเข้าสู่เว็บไซต์แฟ้มสะสมงานของนายวรัญชิตนามสกุลวงศ์ศุภเลิศ
-```html
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>แนะนำตัว | Ken</title>
-
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
-}
-
-body{
-    background:#0f172a;
-    color:white;
-}
-
-header{
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    background:linear-gradient(135deg,#0f172a,#1e293b);
-}
-
-.hero img{
-    width:180px;
-    height:180px;
-    border-radius:50%;
-    border:5px solid #38bdf8;
-    margin-bottom:20px;
-}
-
-.hero h1{
-    font-size:3rem;
-}
-
-.hero p{
-    color:#94a3b8;
-    margin:15px 0;
-}
-
-.btn{
-    display:inline-block;
-    background:#38bdf8;
-    color:white;
-    padding:12px 25px;
-    border-radius:10px;
-    text-decoration:none;
-    transition:0.3s;
-}
-
-.btn:hover{
-    background:#0ea5e9;
-}
-
-section{
-    padding:80px 10%;
-}
-
-.section-title{
-    text-align:center;
-    margin-bottom:40px;
-    font-size:2rem;
-    color:#38bdf8;
-}
-
-.about{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:40px;
-}
-
-.card{
-    background:#1e293b;
-    padding:25px;
-    border-radius:15px;
-    transition:.3s;
-}
-
-.card:hover{
-    transform:translateY(-5px);
-}
-
-.skills{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-    gap:20px;
-}
-
-.skill{
-    background:#1e293b;
-    padding:20px;
-    text-align:center;
-    border-radius:10px;
-}
-
-.projects{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:20px;
-}
-
-.project{
-    background:#1e293b;
-    border-radius:15px;
-    overflow:hidden;
-}
-
-.project img{
-    width:100%;
-}
-
-.project-content{
-    padding:20px;
-}
-
-.contact{
-    text-align:center;
-}
-
-.contact a{
-    color:#38bdf8;
-    text-decoration:none;
-}
-
-footer{
-    text-align:center;
-    padding:20px;
-    background:#020617;
-    color:#94a3b8;
-}
-
-@media(max-width:768px){
-    .about{
-        grid-template-columns:1fr;
-    }
-
-    .hero h1{
-        font-size:2rem;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="เว็บไซต์แสดงผลงานและทักษะของ Somchai">
+    <title>ความภาคภูมิใจของ SOMCHAI</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
-<div class="hero">
-    <img src="https://via.placeholder.com/180" alt="Profile">
-    <h1>สวัสดีครับ ผมชื่อ เคน</h1>
-    <p>Student | Web Developer | Programmer</p>
-    <a href="#about" class="btn">รู้จักฉันเพิ่มเติม</a>
-</div>
-</header>
+    <!-- ส่วนหัวของเว็บ -->
+    <header>
+        <h1>สวัสดี! ผมชื่อ วรัญชิต วงศ์ศุภเลิศ</h1>
+        <p>นี่คือผลงานและความภาคภูมิใจของผม</p>
+    </header>
 
-<section id="about">
-<h2 class="section-title">เกี่ยวกับฉัน</h2>
+    <!-- ส่วนเกี่ยวกับตัวเอง -->
+    <section id="about">
+        <h2>เกี่ยวกับผม</h2>
+        <p>
+            ผมเป็นนักพัฒนาซอฟต์แวร์ที่มีความหลงใหลในการสร้างสรรค์สิ่งใหม่ ๆ
+            ผมภูมิใจในผลงานและทักษะที่พัฒนามาอย่างต่อเนื่อง 
+        </p>
+    </section>
 
-<div class="about">
-    <div class="card">
-        <h3>ข้อมูลส่วนตัว</h3>
-        <br>
-        <p>ชื่อ: เคน</p>
-        <p>อายุ: 16 ปี</p>
-        <p>กำลังศึกษาอยู่ระดับมัธยมศึกษา 6</p>
-    </div>
+    <!-- ส่วนแสดงผลงาน -->
+    <section id="projects">
+        <h2>ผลงานของผม</h2>
 
-    <div class="card">
-        <h3>ความสนใจ</h3>
-        <br>
-        <p>✔ Web Development</p>
-        <p>✔ Programming</p>
-        <p>✔ Graphic Design</p>
-        <p>✔ Technology</p>
-    </div>
-</div>
-</section>
+        <div class="project">
+            <h3>เว็บไซต์ Portfolio</h3>
+            <p>เว็บไซต์นี้เป็นหนึ่งในผลงานที่ผมสร้างขึ้นเพื่อแสดงความสามารถของผม</p>
+        </div>
 
-<section>
-<h2 class="section-title">Skills</h2>
+        <div class="project">
+            <h3>แอปพลิเคชันจัดการงาน</h3>
+            <p>แอปพลิเคชันที่ช่วยให้ผู้ใช้งานจัดการงานได้อย่างมีประสิทธิภาพ</p>
+        </div>
+    </section>
 
-<div class="skills">
-    <div class="skill">HTML</div>
-    <div class="skill">CSS</div>
-    <div class="skill">JavaScript</div>
-    <div class="skill">Python</div>
-    <div class="skill">PHP</div>
-    <div class="skill">MySQL</div>
-</div>
-</section>
+    <!-- ส่วนแสดงทักษะ -->
+    <section id="skills">
+        <h2>ทักษะของผม</h2>
+        <ul>
+            <li>HTML, CSS, JavaScript</li>
+            <li>Python, Django</li>
+            <li>Git และ GitHub</li>
+            <li>การออกแบบ UI/UX</li>
+        </ul>
+    </section>
 
-<section>
-<h2 class="section-title">Projects</h2>
+    <!-- ส่วนติดต่อ -->
+    <footer>
+        <p>
+            ติดต่อผมได้ที่:
+            <a href="mailto:somchai@example.com">
+                somchai@example.com
+            </a>
+        </p>
 
-<div class="projects">
+        <p>&copy; <span id="year"></span> SOMCHAI. All rights reserved.</p>
+    </footer>
 
-<div class="project">
-<img src="https://via.placeholder.com/600x300">
-<div class="project-content">
-<h3>Portfolio Website</h3>
-<p>เว็บไซต์แนะนำตัวและแสดงผลงาน</p>
-</div>
-</div>
-
-<div class="project">
-<img src="https://via.placeholder.com/600x300">
-<div class="project-content">
-<h3>School Project</h3>
-<p>ระบบจัดการข้อมูลนักเรียน</p>
-</div>
-</div>
-
-<div class="project">
-<img src="https://via.placeholder.com/600x300">
-<div class="project-content">
-<h3>Game Project</h3>
-<p>เกมที่พัฒนาด้วย JavaScript</p>
-</div>
-</div>
-
-</div>
-</section>
-
-<section>
-<h2 class="section-title">Contact</h2>
-
-<div class="contact">
-<p>Email: opl036178@gmail.com</p>
-<p>Facebook: https://www.facebook.com/share/18dFqjgQuo/?mibextid=wwXIfr/</p>
-</div>
-</section>
-
-<footer>
-© 2026 Ken Portfolio | All Rights Reserved
-</footer>
-
-<script>
-document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
-    anchor.addEventListener('click',function(e){
-        e.preventDefault();
-
-        document.querySelector(
-            this.getAttribute('href')
-        ).scrollIntoView({
-            behavior:'smooth'
-        });
-    });
-});
-</script>
+    <script src="script.js"></script>
 
 </body>
 </html>
-```
