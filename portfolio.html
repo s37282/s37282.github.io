@@ -1,155 +1,166 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio - วรัญชิต</title>
 
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family: Arial, sans-serif;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        body{
-            background:#0f172a;
-            color:white;
-        }
+body{
+    font-family: "Segoe UI", sans-serif;
+    background:#f4f6f9;
+    color:#333;
+}
 
-        header{
-            text-align:center;
-            padding:80px 20px;
-            background:linear-gradient(135deg,#2563eb,#7c3aed);
-        }
+header{
+    background:linear-gradient(135deg,#2750F5,#00EBD8);
+    color:white;
+    text-align:center;
+    padding:60px 20px;
+}
 
-        header h1{
-            font-size:3rem;
-            margin-bottom:10px;
-        }
+header h1{
+    font-size:2.5rem;
+}
 
-        header p{
-            font-size:1.2rem;
-        }
+header p{
+    margin-top:10px;
+    font-size:1.1rem;
+}
 
-        section{
-            max-width:1000px;
-            margin:auto;
-            padding:60px 20px;
-        }
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:30px;
+}
 
-        h2{
-            margin-bottom:20px;
-            color:#60a5fa;
-        }
+.section{
+    background:white;
+    margin-bottom:20px;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
 
-        .about{
-            line-height:1.8;
-        }
+.section h2{
+    color:#2750F5;
+    margin-bottom:15px;
+}
 
-        .projects{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-            gap:20px;
-        }
+.skills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
 
-        .card{
-            background:#1e293b;
-            padding:20px;
-            border-radius:15px;
-            transition:0.3s;
-        }
+.skill{
+    background:#2750F5;
+    color:white;
+    padding:8px 15px;
+    border-radius:20px;
+}
 
-        .card:hover{
-            transform:translateY(-5px);
-        }
+.project{
+    padding:15px;
+    border-left:4px solid #2750F5;
+    margin-bottom:15px;
+    background:#f8f9fa;
+}
 
-        .card h3{
-            margin-bottom:10px;
-        }
+.contact a{
+    color:#2750F5;
+    text-decoration:none;
+    font-weight:bold;
+}
 
-        .card a{
-            color:#60a5fa;
-            text-decoration:none;
-        }
+.btn-home{
+    display:inline-block;
+    margin-top:20px;
+    padding:10px 20px;
+    background:#2750F5;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+}
 
-        .contact{
-            text-align:center;
-        }
-
-        .btn{
-            display:inline-block;
-            margin-top:15px;
-            padding:12px 25px;
-            background:#2563eb;
-            color:white;
-            text-decoration:none;
-            border-radius:10px;
-        }
-
-        footer{
-            text-align:center;
-            padding:20px;
-            background:#020617;
-        }
-    </style>
+footer{
+    text-align:center;
+    padding:20px;
+    background:#222;
+    color:white;
+}
+</style>
 </head>
+
 <body>
 
 <header>
-    <h1>ชื่อของคุณ</h1>
-    <p>Web Developer | Programmer | Designer</p>
+    <h1>วรัญชิต (Waranchit)</h1>
+    <p>Computer Science & Engineering Student</p>
 </header>
 
-<section>
-    <h2>เกี่ยวกับฉัน</h2>
-    <div class="about">
+<div class="container">
+
+    <div class="section">
+        <h2>เกี่ยวกับฉัน</h2>
         <p>
-            สวัสดีครับ ผมเป็นนักพัฒนาเว็บไซต์ที่สนใจ HTML, CSS,
-            JavaScript และการสร้าง Web Application
+            ผมสนใจด้านการพัฒนาเว็บไซต์ การเขียนโปรแกรม
+            และเทคโนโลยีคอมพิวเตอร์ โดยมุ่งมั่นพัฒนาทักษะ
+            เพื่อสร้างผลงานที่มีคุณภาพและใช้งานได้จริง
         </p>
     </div>
-</section>
 
-<section>
-    <h2>ผลงาน (Projects)</h2>
-
-    <div class="projects">
-
-        <div class="card">
-            <h3>Project 1</h3>
-            <p>เว็บไซต์ร้านค้าออนไลน์</p>
-            <a href="#">ดูโปรเจกต์</a>
+    <div class="section">
+        <h2>ทักษะ (Skills)</h2>
+        <div class="skills">
+            <span class="skill">HTML</span>
+            <span class="skill">CSS</span>
+            <span class="skill">JavaScript</span>
+            <span class="skill">Python</span>
+            <span class="skill">C</span>
+            <span class="skill">Git & GitHub</span>
         </div>
-
-        <div class="card">
-            <h3>Project 2</h3>
-            <p>ระบบจัดการข้อมูล</p>
-            <a href="#">ดูโปรเจกต์</a>
-        </div>
-
-        <div class="card">
-            <h3>Project 3</h3>
-            <p>Portfolio Website</p>
-            <a href="#">ดูโปรเจกต์</a>
-        </div>
-
     </div>
-</section>
 
-<section class="contact">
-    <h2>ติดต่อ</h2>
-    <p>Email: your@email.com</p>
-    <p>GitHub: github.com/yourusername</p>
+    <div class="section">
+        <h2>ผลงาน (Projects)</h2>
 
-    <a href="https://github.com/yourusername" class="btn">
-        GitHub Profile
+        <div class="project">
+            <h3>เว็บไซต์แนะนำตัว</h3>
+            <p>เว็บไซต์แรกที่พัฒนาด้วย HTML และเผยแพร่ผ่าน GitHub Pages</p>
+        </div>
+
+        <div class="project">
+            <h3>Portfolio Website</h3>
+            <p>เว็บไซต์รวบรวมข้อมูล ประวัติ และผลงานส่วนตัว</p>
+        </div>
+
+        <div class="project">
+            <h3>Mini Programming Project</h3>
+            <p>โปรเจกต์สำหรับฝึกการเขียนโปรแกรมและแก้ปัญหาเชิงตรรกะ</p>
+        </div>
+    </div>
+
+    <div class="section contact">
+        <h2>ติดต่อ</h2>
+        <p>Email: your@email.com</p>
+        <p>GitHub: github.com/yourusername</p>
+    </div>
+
+    <a href="index.html" class="btn-home">
+        ← กลับหน้าแรก
     </a>
-</section>
+
+</div>
 
 <footer>
-    <p>© 2026 Your Name. All Rights Reserved.</p>
+    <p>© 2026 Waranchit Portfolio</p>
 </footer>
 
 </body>
