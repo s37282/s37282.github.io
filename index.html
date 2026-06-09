@@ -1,89 +1,179 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>แฟ้มสะสมผลงาน</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Portfolio</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+}
+
+header{
+    text-align:center;
+    padding:60px 20px;
+}
+
+.profile-img{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    border:5px solid #38bdf8;
+    object-fit:cover;
+}
+
+h1{
+    margin-top:20px;
+    font-size:42px;
+}
+
+.subtitle{
+    color:#94a3b8;
+    margin-top:10px;
+    font-size:20px;
+}
+
+.about{
+    max-width:800px;
+    margin:40px auto;
+    padding:20px;
+    text-align:center;
+}
+
+.skills{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
+    margin-top:20px;
+}
+
+.skill{
+    background:#1e293b;
+    padding:10px 20px;
+    border-radius:30px;
+}
+
+.projects{
+    padding:50px 20px;
+}
+
+.projects h2{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.project-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    max-width:1000px;
+    margin:auto;
+}
+
+.card{
+    background:#1e293b;
+    padding:20px;
+    border-radius:15px;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+.contact{
+    text-align:center;
+    padding:50px 20px;
+}
+
+.contact a{
+    color:#38bdf8;
+    text-decoration:none;
+    margin:0 10px;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    color:#94a3b8;
+}
+</style>
 </head>
 <body>
 
-    <!-- หน้าปก -->
-    <section id="cover">
-        <h1>แฟ้มสะสมผลงาน (Portfolio)</h1>
-        <h2>ชื่อ นาย วรัญชิต นามสกุล วงศ์ศุภเลิศ</h2>
-        <p>โรงเรียน บ้านบึง"อุตสาหกรรมนุเคราะห์"</p>
-    </section>
+<header>
+    <img src="profile.jpg" alt="Profile" class="profile-img">
+    <h1>ชื่อของคุณ</h1>
+    <p class="subtitle">Web Developer | Programmer | Student</p>
+</header>
 
-    <!-- คำนำ -->
-    <section id="preface">
-        <h2>คำนำ</h2>
-        <p>
-            แฟ้มสะสมผลงานฉบับนี้จัดทำขึ้นเพื่อรวบรวมข้อมูลเกี่ยวกับ
-            ประวัติส่วนตัว ประวัติการศึกษา กิจกรรม และความสามารถพิเศษ
-            เพื่อใช้ประกอบการพิจารณาศึกษาต่อและแสดงศักยภาพของผู้จัดทำ
-        </p>
-    </section>
+<section class="about">
+    <h2>เกี่ยวกับฉัน</h2>
+    <p>
+        สวัสดีครับ ผมเป็นนักพัฒนาเว็บไซต์ที่สนใจ HTML, CSS,
+        JavaScript และการพัฒนาโปรแกรมต่าง ๆ
+    </p>
 
-    <!-- ประวัติส่วนตัว -->
-    <section id="profile">
-        <h2>ประวัติส่วนตัว</h2>
-        <p><strong>ชื่อ:</strong> นายวรัญชิต วงศ์ศุภเลิศ</p>
-        <p><strong>วันเกิด:</strong> วันพุธ 21 กุมภาพันธร์</p>
-        <p><strong>อายุ:</strong> 17 ปี</p>
-        <p><strong>งานอดิเรก:</strong> ออกกำลังกาย เล่นกีฬา ฟังเพลง</p>
-    </section>
+    <div class="skills">
+        <div class="skill">HTML</div>
+        <div class="skill">CSS</div>
+        <div class="skill">JavaScript</div>
+        <div class="skill">Python</div>
+        <div class="skill">GitHub</div>
+    </div>
+</section>
 
-    <!-- ประวัติการศึกษา -->
-    <section id="education">
-        <h2>ประวัติการศึกษา</h2>
+<section class="projects">
+    <h2>ผลงาน</h2>
 
-        <h3>ระดับประถมศึกษา</h3>
-        <p>โรงเรียนบุญประทีปวิทยาคาร</p>
+    <div class="project-grid">
 
-        <h3>ระดับมัธยมศึกษาตอนต้น</h3>
-        <p>"โรงเรียนบุญประทีปวิทยาคาร</p>
+        <div class="card">
+            <h3>Project 1</h3>
+            <p>เว็บไซต์ร้านค้าออนไลน์</p>
+        </div>
 
-        <h3>ระดับมัธยมศึกษาตอนปลาย</h3>
-        <p>โรงเรียนบ้านบึง"อุตสาหกรรมนุเคราะห์"</p>
-    </section>
+        <div class="card">
+            <h3>Project 2</h3>
+            <p>ระบบจัดการข้อมูลนักเรียน</p>
+        </div>
 
-    <!-- กิจกรรม -->
-    <section id="activities">
-        <h2>กิจกรรม</h2>
-        <ul>
-            <li>เข้าร่วมการแข่งขันทักษะคอมพิวเตอร์</li>
-            <li>กิจกรรมจิตอาสาพัฒนาชุมชน</li>
-            <li>กิจกรรมกีฬาสีของโรงเรียน</li>
-            <li>ค่ายวิชาการและค่ายอาชีพ</li>
-        </ul>
-    </section>
+        <div class="card">
+            <h3>Project 3</h3>
+            <p>แอปพลิเคชันจัดการงาน</p>
+        </div>
 
-    <!-- ความสามารถพิเศษ -->
-    <section id="skills">
-        <h2>ความสามารถพิเศษ</h2>
-        <ul>
-            <li>ออกแบบเว็บไซต์ด้วย HTML และ CSS</li>
-            <li>เขียนโปรแกรม JavaScript เบื้องต้น</li>
-            <li>ตัดต่อวิดีโอ</li>
-            <li>ใช้โปรแกรม Microsoft Office</li>
-        </ul>
-    </section>
+    </div>
+</section>
 
-    <!-- ช่องทางการติดต่อ -->
-    <section id="contact">
-        <h2>ช่องทางการติดต่อ</h2>
-        <p>โทรศัพท์ : 0926534595</p>
-        <p>Email : s37282@banbung.ac.th</p>
-        <p>Facebook :Pattaraphon Manin</p>
-    </section>
+<section class="contact">
+    <h2>ติดต่อ</h2>
+    <p>
+        <a href="https://github.com/yourusername">GitHub</a>
+        |
+        <a href="https://facebook.com/">Facebook</a>
+        |
+        <a href="mailto:your@email.com">Email</a>
+    </p>
+</section>
 
-    <footer>
-        <p>&copy; 2026 Portfolio</p>
-    </footer>
-
-    <!-- ลิงก์ไปยัง JavaScript -->
-    <script src="script.js"></script>
+<footer>
+    © 2026 Your Name
+</footer>
 
 </body>
 </html>
