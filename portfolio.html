@@ -1,32 +1,156 @@
-<!DOCTYPE html> 
-<html lang="th"> 
-<head> 
- <meta charset="UTF-8"> 
- <meta viewport="width=device-width, initial-scale=1.0"> 
- <title>แฟมสะสมงานของฉัน ้ </title> 
- <style> 
-body { font-family: sans-serif; background-color: #f4f7f6; text-align: center;  padding: 30px; } 
-.container { max-width: 800px; margin: 0 auto; } 
-.project-card { background: white; padding: 20px; margin: 20px 0; border-radius:  8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: left; } 
-.btn { display: inline-block; background: #2c3e50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 20px; } 
- </style> 
-</head> 
-<body> 
- <div class="container"> 
- <h1> แฟมสะสมงาน ้ (Portfolio)</h1> 
- <p>นี่คือพื้นที่รวบรวมผลงานและกิจกรรมที่ภูมิใจครับ</p> 
-<!-- กล่องผลงานชนที่ ้ิ 1 --> 
- <div class="project-card"> 
- <h3>1. โครงงาน/ชนงานวิทยาศาสตร์ค;านวณ ิ้ </h3> 
- <p>รายละเอียดชนงาน ิ้ : เขียนอธิบายสันๆ ว่าท;าอะไร ได้เรียนรู้อะไรจากงานนี้บ้าง ้ </p> 
- </div> 
-<!-- กล่องผลงานชนที่ ้ิ 2 --> 
- <div class="project-card"> 
- <h3>2. กิจกรรม/เกียรติบัตรที่ได้รับ</h3> 
- <p>รายละเอียดชนงาน ิ้ : เข้าร่วมการประกวด หรือกิจกรรมของโรงเรียน...</p> 
- </div> 
-<!-- ปุ่มกดกลับหน้าแรก --> 
- <a href="index.html" class="btn"> กลับหน้าแรก</a> 
- </div> 
-</body> 
-</html>  
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body{
+            background:#0f172a;
+            color:white;
+        }
+
+        header{
+            text-align:center;
+            padding:80px 20px;
+            background:linear-gradient(135deg,#2563eb,#7c3aed);
+        }
+
+        header h1{
+            font-size:3rem;
+            margin-bottom:10px;
+        }
+
+        header p{
+            font-size:1.2rem;
+        }
+
+        section{
+            max-width:1000px;
+            margin:auto;
+            padding:60px 20px;
+        }
+
+        h2{
+            margin-bottom:20px;
+            color:#60a5fa;
+        }
+
+        .about{
+            line-height:1.8;
+        }
+
+        .projects{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:20px;
+        }
+
+        .card{
+            background:#1e293b;
+            padding:20px;
+            border-radius:15px;
+            transition:0.3s;
+        }
+
+        .card:hover{
+            transform:translateY(-5px);
+        }
+
+        .card h3{
+            margin-bottom:10px;
+        }
+
+        .card a{
+            color:#60a5fa;
+            text-decoration:none;
+        }
+
+        .contact{
+            text-align:center;
+        }
+
+        .btn{
+            display:inline-block;
+            margin-top:15px;
+            padding:12px 25px;
+            background:#2563eb;
+            color:white;
+            text-decoration:none;
+            border-radius:10px;
+        }
+
+        footer{
+            text-align:center;
+            padding:20px;
+            background:#020617;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>ชื่อของคุณ</h1>
+    <p>Web Developer | Programmer | Designer</p>
+</header>
+
+<section>
+    <h2>เกี่ยวกับฉัน</h2>
+    <div class="about">
+        <p>
+            สวัสดีครับ ผมเป็นนักพัฒนาเว็บไซต์ที่สนใจ HTML, CSS,
+            JavaScript และการสร้าง Web Application
+        </p>
+    </div>
+</section>
+
+<section>
+    <h2>ผลงาน (Projects)</h2>
+
+    <div class="projects">
+
+        <div class="card">
+            <h3>Project 1</h3>
+            <p>เว็บไซต์ร้านค้าออนไลน์</p>
+            <a href="#">ดูโปรเจกต์</a>
+        </div>
+
+        <div class="card">
+            <h3>Project 2</h3>
+            <p>ระบบจัดการข้อมูล</p>
+            <a href="#">ดูโปรเจกต์</a>
+        </div>
+
+        <div class="card">
+            <h3>Project 3</h3>
+            <p>Portfolio Website</p>
+            <a href="#">ดูโปรเจกต์</a>
+        </div>
+
+    </div>
+</section>
+
+<section class="contact">
+    <h2>ติดต่อ</h2>
+    <p>Email: your@email.com</p>
+    <p>GitHub: github.com/yourusername</p>
+
+    <a href="https://github.com/yourusername" class="btn">
+        GitHub Profile
+    </a>
+</section>
+
+<footer>
+    <p>© 2026 Your Name. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
