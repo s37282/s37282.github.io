@@ -13,7 +13,7 @@
 }
 
 body{
-    font-family: "Segoe UI", sans-serif;
+    font-family:"Segoe UI",sans-serif;
     background:#f4f6f9;
     color:#333;
 }
@@ -22,7 +22,17 @@ header{
     background:linear-gradient(135deg,#2750F5,#00EBD8);
     color:white;
     text-align:center;
-    padding:60px 20px;
+    padding:50px 20px;
+}
+
+.profile-img{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid white;
+    box-shadow:0 4px 15px rgba(0,0,0,0.2);
+    margin-bottom:20px;
 }
 
 header h1{
@@ -87,6 +97,11 @@ header p{
     color:white;
     text-decoration:none;
     border-radius:8px;
+    transition:0.3s;
+}
+
+.btn-home:hover{
+    background:#1d3fd0;
 }
 
 footer{
@@ -95,14 +110,30 @@ footer{
     background:#222;
     color:white;
 }
+
+@media(max-width:768px){
+    header h1{
+        font-size:2rem;
+    }
+
+    .profile-img{
+        width:140px;
+        height:140px;
+    }
+}
 </style>
 </head>
 
 <body>
 
 <header>
+
+    <!-- รูปโปรไฟล์ -->
+    <img src="profile.jpg" alt="Profile" class="profile-img">
+
     <h1>วรัญชิต (Waranchit)</h1>
     <p>Computer Science & Engineering Student</p>
+
 </header>
 
 <div class="container">
