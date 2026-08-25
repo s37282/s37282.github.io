@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Portfolio - วรัญชิต</title>
+    <title>Portfolio | Waranchit</title>
 
     <style>
 
-        /* =================================
+        /* =========================
            RESET
-        ================================= */
+        ========================= */
 
         * {
             margin: 0;
@@ -19,61 +19,39 @@
             box-sizing: border-box;
         }
 
-
         html {
             scroll-behavior: smooth;
         }
 
-
         body {
             font-family: "Segoe UI", Arial, sans-serif;
-
             background:
-                radial-gradient(
-                    circle at 10% 10%,
-                    #003b4d 0%,
-                    transparent 28%
-                ),
-
-                radial-gradient(
-                    circle at 90% 80%,
-                    #001d3d 0%,
-                    transparent 30%
-                ),
-
-                linear-gradient(
-                    135deg,
-                    #020617,
-                    #0b1120,
-                    #020617
-                );
+                radial-gradient(circle at 10% 10%, #003b4d 0%, transparent 30%),
+                radial-gradient(circle at 90% 90%, #001d3d 0%, transparent 30%),
+                linear-gradient(135deg, #020617, #0b1120, #020617);
 
             color: white;
-
             min-height: 100vh;
-
             overflow-x: hidden;
         }
 
 
-        /* =================================
+        /* =========================
            BACKGROUND GRID
-        ================================= */
+        ========================= */
 
         .grid {
             position: fixed;
             inset: 0;
 
             background-image:
-
                 linear-gradient(
-                    rgba(0, 229, 255, 0.035) 1px,
+                    rgba(0,229,255,0.035) 1px,
                     transparent 1px
                 ),
-
                 linear-gradient(
                     90deg,
-                    rgba(0, 229, 255, 0.035) 1px,
+                    rgba(0,229,255,0.035) 1px,
                     transparent 1px
                 );
 
@@ -87,19 +65,17 @@
             transform-origin: bottom;
 
             opacity: 0.45;
-
             pointer-events: none;
 
             z-index: 0;
         }
 
 
-        /* =================================
-           BACKGROUND LIGHT
-        ================================= */
+        /* =========================
+           BACKGROUND GLOW
+        ========================= */
 
         body::before {
-
             content: "";
 
             position: fixed;
@@ -113,23 +89,19 @@
 
             filter: blur(140px);
 
-            opacity: 0.1;
+            opacity: 0.10;
 
             top: -180px;
             left: -120px;
 
             animation:
-                lightMove1 8s
-                ease-in-out
-                infinite
-                alternate;
+                glowMove1 8s ease-in-out infinite alternate;
 
             pointer-events: none;
         }
 
 
         body::after {
-
             content: "";
 
             position: fixed;
@@ -143,48 +115,45 @@
 
             filter: blur(140px);
 
-            opacity: 0.1;
+            opacity: 0.10;
 
-            right: -150px;
             bottom: -180px;
+            right: -120px;
 
             animation:
-                lightMove2 9s
-                ease-in-out
-                infinite
-                alternate;
+                glowMove2 9s ease-in-out infinite alternate;
 
             pointer-events: none;
         }
 
 
-        @keyframes lightMove1 {
+        @keyframes glowMove1 {
 
             from {
-                transform: translate(0, 0);
+                transform: translate(0,0);
             }
 
             to {
-                transform: translate(180px, 120px);
+                transform: translate(180px,120px);
             }
         }
 
 
-        @keyframes lightMove2 {
+        @keyframes glowMove2 {
 
             from {
-                transform: translate(0, 0);
+                transform: translate(0,0);
             }
 
             to {
-                transform: translate(-180px, -120px);
+                transform: translate(-180px,-120px);
             }
         }
 
 
-        /* =================================
+        /* =========================
            PARTICLES
-        ================================= */
+        ========================= */
 
         .particles {
             position: fixed;
@@ -197,7 +166,6 @@
 
 
         .particles span {
-
             position: absolute;
 
             width: 3px;
@@ -212,9 +180,7 @@
                 0 0 15px #00e5ff;
 
             animation:
-                particleFloat
-                linear
-                infinite;
+                particleFloat linear infinite;
         }
 
 
@@ -228,14 +194,12 @@
             left: 15%;
             top: 70%;
             animation-duration: 9s;
-            animation-delay: 1s;
         }
 
         .particles span:nth-child(3) {
             left: 28%;
             top: 95%;
             animation-duration: 6s;
-            animation-delay: 2s;
         }
 
         .particles span:nth-child(4) {
@@ -303,50 +267,41 @@
         }
 
 
-        /* =================================
+        /* =========================
            HEADER
-        ================================= */
+        ========================= */
 
         header {
-
             position: relative;
-
             z-index: 5;
 
             text-align: center;
 
-            padding:
-                70px 20px 55px;
+            padding: 65px 20px 55px;
 
             background:
-                rgba(5, 12, 25, 0.7);
+                rgba(5,12,25,0.75);
 
-            backdrop-filter:
-                blur(15px);
+            backdrop-filter: blur(15px);
 
             border-bottom:
                 1px solid
-                rgba(0, 229, 255, 0.25);
+                rgba(0,229,255,0.25);
 
             overflow: hidden;
         }
 
 
-        /* แสงวิ่ง Header */
-
-        header::before {
-
+        header::after {
             content: "";
 
             position: absolute;
 
             width: 200%;
-
             height: 2px;
 
-            left: -50%;
-
             bottom: 0;
+            left: -50%;
 
             background:
                 linear-gradient(
@@ -357,10 +312,7 @@
                 );
 
             animation:
-                scanLine
-                4s
-                linear
-                infinite;
+                scanLine 4s linear infinite;
         }
 
 
@@ -376,17 +328,15 @@
         }
 
 
-        /* =================================
-           PROFILE IMAGE
-        ================================= */
+        /* =========================
+           PROFILE
+        ========================= */
 
         .profile-wrapper {
-
             width: 195px;
             height: 195px;
 
-            margin:
-                0 auto 25px;
+            margin: 0 auto 25px;
 
             position: relative;
 
@@ -398,7 +348,6 @@
 
 
         .profile-wrapper::before {
-
             content: "";
 
             position: absolute;
@@ -407,24 +356,19 @@
 
             border:
                 2px solid
-                rgba(0, 229, 255, 0.7);
+                rgba(0,229,255,0.7);
 
             border-radius: 50%;
 
             border-top-color: transparent;
-
             border-bottom-color: transparent;
 
             animation:
-                rotateRing
-                4s
-                linear
-                infinite;
+                rotateRing 4s linear infinite;
         }
 
 
         .profile-wrapper::after {
-
             content: "";
 
             position: absolute;
@@ -433,24 +377,19 @@
 
             border:
                 1px solid
-                rgba(41, 121, 255, 0.35);
+                rgba(41,121,255,0.4);
 
             border-radius: 50%;
 
             border-left-color: transparent;
-
             border-right-color: transparent;
 
             animation:
-                rotateRingReverse
-                6s
-                linear
-                infinite;
+                rotateRingReverse 6s linear infinite;
         }
 
 
         .profile-img {
-
             width: 180px;
             height: 180px;
 
@@ -459,38 +398,26 @@
             object-fit: cover;
 
             border:
-                4px solid
-                #00e5ff;
+                4px solid #00e5ff;
 
             box-shadow:
-
-                0 0 15px
-                #00e5ff,
-
-                0 0 40px
-                rgba(0, 229, 255, 0.5),
-
-                0 0 80px
-                rgba(41, 121, 255, 0.2);
+                0 0 15px #00e5ff,
+                0 0 40px rgba(0,229,255,0.5),
+                0 0 80px rgba(41,121,255,0.2);
 
             animation:
-                profileFloat
-                3s
-                ease-in-out
-                infinite;
+                profileFloat 3s ease-in-out infinite;
         }
 
 
         @keyframes profileFloat {
 
-            0%,
-            100% {
+            0%,100% {
                 transform: translateY(0);
             }
 
             50% {
-                transform:
-                    translateY(-8px);
+                transform: translateY(-8px);
             }
         }
 
@@ -519,36 +446,28 @@
         }
 
 
-        /* =================================
+        /* =========================
            HEADER TEXT
-        ================================= */
+        ========================= */
 
         header h1 {
-
             font-size:
-                clamp(2rem, 5vw, 3.2rem);
+                clamp(2rem,5vw,3.2rem);
 
             margin-bottom: 12px;
-
-            text-shadow:
-                0 0 20px
-                rgba(255,255,255,0.15);
         }
 
 
         header h1 span {
-
             color: #00e5ff;
 
             text-shadow:
                 0 0 10px #00e5ff,
-                0 0 25px
-                rgba(0,229,255,0.5);
+                0 0 25px rgba(0,229,255,0.5);
         }
 
 
         header p {
-
             color: #aebed0;
 
             font-size: 1.1rem;
@@ -558,17 +477,14 @@
 
 
         .status {
-
             display: inline-block;
 
             margin-top: 20px;
 
-            padding:
-                8px 18px;
+            padding: 8px 18px;
 
             border:
-                1px solid
-                #00e5ff;
+                1px solid #00e5ff;
 
             border-radius: 30px;
 
@@ -581,10 +497,8 @@
                 rgba(0,229,255,0.15);
 
             animation:
-                statusGlow
-                2s
-                infinite
-                alternate;
+                statusGlow 2s
+                infinite alternate;
         }
 
 
@@ -604,12 +518,11 @@
         }
 
 
-        /* =================================
+        /* =========================
            NAVIGATION
-        ================================= */
+        ========================= */
 
         .nav {
-
             position: sticky;
 
             top: 0;
@@ -624,11 +537,10 @@
 
             gap: 10px;
 
-            padding:
-                15px 20px;
+            padding: 15px 20px;
 
             background:
-                rgba(2, 6, 23, 0.88);
+                rgba(2,6,23,0.90);
 
             backdrop-filter:
                 blur(15px);
@@ -640,35 +552,30 @@
 
 
         .nav a {
-
             color: #aebed0;
 
             text-decoration: none;
 
             font-size: 13px;
 
-            padding:
-                9px 15px;
+            padding: 9px 15px;
 
             border:
                 1px solid
-                rgba(0,229,255,0.18);
+                rgba(0,229,255,0.20);
 
             border-radius: 8px;
 
-            transition:
-                0.3s;
+            transition: 0.3s;
 
             white-space: nowrap;
         }
 
 
         .nav a:hover {
-
             color: #00e5ff;
 
-            border-color:
-                #00e5ff;
+            border-color: #00e5ff;
 
             background:
                 rgba(0,229,255,0.08);
@@ -682,12 +589,11 @@
         }
 
 
-        /* =================================
+        /* =========================
            CONTAINER
-        ================================= */
+        ========================= */
 
         .container {
-
             position: relative;
 
             z-index: 5;
@@ -696,29 +602,26 @@
 
             margin: auto;
 
-            padding:
-                40px 25px;
+            padding: 40px 25px;
         }
 
 
-        /* =================================
+        /* =========================
            SECTION
-        ================================= */
+        ========================= */
 
         .section {
-
             position: relative;
 
             background:
-                rgba(10,17,30,0.75);
+                rgba(10,17,30,0.78);
 
             backdrop-filter:
                 blur(15px);
 
             margin-bottom: 25px;
 
-            padding:
-                30px;
+            padding: 30px;
 
             border-radius: 18px;
 
@@ -732,13 +635,11 @@
 
             overflow: hidden;
 
-            transition:
-                0.35s;
+            transition: 0.35s;
         }
 
 
         .section::before {
-
             content: "";
 
             position: absolute;
@@ -756,13 +657,11 @@
                 );
 
             box-shadow:
-                0 0 15px
-                #00e5ff;
+                0 0 15px #00e5ff;
         }
 
 
         .section:hover {
-
             transform:
                 translateY(-5px);
 
@@ -771,15 +670,11 @@
 
             box-shadow:
                 0 20px 50px
-                rgba(0,0,0,0.5),
-
-                0 0 25px
-                rgba(0,229,255,0.06);
+                rgba(0,0,0,0.5);
         }
 
 
         .section h2 {
-
             color: #00e5ff;
 
             margin-bottom: 18px;
@@ -793,7 +688,6 @@
 
 
         .section p {
-
             color: #b8c5d6;
 
             line-height: 1.9;
@@ -802,100 +696,213 @@
         }
 
 
-        /* =================================
-           SKILLS
-        ================================= */
+        /* =========================
+           COVER
+        ========================= */
 
-        .skills {
+        .cover-box {
+            text-align: center;
 
-            display: flex;
-
-            flex-wrap: wrap;
-
-            gap: 12px;
+            padding: 25px;
         }
 
 
-        .skill {
+        .cover-box h2 {
+            font-size: 2.2rem;
+        }
+
+
+        .cover-box .big-title {
+            font-size: 3rem;
+
+            font-weight: bold;
+
+            color: white;
+
+            margin: 15px 0;
+
+            text-shadow:
+                0 0 15px
+                rgba(0,229,255,0.4);
+        }
+
+
+        .cover-box .big-title span {
+            color: #00e5ff;
+        }
+
+
+        /* =========================
+           EDUCATION
+        ========================= */
+
+        .timeline {
+            position: relative;
+
+            padding-left: 30px;
+        }
+
+
+        .timeline::before {
+            content: "";
+
+            position: absolute;
+
+            left: 7px;
+            top: 0;
+            bottom: 0;
+
+            width: 2px;
 
             background:
-                rgba(0,229,255,0.06);
-
-            color: #00e5ff;
-
-            padding:
-                10px 17px;
-
-            border:
-                1px solid
-                rgba(0,229,255,0.35);
-
-            border-radius: 25px;
-
-            transition:
-                0.3s;
+                linear-gradient(
+                    #00e5ff,
+                    #2979ff,
+                    transparent
+                );
 
             box-shadow:
                 0 0 10px
-                rgba(0,229,255,0.05);
+                #00e5ff;
         }
 
 
-        .skill:hover {
+        .timeline-item {
+            position: relative;
+
+            margin-bottom: 25px;
+
+            padding: 20px;
 
             background:
-                #00e5ff;
-
-            color:
-                #020617;
-
-            transform:
-                translateY(-4px);
-
-            box-shadow:
-                0 0 20px
-                rgba(0,229,255,0.5);
-        }
-
-
-        /* =================================
-           PROJECT
-        ================================= */
-
-        .project {
-
-            padding:
-                20px;
+                rgba(255,255,255,0.025);
 
             border:
                 1px solid
                 rgba(0,229,255,0.12);
 
-            border-left:
-                4px solid
+            border-radius: 12px;
+        }
+
+
+        .timeline-item::before {
+            content: "";
+
+            position: absolute;
+
+            left: -30px;
+            top: 25px;
+
+            width: 14px;
+            height: 14px;
+
+            background: #00e5ff;
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 15px #00e5ff;
+        }
+
+
+        .timeline-item h3 {
+            color: white;
+
+            margin-bottom: 8px;
+        }
+
+
+        .timeline-item p {
+            color: #94a5b8;
+        }
+
+
+        /* =========================
+           INTEREST CARDS
+        ========================= */
+
+        .interest-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 15px;
+        }
+
+
+        .interest {
+            padding: 25px 15px;
+
+            text-align: center;
+
+            background:
+                rgba(0,229,255,0.04);
+
+            border:
+                1px solid
+                rgba(0,229,255,0.15);
+
+            border-radius: 14px;
+
+            transition: 0.3s;
+        }
+
+
+        .interest:hover {
+            transform:
+                translateY(-7px);
+
+            border-color:
                 #00e5ff;
 
-            margin-bottom:
-                15px;
+            box-shadow:
+                0 0 25px
+                rgba(0,229,255,0.12);
+        }
+
+
+        .interest .icon {
+            font-size: 35px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .interest h3 {
+            color: #00e5ff;
+
+            margin-bottom: 8px;
+        }
+
+
+        .interest p {
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           ACTIVITY
+        ========================= */
+
+        .activity {
+            padding: 20px;
+
+            margin-bottom: 15px;
+
+            border-left:
+                4px solid #00e5ff;
 
             background:
                 rgba(255,255,255,0.025);
 
-            border-radius:
-                10px;
+            border-radius: 10px;
 
-            transition:
-                0.3s;
+            transition: 0.3s;
         }
 
 
-        .project:last-child {
-            margin-bottom: 0;
-        }
-
-
-        .project:hover {
-
+        .activity:hover {
             transform:
                 translateX(8px);
 
@@ -908,103 +915,123 @@
         }
 
 
-        .project h3 {
-
+        .activity h3 {
             color: white;
 
-            margin-bottom:
-                7px;
+            margin-bottom: 7px;
         }
 
 
-        .project p {
+        .activity p {
+            color: #94a5b8;
 
-            color:
-                #94a5b8;
-
-            font-size:
-                14px;
+            font-size: 14px;
         }
 
 
-        /* =================================
+        /* =========================
+           SPECIAL SKILLS
+        ========================= */
+
+        .skills {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+        }
+
+
+        .skill {
+            background:
+                rgba(0,229,255,0.06);
+
+            color: #00e5ff;
+
+            padding:
+                10px 18px;
+
+            border:
+                1px solid
+                rgba(0,229,255,0.35);
+
+            border-radius: 25px;
+
+            transition: 0.3s;
+        }
+
+
+        .skill:hover {
+            background: #00e5ff;
+
+            color: #020617;
+
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+                0 0 20px
+                rgba(0,229,255,0.5);
+        }
+
+
+        /* =========================
            CONTACT
-        ================================= */
+        ========================= */
 
         .contact p {
-
-            margin:
-                10px 0;
+            margin: 10px 0;
         }
 
 
         .contact a {
+            color: #00e5ff;
 
-            color:
-                #00e5ff;
+            text-decoration: none;
 
-            text-decoration:
-                none;
-
-            transition:
-                0.3s;
+            font-weight: bold;
         }
 
 
         .contact a:hover {
-
-            color:
-                white;
+            color: white;
 
             text-shadow:
-                0 0 10px
-                #00e5ff;
+                0 0 10px #00e5ff;
         }
 
 
-        /* =================================
-           BUTTON HOME
-        ================================= */
+        /* =========================
+           HOME BUTTON
+        ========================= */
 
         .btn-home {
+            display: inline-block;
 
-            display:
-                inline-block;
+            margin-top: 5px;
 
-            margin-top:
-                5px;
+            padding: 13px 25px;
 
-            padding:
-                13px 25px;
+            background: #00e5ff;
 
-            background:
-                #00e5ff;
+            color: #020617;
 
-            color:
-                #020617;
+            text-decoration: none;
 
-            text-decoration:
-                none;
+            border-radius: 8px;
 
-            border-radius:
-                8px;
-
-            font-weight:
-                bold;
+            font-weight: bold;
 
             box-shadow:
                 0 0 15px
                 rgba(0,229,255,0.35);
 
-            transition:
-                0.3s;
+            transition: 0.3s;
         }
 
 
         .btn-home:hover {
-
-            background:
-                white;
+            background: white;
 
             transform:
                 translateY(-4px);
@@ -1015,29 +1042,23 @@
         }
 
 
-        /* =================================
+        /* =========================
            FOOTER
-        ================================= */
+        ========================= */
 
         footer {
+            position: relative;
 
-            position:
-                relative;
+            z-index: 5;
 
-            z-index:
-                5;
+            text-align: center;
 
-            text-align:
-                center;
-
-            padding:
-                30px;
+            padding: 30px;
 
             background:
                 rgba(2,6,23,0.9);
 
-            color:
-                #536174;
+            color: #536174;
 
             border-top:
                 1px solid
@@ -1046,65 +1067,24 @@
 
 
         footer span {
-
-            color:
-                #00e5ff;
+            color: #00e5ff;
         }
 
 
-        /* =================================
+        /* =========================
            MOBILE
-        ================================= */
+        ========================= */
 
-        @media(max-width: 768px) {
-
-            header {
-
-                padding:
-                    55px 20px 45px;
-            }
-
-
-            .profile-wrapper {
-
-                width:
-                    155px;
-
-                height:
-                    155px;
-            }
-
-
-            .profile-img {
-
-                width:
-                    140px;
-
-                height:
-                    140px;
-            }
-
-
-            header p {
-
-                font-size:
-                    0.95rem;
-            }
-
+        @media(max-width:768px) {
 
             .nav {
+                justify-content: flex-start;
 
-                justify-content:
-                    flex-start;
+                overflow-x: auto;
 
-                overflow-x:
-                    auto;
+                flex-wrap: nowrap;
 
-                flex-wrap:
-                    nowrap;
-
-                scrollbar-width:
-                    none;
+                scrollbar-width: none;
             }
 
 
@@ -1114,30 +1094,41 @@
 
 
             .nav a {
+                flex-shrink: 0;
+            }
 
-                flex-shrink:
-                    0;
+
+            .profile-wrapper {
+                width: 155px;
+                height: 155px;
+            }
+
+
+            .profile-img {
+                width: 140px;
+                height: 140px;
             }
 
 
             .container {
-
                 padding:
                     25px 15px;
             }
 
 
             .section {
-
                 padding:
                     25px 20px;
             }
 
 
-            .section h2 {
+            .interest-grid {
+                grid-template-columns: 1fr;
+            }
 
-                font-size:
-                    1.35rem;
+
+            .cover-box .big-title {
+                font-size: 2.1rem;
             }
         }
 
@@ -1148,16 +1139,14 @@
 <body>
 
 
-    <!-- =================================
-         GRID
-    ================================= -->
+    <!-- =========================
+         BACKGROUND
+    ========================= -->
 
     <div class="grid"></div>
 
 
-    <!-- =================================
-         PARTICLES
-    ================================= -->
+    <!-- PARTICLES -->
 
     <div class="particles">
 
@@ -1174,9 +1163,9 @@
     </div>
 
 
-    <!-- =================================
+    <!-- =========================
          HEADER
-    ================================= -->
+    ========================= -->
 
     <header>
 
@@ -1203,112 +1192,361 @@
 
 
         <div class="status">
-            ● COMPUTER SCIENCE STUDENT
+            ● MY PORTFOLIO
         </div>
 
     </header>
 
 
-    <!-- =================================
-         NAVIGATION
-    ================================= -->
+    <!-- =========================
+         MENU
+    ========================= -->
 
     <nav class="nav">
 
-        <a
-            href="https://sites.google.com/view/612-36642/%E0%B8%AB%E0%B8%99%E0%B8%B2%E0%B8%9B%E0%B8%81"
-            target="_blank"
-        >
+        <a href="#cover">
             หน้าปก
         </a>
 
-
-        <a
-            href="https://sites.google.com/view/612-36642/%E0%B8%84%E0%B8%B3%E0%B8%99%E0%B8%B3"
-            target="_blank"
-        >
+        <a href="#preface">
             คำนำ
         </a>
 
-
-        <a
-            href="https://sites.google.com/view/612-36642/%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%A7%E0%B8%B1%E0%B8%95%E0%B8%B4%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%95%E0%B8%B1%E0%B8%A7"
-            target="_blank"
-        >
+        <a href="#profile">
             ประวัติส่วนตัว
         </a>
 
-
-        <a
-            href="https://sites.google.com/view/612-36642/%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%A7%E0%B8%B1%E0%B8%95%E0%B8%B4%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2"
-            target="_blank"
-        >
+        <a href="#education">
             ประวัติการศึกษา
         </a>
 
-
-        <a
-            href="https://sites.google.com/view/612-36642/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%AA%E0%B8%99%E0%B9%83%E0%B8%88%E0%B9%83%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2%E0%B8%95%E0%B9%88%E0%B8%AD"
-            target="_blank"
-        >
+        <a href="#interest">
             ความสนใจในการศึกษาต่อ
         </a>
 
-
-        <a
-            href="https://sites.google.com/view/612-36642/%E0%B8%81%E0%B8%B4%E0%B8%88%E0%B8%81%E0%B8%A3%E0%B8%A3%E0%B8%A1%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A3%E0%B9%88%E0%B8%A7%E0%B8%A1"
-            target="_blank"
-        >
+        <a href="#activity">
             กิจกรรมที่เข้าร่วม
         </a>
 
-
-        <a
-            href="https://sites.google.com/view/612-36642/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%AA%E0%B8%B2%E0%B8%A1%E0%B8%B2%E0%B8%A3%E0%B8%96%E0%B8%9E%E0%B8%B4%E0%B9%80%E0%B8%A8%E0%B8%A9"
-            target="_blank"
-        >
+        <a href="#special">
             ความสามารถพิเศษ
         </a>
 
     </nav>
 
 
-    <!-- =================================
-         MAIN
-    ================================= -->
+    <!-- =========================
+         CONTENT
+    ========================= -->
 
     <main class="container">
 
 
-        <!-- ABOUT -->
+        <!-- =========================
+             1. หน้าปก
+        ========================= -->
 
-        <section class="section">
+        <section class="section cover-box" id="cover">
 
             <h2>
-                👨‍💻 เกี่ยวกับฉัน
+                ◈ หน้าปก
             </h2>
 
+
+            <div class="big-title">
+
+                PORT<span>FOLIO</span>
+
+            </div>
+
+
             <p>
+                แฟ้มสะสมผลงาน
+            </p>
 
-                ผมสนใจด้านการพัฒนาเว็บไซต์
-                การเขียนโปรแกรม
-                และเทคโนโลยีคอมพิวเตอร์
 
-                โดยมุ่งมั่นพัฒนาทักษะ
-                เพื่อสร้างผลงานที่มีคุณภาพ
-                และใช้งานได้จริง
+            <p>
+                วรัญชิต (Waranchit)
+            </p>
 
+
+            <p>
+                Computer Science & Engineering
             </p>
 
         </section>
 
 
-        <!-- SKILLS -->
+        <!-- =========================
+             2. คำนำ
+        ========================= -->
 
-        <section class="section">
+        <section class="section" id="preface">
 
             <h2>
-                ⚡ ทักษะ (Skills)
+                ◈ คำนำ
+            </h2>
+
+
+            <p>
+                แฟ้มสะสมผลงานฉบับนี้จัดทำขึ้นเพื่อรวบรวม
+                ประวัติส่วนตัว ประวัติการศึกษา
+                ความสนใจ กิจกรรม และความสามารถพิเศษ
+                เพื่อใช้เป็นข้อมูลในการนำเสนอประวัติ
+                และผลงานของผู้จัดทำ
+            </p>
+
+
+            <br>
+
+
+            <p>
+                ภายในแฟ้มสะสมผลงานประกอบด้วยข้อมูล
+                และรายละเอียดต่าง ๆ ที่แสดงถึงความสนใจ
+                ความสามารถ และประสบการณ์ของผู้จัดทำ
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             3. ประวัติส่วนตัว
+        ========================= -->
+
+        <section class="section" id="profile">
+
+            <h2>
+                ◈ ประวัติส่วนตัว
+            </h2>
+
+
+            <p>
+                <strong>ชื่อ:</strong>
+                วรัญชิต (Waranchit)
+            </p>
+
+
+            <p>
+                <strong>สาขาที่สนใจ:</strong>
+                Computer Science & Engineering
+            </p>
+
+
+            <p>
+                <strong>ความสนใจ:</strong>
+                การเขียนโปรแกรม การพัฒนาเว็บไซต์
+                และเทคโนโลยีคอมพิวเตอร์
+            </p>
+
+
+            <br>
+
+
+            <p>
+                <!-- ใส่ข้อมูลส่วนตัวเพิ่มเติมตรงนี้ -->
+                สามารถเพิ่มข้อมูลเกี่ยวกับตนเอง
+                งานอดิเรก เป้าหมาย หรือสิ่งที่สนใจได้ที่นี่
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             4. ประวัติการศึกษา
+        ========================= -->
+
+        <section class="section" id="education">
+
+            <h2>
+                ◈ ประวัติการศึกษา
+            </h2>
+
+
+            <div class="timeline">
+
+
+                <div class="timeline-item">
+
+                    <h3>
+                        ระดับประถมศึกษา
+                    </h3>
+
+                    <p>
+                        <!-- ใส่ชื่อโรงเรียน -->
+                        ชื่อโรงเรียน / ปีการศึกษา
+                    </p>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <h3>
+                        ระดับมัธยมศึกษาตอนต้น
+                    </h3>
+
+                    <p>
+                        <!-- ใส่ชื่อโรงเรียน -->
+                        ชื่อโรงเรียน / ปีการศึกษา
+                    </p>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <h3>
+                        ระดับมัธยมศึกษาตอนปลาย
+                    </h3>
+
+                    <p>
+                        <!-- ใส่ชื่อโรงเรียน -->
+                        ชื่อโรงเรียน / ปีการศึกษา
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             5. ความสนใจในการศึกษาต่อ
+        ========================= -->
+
+        <section class="section" id="interest">
+
+            <h2>
+                ◈ ความสนใจในการศึกษาต่อ
+            </h2>
+
+
+            <div class="interest-grid">
+
+
+                <div class="interest">
+
+                    <div class="icon">
+                        💻
+                    </div>
+
+                    <h3>
+                        Computer Science
+                    </h3>
+
+                    <p>
+                        สนใจด้านวิทยาการคอมพิวเตอร์
+                        และการพัฒนาโปรแกรม
+                    </p>
+
+                </div>
+
+
+                <div class="interest">
+
+                    <div class="icon">
+                        🌐
+                    </div>
+
+                    <h3>
+                        Web Development
+                    </h3>
+
+                    <p>
+                        สนใจการออกแบบและพัฒนาเว็บไซต์
+                    </p>
+
+                </div>
+
+
+                <div class="interest">
+
+                    <div class="icon">
+                        🤖
+                    </div>
+
+                    <h3>
+                        Technology
+                    </h3>
+
+                    <p>
+                        สนใจเทคโนโลยีใหม่ ๆ
+                        และนวัตกรรมด้านคอมพิวเตอร์
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             6. กิจกรรมที่เข้าร่วม
+        ========================= -->
+
+        <section class="section" id="activity">
+
+            <h2>
+                ◈ กิจกรรมที่เข้าร่วม
+            </h2>
+
+
+            <div class="activity">
+
+                <h3>
+                    กิจกรรมที่ 01
+                </h3>
+
+                <p>
+                    ใส่รายละเอียดกิจกรรม
+                    วันที่เข้าร่วม และสิ่งที่ได้รับจากกิจกรรม
+                </p>
+
+            </div>
+
+
+            <div class="activity">
+
+                <h3>
+                    กิจกรรมที่ 02
+                </h3>
+
+                <p>
+                    ใส่รายละเอียดกิจกรรม
+                    วันที่เข้าร่วม และสิ่งที่ได้รับจากกิจกรรม
+                </p>
+
+            </div>
+
+
+            <div class="activity">
+
+                <h3>
+                    กิจกรรมที่ 03
+                </h3>
+
+                <p>
+                    ใส่รายละเอียดกิจกรรม
+                    วันที่เข้าร่วม และสิ่งที่ได้รับจากกิจกรรม
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             7. ความสามารถพิเศษ
+        ========================= -->
+
+        <section class="section" id="special">
+
+            <h2>
+                ◈ ความสามารถพิเศษ
             </h2>
 
 
@@ -1338,70 +1576,27 @@
                     Git & GitHub
                 </span>
 
-            </div>
+                <span class="skill">
+                    Web Development
+                </span>
 
-        </section>
-
-
-        <!-- PROJECT -->
-
-        <section class="section">
-
-            <h2>
-                🚀 ผลงาน (Projects)
-            </h2>
-
-
-            <div class="project">
-
-                <h3>
-                    เว็บไซต์แนะนำตัว
-                </h3>
-
-                <p>
-                    เว็บไซต์แรกที่พัฒนาด้วย HTML
-                    และเผยแพร่ผ่าน GitHub Pages
-                </p>
-
-            </div>
-
-
-            <div class="project">
-
-                <h3>
-                    Portfolio Website
-                </h3>
-
-                <p>
-                    เว็บไซต์รวบรวมข้อมูล
-                    ประวัติ และผลงานส่วนตัว
-                </p>
-
-            </div>
-
-
-            <div class="project">
-
-                <h3>
-                    Mini Programming Project
-                </h3>
-
-                <p>
-                    โปรเจกต์สำหรับฝึกการเขียนโปรแกรม
-                    และแก้ปัญหาเชิงตรรกะ
-                </p>
+                <span class="skill">
+                    Programming
+                </span>
 
             </div>
 
         </section>
 
 
-        <!-- CONTACT -->
+        <!-- =========================
+             CONTACT
+        ========================= -->
 
         <section class="section contact">
 
             <h2>
-                📡 ติดต่อ
+                ◈ ติดต่อ
             </h2>
 
 
@@ -1426,7 +1621,7 @@
         </section>
 
 
-        <!-- HOME BUTTON -->
+        <!-- HOME -->
 
         <a
             href="index.html"
@@ -1439,9 +1634,9 @@
     </main>
 
 
-    <!-- =================================
+    <!-- =========================
          FOOTER
-    ================================= -->
+    ========================= -->
 
     <footer>
 
@@ -1457,5 +1652,3 @@
 </body>
 
 </html>
-
-
