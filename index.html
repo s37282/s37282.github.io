@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -19,113 +18,471 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
             background:
-                radial-gradient(circle at top right, #263238 0%, transparent 35%),
-                linear-gradient(135deg, #050505, #111827, #050505);
+                radial-gradient(circle at 20% 20%, #003b4d 0%, transparent 30%),
+                radial-gradient(circle at 80% 80%, #001d3d 0%, transparent 30%),
+                linear-gradient(135deg, #020617, #0b1120, #020617);
             color: white;
             padding: 25px;
+            position: relative;
         }
+
+        /* =========================
+           แสงวงกลมด้านหลัง
+        ========================= */
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 350px;
+            height: 350px;
+            background: #00e5ff;
+            border-radius: 50%;
+            filter: blur(130px);
+            opacity: 0.12;
+            top: -150px;
+            left: -100px;
+            animation: orb1 8s ease-in-out infinite alternate;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 350px;
+            height: 350px;
+            background: #2979ff;
+            border-radius: 50%;
+            filter: blur(130px);
+            opacity: 0.12;
+            bottom: -150px;
+            right: -100px;
+            animation: orb2 9s ease-in-out infinite alternate;
+        }
+
+        @keyframes orb1 {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(180px, 120px);
+            }
+        }
+
+        @keyframes orb2 {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(-150px, -100px);
+            }
+        }
+
+        /* =========================
+           Grid พื้นหลัง
+        ========================= */
+
+        .grid {
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 229, 255, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 229, 255, 0.035) 1px, transparent 1px);
+            background-size: 50px 50px;
+            transform: perspective(500px) rotateX(60deg) scale(1.5);
+            transform-origin: bottom;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        /* =========================
+           จุดลอย ๆ
+        ========================= */
+
+        .particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .particles span {
+            position: absolute;
+            display: block;
+            width: 3px;
+            height: 3px;
+            background: #00e5ff;
+            border-radius: 50%;
+            box-shadow:
+                0 0 8px #00e5ff,
+                0 0 15px #00e5ff;
+
+            animation: particleFloat linear infinite;
+        }
+
+        .particles span:nth-child(1) {
+            left: 8%;
+            top: 90%;
+            animation-duration: 7s;
+        }
+
+        .particles span:nth-child(2) {
+            left: 18%;
+            top: 70%;
+            animation-duration: 9s;
+            animation-delay: 1s;
+        }
+
+        .particles span:nth-child(3) {
+            left: 30%;
+            top: 95%;
+            animation-duration: 6s;
+            animation-delay: 2s;
+        }
+
+        .particles span:nth-child(4) {
+            left: 45%;
+            top: 80%;
+            animation-duration: 8s;
+        }
+
+        .particles span:nth-child(5) {
+            left: 60%;
+            top: 95%;
+            animation-duration: 7s;
+            animation-delay: 2s;
+        }
+
+        .particles span:nth-child(6) {
+            left: 75%;
+            top: 75%;
+            animation-duration: 10s;
+        }
+
+        .particles span:nth-child(7) {
+            left: 88%;
+            top: 90%;
+            animation-duration: 8s;
+            animation-delay: 1s;
+        }
+
+        .particles span:nth-child(8) {
+            left: 95%;
+            top: 55%;
+            animation-duration: 6s;
+        }
+
+        .particles span:nth-child(9) {
+            left: 50%;
+            top: 60%;
+            animation-duration: 9s;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(0) scale(0);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            80% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-700px) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* =========================
+           Card
+        ========================= */
 
         .card {
             width: 100%;
             max-width: 650px;
             padding: 50px 40px;
             text-align: center;
-            background: rgba(20, 20, 20, 0.92);
-            border: 1px solid #333;
+
+            background: rgba(10, 17, 30, 0.82);
+            backdrop-filter: blur(18px);
+
+            border: 1px solid rgba(0, 229, 255, 0.25);
             border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.7),
+                0 0 40px rgba(0, 229, 255, 0.06);
+
             position: relative;
             overflow: hidden;
+
+            animation: cardFloat 4s ease-in-out infinite;
+            z-index: 5;
         }
+
+        /* Card ลอยขึ้นลง */
+
+        @keyframes cardFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* แสงวิ่งผ่าน Card */
 
         .card::before {
             content: "";
             position: absolute;
-            width: 180px;
-            height: 180px;
-            background: #00e5ff;
-            filter: blur(100px);
-            opacity: 0.15;
-            top: -80px;
-            right: -60px;
+            top: -100%;
+            left: -50%;
+            width: 200%;
+            height: 50%;
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(0, 229, 255, 0.12),
+                transparent
+            );
+
+            transform: rotate(25deg);
+            animation: lightScan 5s linear infinite;
+            pointer-events: none;
         }
+
+        @keyframes lightScan {
+            0% {
+                top: -100%;
+            }
+
+            100% {
+                top: 150%;
+            }
+        }
+
+        /* =========================
+           Profile Icon
+        ========================= */
 
         .profile-icon {
             width: 95px;
             height: 95px;
             margin: 0 auto 25px;
+
             border-radius: 50%;
-            background: linear-gradient(135deg, #00e5ff, #2979ff);
+
+            background:
+                radial-gradient(circle, #111827 40%, #020617 100%);
+
+            border: 2px solid #00e5ff;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
             font-size: 38px;
             font-weight: bold;
-            color: #050505;
-            box-shadow: 0 0 30px rgba(0, 229, 255, 0.3);
+
+            color: #00e5ff;
+
+            box-shadow:
+                0 0 10px #00e5ff,
+                0 0 30px rgba(0, 229, 255, 0.4),
+                inset 0 0 20px rgba(0, 229, 255, 0.15);
+
+            animation:
+                iconFloat 3s ease-in-out infinite,
+                iconGlow 2s ease-in-out infinite alternate;
         }
+
+        @keyframes iconFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-7px) rotate(2deg);
+            }
+        }
+
+        @keyframes iconGlow {
+            from {
+                box-shadow:
+                    0 0 8px #00e5ff,
+                    0 0 20px rgba(0, 229, 255, 0.3);
+            }
+
+            to {
+                box-shadow:
+                    0 0 20px #00e5ff,
+                    0 0 45px rgba(0, 229, 255, 0.6);
+            }
+        }
+
+        /* =========================
+           Welcome
+        ========================= */
 
         .hello {
             color: #00e5ff;
             font-size: 14px;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             text-transform: uppercase;
             margin-bottom: 12px;
+
+            animation: textGlow 2s ease-in-out infinite alternate;
         }
+
+        @keyframes textGlow {
+            from {
+                text-shadow: 0 0 5px rgba(0, 229, 255, 0.2);
+            }
+
+            to {
+                text-shadow: 0 0 15px rgba(0, 229, 255, 0.8);
+            }
+        }
+
+        /* =========================
+           Heading
+        ========================= */
 
         h1 {
             font-size: 38px;
             margin-bottom: 18px;
             color: white;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.08);
         }
 
         h1 span {
             color: #00e5ff;
+            text-shadow:
+                0 0 8px #00e5ff,
+                0 0 20px rgba(0, 229, 255, 0.5);
         }
 
+        /* =========================
+           Text
+        ========================= */
+
         p {
-            color: #b8b8b8;
+            color: #b8c5d6;
             font-size: 17px;
             line-height: 1.8;
             margin: 8px 0;
         }
 
+        /* =========================
+           Role
+        ========================= */
+
         .role {
             display: inline-block;
             margin-top: 15px;
             padding: 8px 18px;
+
             border: 1px solid #00e5ff;
             border-radius: 30px;
+
             color: #00e5ff;
-            font-size: 14px;
+
+            box-shadow:
+                0 0 10px rgba(0, 229, 255, 0.1),
+                inset 0 0 10px rgba(0, 229, 255, 0.05);
+
+            animation: rolePulse 2s ease-in-out infinite alternate;
         }
+
+        @keyframes rolePulse {
+            from {
+                box-shadow:
+                    0 0 5px rgba(0, 229, 255, 0.15);
+            }
+
+            to {
+                box-shadow:
+                    0 0 20px rgba(0, 229, 255, 0.45);
+            }
+        }
+
+        /* =========================
+           Button
+        ========================= */
 
         .button {
             display: inline-block;
             margin-top: 30px;
             padding: 13px 28px;
+
             background: #00e5ff;
             color: #050505;
+
             text-decoration: none;
             border-radius: 8px;
+
             font-weight: bold;
+
             transition: 0.3s;
+
+            box-shadow:
+                0 0 10px rgba(0, 229, 255, 0.5),
+                0 0 25px rgba(0, 229, 255, 0.2);
+
+            animation: buttonPulse 2.5s infinite;
+        }
+
+        @keyframes buttonPulse {
+            0%, 100% {
+                box-shadow:
+                    0 0 10px rgba(0, 229, 255, 0.4);
+            }
+
+            50% {
+                box-shadow:
+                    0 0 20px rgba(0, 229, 255, 0.8),
+                    0 0 40px rgba(0, 229, 255, 0.3);
+            }
         }
 
         .button:hover {
             background: white;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 229, 255, 0.25);
+            transform: translateY(-5px) scale(1.04);
+
+            box-shadow:
+                0 0 20px white,
+                0 0 50px rgba(0, 229, 255, 0.8);
         }
+
+        /* =========================
+           Footer
+        ========================= */
 
         .footer {
             margin-top: 30px;
             font-size: 12px;
-            color: #666;
+            color: #536174;
         }
 
+        /* =========================
+           Mobile
+        ========================= */
+
         @media (max-width: 600px) {
+
+            body {
+                overflow: auto;
+            }
+
             .card {
                 padding: 40px 25px;
             }
@@ -137,19 +494,46 @@
             p {
                 font-size: 15px;
             }
+
+            .hello {
+                letter-spacing: 2px;
+                font-size: 12px;
+            }
         }
     </style>
 </head>
 
 <body>
 
+    <!-- Grid พื้นหลัง -->
+    <div class="grid"></div>
+
+    <!-- จุดลอย -->
+    <div class="particles">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Profile Card -->
     <div class="card">
 
         <div class="profile-icon">W</div>
 
-        <div class="hello">WELCOME TO MY PROFILE</div>
+        <div class="hello">
+            WELCOME TO MY PROFILE
+        </div>
 
-        <h1>สวัสดีครับ ผมชื่อ <span>วรัญชิต</span></h1>
+        <h1>
+            สวัสดีครับ ผมชื่อ
+            <span>วรัญชิต</span>
+        </h1>
 
         <p>
             <strong>Waranchit</strong>
@@ -183,4 +567,4 @@
 
 </body>
 </html>
-```
+
