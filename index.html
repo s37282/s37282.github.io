@@ -1,11 +1,19 @@
+
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Waranchit | Profile</title>
 
     <style>
+
+        /* =========================
+           RESET
+        ========================= */
+
         * {
             margin: 0;
             padding: 0;
@@ -13,54 +21,104 @@
             font-family: Arial, Helvetica, sans-serif;
         }
 
+
+        /* =========================
+           BODY
+        ========================= */
+
         body {
             min-height: 100vh;
+
             display: flex;
             justify-content: center;
             align-items: center;
+
             overflow: hidden;
+
             background:
-                radial-gradient(circle at 20% 20%, #003b4d 0%, transparent 30%),
-                radial-gradient(circle at 80% 80%, #001d3d 0%, transparent 30%),
-                linear-gradient(135deg, #020617, #0b1120, #020617);
+                radial-gradient(
+                    circle at 15% 20%,
+                    #003b4d 0%,
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 85% 80%,
+                    #001d3d 0%,
+                    transparent 30%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #020617,
+                    #0b1120,
+                    #020617
+                );
+
             color: white;
+
             padding: 25px;
+
             position: relative;
         }
 
+
         /* =========================
-           แสงวงกลมด้านหลัง
+           BACKGROUND LIGHT
         ========================= */
 
         body::before {
+
             content: "";
+
             position: fixed;
-            width: 350px;
-            height: 350px;
+
+            width: 400px;
+            height: 400px;
+
             background: #00e5ff;
+
             border-radius: 50%;
-            filter: blur(130px);
+
+            filter: blur(140px);
+
             opacity: 0.12;
-            top: -150px;
-            left: -100px;
-            animation: orb1 8s ease-in-out infinite alternate;
+
+            top: -180px;
+            left: -120px;
+
+            animation:
+                orb1 8s ease-in-out infinite alternate;
         }
+
 
         body::after {
+
             content: "";
+
             position: fixed;
-            width: 350px;
-            height: 350px;
+
+            width: 400px;
+            height: 400px;
+
             background: #2979ff;
+
             border-radius: 50%;
-            filter: blur(130px);
+
+            filter: blur(140px);
+
             opacity: 0.12;
-            bottom: -150px;
-            right: -100px;
-            animation: orb2 9s ease-in-out infinite alternate;
+
+            bottom: -180px;
+            right: -120px;
+
+            animation:
+                orb2 9s ease-in-out infinite alternate;
         }
 
+
         @keyframes orb1 {
+
             0% {
                 transform: translate(0, 0);
             }
@@ -70,56 +128,90 @@
             }
         }
 
+
         @keyframes orb2 {
+
             0% {
                 transform: translate(0, 0);
             }
 
             100% {
-                transform: translate(-150px, -100px);
+                transform: translate(-180px, -120px);
             }
         }
 
+
         /* =========================
-           Grid พื้นหลัง
+           CYBER GRID
         ========================= */
 
         .grid {
+
             position: fixed;
+
             inset: 0;
+
             background-image:
-                linear-gradient(rgba(0, 229, 255, 0.035) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 229, 255, 0.035) 1px, transparent 1px);
+
+                linear-gradient(
+                    rgba(0, 229, 255, 0.035) 1px,
+                    transparent 1px
+                ),
+
+                linear-gradient(
+                    90deg,
+                    rgba(0, 229, 255, 0.035) 1px,
+                    transparent 1px
+                );
+
             background-size: 50px 50px;
-            transform: perspective(500px) rotateX(60deg) scale(1.5);
+
+            transform:
+                perspective(500px)
+                rotateX(60deg)
+                scale(1.5);
+
             transform-origin: bottom;
+
             opacity: 0.5;
+
             pointer-events: none;
         }
 
+
         /* =========================
-           จุดลอย ๆ
+           PARTICLES
         ========================= */
 
         .particles {
+
             position: fixed;
+
             inset: 0;
+
             pointer-events: none;
         }
 
+
         .particles span {
+
             position: absolute;
-            display: block;
+
             width: 3px;
             height: 3px;
+
             background: #00e5ff;
+
             border-radius: 50%;
+
             box-shadow:
                 0 0 8px #00e5ff,
                 0 0 15px #00e5ff;
 
-            animation: particleFloat linear infinite;
+            animation:
+                particleFloat linear infinite;
         }
+
 
         .particles span:nth-child(1) {
             left: 8%;
@@ -179,9 +271,15 @@
             animation-duration: 9s;
         }
 
+
         @keyframes particleFloat {
+
             0% {
-                transform: translateY(0) scale(0);
+
+                transform:
+                    translateY(0)
+                    scale(0);
+
                 opacity: 0;
             }
 
@@ -194,42 +292,69 @@
             }
 
             100% {
-                transform: translateY(-700px) scale(1.5);
+
+                transform:
+                    translateY(-700px)
+                    scale(1.5);
+
                 opacity: 0;
             }
         }
 
+
         /* =========================
-           Card
+           MAIN CARD
         ========================= */
 
         .card {
+
             width: 100%;
+
             max-width: 650px;
+
             padding: 50px 40px;
+
             text-align: center;
 
-            background: rgba(10, 17, 30, 0.82);
-            backdrop-filter: blur(18px);
+            background:
+                rgba(10, 17, 30, 0.82);
 
-            border: 1px solid rgba(0, 229, 255, 0.25);
-            border-radius: 20px;
+            backdrop-filter:
+                blur(18px);
+
+            border:
+                1px solid
+                rgba(0, 229, 255, 0.3);
+
+            border-radius: 25px;
 
             box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.7),
-                0 0 40px rgba(0, 229, 255, 0.06);
+
+                0 20px 60px
+                rgba(0, 0, 0, 0.7),
+
+                0 0 40px
+                rgba(0, 229, 255, 0.08);
 
             position: relative;
+
             overflow: hidden;
 
-            animation: cardFloat 4s ease-in-out infinite;
+            animation:
+                cardFloat 4s ease-in-out infinite;
+
             z-index: 5;
         }
 
-        /* Card ลอยขึ้นลง */
+
+        /* =========================
+           CARD FLOAT
+        ========================= */
 
         @keyframes cardFloat {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0);
             }
 
@@ -238,29 +363,46 @@
             }
         }
 
-        /* แสงวิ่งผ่าน Card */
+
+        /* =========================
+           LIGHT SCAN
+        ========================= */
 
         .card::before {
+
             content: "";
+
             position: absolute;
+
             top: -100%;
+
             left: -50%;
+
             width: 200%;
+
             height: 50%;
 
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(0, 229, 255, 0.12),
-                transparent
-            );
+            background:
 
-            transform: rotate(25deg);
-            animation: lightScan 5s linear infinite;
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(0, 229, 255, 0.12),
+                    transparent
+                );
+
+            transform:
+                rotate(25deg);
+
+            animation:
+                lightScan 5s linear infinite;
+
             pointer-events: none;
         }
 
+
         @keyframes lightScan {
+
             0% {
                 top: -100%;
             }
@@ -270,211 +412,455 @@
             }
         }
 
+
         /* =========================
-           Profile Icon
+           PROFILE PHOTO
         ========================= */
 
         .profile-icon {
-            width: 95px;
-            height: 95px;
-            margin: 0 auto 25px;
+
+            width: 125px;
+            height: 125px;
+
+            margin:
+                0 auto 25px;
+
+            padding: 4px;
 
             border-radius: 50%;
 
             background:
-                radial-gradient(circle, #111827 40%, #020617 100%);
 
-            border: 2px solid #00e5ff;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            font-size: 38px;
-            font-weight: bold;
-
-            color: #00e5ff;
+                linear-gradient(
+                    135deg,
+                    #00e5ff,
+                    #2979ff,
+                    #00e5ff
+                );
 
             box-shadow:
+
                 0 0 10px #00e5ff,
-                0 0 30px rgba(0, 229, 255, 0.4),
-                inset 0 0 20px rgba(0, 229, 255, 0.15);
+
+                0 0 30px
+                rgba(0, 229, 255, 0.5),
+
+                0 0 60px
+                rgba(0, 229, 255, 0.2);
 
             animation:
-                iconFloat 3s ease-in-out infinite,
-                iconGlow 2s ease-in-out infinite alternate;
+
+                profileFloat 3s ease-in-out infinite,
+
+                profileGlow 2s ease-in-out infinite alternate;
+
+            position: relative;
+
+            z-index: 2;
         }
 
-        @keyframes iconFloat {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
+
+        /* รูปจริง */
+
+        .profile-icon img {
+
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+
+            object-position: center;
+
+            border-radius: 50%;
+
+            border:
+                3px solid #020617;
+        }
+
+
+        /* =========================
+           PROFILE FLOAT
+        ========================= */
+
+        @keyframes profileFloat {
+
+            0%,
+            100% {
+
+                transform:
+                    translateY(0)
+                    rotate(0deg);
             }
 
             50% {
-                transform: translateY(-7px) rotate(2deg);
+
+                transform:
+                    translateY(-8px)
+                    rotate(2deg);
             }
         }
 
-        @keyframes iconGlow {
+
+        /* =========================
+           PROFILE GLOW
+        ========================= */
+
+        @keyframes profileGlow {
+
             from {
+
                 box-shadow:
-                    0 0 8px #00e5ff,
-                    0 0 20px rgba(0, 229, 255, 0.3);
+
+                    0 0 10px #00e5ff,
+
+                    0 0 25px
+                    rgba(0, 229, 255, 0.4);
             }
 
             to {
+
                 box-shadow:
+
                     0 0 20px #00e5ff,
-                    0 0 45px rgba(0, 229, 255, 0.6);
+
+                    0 0 50px
+                    rgba(0, 229, 255, 0.7),
+
+                    0 0 80px
+                    rgba(41, 121, 255, 0.25);
             }
         }
 
+
         /* =========================
-           Welcome
+           PROFILE RING
+        ========================= */
+
+        .profile-wrapper {
+
+            position: relative;
+
+            width: 140px;
+            height: 140px;
+
+            margin:
+                0 auto 20px;
+        }
+
+
+        .profile-wrapper::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: -8px;
+
+            border:
+
+                1px solid
+                rgba(0, 229, 255, 0.5);
+
+            border-radius: 50%;
+
+            border-top-color: transparent;
+
+            border-bottom-color: transparent;
+
+            animation:
+                rotateRing 4s linear infinite;
+        }
+
+
+        .profile-wrapper::after {
+
+            content: "";
+
+            position: absolute;
+
+            inset: -15px;
+
+            border:
+
+                1px solid
+                rgba(41, 121, 255, 0.25);
+
+            border-radius: 50%;
+
+            border-left-color: transparent;
+
+            border-right-color: transparent;
+
+            animation:
+                rotateRingReverse 6s linear infinite;
+        }
+
+
+        @keyframes rotateRing {
+
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        @keyframes rotateRingReverse {
+
+            from {
+                transform: rotate(360deg);
+            }
+
+            to {
+                transform: rotate(0deg);
+            }
+        }
+
+
+        /* =========================
+           WELCOME TEXT
         ========================= */
 
         .hello {
+
             color: #00e5ff;
+
             font-size: 14px;
+
             letter-spacing: 4px;
+
             text-transform: uppercase;
+
             margin-bottom: 12px;
 
-            animation: textGlow 2s ease-in-out infinite alternate;
+            animation:
+                textGlow
+                2s
+                ease-in-out
+                infinite alternate;
         }
 
+
         @keyframes textGlow {
+
             from {
-                text-shadow: 0 0 5px rgba(0, 229, 255, 0.2);
+
+                text-shadow:
+                    0 0 5px
+                    rgba(0, 229, 255, 0.2);
             }
 
             to {
-                text-shadow: 0 0 15px rgba(0, 229, 255, 0.8);
+
+                text-shadow:
+                    0 0 15px
+                    rgba(0, 229, 255, 0.8);
             }
         }
 
+
         /* =========================
-           Heading
+           HEADING
         ========================= */
 
         h1 {
+
             font-size: 38px;
+
             margin-bottom: 18px;
+
             color: white;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.08);
+
+            text-shadow:
+                0 0 15px
+                rgba(255, 255, 255, 0.08);
         }
+
 
         h1 span {
+
             color: #00e5ff;
+
             text-shadow:
+
                 0 0 8px #00e5ff,
-                0 0 20px rgba(0, 229, 255, 0.5);
+
+                0 0 20px
+                rgba(0, 229, 255, 0.5);
         }
 
+
         /* =========================
-           Text
+           PARAGRAPH
         ========================= */
 
         p {
+
             color: #b8c5d6;
+
             font-size: 17px;
+
             line-height: 1.8;
+
             margin: 8px 0;
         }
 
+
         /* =========================
-           Role
+           ROLE
         ========================= */
 
         .role {
+
             display: inline-block;
+
             margin-top: 15px;
+
             padding: 8px 18px;
 
-            border: 1px solid #00e5ff;
+            border:
+                1px solid #00e5ff;
+
             border-radius: 30px;
 
             color: #00e5ff;
 
             box-shadow:
-                0 0 10px rgba(0, 229, 255, 0.1),
-                inset 0 0 10px rgba(0, 229, 255, 0.05);
 
-            animation: rolePulse 2s ease-in-out infinite alternate;
+                0 0 10px
+                rgba(0, 229, 255, 0.1),
+
+                inset 0 0 10px
+                rgba(0, 229, 255, 0.05);
+
+            animation:
+                rolePulse
+                2s
+                ease-in-out
+                infinite alternate;
         }
 
+
         @keyframes rolePulse {
+
             from {
+
                 box-shadow:
-                    0 0 5px rgba(0, 229, 255, 0.15);
+                    0 0 5px
+                    rgba(0, 229, 255, 0.15);
             }
 
             to {
+
                 box-shadow:
-                    0 0 20px rgba(0, 229, 255, 0.45);
+                    0 0 20px
+                    rgba(0, 229, 255, 0.45);
             }
         }
 
+
         /* =========================
-           Button
+           BUTTON
         ========================= */
 
         .button {
+
             display: inline-block;
+
             margin-top: 30px;
+
             padding: 13px 28px;
 
             background: #00e5ff;
+
             color: #050505;
 
             text-decoration: none;
+
             border-radius: 8px;
 
             font-weight: bold;
 
-            transition: 0.3s;
+            transition:
+                0.3s;
 
             box-shadow:
-                0 0 10px rgba(0, 229, 255, 0.5),
-                0 0 25px rgba(0, 229, 255, 0.2);
 
-            animation: buttonPulse 2.5s infinite;
+                0 0 10px
+                rgba(0, 229, 255, 0.5),
+
+                0 0 25px
+                rgba(0, 229, 255, 0.2);
+
+            animation:
+                buttonPulse
+                2.5s
+                infinite;
         }
 
+
         @keyframes buttonPulse {
-            0%, 100% {
+
+            0%,
+            100% {
+
                 box-shadow:
-                    0 0 10px rgba(0, 229, 255, 0.4);
+
+                    0 0 10px
+                    rgba(0, 229, 255, 0.4);
             }
 
             50% {
+
                 box-shadow:
-                    0 0 20px rgba(0, 229, 255, 0.8),
-                    0 0 40px rgba(0, 229, 255, 0.3);
+
+                    0 0 20px
+                    rgba(0, 229, 255, 0.8),
+
+                    0 0 40px
+                    rgba(0, 229, 255, 0.3);
             }
         }
 
+
         .button:hover {
+
             background: white;
-            transform: translateY(-5px) scale(1.04);
+
+            transform:
+                translateY(-5px)
+                scale(1.04);
 
             box-shadow:
+
                 0 0 20px white,
-                0 0 50px rgba(0, 229, 255, 0.8);
+
+                0 0 50px
+                rgba(0, 229, 255, 0.8);
         }
 
+
         /* =========================
-           Footer
+           FOOTER
         ========================= */
 
         .footer {
+
             margin-top: 30px;
+
             font-size: 12px;
+
             color: #536174;
         }
 
+
         /* =========================
-           Mobile
+           MOBILE
         ========================= */
 
         @media (max-width: 600px) {
@@ -484,32 +870,61 @@
             }
 
             .card {
-                padding: 40px 25px;
+
+                padding:
+                    40px 25px;
             }
 
             h1 {
+
                 font-size: 30px;
             }
 
             p {
+
                 font-size: 15px;
             }
 
             .hello {
+
                 letter-spacing: 2px;
+
                 font-size: 12px;
             }
+
+            .profile-icon {
+
+                width: 110px;
+                height: 110px;
+            }
+
+            .profile-wrapper {
+
+                width: 125px;
+                height: 125px;
+            }
         }
+
     </style>
 </head>
 
+
 <body>
 
-    <!-- Grid พื้นหลัง -->
+
+    <!-- =========================
+         BACKGROUND GRID
+    ========================= -->
+
     <div class="grid"></div>
 
-    <!-- จุดลอย -->
+
+    <!-- =========================
+         PARTICLES
+    ========================= -->
+
     <div class="particles">
+
         <span></span>
         <span></span>
         <span></span>
@@ -519,51 +934,127 @@
         <span></span>
         <span></span>
         <span></span>
+
     </div>
 
-    <!-- Profile Card -->
+
+    <!-- =========================
+         PROFILE CARD
+    ========================= -->
+
     <div class="card">
 
-        <div class="profile-icon">Screenshot 2026-06-16 111838.png</div>
+
+        <!-- รูปโปรไฟล์ -->
+
+        <div class="profile-wrapper">
+
+            <div class="profile-icon">
+
+                <img
+                    src="Screenshot 2026-06-16 111838.png"
+                    alt="Waranchit Profile"
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- Welcome -->
 
         <div class="hello">
+
             WELCOME TO MY PROFILE
+
         </div>
+
+
+        <!-- ชื่อ -->
 
         <h1>
+
             สวัสดีครับ ผมชื่อ
-            <span>วรัญชิต</span>
+
+            <span>
+                วรัญชิต
+            </span>
+
         </h1>
 
-        <p>
-            <strong>Waranchit</strong>
-        </p>
+
+        <!-- ชื่อภาษาอังกฤษ -->
 
         <p>
-            ผมกำลังศึกษาและสนใจด้าน
-            <br>
-            Computer Science & Engineering
+
+            <strong>
+                Waranchit
+            </strong>
+
         </p>
+
+
+        <!-- การศึกษา -->
+
+        <p>
+
+            ผมกำลังศึกษาและสนใจด้าน
+
+            <br>
+
+            Computer Science & Engineering
+
+        </p>
+
+
+        <!-- ตำแหน่ง -->
 
         <div class="role">
+
             Computer Science Student
+
         </div>
+
+
+        <!-- รายละเอียด -->
 
         <p>
+
             นี่คือเว็บไซต์แรกของผม
+
             <br>
+
             ที่สร้างและโฮสต์บน GitHub Pages
+
         </p>
 
-        <a href="portfolio.html" class="button">
+
+        <!-- ปุ่ม Portfolio -->
+
+        <a
+            href="portfolio.html"
+            class="button"
+        >
+
             VIEW MY PORTFOLIO →
+
         </a>
 
+
+        <!-- Footer -->
+
         <div class="footer">
-            © 2026 Waranchit. All Rights Reserved.
+
+            © 2026 Waranchit.
+            All Rights Reserved.
+
         </div>
+
 
     </div>
 
+
 </body>
+
 </html>
+```
