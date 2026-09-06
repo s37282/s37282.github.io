@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-
 <html lang="th">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Waranchit | Portfolio</title>
+<title>Loading | Waranchit Portfolio</title>
 
 <style>
 
@@ -20,30 +20,39 @@
     box-sizing:border-box;
 }
 
-html{
-    scroll-behavior:smooth;
+html,
+body{
+    width:100%;
+    height:100%;
 }
 
 body{
-    min-height:100vh;
-    font-family:"Segoe UI",Arial,sans-serif;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
     background:#050505;
+
     color:#fff;
+
     overflow:hidden;
 }
 
 
 /* =========================================================
-   INTRO SCREEN
+   LOADING SCREEN
 ========================================================= */
 
-.intro{
+.loading-screen{
 
     position:fixed;
 
     inset:0;
 
-    z-index:1000;
+    width:100%;
+    height:100%;
 
     display:flex;
 
@@ -51,20 +60,37 @@ body{
 
     align-items:center;
 
-    background:#050505;
+    background:
+
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(255,255,255,.09),
+            transparent 32%
+        ),
+
+        radial-gradient(
+            circle at 20% 80%,
+            rgba(255,255,255,.035),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(255,255,255,.035),
+            transparent 30%
+        ),
+
+        #050505;
 
     overflow:hidden;
-
-    animation:
-        introExit 1.4s ease 5.8s forwards;
 }
 
 
 /* =========================================================
-   BACKGROUND
+   BACKGROUND GRID
 ========================================================= */
 
-.intro::before{
+.loading-screen::before{
 
     content:"";
 
@@ -74,24 +100,40 @@ body{
 
     background:
 
-        radial-gradient(
-            circle at 50% 45%,
-            rgba(255,255,255,0.10),
-            transparent 35%
+        linear-gradient(
+            90deg,
+            transparent 49.5%,
+            rgba(255,255,255,.035) 50%,
+            transparent 50.5%
         ),
 
         linear-gradient(
-            135deg,
-            #000,
-            #111,
-            #000
+            transparent 49.5%,
+            rgba(255,255,255,.035) 50%,
+            transparent 50.5%
         );
 
-    z-index:-2;
+    background-size:
+        100px 100px;
+
+    mask-image:
+        radial-gradient(
+            ellipse at center,
+            black 0%,
+            transparent 75%
+        );
+
+    opacity:.5;
+
+    pointer-events:none;
 }
 
 
-.intro::after{
+/* =========================================================
+   NOISE
+========================================================= */
+
+.loading-screen::after{
 
     content:"";
 
@@ -99,71 +141,52 @@ body{
 
     inset:0;
 
-    opacity:.08;
+    opacity:.035;
+
+    pointer-events:none;
 
     background-image:
 
-        linear-gradient(
-            90deg,
-            transparent 95%,
-            #fff 95%
-        ),
-
-        linear-gradient(
-            transparent 95%,
-            #fff 95%
-        );
-
-    background-size:80px 80px;
-
-    mask-image:
-        linear-gradient(
-            to bottom,
-            transparent,
-            black,
-            transparent
-        );
-
-    z-index:-1;
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.8'/%3E%3C/svg%3E");
 }
 
 
 /* =========================================================
-   CENTER CONTENT
+   CENTER
 ========================================================= */
 
-.intro-content{
+.loading-content{
+
+    position:relative;
+
+    z-index:5;
 
     width:90%;
 
     max-width:1000px;
 
     text-align:center;
-
-    position:relative;
-
-    padding:40px;
 }
 
 
 /* =========================================================
-   SMALL TOP TEXT
+   SMALL TEXT
 ========================================================= */
 
-.intro-small{
+.small-text{
 
-    font-size:12px;
+    font-size:11px;
 
     letter-spacing:8px;
 
-    color:#888;
+    color:#777;
 
-    margin-bottom:25px;
+    margin-bottom:28px;
 
     opacity:0;
 
     animation:
-        fadeUp .9s ease .5s forwards;
+        fadeUp .9s ease .3s forwards;
 }
 
 
@@ -171,7 +194,7 @@ body{
    MAIN TITLE
 ========================================================= */
 
-.intro-title{
+.title{
 
     font-size:
         clamp(
@@ -182,9 +205,9 @@ body{
 
     font-weight:700;
 
-    letter-spacing:-3px;
-
     line-height:.95;
+
+    letter-spacing:-4px;
 
     text-transform:uppercase;
 
@@ -193,12 +216,12 @@ body{
     animation:
         titleReveal 1.3s
         cubic-bezier(.16,1,.3,1)
-        1s
+        .7s
         forwards;
 }
 
 
-.intro-title span{
+.title span{
 
     display:block;
 
@@ -208,8 +231,12 @@ body{
         1px #fff;
 
     text-shadow:
-        0 0 30px
-        rgba(255,255,255,.12);
+
+        0 0 25px
+        rgba(255,255,255,.1),
+
+        0 0 60px
+        rgba(255,255,255,.05);
 }
 
 
@@ -217,20 +244,22 @@ body{
    SUBTITLE
 ========================================================= */
 
-.intro-subtitle{
+.subtitle{
 
-    margin-top:35px;
+    margin-top:30px;
 
-    font-size:16px;
+    font-size:13px;
 
-    letter-spacing:4px;
+    letter-spacing:5px;
 
-    color:#aaa;
+    color:#999;
+
+    text-transform:uppercase;
 
     opacity:0;
 
     animation:
-        fadeUp .9s ease 2.2s forwards;
+        fadeUp .9s ease 1.9s forwards;
 }
 
 
@@ -238,7 +267,7 @@ body{
    LINE
 ========================================================= */
 
-.intro-line{
+.line{
 
     width:0;
 
@@ -246,596 +275,230 @@ body{
 
     background:#fff;
 
-    margin:35px auto;
+    margin:
+        35px auto 30px;
 
     animation:
-        lineGrow 1.2s ease 2.8s forwards;
+        lineGrow 1.2s ease 2.5s forwards;
 }
 
 
 /* =========================================================
-   ENTER BUTTON
+   LOADING TEXT
 ========================================================= */
 
-.enter-btn{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:18px;
-
-    padding:15px 30px;
-
-    color:#fff;
-
-    border:1px solid #555;
-
-    text-decoration:none;
-
-    font-size:13px;
-
-    letter-spacing:3px;
-
-    text-transform:uppercase;
-
-    transition:.4s;
-
-    opacity:0;
-
-    animation:
-        fadeUp .9s ease 3.5s forwards;
-}
-
-
-.enter-btn span{
-
-    font-size:20px;
-
-    transition:.4s;
-}
-
-
-.enter-btn:hover{
-
-    background:#fff;
-
-    color:#000;
-
-    border-color:#fff;
-
-    padding-left:38px;
-
-    padding-right:38px;
-}
-
-
-.enter-btn:hover span{
-
-    transform:
-        translateX(7px);
-}
-
-
-/* =========================================================
-   LOADING BAR
-========================================================= */
-
-.loading{
-
-    position:absolute;
-
-    bottom:25px;
-
-    left:50%;
-
-    transform:
-        translateX(-50%);
-
-    width:180px;
-
-    height:1px;
-
-    background:#222;
-
-    overflow:hidden;
-
-    opacity:0;
-
-    animation:
-        fadeIn .5s ease 3.8s forwards;
-}
-
-
-.loading::after{
-
-    content:"";
-
-    position:absolute;
-
-    left:0;
-
-    top:0;
-
-    height:100%;
-
-    width:0;
-
-    background:#fff;
-
-    animation:
-        loading 4s linear 3.8s forwards;
-}
-
-
-/* =========================================================
-   MAIN WEBSITE
-========================================================= */
-
-.main{
-
-    min-height:100vh;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:40px;
-
-    position:relative;
-
-    background:
-
-        radial-gradient(
-            circle at 15% 20%,
-            #202020,
-            transparent 30%
-        ),
-
-        radial-gradient(
-            circle at 85% 80%,
-            #181818,
-            transparent 30%
-        ),
-
-        #050505;
-
-    opacity:0;
-
-    animation:
-        mainReveal 1.5s ease 6s forwards;
-}
-
-
-/* =========================================================
-   NOISE
-========================================================= */
-
-.main::before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    opacity:.04;
-
-    pointer-events:none;
-
-    background-image:
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
-}
-
-
-/* =========================================================
-   CARD
-========================================================= */
-
-.card{
-
-    width:100%;
-
-    max-width:950px;
-
-    min-height:560px;
-
-    display:grid;
-
-    grid-template-columns:
-        42% 58%;
-
-    background:
-        rgba(255,255,255,.035);
-
-    border:
-        1px solid
-        rgba(255,255,255,.13);
-
-    position:relative;
-
-    overflow:hidden;
-
-    box-shadow:
-        0 40px 100px
-        rgba(0,0,0,.7);
-
-    backdrop-filter:
-        blur(15px);
-}
-
-
-/* =========================================================
-   LEFT
-========================================================= */
-
-.left{
-
-    position:relative;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:#0c0c0c;
-
-    overflow:hidden;
-}
-
-
-.left::before{
-
-    content:"01";
-
-    position:absolute;
-
-    top:20px;
-
-    left:25px;
-
-    font-size:12px;
-
-    letter-spacing:3px;
-
-    color:#555;
-}
-
-
-.left::after{
-
-    content:"PROFILE";
-
-    position:absolute;
-
-    bottom:25px;
-
-    left:25px;
+.loading-text{
 
     font-size:10px;
-
-    letter-spacing:5px;
-
-    color:#555;
-}
-
-
-/* =========================================================
-   IMAGE
-========================================================= */
-
-.profile{
-
-    width:250px;
-
-    height:250px;
-
-    border-radius:50%;
-
-    padding:7px;
-
-    border:
-        1px solid
-        #777;
-
-    position:relative;
-
-    transition:.5s;
-}
-
-
-.profile::before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:-15px;
-
-    border:
-        1px solid
-        #333;
-
-    border-radius:50%;
-
-    transition:.5s;
-}
-
-
-.profile:hover{
-
-    transform:
-        scale(1.03);
-}
-
-
-.profile:hover::before{
-
-    inset:-25px;
-
-    border-color:#777;
-}
-
-
-.profile img{
-
-    width:100%;
-
-    height:100%;
-
-    object-fit:cover;
-
-    border-radius:50%;
-
-    filter:
-        grayscale(100%)
-        contrast(1.05);
-
-    display:block;
-}
-
-
-/* =========================================================
-   RIGHT CONTENT
-========================================================= */
-
-.right{
-
-    padding:
-        70px 65px;
-
-    display:flex;
-
-    justify-content:center;
-
-    flex-direction:column;
-
-    position:relative;
-}
-
-
-.number{
-
-    font-size:11px;
-
-    color:#666;
 
     letter-spacing:4px;
 
-    margin-bottom:25px;
-}
+    color:#666;
 
+    text-transform:uppercase;
 
-.welcome{
+    opacity:0;
 
-    font-size:13px;
-
-    color:#999;
-
-    letter-spacing:6px;
-
-    margin-bottom:15px;
-}
-
-
-h1{
-
-    font-size:
-        clamp(
-            38px,
-            5vw,
-            64px
-        );
-
-    line-height:1;
-
-    font-weight:700;
-
-    letter-spacing:-2px;
-
-    margin-bottom:15px;
-}
-
-
-h1 span{
-
-    color:#999;
-
-    font-weight:300;
-}
-
-
-.name-en{
-
-    font-size:16px;
-
-    letter-spacing:5px;
-
-    color:#777;
-
-    margin-bottom:30px;
-}
-
-
-.description{
-
-    max-width:500px;
-
-    color:#aaa;
-
-    line-height:1.9;
-
-    font-size:15px;
-
-    margin-bottom:25px;
+    animation:
+        fadeIn .7s ease 2.8s forwards;
 }
 
 
 /* =========================================================
-   TAG
+   PROGRESS BAR
 ========================================================= */
 
-.tag{
+.progress{
 
-    display:inline-block;
+    width:260px;
 
-    width:max-content;
+    max-width:70%;
 
-    padding:
-        8px 18px;
+    height:2px;
 
-    border:
-        1px solid
-        #444;
+    background:#222;
 
-    color:#ddd;
+    margin:
+        18px auto 0;
 
-    font-size:11px;
+    overflow:hidden;
 
-    letter-spacing:3px;
+    position:relative;
 
-    margin-bottom:30px;
+    opacity:0;
+
+    animation:
+        fadeIn .7s ease 2.8s forwards;
 }
 
 
-/* =========================================================
-   BUTTON
-========================================================= */
+.progress::after{
 
-.button{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:20px;
-
-    width:max-content;
-
-    padding:
-        15px 24px;
-
-    color:#fff;
-
-    text-decoration:none;
-
-    border:
-        1px solid
-        #555;
-
-    font-size:12px;
-
-    letter-spacing:2px;
-
-    transition:.4s;
-}
-
-
-.button span{
-
-    font-size:18px;
-
-    transition:.4s;
-}
-
-
-.button:hover{
-
-    background:#fff;
-
-    color:#000;
-
-    border-color:#fff;
-}
-
-
-.button:hover span{
-
-    transform:
-        translateX(7px);
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-.footer{
+    content:"";
 
     position:absolute;
 
-    bottom:25px;
+    top:0;
 
-    right:30px;
+    left:0;
 
-    color:#444;
+    width:0;
 
-    font-size:10px;
+    height:100%;
 
-    letter-spacing:2px;
+    background:#fff;
+
+    box-shadow:
+        0 0 12px
+        rgba(255,255,255,.6);
+
+    animation:
+        loading 3s
+        cubic-bezier(.4,0,.2,1)
+        2.9s
+        forwards;
 }
 
 
 /* =========================================================
-   DECORATION
+   PERCENT
+========================================================= */
+
+.percent{
+
+    margin-top:15px;
+
+    font-size:10px;
+
+    color:#555;
+
+    letter-spacing:3px;
+
+    opacity:0;
+
+    animation:
+        fadeIn .7s ease 2.8s forwards;
+}
+
+
+/* =========================================================
+   CORNERS
 ========================================================= */
 
 .corner{
 
     position:absolute;
 
-    width:30px;
+    width:45px;
 
-    height:30px;
+    height:45px;
 
-    border-color:#777;
+    border-color:#444;
 
     border-style:solid;
+
+    opacity:.6;
 }
 
 
-.corner.one{
+.corner.top-left{
 
-    top:15px;
+    top:30px;
 
-    right:15px;
+    left:30px;
+
+    border-width:
+        1px 0 0 1px;
+}
+
+
+.corner.top-right{
+
+    top:30px;
+
+    right:30px;
 
     border-width:
         1px 1px 0 0;
 }
 
 
-.corner.two{
+.corner.bottom-left{
 
-    bottom:15px;
+    bottom:30px;
 
-    right:15px;
+    left:30px;
+
+    border-width:
+        0 0 1px 1px;
+}
+
+
+.corner.bottom-right{
+
+    bottom:30px;
+
+    right:30px;
 
     border-width:
         0 1px 1px 0;
+}
+
+
+/* =========================================================
+   TOP / BOTTOM INFO
+========================================================= */
+
+.top-info{
+
+    position:absolute;
+
+    top:30px;
+
+    left:50%;
+
+    transform:
+        translateX(-50%);
+
+    font-size:9px;
+
+    letter-spacing:5px;
+
+    color:#444;
+}
+
+
+.bottom-info{
+
+    position:absolute;
+
+    bottom:30px;
+
+    left:50%;
+
+    transform:
+        translateX(-50%);
+
+    font-size:9px;
+
+    letter-spacing:4px;
+
+    color:#444;
+
+    white-space:nowrap;
+}
+
+
+/* =========================================================
+   EXIT
+========================================================= */
+
+.loading-screen.exit{
+
+    animation:
+        exitScreen 1s
+        cubic-bezier(.76,0,.24,1)
+        forwards;
 }
 
 
@@ -884,8 +547,7 @@ h1 span{
         transform:
             translateY(50px);
 
-        letter-spacing:
-            15px;
+        letter-spacing:15px;
     }
 
     to{
@@ -895,8 +557,7 @@ h1 span{
         transform:
             translateY(0);
 
-        letter-spacing:
-            -3px;
+        letter-spacing:-4px;
     }
 }
 
@@ -925,7 +586,7 @@ h1 span{
 }
 
 
-@keyframes introExit{
+@keyframes exitScreen{
 
     0%{
 
@@ -939,30 +600,10 @@ h1 span{
 
         opacity:0;
 
+        transform:
+            scale(1.06);
+
         visibility:hidden;
-
-        transform:
-            scale(1.05);
-    }
-}
-
-
-@keyframes mainReveal{
-
-    from{
-
-        opacity:0;
-
-        transform:
-            scale(1.04);
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:
-            scale(1);
     }
 }
 
@@ -971,118 +612,125 @@ h1 span{
    MOBILE
 ========================================================= */
 
-@media(max-width:750px){
+@media(max-width:600px){
 
-    body{
+    .small-text{
 
-        overflow:auto;
+        font-size:9px;
+
+        letter-spacing:5px;
+
+        margin-bottom:22px;
     }
 
 
-    .intro-title{
+    .title{
 
-        font-size:45px;
+        font-size:40px;
 
         letter-spacing:-2px;
     }
 
 
-    .intro-subtitle{
+    .subtitle{
 
-        font-size:11px;
+        font-size:9px;
 
-        letter-spacing:2px;
+        letter-spacing:3px;
 
         line-height:1.8;
     }
 
 
-    .card{
+    .loading-text{
 
-        grid-template-columns:1fr;
+        font-size:8px;
 
-        max-width:500px;
+        letter-spacing:3px;
     }
 
 
-    .left{
+    .progress{
 
-        min-height:330px;
+        width:220px;
     }
 
 
-    .profile{
+    .corner{
 
-        width:190px;
+        width:30px;
 
-        height:190px;
+        height:30px;
     }
 
 
-    .right{
+    .corner.top-left,
+    .corner.top-right{
 
-        padding:
-            45px 30px 60px;
+        top:20px;
     }
 
 
-    h1{
+    .corner.bottom-left,
+    .corner.bottom-right{
 
-        font-size:42px;
+        bottom:20px;
     }
 
 
-    .footer{
+    .corner.top-left,
+    .corner.bottom-left{
 
-        position:static;
+        left:20px;
+    }
 
-        margin-top:40px;
+
+    .corner.top-right,
+    .corner.bottom-right{
+
+        right:20px;
+    }
+
+
+    .top-info{
+
+        top:22px;
+
+        font-size:7px;
+
+        letter-spacing:3px;
+    }
+
+
+    .bottom-info{
+
+        bottom:22px;
+
+        font-size:7px;
+
+        letter-spacing:2px;
     }
 
 }
 
 
-/* =========================================================
-   VERY SMALL SCREEN
-========================================================= */
+@media(max-width:400px){
 
-@media(max-width:420px){
+    .title{
 
-    .main{
-
-        padding:20px;
+        font-size:32px;
     }
 
 
-    .intro-content{
+    .subtitle{
 
-        padding:20px;
+        font-size:8px;
     }
 
 
-    .intro-title{
+    .progress{
 
-        font-size:35px;
-    }
-
-
-    .profile{
-
-        width:160px;
-
-        height:160px;
-    }
-
-
-    .left{
-
-        min-height:280px;
-    }
-
-
-    h1{
-
-        font-size:34px;
+        width:180px;
     }
 
 }
@@ -1091,170 +739,139 @@ h1 span{
 
 </head>
 
+
 <body>
 
+
 <!-- =========================================================
-     INTRO / OPENING SCREEN
+     LOADING SCREEN
 ========================================================= -->
 
-<section class="intro">
-
-```
-<div class="intro-content">
-
-    <div class="intro-small">
-        WARANCHIT WONGSUPALERD
-    </div>
+<section class="loading-screen" id="loadingScreen">
 
 
-    <div class="intro-title">
+    <!-- CORNERS -->
 
-        WELCOME TO
+    <div class="corner top-left"></div>
 
-        <span>
-            MY PORTFOLIO
-        </span>
+    <div class="corner top-right"></div>
 
-    </div>
+    <div class="corner bottom-left"></div>
+
+    <div class="corner bottom-right"></div>
 
 
-    <div class="intro-subtitle">
+    <!-- TOP -->
 
-        WELCOME TO MY PORTFOLIO WEBSITE
+    <div class="top-info">
+
+        PORTFOLIO • 2026
 
     </div>
 
 
-    <div class="intro-line"></div>
+    <!-- CENTER -->
+
+    <div class="loading-content">
 
 
-    <a
-        href="portfolio.html"
-        class="enter-btn"
-    >
+        <div class="small-text">
 
-        ENTER PORTFOLIO
+            WARANCHIT WONGSUPALERD
 
-        <span>→</span>
-
-    </a>
-
-</div>
+        </div>
 
 
-<div class="loading"></div>
-```
+        <div class="title">
+
+            WELCOME TO
+
+            <span>
+
+                MY PORTFOLIO
+
+            </span>
+
+        </div>
+
+
+        <div class="subtitle">
+
+            WELCOME TO MY PORTFOLIO WEBSITE
+
+        </div>
+
+
+        <div class="line"></div>
+
+
+        <div class="loading-text">
+
+            LOADING PORTFOLIO
+
+        </div>
+
+
+        <div class="progress"></div>
+
+
+        <div class="percent">
+
+            PLEASE WAIT...
+
+        </div>
+
+
+    </div>
+
+
+    <!-- BOTTOM -->
+
+    <div class="bottom-info">
+
+        WARANCHIT © 2026
+
+    </div>
+
 
 </section>
 
-<!-- =========================================================
-     MAIN PROFILE
-========================================================= -->
 
-<main class="main">
+<script>
 
-```
-<div class="card">
+/* =========================================================
+   AUTO REDIRECT
+========================================================= */
 
-
-    <!-- LEFT -->
-
-    <div class="left">
-
-        <div class="profile">
-
-            <img
-                src="S__37978147.jpg"
-                alt="Waranchit Profile"
-            >
-
-        </div>
-
-    </div>
+const loadingScreen =
+    document.getElementById("loadingScreen");
 
 
+/*
+    รอให้ Animation โหลดเสร็จ
+    แล้วเปลี่ยนไปหน้า portfolio.html
+*/
 
-    <!-- RIGHT -->
+setTimeout(() => {
 
-    <div class="right">
+    loadingScreen.classList.add("exit");
 
-        <div class="corner one"></div>
-
-        <div class="corner two"></div>
-
-
-        <div class="number">
-            01 / PROFILE
-        </div>
+}, 5900);
 
 
-        <div class="welcome">
-            WELCOME TO MY WEBSITE
-        </div>
+/*
+    หลังจากหน้า Loading เริ่มหาย
+    ให้เปิด portfolio.html อัตโนมัติ
+*/
 
+setTimeout(() => {
 
-        <h1>
+    window.location.href = "portfolio.html";
 
-            วรัญชิต
+}, 6900);
 
-            <span>
-                Wongsupalerd
-            </span>
+</script>
 
-        </h1>
-
-
-        <div class="name-en">
-
-            WARANCHIT
-
-        </div>
-
-
-        <div class="tag">
-
-            GIFTED STUDENT
-
-        </div>
-
-
-        <p class="description">
-
-            สวัสดีครับ ผมชื่อวรัญชิต
-            เว็บไซต์นี้จัดทำขึ้นเพื่อรวบรวม
-            ประวัติส่วนตัว กิจกรรม ผลงาน
-            และสิ่งที่ผมสนใจ
-            โดยมีความสนใจด้านวิทยาศาสตร์การกีฬา
-            และการเรียนรู้สิ่งใหม่ ๆ
-
-        </p>
-
-
-        <a
-            href="portfolio.html"
-            class="button"
-        >
-
-            VIEW MY PORTFOLIO
-
-            <span>→</span>
-
-        </a>
-
-
-        <div class="footer">
-
-            © 2026 WARANCHIT
-
-        </div>
-
-    </div>
-
-
-</div>
-```
-
-</main>
 
 </body>
 
