@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="th">
 
@@ -22,10 +22,10 @@
     --card:#0b0b0f;
 
     --white:#ffffff;
-    --text:#f5f5f5;
-    --text-soft:#d0d0d0;
-    --muted:#9a9a9a;
-    --muted2:#666;
+    --text:#f7f8fa;
+    --text-soft:#dfe2e7;
+    --muted:#aeb4bd;
+    --muted2:#707782;
 
     --line:rgba(255,255,255,.15);
     --line-soft:rgba(255,255,255,.08);
@@ -243,13 +243,11 @@ body{
 @keyframes starMove{
 
     from{
-        transform:
-            translateY(0);
+        transform:translateY(0);
     }
 
     to{
-        transform:
-            translateY(240px);
+        transform:translateY(240px);
     }
 }
 
@@ -305,13 +303,11 @@ body{
 @keyframes starDrift{
 
     from{
-        transform:
-            translate(0,0);
+        transform:translate(0,0);
     }
 
     to{
-        transform:
-            translate(-100px,180px);
+        transform:translate(-100px,180px);
     }
 }
 
@@ -331,8 +327,7 @@ body{
 
     background:#fff;
 
-    filter:
-        blur(180px);
+    filter:blur(180px);
 
     opacity:.025;
 
@@ -382,21 +377,35 @@ body{
    TEXT ANIMATION
 ========================================================= */
 
+/* เปิดเข้ามา */
+
 @keyframes textReveal{
 
-    from{
+    0%{
 
         opacity:0;
 
         transform:
-            translateY(25px);
+            translateY(35px);
 
         filter:
-            blur(8px);
+            blur(10px);
 
     }
 
-    to{
+    70%{
+
+        opacity:.8;
+
+        transform:
+            translateY(-3px);
+
+        filter:
+            blur(1px);
+
+    }
+
+    100%{
 
         opacity:1;
 
@@ -411,20 +420,47 @@ body{
 }
 
 
-@keyframes shimmer{
+/* เลื่อนขึ้นแบบนุ่ม */
 
-    0%{
-        background-position:
-            -200% center;
+@keyframes textUp{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(45px);
+
     }
 
-    100%{
-        background-position:
-            200% center;
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+
     }
 
 }
 
+
+/* แสงวิ่งบนตัวอักษร */
+
+@keyframes shimmer{
+
+    0%{
+        background-position:-200% center;
+    }
+
+    100%{
+        background-position:200% center;
+    }
+
+}
+
+
+/* Glow */
 
 @keyframes softGlow{
 
@@ -439,9 +475,41 @@ body{
     50%{
 
         text-shadow:
-            0 0 18px
-            rgba(255,255,255,.16);
+            0 0 20px
+            rgba(255,255,255,.22);
 
+    }
+
+}
+
+
+/* เส้นใต้หัวข้อ */
+
+@keyframes lineGrow{
+
+    from{
+        width:0;
+        opacity:0;
+    }
+
+    to{
+        width:70px;
+        opacity:1;
+    }
+
+}
+
+
+/* กระพริบเล็กน้อย */
+
+@keyframes textPulse{
+
+    0%,100%{
+        opacity:.75;
+    }
+
+    50%{
+        opacity:1;
     }
 
 }
@@ -531,11 +599,17 @@ body{
     white-space:nowrap;
 
     transition:.3s;
+
+    animation:
+        textPulse
+        4s
+        ease-in-out
+        infinite;
 }
 
 .logo span{
 
-    color:#888;
+    color:#aaa;
 
     font-weight:500;
 }
@@ -568,7 +642,7 @@ body{
 
     position:relative;
 
-    color:#aaa;
+    color:#aeb4bd;
 
     text-decoration:none;
 
@@ -583,7 +657,7 @@ body{
 
     border-radius:9px;
 
-    transition:.3s;
+    transition:.35s;
 }
 
 .nav-links a:hover{
@@ -597,6 +671,8 @@ body{
         0 0 10px
         rgba(255,255,255,.4);
 
+    transform:
+        translateY(-2px);
 }
 
 .nav-links a.active{
@@ -699,7 +775,7 @@ body{
 
     gap:12px;
 
-    color:#aaa;
+    color:#b9bec6;
 
     font-size:10px;
 
@@ -727,7 +803,7 @@ body{
         linear-gradient(
             90deg,
             transparent,
-            #aaa
+            #fff
         );
 }
 
@@ -753,11 +829,18 @@ body{
 
     margin-bottom:30px;
 
+    color:#fff;
+
     animation:
         textReveal
         1s
         .25s
-        both;
+        both,
+        softGlow
+        5s
+        1.3s
+        ease-in-out
+        infinite;
 }
 
 .hero h1 span{
@@ -767,18 +850,20 @@ body{
     color:transparent;
 
     -webkit-text-stroke:
-        1px #aaa;
+        1px #b9bec6;
 
     background:
         linear-gradient(
-            120deg,
+            110deg,
             #777,
+            #fff,
+            #b8bec7,
             #fff,
             #777
         );
 
     background-size:
-        250% auto;
+        300% auto;
 
     -webkit-background-clip:text;
 
@@ -789,7 +874,6 @@ body{
         7s
         linear
         infinite;
-
 }
 
 
@@ -801,7 +885,7 @@ body{
 
     max-width:610px;
 
-    color:#bdbdbd;
+    color:#c7cbd1;
 
     font-size:15px;
 
@@ -1300,7 +1384,7 @@ main{
 
 .section-index{
 
-    color:#999;
+    color:#aeb4bd;
 
     font-size:9px;
 
@@ -1319,6 +1403,10 @@ main{
 
 .section-header h2{
 
+    position:relative;
+
+    display:inline-block;
+
     font-size:
         clamp(
             28px,
@@ -1335,15 +1423,55 @@ main{
     color:#fff;
 
     transition:.4s;
+
+    animation:
+        textReveal
+        .9s
+        .1s
+        both;
+}
+
+
+/* เส้นแสงใต้หัวข้อ */
+
+.section-header h2::after{
+
+    content:"";
+
+    display:block;
+
+    width:70px;
+
+    height:2px;
+
+    margin-top:14px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            transparent
+        );
+
+    box-shadow:
+        0 0 10px
+        rgba(255,255,255,.4);
+
+    animation:
+        lineGrow
+        .8s
+        .45s
+        both;
 }
 
 .section-header h2:hover{
 
-    letter-spacing:-1px;
+    transform:
+        translateX(5px);
 
     text-shadow:
         0 0 20px
-        rgba(255,255,255,.18);
+        rgba(255,255,255,.2);
 }
 
 
@@ -1380,7 +1508,7 @@ main{
 
 .cover-label{
 
-    color:#aaa;
+    color:#b9bec6;
 
     font-size:10px;
 
@@ -1417,7 +1545,12 @@ main{
         textReveal
         1s
         .2s
-        both;
+        both,
+        softGlow
+        5s
+        1.2s
+        ease-in-out
+        infinite;
 }
 
 .cover h2 span{
@@ -1427,18 +1560,20 @@ main{
     color:transparent;
 
     -webkit-text-stroke:
-        1px #999;
+        1px #aaa;
 
     background:
         linear-gradient(
             90deg,
             #777,
             #fff,
+            #c5cad1,
+            #fff,
             #777
         );
 
     background-size:
-        200% auto;
+        250% auto;
 
     -webkit-background-clip:text;
 
@@ -1455,7 +1590,7 @@ main{
 
     margin-top:35px;
 
-    color:#aaa;
+    color:#aeb4bd;
 
     font-size:11px;
 
@@ -1482,7 +1617,7 @@ main{
 
 .preface p{
 
-    color:#c2c2c2;
+    color:#d0d4da;
 
     font-size:15px;
 
@@ -1490,7 +1625,19 @@ main{
 
     margin-bottom:18px;
 
-    transition:.35s;
+    transition:.4s;
+
+    animation:
+        textUp
+        .8s
+        .2s
+        both;
+}
+
+.preface p:nth-child(2){
+
+    animation-delay:
+        .35s;
 }
 
 .preface p:hover{
@@ -1498,7 +1645,11 @@ main{
     color:#fff;
 
     transform:
-        translateX(5px);
+        translateX(7px);
+
+    text-shadow:
+        0 0 12px
+        rgba(255,255,255,.08);
 }
 
 .preface p:last-child{
@@ -1536,6 +1687,12 @@ main{
         rgba(255,255,255,.018);
 
     transition:.5s;
+
+    animation:
+        textReveal
+        .9s
+        .2s
+        both;
 }
 
 .profile-card:hover{
@@ -1593,7 +1750,7 @@ main{
 
 .profile-card p{
 
-    color:#999;
+    color:#aeb4bd;
 
     font-size:9px;
 
@@ -1631,7 +1788,22 @@ main{
         rgba(255,255,255,.012);
 
     transition:.35s;
+
+    animation:
+        textUp
+        .7s
+        both;
 }
+
+.info:nth-child(1){animation-delay:.05s;}
+.info:nth-child(2){animation-delay:.10s;}
+.info:nth-child(3){animation-delay:.15s;}
+.info:nth-child(4){animation-delay:.20s;}
+.info:nth-child(5){animation-delay:.25s;}
+.info:nth-child(6){animation-delay:.30s;}
+.info:nth-child(7){animation-delay:.35s;}
+.info:nth-child(8){animation-delay:.40s;}
+.info:nth-child(9){animation-delay:.45s;}
 
 .info:hover{
 
@@ -1656,7 +1828,7 @@ main{
 
 .info-label{
 
-    color:#888;
+    color:#9198a2;
 
     font-size:8px;
 
@@ -1669,7 +1841,7 @@ main{
 
 .info-value{
 
-    color:#eee;
+    color:#f0f2f5;
 
     font-size:14px;
 
@@ -1684,7 +1856,7 @@ main{
 
     text-shadow:
         0 0 10px
-        rgba(255,255,255,.08);
+        rgba(255,255,255,.12);
 }
 
 
@@ -1719,6 +1891,23 @@ main{
     background:#08080b;
 
     transition:.4s;
+
+    animation:
+        textReveal
+        .8s
+        both;
+}
+
+.edu:nth-child(1){
+    animation-delay:.1s;
+}
+
+.edu:nth-child(2){
+    animation-delay:.25s;
+}
+
+.edu:nth-child(3){
+    animation-delay:.4s;
 }
 
 .edu:hover{
@@ -1737,7 +1926,7 @@ main{
 
 .edu-year{
 
-    color:#999;
+    color:#b1b7c0;
 
     font-size:10px;
 
@@ -1753,11 +1942,23 @@ main{
     font-size:17px;
 
     margin-bottom:7px;
+
+    transition:.3s;
+}
+
+.edu:hover h3{
+
+    transform:
+        translateX(4px);
+
+    text-shadow:
+        0 0 12px
+        rgba(255,255,255,.15);
 }
 
 .edu p{
 
-    color:#aaa;
+    color:#c2c7ce;
 
     font-size:13px;
 
@@ -1804,6 +2005,23 @@ main{
     background:#08080b;
 
     transition:.5s;
+
+    animation:
+        textReveal
+        .8s
+        both;
+}
+
+.interest:nth-child(1){
+    animation-delay:.1s;
+}
+
+.interest:nth-child(2){
+    animation-delay:.25s;
+}
+
+.interest:nth-child(3){
+    animation-delay:.4s;
 }
 
 .interest::after{
@@ -1822,8 +2040,7 @@ main{
 
     background:#fff;
 
-    filter:
-        blur(60px);
+    filter:blur(60px);
 
     opacity:.04;
 
@@ -1857,7 +2074,7 @@ main{
     top:20px;
     right:20px;
 
-    color:#777;
+    color:#8d939c;
 
     font-size:9px;
 
@@ -1893,7 +2110,7 @@ main{
 
     position:relative;
 
-    color:#aaa;
+    color:#c0c5cc;
 
     font-size:13px;
 
@@ -1909,13 +2126,19 @@ main{
 
     max-width:800px;
 
-    color:#aaa;
+    color:#c0c5cc;
 
     font-size:14px;
 
     line-height:1.9;
 
     margin-bottom:30px;
+
+    animation:
+        textReveal
+        .8s
+        .15s
+        both;
 }
 
 .activity-grid{
@@ -1945,7 +2168,8 @@ main{
     opacity:0;
 
     transform:
-        translateY(25px);
+        translateY(35px)
+        scale(.98);
 }
 
 .activity-card.visible{
@@ -1953,7 +2177,12 @@ main{
     opacity:1;
 
     transform:
-        translateY(0);
+        translateY(0)
+        scale(1);
+
+    transition:
+        opacity .8s ease,
+        transform .8s cubic-bezier(.2,.8,.2,1);
 }
 
 .activity-card:hover{
@@ -2108,11 +2337,24 @@ main{
     font-size:16px;
 
     margin-bottom:9px;
+
+    transition:.3s;
+}
+
+.activity-card:hover
+.activity-info h3{
+
+    transform:
+        translateX(4px);
+
+    text-shadow:
+        0 0 12px
+        rgba(255,255,255,.15);
 }
 
 .activity-info p{
 
-    color:#aaa;
+    color:#bfc4cb;
 
     font-size:12px;
 
@@ -2138,7 +2380,7 @@ main{
     padding:
         11px 17px;
 
-    color:#ccc;
+    color:#d7dbe0;
 
     font-size:11px;
 
@@ -2154,7 +2396,21 @@ main{
         rgba(255,255,255,.015);
 
     transition:.3s;
+
+    animation:
+        textUp
+        .7s
+        both;
 }
+
+.skill:nth-child(1){animation-delay:.05s;}
+.skill:nth-child(2){animation-delay:.10s;}
+.skill:nth-child(3){animation-delay:.15s;}
+.skill:nth-child(4){animation-delay:.20s;}
+.skill:nth-child(5){animation-delay:.25s;}
+.skill:nth-child(6){animation-delay:.30s;}
+.skill:nth-child(7){animation-delay:.35s;}
+.skill:nth-child(8){animation-delay:.40s;}
 
 .skill:hover{
 
@@ -2201,6 +2457,17 @@ main{
         rgba(255,255,255,.018);
 
     transition:.35s;
+
+    animation:
+        textReveal
+        .8s
+        both;
+}
+
+.contact-box:nth-child(2){
+
+    animation-delay:
+        .2s;
 }
 
 .contact-box:hover{
@@ -2220,7 +2487,7 @@ main{
 
 .contact-label{
 
-    color:#888;
+    color:#9298a1;
 
     font-size:8px;
 
@@ -2233,7 +2500,7 @@ main{
 
 .contact-box a{
 
-    color:#eee;
+    color:#f0f2f5;
 
     text-decoration:none;
 
@@ -2281,7 +2548,7 @@ main{
     padding:
         13px 23px;
 
-    color:#ccc;
+    color:#d0d4da;
 
     text-decoration:none;
 
@@ -2339,13 +2606,19 @@ footer{
 
 footer p{
 
-    color:#777;
+    color:#8d939c;
 
     font-size:9px;
 
     font-weight:600;
 
     letter-spacing:3px;
+
+    animation:
+        softGlow
+        5s
+        ease-in-out
+        infinite;
 }
 
 
@@ -2358,11 +2631,15 @@ footer p{
     opacity:0;
 
     transform:
-        translateY(35px);
+        translateY(45px);
+
+    filter:
+        blur(4px);
 
     transition:
-        opacity .8s ease,
-        transform .8s ease;
+        opacity .9s ease,
+        transform .9s cubic-bezier(.2,.8,.2,1),
+        filter .9s ease;
 }
 
 .reveal.show{
@@ -2371,6 +2648,9 @@ footer p{
 
     transform:
         translateY(0);
+
+    filter:
+        blur(0);
 }
 
 
@@ -2730,7 +3010,7 @@ footer p{
 
         font-size:13px;
 
-        color:#ccc;
+        color:#d0d4da;
     }
 
     .photo-frame{
@@ -3033,9 +3313,7 @@ footer p{
 <main>
 
 
-    <!-- =====================================================
-         COVER
-    ====================================================== -->
+    <!-- COVER -->
 
     <section
         class="section cover reveal"
@@ -3062,9 +3340,7 @@ footer p{
     </section>
 
 
-    <!-- =====================================================
-         PREFACE
-    ====================================================== -->
+    <!-- PREFACE -->
 
     <section
         class="section reveal"
@@ -3115,9 +3391,7 @@ footer p{
     </section>
 
 
-    <!-- =====================================================
-         PROFILE
-    ====================================================== -->
+    <!-- PROFILE -->
 
     <section
         class="section reveal"
@@ -3301,9 +3575,7 @@ footer p{
     </section>
 
 
-    <!-- =====================================================
-         EDUCATION
-    ====================================================== -->
+    <!-- EDUCATION -->
 
     <section
         class="section reveal"
@@ -3407,9 +3679,7 @@ footer p{
     </section>
 
 
-    <!-- =====================================================
-         INTEREST
-    ====================================================== -->
+    <!-- INTEREST -->
 
     <section
         class="section reveal"
@@ -3504,9 +3774,7 @@ footer p{
     </section>
 
 
-    <!-- =====================================================
-         ACTIVITIES
-    ====================================================== -->
+    <!-- ACTIVITIES -->
 
     <section
         class="section reveal"
@@ -4002,9 +4270,7 @@ footer p{
     </section>
 
 
-    <!-- =====================================================
-         SKILLS
-    ====================================================== -->
+    <!-- SKILLS -->
 
     <section
         class="section reveal"
@@ -4067,9 +4333,7 @@ footer p{
     </section>
 
 
-    <!-- =====================================================
-         CONTACT
-    ====================================================== -->
+    <!-- CONTACT -->
 
     <section
         class="section reveal"
@@ -4131,9 +4395,7 @@ footer p{
     </section>
 
 
-    <!-- =====================================================
-         BACK HOME
-    ====================================================== -->
+    <!-- BACK HOME -->
 
     <div class="back-home">
 
@@ -4716,4 +4978,4 @@ document.addEventListener(
 </body>
 
 </html>
-
+```
