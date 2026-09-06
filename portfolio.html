@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="th">
 
@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Waranchit | Portfolio</title>
+<title>Waranchit | Space Portfolio</title>
 
 <style>
 
@@ -16,18 +16,18 @@
 ========================================================= */
 
 :root{
-    --bg:#070707;
-    --bg-soft:#0d0d0d;
-    --card:#111111;
-    --card-hover:#161616;
+
+    --bg:#020204;
+    --bg-soft:#07070a;
+    --card:#0b0b0f;
 
     --white:#ffffff;
-    --text:#e9e9e9;
-    --muted:#8a8a8a;
-    --muted2:#555;
+    --text:#eeeeee;
+    --muted:#888;
+    --muted2:#444;
 
-    --line:rgba(255,255,255,.10);
-    --line-soft:rgba(255,255,255,.055);
+    --line:rgba(255,255,255,.13);
+    --line-soft:rgba(255,255,255,.06);
 
     --radius:18px;
 
@@ -63,16 +63,16 @@ body{
 
     background:
         radial-gradient(
-            circle at 10% 0%,
-            rgba(255,255,255,.07),
-            transparent 30%
+            circle at 50% -10%,
+            rgba(255,255,255,.09),
+            transparent 35%
         ),
         radial-gradient(
-            circle at 90% 100%,
-            rgba(255,255,255,.05),
+            circle at 10% 90%,
+            rgba(255,255,255,.04),
             transparent 30%
         ),
-        var(--bg);
+        #020204;
 
     overflow-x:hidden;
 }
@@ -97,7 +97,7 @@ body{
 }
 
 ::-webkit-scrollbar-track{
-    background:#050505;
+    background:#010102;
 }
 
 ::-webkit-scrollbar-thumb{
@@ -106,7 +106,7 @@ body{
 }
 
 ::-webkit-scrollbar-thumb:hover{
-    background:#777;
+    background:#888;
 }
 
 
@@ -126,103 +126,369 @@ body{
 
     background:#fff;
 
-    z-index:9999;
+    z-index:99999;
+
+    box-shadow:
+        0 0 12px
+        rgba(255,255,255,.8);
 }
 
 
 /* =========================================================
-   BACKGROUND GRID
+   SPACE BACKGROUND
 ========================================================= */
 
-.background-grid{
+.space-background{
 
     position:fixed;
 
     inset:0;
 
-    pointer-events:none;
-
     z-index:0;
 
-    opacity:.13;
+    pointer-events:none;
 
-    background-image:
+    overflow:hidden;
 
-        linear-gradient(
-            rgba(255,255,255,.035) 1px,
-            transparent 1px
-        ),
+    background:
 
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,.035) 1px,
-            transparent 1px
-        );
-
-    background-size:70px 70px;
-
-    mask-image:
-        linear-gradient(
-            to bottom,
-            transparent,
-            black 15%,
-            black 85%,
-            transparent
+        radial-gradient(
+            circle at 50% 50%,
+            transparent 0%,
+            rgba(0,0,0,.15) 50%,
+            rgba(0,0,0,.65) 100%
         );
 }
 
 
 /* =========================================================
-   FLOATING ORBS
+   STARS
 ========================================================= */
 
-.orb{
+.stars{
 
-    position:fixed;
+    position:absolute;
 
-    width:400px;
-    height:400px;
+    inset:0;
+
+    background-image:
+
+        radial-gradient(
+            1px 1px at 10% 20%,
+            rgba(255,255,255,.8),
+            transparent
+        ),
+
+        radial-gradient(
+            1px 1px at 20% 80%,
+            rgba(255,255,255,.7),
+            transparent
+        ),
+
+        radial-gradient(
+            1px 1px at 35% 30%,
+            rgba(255,255,255,.9),
+            transparent
+        ),
+
+        radial-gradient(
+            1px 1px at 50% 70%,
+            rgba(255,255,255,.6),
+            transparent
+        ),
+
+        radial-gradient(
+            1px 1px at 65% 20%,
+            rgba(255,255,255,.8),
+            transparent
+        ),
+
+        radial-gradient(
+            1px 1px at 80% 60%,
+            rgba(255,255,255,.9),
+            transparent
+        ),
+
+        radial-gradient(
+            1px 1px at 90% 30%,
+            rgba(255,255,255,.7),
+            transparent
+        );
+
+    background-size:
+        240px 240px;
+
+    animation:
+        starMove
+        35s
+        linear
+        infinite;
+}
+
+@keyframes starMove{
+
+    from{
+        transform:translateY(0);
+    }
+
+    to{
+        transform:translateY(240px);
+    }
+}
+
+
+/* =========================================================
+   SMALL STAR FIELD
+========================================================= */
+
+.star-field{
+
+    position:absolute;
+
+    inset:0;
+
+    opacity:.45;
+
+    background-image:
+
+        radial-gradient(
+            1px 1px at 15% 15%,
+            #fff,
+            transparent
+        ),
+
+        radial-gradient(
+            1px 1px at 45% 45%,
+            #fff,
+            transparent
+        ),
+
+        radial-gradient(
+            1px 1px at 75% 25%,
+            #fff,
+            transparent
+        ),
+
+        radial-gradient(
+            1px 1px at 85% 85%,
+            #fff,
+            transparent
+        );
+
+    background-size:
+        180px 180px;
+
+    animation:
+        starDrift
+        50s
+        linear
+        infinite;
+}
+
+@keyframes starDrift{
+
+    from{
+        transform:
+            translate(0,0);
+    }
+
+    to{
+        transform:
+            translate(-100px,180px);
+    }
+}
+
+
+/* =========================================================
+   SHOOTING STAR
+========================================================= */
+
+.shooting-star{
+
+    position:absolute;
+
+    width:180px;
+    height:2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.95),
+            transparent
+        );
+
+    transform:
+        rotate(-35deg);
+
+    filter:
+        drop-shadow(
+            0 0 6px
+            rgba(255,255,255,.8)
+        );
+
+    opacity:0;
+
+    animation:
+        shootingStar
+        5s
+        linear
+        infinite;
+}
+
+.shooting-star::before{
+
+    content:"";
+
+    position:absolute;
+
+    right:0;
+
+    top:50%;
+
+    width:5px;
+    height:5px;
+
+    transform:
+        translateY(-50%);
 
     border-radius:50%;
 
     background:#fff;
 
-    filter:blur(150px);
+    box-shadow:
+        0 0 10px #fff,
+        0 0 20px #fff;
+}
+
+.shooting-star.one{
+
+    top:12%;
+    left:65%;
+
+    animation-delay:1s;
+}
+
+.shooting-star.two{
+
+    top:35%;
+    left:80%;
+
+    width:130px;
+
+    animation-delay:4s;
+}
+
+.shooting-star.three{
+
+    top:55%;
+    left:25%;
+
+    width:160px;
+
+    animation-delay:7s;
+}
+
+.shooting-star.four{
+
+    top:75%;
+    left:70%;
+
+    width:120px;
+
+    animation-delay:10s;
+}
+
+@keyframes shootingStar{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+            translate(0,0)
+            rotate(-35deg);
+
+    }
+
+    8%{
+        opacity:1;
+    }
+
+    30%{
+
+        opacity:1;
+
+        transform:
+            translate(-420px,260px)
+            rotate(-35deg);
+
+    }
+
+    31%{
+        opacity:0;
+    }
+
+    100%{
+        opacity:0;
+    }
+}
+
+
+/* =========================================================
+   NEBULA
+========================================================= */
+
+.nebula{
+
+    position:absolute;
+
+    width:600px;
+    height:600px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    filter:
+        blur(180px);
 
     opacity:.025;
 
-    pointer-events:none;
-
-    z-index:0;
-
     animation:
-        floatingOrb 14s
+        nebulaMove
+        18s
         ease-in-out
         infinite
         alternate;
 }
 
-.orb.one{
-    top:-200px;
-    left:-180px;
+.nebula.one{
+
+    left:-300px;
+    top:10%;
 }
 
-.orb.two{
+.nebula.two{
 
-    right:-180px;
-    bottom:-200px;
+    right:-300px;
+    bottom:0;
 
-    animation-delay:4s;
+    animation-delay:5s;
 }
 
-@keyframes floatingOrb{
+@keyframes nebulaMove{
 
     from{
-        transform:translate(0,0);
+        transform:
+            translate(0,0)
+            scale(1);
     }
 
     to{
-        transform:translate(130px,100px);
+        transform:
+            translate(120px,-80px)
+            scale(1.2);
     }
 }
 
@@ -238,7 +504,8 @@ body{
     top:18px;
     left:50%;
 
-    transform:translateX(-50%);
+    transform:
+        translateX(-50%);
 
     width:
         min(
@@ -254,12 +521,13 @@ body{
 
     justify-content:space-between;
 
-    padding:0 22px;
+    padding:
+        0 22px;
 
     z-index:1000;
 
     background:
-        rgba(12,12,12,.78);
+        rgba(5,5,8,.78);
 
     border:
         1px solid
@@ -267,25 +535,26 @@ body{
 
     border-radius:18px;
 
-    backdrop-filter:blur(25px);
+    backdrop-filter:
+        blur(25px);
 
     box-shadow:
         0 20px 60px
-        rgba(0,0,0,.25);
+        rgba(0,0,0,.5);
 
     transition:.35s;
 }
 
 .navbar.scrolled{
 
-    top:10px;
+    top:9px;
 
     background:
-        rgba(8,8,8,.94);
+        rgba(2,2,4,.95);
 
     box-shadow:
-        0 20px 60px
-        rgba(0,0,0,.45);
+        0 20px 70px
+        rgba(0,0,0,.7);
 }
 
 
@@ -308,13 +577,13 @@ body{
 
 .logo span{
 
-    color:#666;
+    color:#555;
 
     font-weight:500;
 }
 
 
-/* NAV LINKS */
+/* NAV */
 
 .nav-links{
 
@@ -322,24 +591,25 @@ body{
 
     align-items:center;
 
-    gap:5px;
+    gap:3px;
 }
 
 .nav-links a{
 
     position:relative;
 
-    color:#777;
+    color:#666;
 
     text-decoration:none;
 
-    font-size:10px;
+    font-size:9px;
 
-    letter-spacing:1.8px;
+    letter-spacing:1.5px;
 
-    padding:10px 13px;
+    padding:
+        10px 11px;
 
-    border-radius:10px;
+    border-radius:9px;
 
     transition:.3s;
 }
@@ -349,7 +619,7 @@ body{
     color:#fff;
 
     background:
-        rgba(255,255,255,.05);
+        rgba(255,255,255,.06);
 }
 
 .nav-links a.active{
@@ -357,7 +627,11 @@ body{
     color:#fff;
 
     background:
-        rgba(255,255,255,.08);
+        rgba(255,255,255,.10);
+
+    box-shadow:
+        inset 0 0 20px
+        rgba(255,255,255,.025);
 }
 
 .nav-links a.active::after{
@@ -366,7 +640,8 @@ body{
 
     position:absolute;
 
-    bottom:5px;
+    bottom:4px;
+
     left:50%;
 
     width:4px;
@@ -376,7 +651,11 @@ body{
 
     background:#fff;
 
-    transform:translateX(-50%);
+    transform:
+        translateX(-50%);
+
+    box-shadow:
+        0 0 8px #fff;
 }
 
 
@@ -399,6 +678,8 @@ body{
     padding:
         140px 30px
         90px;
+
+    overflow:hidden;
 }
 
 .hero-container{
@@ -438,7 +719,7 @@ body{
         opacity:0;
 
         transform:
-            translateY(30px);
+            translateY(35px);
 
     }
 
@@ -479,7 +760,6 @@ body{
     background:#555;
 }
 
-
 .hero h1{
 
     font-size:
@@ -505,14 +785,14 @@ body{
     color:transparent;
 
     -webkit-text-stroke:
-        1px #777;
+        1px #666;
 }
 
 .hero-description{
 
     max-width:610px;
 
-    color:#8a8a8a;
+    color:#888;
 
     font-size:15px;
 
@@ -521,8 +801,12 @@ body{
     margin-bottom:35px;
 }
 
+.hero-description strong{
+    color:#fff;
+}
 
-/* HERO BUTTONS */
+
+/* BUTTONS */
 
 .hero-buttons{
 
@@ -579,7 +863,11 @@ body{
     transform:
         translateY(-3px);
 
-    border-color:#888;
+    border-color:#aaa;
+
+    box-shadow:
+        0 10px 30px
+        rgba(255,255,255,.08);
 }
 
 .btn.primary:hover{
@@ -657,13 +945,13 @@ body{
         1px solid
         #333;
 
-    background:#0d0d0d;
+    background:#09090c;
 
     border-radius:18px;
 
     box-shadow:
         0 35px 100px
-        rgba(0,0,0,.45);
+        rgba(0,0,0,.7);
 
     transition:.6s;
 }
@@ -678,11 +966,15 @@ body{
 
     border:
         1px solid
-        rgba(255,255,255,.06);
+        rgba(255,255,255,.08);
 
     border-radius:22px;
 
     pointer-events:none;
+
+    box-shadow:
+        0 0 60px
+        rgba(255,255,255,.025);
 }
 
 .photo-frame:hover{
@@ -714,7 +1006,8 @@ body{
         grayscale(0%)
         contrast(1.05);
 
-    transform:scale(1.02);
+    transform:
+        scale(1.02);
 }
 
 .photo-tag{
@@ -728,7 +1021,7 @@ body{
         8px 12px;
 
     background:
-        rgba(0,0,0,.75);
+        rgba(0,0,0,.8);
 
     border:
         1px solid
@@ -742,7 +1035,8 @@ body{
 
     letter-spacing:2px;
 
-    backdrop-filter:blur(10px);
+    backdrop-filter:
+        blur(10px);
 }
 
 
@@ -798,15 +1092,11 @@ body{
     0%,100%{
         transform:
             scaleY(.5);
-
-        transform-origin:top;
     }
 
     50%{
         transform:
             scaleY(1);
-
-        transform-origin:top;
     }
 }
 
@@ -848,7 +1138,7 @@ main{
         linear-gradient(
             145deg,
             rgba(255,255,255,.035),
-            rgba(255,255,255,.012)
+            rgba(255,255,255,.008)
         );
 
     border:
@@ -861,31 +1151,39 @@ main{
     overflow:hidden;
 
     box-shadow:
-        0 20px 70px
-        rgba(0,0,0,.12);
+        0 25px 80px
+        rgba(0,0,0,.3);
+
+    scroll-margin-top:100px;
 }
 
-.section::after{
+.section::before{
 
     content:"";
 
     position:absolute;
 
-    width:200px;
-    height:200px;
+    inset:0;
 
-    right:-100px;
-    top:-100px;
+    background:
+        linear-gradient(
+            120deg,
+            transparent,
+            rgba(255,255,255,.025),
+            transparent
+        );
 
-    border-radius:50%;
+    transform:
+        translateX(-100%);
 
-    background:#fff;
+    transition:
+        transform 1s;
+}
 
-    filter:blur(100px);
+.section:hover::before{
 
-    opacity:.018;
-
-    pointer-events:none;
+    transform:
+        translateX(100%);
 }
 
 
@@ -958,11 +1256,17 @@ main{
 
         radial-gradient(
             circle at 80% 20%,
-            rgba(255,255,255,.06),
+            rgba(255,255,255,.07),
             transparent 35%
         ),
 
-        #0c0c0c;
+        radial-gradient(
+            circle at 20% 80%,
+            rgba(255,255,255,.035),
+            transparent 30%
+        ),
+
+        #07070a;
 }
 
 .cover-label{
@@ -1035,7 +1339,6 @@ main{
 }
 
 .preface p:last-child{
-
     margin-bottom:0;
 }
 
@@ -1092,7 +1395,8 @@ main{
     filter:
         grayscale(0%);
 
-    transform:scale(1.02);
+    transform:
+        scale(1.02);
 }
 
 .profile-card h3{
@@ -1148,14 +1452,19 @@ main{
         translateY(-3px);
 
     background:
-        rgba(255,255,255,.04);
+        rgba(255,255,255,.045);
 
     border-color:#444;
+
+    box-shadow:
+        0 10px 35px
+        rgba(0,0,0,.3);
 }
 
 .info.full{
 
-    grid-column:1 / -1;
+    grid-column:
+        1 / -1;
 }
 
 .info-label{
@@ -1207,7 +1516,7 @@ main{
 
     border-radius:12px;
 
-    background:#0d0d0d;
+    background:#08080b;
 
     transition:.4s;
 }
@@ -1217,9 +1526,13 @@ main{
     transform:
         translateX(6px);
 
-    background:#141414;
+    background:#101014;
 
     border-color:#444;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,.35);
 }
 
 .edu-year{
@@ -1284,29 +1597,31 @@ main{
 
     overflow:hidden;
 
-    background:#0d0d0d;
+    background:#08080b;
 
     transition:.5s;
 }
 
-.interest::before{
+.interest::after{
 
     content:"";
 
     position:absolute;
 
-    inset:0;
+    width:100px;
+    height:100px;
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.08),
-            transparent 55%
-        );
+    top:-50px;
+    right:-50px;
 
-    opacity:0;
+    border-radius:50%;
 
-    transition:.4s;
+    background:#fff;
+
+    filter:
+        blur(60px);
+
+    opacity:.03;
 }
 
 .interest:hover{
@@ -1314,12 +1629,11 @@ main{
     transform:
         translateY(-7px);
 
-    border-color:#555;
-}
+    border-color:#666;
 
-.interest:hover::before{
-
-    opacity:1;
+    box-shadow:
+        0 20px 60px
+        rgba(255,255,255,.05);
 }
 
 .interest-number{
@@ -1394,7 +1708,7 @@ main{
 
     border-radius:14px;
 
-    background:#0b0b0b;
+    background:#07070a;
 
     transition:.5s;
 
@@ -1417,12 +1731,15 @@ main{
     transform:
         translateY(-8px);
 
-    border-color:#555;
+    border-color:#666;
 
     box-shadow:
         0 25px 70px
-        rgba(0,0,0,.35);
+        rgba(0,0,0,.6);
 }
+
+
+/* ACTIVITY IMAGE */
 
 .activity-image{
 
@@ -1433,6 +1750,58 @@ main{
     overflow:hidden;
 
     background:#111;
+
+    cursor:pointer;
+}
+
+.activity-image::after{
+
+    content:"VIEW";
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%)
+        scale(.8);
+
+    padding:
+        10px 18px;
+
+    color:#fff;
+
+    background:
+        rgba(0,0,0,.75);
+
+    border:
+        1px solid
+        rgba(255,255,255,.4);
+
+    border-radius:8px;
+
+    font-size:9px;
+
+    letter-spacing:3px;
+
+    opacity:0;
+
+    transition:.35s;
+
+    backdrop-filter:
+        blur(10px);
+
+    pointer-events:none;
+}
+
+.activity-image:hover::after{
+
+    opacity:1;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1);
 }
 
 .activity-image img{
@@ -1453,7 +1822,8 @@ main{
 .activity-card:hover
 .activity-image img{
 
-    transform:scale(1.07);
+    transform:
+        scale(1.07);
 
     filter:
         grayscale(0%);
@@ -1474,7 +1844,7 @@ main{
     color:#fff;
 
     background:
-        rgba(0,0,0,.7);
+        rgba(0,0,0,.75);
 
     border:
         1px solid
@@ -1486,7 +1856,8 @@ main{
 
     letter-spacing:2px;
 
-    backdrop-filter:blur(8px);
+    backdrop-filter:
+        blur(8px);
 }
 
 .activity-info{
@@ -1555,6 +1926,10 @@ main{
 
     transform:
         translateY(-3px);
+
+    box-shadow:
+        0 8px 25px
+        rgba(255,255,255,.1);
 }
 
 
@@ -1740,7 +2115,7 @@ footer p{
 
 
 /* =========================================================
-   BACK TO TOP
+   BACK TOP
 ========================================================= */
 
 .back-top{
@@ -1761,7 +2136,7 @@ footer p{
     color:#fff;
 
     background:
-        rgba(20,20,20,.8);
+        rgba(15,15,18,.85);
 
     border:
         1px solid
@@ -1784,7 +2159,8 @@ footer p{
 
     z-index:500;
 
-    backdrop-filter:blur(15px);
+    backdrop-filter:
+        blur(15px);
 }
 
 .back-top.show{
@@ -1802,7 +2178,148 @@ footer p{
     background:#fff;
 
     color:#000;
+}
 
+
+/* =========================================================
+   IMAGE LIGHTBOX
+========================================================= */
+
+.lightbox{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:99999;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:30px;
+
+    background:
+        rgba(0,0,0,.92);
+
+    backdrop-filter:
+        blur(15px);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.35s;
+}
+
+.lightbox.show{
+
+    opacity:1;
+
+    visibility:visible;
+}
+
+.lightbox-content{
+
+    position:relative;
+
+    max-width:
+        min(1100px,95vw);
+
+    max-height:
+        90vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:15px;
+
+    transform:
+        scale(.9);
+
+    transition:.4s;
+}
+
+.lightbox.show
+.lightbox-content{
+
+    transform:
+        scale(1);
+}
+
+.lightbox img{
+
+    max-width:100%;
+
+    max-height:80vh;
+
+    object-fit:contain;
+
+    border:
+        1px solid
+        rgba(255,255,255,.2);
+
+    border-radius:12px;
+
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,.8);
+}
+
+.lightbox-title{
+
+    color:#fff;
+
+    font-size:13px;
+
+    letter-spacing:2px;
+
+    text-align:center;
+}
+
+.lightbox-close{
+
+    position:absolute;
+
+    top:-55px;
+    right:0;
+
+    width:42px;
+    height:42px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    color:#fff;
+
+    background:
+        rgba(20,20,20,.8);
+
+    border:
+        1px solid
+        #555;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    font-size:20px;
+
+    transition:.3s;
+}
+
+.lightbox-close:hover{
+
+    background:#fff;
+
+    color:#000;
 }
 
 
@@ -1822,7 +2339,7 @@ footer p{
     .nav-links a{
 
         padding:
-            9px 7px;
+            9px 6px;
 
         font-size:8px;
     }
@@ -1896,14 +2413,14 @@ footer p{
         height:58px;
 
         padding:
-            0 15px;
+            0 12px;
 
         border-radius:14px;
     }
 
     .logo{
 
-        font-size:10px;
+        font-size:9px;
 
         letter-spacing:2px;
     }
@@ -1921,11 +2438,11 @@ footer p{
     .nav-links a{
 
         padding:
-            7px 5px;
+            7px 4px;
 
-        font-size:7px;
+        font-size:6.5px;
 
-        letter-spacing:1px;
+        letter-spacing:.7px;
     }
 
     .hero h1{
@@ -2029,6 +2546,46 @@ footer p{
         height:40px;
     }
 
+    .lightbox{
+
+        padding:15px;
+    }
+
+    .lightbox img{
+
+        max-height:75vh;
+
+        border-radius:8px;
+    }
+
+    .lightbox-close{
+
+        top:-50px;
+        right:0;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCE MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+
+        animation-duration:.01ms !important;
+
+        animation-iteration-count:1 !important;
+
+        scroll-behavior:auto !important;
+
+        transition-duration:.01ms !important;
+    }
+
 }
 
 </style>
@@ -2040,15 +2597,27 @@ footer p{
 
 
 <!-- =========================================================
-     BACKGROUND
+     SPACE BACKGROUND
 ========================================================= -->
 
+<div class="space-background">
+
+    <div class="stars"></div>
+
+    <div class="star-field"></div>
+
+    <div class="nebula one"></div>
+    <div class="nebula two"></div>
+
+    <div class="shooting-star one"></div>
+    <div class="shooting-star two"></div>
+    <div class="shooting-star three"></div>
+    <div class="shooting-star four"></div>
+
+</div>
+
+
 <div class="scroll-progress"></div>
-
-<div class="background-grid"></div>
-
-<div class="orb one"></div>
-<div class="orb two"></div>
 
 
 <!-- =========================================================
@@ -2064,6 +2633,10 @@ footer p{
 
     <nav class="nav-links">
 
+        <a href="#top" class="active">
+            HOME
+        </a>
+
         <a href="#profile">
             PROFILE
         </a>
@@ -2078,6 +2651,10 @@ footer p{
 
         <a href="#activity">
             ACTIVITY
+        </a>
+
+        <a href="#skills">
+            SKILLS
         </a>
 
         <a href="#contact">
@@ -2292,7 +2869,6 @@ footer p{
 
         <div class="profile-layout">
 
-
             <div class="profile-card">
 
                 <img
@@ -2313,7 +2889,6 @@ footer p{
 
 
             <div class="info-grid">
-
 
                 <div class="info">
 
@@ -2441,7 +3016,6 @@ footer p{
 
                 </div>
 
-
             </div>
 
         </div>
@@ -2476,7 +3050,6 @@ footer p{
 
 
         <div class="education">
-
 
             <div class="edu">
 
@@ -2535,18 +3108,19 @@ footer p{
                     </h3>
 
                     <p>
+
                         โรงเรียนบ้านบึง
                         "อุตสาหกรรมนุเคราะห์"
 
                         <br>
 
                         สายการเรียน GIFTED
+
                     </p>
 
                 </div>
 
             </div>
-
 
         </div>
 
@@ -2581,7 +3155,6 @@ footer p{
 
         <div class="interest-grid">
 
-
             <div class="interest">
 
                 <div class="interest-number">
@@ -2593,9 +3166,11 @@ footer p{
                 </h3>
 
                 <p>
+
                     สนใจด้านการออกกำลังกาย
                     การกีฬา และการนำวิทยาศาสตร์
                     มาประยุกต์ใช้กับการกีฬา
+
                 </p>
 
             </div>
@@ -2612,9 +3187,11 @@ footer p{
                 </h3>
 
                 <p>
+
                     สนใจด้านวิศวกรรมเมคคาทรอนิกส์
                     ระบบวัดคุม กลไก
                     และการออกแบบระบบ
+
                 </p>
 
             </div>
@@ -2631,13 +3208,14 @@ footer p{
                 </h3>
 
                 <p>
+
                     สนใจเทคโนโลยีใหม่ ๆ
                     คอมพิวเตอร์ การเขียนเว็บไซต์
                     และนวัตกรรม
+
                 </p>
 
             </div>
-
 
         </div>
 
@@ -2688,7 +3266,10 @@ footer p{
 
             <article class="activity-card">
 
-                <div class="activity-image">
+                <div
+                    class="activity-image"
+                    data-title="ACT 01 — ปลูกต้นโกงกาง"
+                >
 
                     <div class="activity-number">
                         ACT 01
@@ -2723,7 +3304,10 @@ footer p{
 
             <article class="activity-card">
 
-                <div class="activity-image">
+                <div
+                    class="activity-image"
+                    data-title="ACT 02 — K-Engineering"
+                >
 
                     <div class="activity-number">
                         ACT 02
@@ -2758,7 +3342,10 @@ footer p{
 
             <article class="activity-card">
 
-                <div class="activity-image">
+                <div
+                    class="activity-image"
+                    data-title="ACT 03 — เปิดโลกวิชาการ"
+                >
 
                     <div class="activity-number">
                         ACT 03
@@ -2792,7 +3379,10 @@ footer p{
 
             <article class="activity-card">
 
-                <div class="activity-image">
+                <div
+                    class="activity-image"
+                    data-title="ACT 04 — ผู้นำรุ่นใหม่"
+                >
 
                     <div class="activity-number">
                         ACT 04
@@ -2827,7 +3417,10 @@ footer p{
 
             <article class="activity-card">
 
-                <div class="activity-image">
+                <div
+                    class="activity-image"
+                    data-title="ACT 05 — Internet Strength"
+                >
 
                     <div class="activity-number">
                         ACT 05
@@ -2862,7 +3455,10 @@ footer p{
 
             <article class="activity-card">
 
-                <div class="activity-image">
+                <div
+                    class="activity-image"
+                    data-title="ACT 06 — กลุ่มอาสาไทยแลนด์"
+                >
 
                     <div class="activity-number">
                         ACT 06
@@ -2896,7 +3492,10 @@ footer p{
 
             <article class="activity-card">
 
-                <div class="activity-image">
+                <div
+                    class="activity-image"
+                    data-title="ACT 07 — ต่อต้านยาเสพติด"
+                >
 
                     <div class="activity-number">
                         ACT 07
@@ -2931,7 +3530,10 @@ footer p{
 
             <article class="activity-card">
 
-                <div class="activity-image">
+                <div
+                    class="activity-image"
+                    data-title="ACT 08 — AI & Cyber Security"
+                >
 
                     <div class="activity-number">
                         ACT 08
@@ -2966,7 +3568,10 @@ footer p{
 
             <article class="activity-card">
 
-                <div class="activity-image">
+                <div
+                    class="activity-image"
+                    data-title="ACT 09 — Network Technology"
+                >
 
                     <div class="activity-number">
                         ACT 09
@@ -3000,7 +3605,10 @@ footer p{
 
             <article class="activity-card">
 
-                <div class="activity-image">
+                <div
+                    class="activity-image"
+                    data-title="ACT 10 — Certificate of Smartness"
+                >
 
                     <div class="activity-number">
                         ACT 10
@@ -3035,7 +3643,10 @@ footer p{
 
             <article class="activity-card">
 
-                <div class="activity-image">
+                <div
+                    class="activity-image"
+                    data-title="ACT 11 — Certificate of Kindness"
+                >
 
                     <div class="activity-number">
                         ACT 11
@@ -3070,7 +3681,10 @@ footer p{
 
             <article class="activity-card">
 
-                <div class="activity-image">
+                <div
+                    class="activity-image"
+                    data-title="ACT 12 — Digital Citizenship"
+                >
 
                     <div class="activity-number">
                         ACT 12
@@ -3112,7 +3726,7 @@ footer p{
 
     <section
         class="section reveal"
-        id="special"
+        id="skills"
     >
 
         <div class="section-header">
@@ -3199,7 +3813,6 @@ footer p{
 
         <div class="contact-grid">
 
-
             <div class="contact-box">
 
                 <div class="contact-label">
@@ -3228,7 +3841,6 @@ footer p{
                 </a>
 
             </div>
-
 
         </div>
 
@@ -3259,10 +3871,45 @@ footer p{
 
     <p>
         © 2026 WARANCHIT WONGSUPALERD
-        — PERSONAL PORTFOLIO
+        — SPACE PORTFOLIO
     </p>
 
 </footer>
+
+
+<!-- =========================================================
+     LIGHTBOX
+========================================================= -->
+
+<div
+    class="lightbox"
+    id="lightbox"
+>
+
+    <div class="lightbox-content">
+
+        <button
+            class="lightbox-close"
+            id="lightboxClose"
+            aria-label="Close"
+        >
+            ×
+        </button>
+
+        <img
+            id="lightboxImage"
+            src=""
+            alt="Activity Preview"
+        >
+
+        <div
+            class="lightbox-title"
+            id="lightboxTitle"
+        ></div>
+
+    </div>
+
+</div>
 
 
 <!-- =========================================================
@@ -3300,12 +3947,13 @@ window.addEventListener(
             window.scrollY;
 
         const pageHeight =
-            document.documentElement
-                .scrollHeight
+            document.documentElement.scrollHeight
             - window.innerHeight;
 
         const percentage =
-            (scrollTop / pageHeight) * 100;
+            pageHeight > 0
+                ? (scrollTop / pageHeight) * 100
+                : 0;
 
         progress.style.width =
             percentage + "%";
@@ -3344,7 +3992,7 @@ window.addEventListener(
 
 
 /* =========================================================
-   SECTION REVEAL
+   REVEAL
 ========================================================= */
 
 const revealElements =
@@ -3392,7 +4040,7 @@ revealElements.forEach(
 
 
 /* =========================================================
-   ACTIVITY STAGGER ANIMATION
+   ACTIVITY STAGGER
 ========================================================= */
 
 const activityCards =
@@ -3465,7 +4113,7 @@ activityCards.forEach(
    ACTIVE NAVIGATION
 ========================================================= */
 
-const sections =
+const navSections =
     document.querySelectorAll(
         "section[id]"
     );
@@ -3478,22 +4126,21 @@ const navLinks =
 
 function updateActiveNav(){
 
-    let current = "";
+    let current =
+        "top";
 
-    sections.forEach(
+    navSections.forEach(
         section => {
 
-            const top =
-                section.offsetTop - 180;
+            const sectionTop =
+                section.getBoundingClientRect().top;
 
             if(
-                window.scrollY >= top
+                sectionTop <= 150
             ){
 
                 current =
-                    section.getAttribute(
-                        "id"
-                    );
+                    section.id;
 
             }
 
@@ -3508,9 +4155,11 @@ function updateActiveNav(){
                 "active"
             );
 
+            const href =
+                link.getAttribute("href");
+
             if(
-                link.getAttribute("href")
-                === "#" + current
+                href === "#" + current
             ){
 
                 link.classList.add(
@@ -3534,14 +4183,73 @@ updateActiveNav();
 
 
 /* =========================================================
-   BACK TO TOP BUTTON
+   SMOOTH NAVIGATION
+========================================================= */
+
+document
+    .querySelectorAll(
+        'a[href^="#"]'
+    )
+    .forEach(
+        link => {
+
+            link.addEventListener(
+                "click",
+                event => {
+
+                    const id =
+                        link.getAttribute(
+                            "href"
+                        );
+
+                    const target =
+                        document.querySelector(
+                            id
+                        );
+
+                    if(!target) return;
+
+                    event.preventDefault();
+
+                    const navbarHeight =
+                        navbar.offsetHeight;
+
+                    const offset =
+                        target.getBoundingClientRect().top
+                        +
+                        window.scrollY
+                        -
+                        navbarHeight
+                        -
+                        30;
+
+                    window.scrollTo({
+
+                        top:
+                            Math.max(
+                                0,
+                                offset
+                            ),
+
+                        behavior:"smooth"
+
+                    });
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   BACK TO TOP
 ========================================================= */
 
 const backTop =
     document.querySelector(
         ".back-top"
     );
-
 
 window.addEventListener(
     "scroll",
@@ -3568,41 +4276,67 @@ window.addEventListener(
 
 
 /* =========================================================
-   SMOOTH LINK OFFSET
+   ACTIVITY LIGHTBOX
 ========================================================= */
+
+const lightbox =
+    document.getElementById(
+        "lightbox"
+    );
+
+const lightboxImage =
+    document.getElementById(
+        "lightboxImage"
+    );
+
+const lightboxTitle =
+    document.getElementById(
+        "lightboxTitle"
+    );
+
+const lightboxClose =
+    document.getElementById(
+        "lightboxClose"
+    );
+
 
 document
     .querySelectorAll(
-        'a[href^="#"]'
+        ".activity-image"
     )
     .forEach(
-        link => {
+        item => {
 
-            link.addEventListener(
+            item.addEventListener(
                 "click",
-                event => {
+                () => {
 
-                    const target =
-                        document.querySelector(
-                            link.getAttribute(
-                                "href"
-                            )
+                    const image =
+                        item.querySelector(
+                            "img"
                         );
 
-                    if(!target) return;
+                    const title =
+                        item.dataset.title
+                        ||
+                        image.alt;
 
-                    event.preventDefault();
+                    lightboxImage.src =
+                        image.src;
 
-                    const offset =
-                        target.offsetTop - 90;
+                    lightboxImage.alt =
+                        image.alt;
 
-                    window.scrollTo({
+                    lightboxTitle.textContent =
+                        title;
 
-                        top:offset,
+                    lightbox.classList.add(
+                        "show"
+                    );
 
-                        behavior:"smooth"
-
-                    });
+                    document.body.style
+                        .overflow =
+                        "hidden";
 
                 }
             );
@@ -3611,10 +4345,166 @@ document
     );
 
 
+/* CLOSE LIGHTBOX */
+
+function closeLightbox(){
+
+    lightbox.classList.remove(
+        "show"
+    );
+
+    document.body.style
+        .overflow = "";
+
+    setTimeout(
+        () => {
+
+            lightboxImage.src = "";
+
+        },
+        300
+    );
+
+}
+
+
+lightboxClose.addEventListener(
+    "click",
+    closeLightbox
+);
+
+
+/* CLICK OUTSIDE */
+
+lightbox.addEventListener(
+    "click",
+    event => {
+
+        if(
+            event.target === lightbox
+        ){
+
+            closeLightbox();
+
+        }
+
+    }
+);
+
+
+/* ESC KEY */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if(
+            event.key === "Escape"
+        ){
+
+            closeLightbox();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   RANDOM SHOOTING STARS
+========================================================= */
+
+const space =
+    document.querySelector(
+        ".space-background"
+    );
+
+
+function createShootingStar(){
+
+    const star =
+        document.createElement(
+            "div"
+        );
+
+    star.className =
+        "shooting-star";
+
+    const top =
+        Math.random() * 75 + 5;
+
+    const left =
+        Math.random() * 80 + 10;
+
+    const width =
+        Math.random() * 120 + 100;
+
+    const duration =
+        Math.random() * 3 + 3;
+
+    const delay =
+        Math.random() * 2;
+
+    star.style.top =
+        top + "%";
+
+    star.style.left =
+        left + "%";
+
+    star.style.width =
+        width + "px";
+
+    star.style.animationDuration =
+        duration + "s";
+
+    star.style.animationDelay =
+        delay + "s";
+
+    space.appendChild(
+        star
+    );
+
+
+    setTimeout(
+        () => {
+
+            star.remove();
+
+        },
+        (duration + delay) * 1000
+        + 1000
+    );
+
+}
+
+
+/* สร้างดาวตกใหม่เรื่อย ๆ */
+
+setInterval(
+    createShootingStar,
+    1800
+);
+
+
+/* เริ่มต้นหลายดวง */
+
+for(
+    let i = 0;
+    i < 5;
+    i++
+){
+
+    setTimeout(
+        createShootingStar,
+        i * 700
+    );
+
+}
+
+
 </script>
 
 
 </body>
 
 </html>
-```
