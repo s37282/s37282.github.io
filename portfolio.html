@@ -29,9 +29,12 @@
     --line:rgba(255,255,255,.13);
     --line-soft:rgba(255,255,255,.06);
 
-    --radius:18px;
+    --glow:rgba(255,255,255,.12);
+
+    --radius:20px;
 
     --max:1200px;
+
 }
 
 
@@ -61,20 +64,87 @@ body{
 
     color:var(--text);
 
-    background:
-        radial-gradient(
-            circle at 50% -10%,
-            rgba(255,255,255,.09),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 10% 90%,
-            rgba(255,255,255,.04),
-            transparent 30%
-        ),
-        #020204;
+    background:#020204;
 
     overflow-x:hidden;
+
+}
+
+
+/* =========================================================
+   PAGE LOADER
+========================================================= */
+
+.page-loader{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:999999;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    flex-direction:column;
+
+    gap:20px;
+
+    background:#020204;
+
+    transition:
+        opacity .8s ease,
+        visibility .8s ease;
+
+}
+
+.page-loader.hide{
+
+    opacity:0;
+
+    visibility:hidden;
+
+    pointer-events:none;
+
+}
+
+.loader-ring{
+
+    width:55px;
+    height:55px;
+
+    border:1px solid #333;
+
+    border-top-color:#fff;
+
+    border-radius:50%;
+
+    animation:
+        loaderSpin
+        1s
+        linear
+        infinite;
+
+}
+
+.loader-text{
+
+    color:#555;
+
+    font-size:9px;
+
+    letter-spacing:5px;
+
+}
+
+@keyframes loaderSpin{
+
+    to{
+        transform:rotate(360deg);
+    }
+
 }
 
 
@@ -83,8 +153,10 @@ body{
 ========================================================= */
 
 ::selection{
+
     background:#fff;
     color:#000;
+
 }
 
 
@@ -101,8 +173,11 @@ body{
 }
 
 ::-webkit-scrollbar-thumb{
+
     background:#444;
+
     border-radius:20px;
+
 }
 
 ::-webkit-scrollbar-thumb:hover{
@@ -129,8 +204,43 @@ body{
     z-index:99999;
 
     box-shadow:
-        0 0 12px
+        0 0 15px
         rgba(255,255,255,.8);
+
+}
+
+
+/* =========================================================
+   CURSOR GLOW
+========================================================= */
+
+.cursor-glow{
+
+    position:fixed;
+
+    width:350px;
+    height:350px;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    z-index:1;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.02) 25%,
+            transparent 70%
+        );
+
+    transform:
+        translate(-50%,-50%);
+
+    transition:
+        opacity .3s;
+
 }
 
 
@@ -153,23 +263,33 @@ body{
     background:
 
         radial-gradient(
-            circle at 50% 50%,
-            transparent 0%,
-            rgba(0,0,0,.15) 50%,
-            rgba(0,0,0,.65) 100%
-        );
+            circle at 50% -10%,
+            rgba(255,255,255,.08),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 10% 90%,
+            rgba(255,255,255,.035),
+            transparent 30%
+        ),
+
+        #020204;
+
 }
 
 
 /* =========================================================
-   STARS
+   STAR FIELD
 ========================================================= */
 
 .stars{
 
     position:absolute;
 
-    inset:0;
+    inset:-100px;
+
+    opacity:.7;
 
     background-image:
 
@@ -181,7 +301,7 @@ body{
 
         radial-gradient(
             1px 1px at 20% 80%,
-            rgba(255,255,255,.7),
+            rgba(255,255,255,.6),
             transparent
         ),
 
@@ -220,9 +340,10 @@ body{
 
     animation:
         starMove
-        35s
+        60s
         linear
         infinite;
+
 }
 
 @keyframes starMove{
@@ -234,11 +355,12 @@ body{
     to{
         transform:translateY(240px);
     }
+
 }
 
 
 /* =========================================================
-   SMALL STAR FIELD
+   SMALL STARS
 ========================================================= */
 
 .star-field{
@@ -247,7 +369,7 @@ body{
 
     inset:0;
 
-    opacity:.45;
+    opacity:.35;
 
     background-image:
 
@@ -280,158 +402,82 @@ body{
 
     animation:
         starDrift
-        50s
+        80s
         linear
         infinite;
+
 }
 
 @keyframes starDrift{
 
     from{
-        transform:
-            translate(0,0);
+        transform:translate(0,0);
     }
 
     to{
-        transform:
-            translate(-100px,180px);
+        transform:translate(-100px,180px);
     }
+
 }
 
 
 /* =========================================================
-   SHOOTING STAR
+   STAR TWINKLE
 ========================================================= */
 
-.shooting-star{
-
-    position:absolute;
-
-    width:180px;
-    height:2px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,.95),
-            transparent
-        );
-
-    transform:
-        rotate(-35deg);
-
-    filter:
-        drop-shadow(
-            0 0 6px
-            rgba(255,255,255,.8)
-        );
-
-    opacity:0;
-
-    animation:
-        shootingStar
-        5s
-        linear
-        infinite;
-}
-
-.shooting-star::before{
+.space-background::after{
 
     content:"";
 
     position:absolute;
 
-    right:0;
+    inset:0;
 
-    top:50%;
+    background-image:
 
-    width:5px;
-    height:5px;
+        radial-gradient(
+            2px 2px at 25% 20%,
+            rgba(255,255,255,.8),
+            transparent
+        ),
 
-    transform:
-        translateY(-50%);
+        radial-gradient(
+            2px 2px at 70% 35%,
+            rgba(255,255,255,.7),
+            transparent
+        ),
 
-    border-radius:50%;
+        radial-gradient(
+            2px 2px at 40% 75%,
+            rgba(255,255,255,.6),
+            transparent
+        ),
 
-    background:#fff;
+        radial-gradient(
+            2px 2px at 85% 80%,
+            rgba(255,255,255,.8),
+            transparent
+        );
 
-    box-shadow:
-        0 0 10px #fff,
-        0 0 20px #fff;
+    animation:
+        twinkle
+        4s
+        ease-in-out
+        infinite
+        alternate;
+
 }
 
-.shooting-star.one{
+@keyframes twinkle{
 
-    top:12%;
-    left:65%;
-
-    animation-delay:1s;
-}
-
-.shooting-star.two{
-
-    top:35%;
-    left:80%;
-
-    width:130px;
-
-    animation-delay:4s;
-}
-
-.shooting-star.three{
-
-    top:55%;
-    left:25%;
-
-    width:160px;
-
-    animation-delay:7s;
-}
-
-.shooting-star.four{
-
-    top:75%;
-    left:70%;
-
-    width:120px;
-
-    animation-delay:10s;
-}
-
-@keyframes shootingStar{
-
-    0%{
-
-        opacity:0;
-
-        transform:
-            translate(0,0)
-            rotate(-35deg);
-
+    from{
+        opacity:.25;
     }
 
-    8%{
-        opacity:1;
+    to{
+        opacity:.8;
     }
 
-    30%{
-
-        opacity:1;
-
-        transform:
-            translate(-420px,260px)
-            rotate(-35deg);
-
-    }
-
-    31%{
-        opacity:0;
-    }
-
-    100%{
-        opacity:0;
-    }
 }
 
 
@@ -443,8 +489,8 @@ body{
 
     position:absolute;
 
-    width:600px;
-    height:600px;
+    width:650px;
+    height:650px;
 
     border-radius:50%;
 
@@ -457,39 +503,87 @@ body{
 
     animation:
         nebulaMove
-        18s
+        20s
         ease-in-out
         infinite
         alternate;
+
 }
 
 .nebula.one{
 
-    left:-300px;
+    left:-350px;
     top:10%;
+
 }
 
 .nebula.two{
 
-    right:-300px;
+    right:-350px;
     bottom:0;
 
     animation-delay:5s;
+
 }
 
 @keyframes nebulaMove{
 
     from{
+
         transform:
             translate(0,0)
             scale(1);
+
     }
 
     to{
+
         transform:
-            translate(120px,-80px)
+            translate(100px,-80px)
             scale(1.2);
+
     }
+
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.grid-background{
+
+    position:absolute;
+
+    inset:0;
+
+    opacity:.035;
+
+    background-image:
+
+        linear-gradient(
+            rgba(255,255,255,.25) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.25) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        80px 80px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            transparent,
+            #000 20%,
+            #000 80%,
+            transparent
+        );
+
 }
 
 
@@ -527,7 +621,7 @@ body{
     z-index:1000;
 
     background:
-        rgba(5,5,8,.78);
+        rgba(5,5,8,.72);
 
     border:
         1px solid
@@ -542,23 +636,27 @@ body{
         0 20px 60px
         rgba(0,0,0,.5);
 
-    transition:.35s;
+    transition:.4s;
+
 }
 
 .navbar.scrolled{
 
-    top:9px;
+    top:8px;
 
     background:
-        rgba(2,2,4,.95);
+        rgba(2,2,4,.94);
 
     box-shadow:
-        0 20px 70px
-        rgba(0,0,0,.7);
+        0 20px 80px
+        rgba(0,0,0,.75);
+
 }
 
 
-/* LOGO */
+/* =========================================================
+   LOGO
+========================================================= */
 
 .logo{
 
@@ -573,6 +671,15 @@ body{
     letter-spacing:4px;
 
     white-space:nowrap;
+
+    transition:.3s;
+
+}
+
+.logo:hover{
+
+    letter-spacing:5px;
+
 }
 
 .logo span{
@@ -580,10 +687,13 @@ body{
     color:#555;
 
     font-weight:500;
+
 }
 
 
-/* NAV */
+/* =========================================================
+   NAV LINKS
+========================================================= */
 
 .nav-links{
 
@@ -592,6 +702,7 @@ body{
     align-items:center;
 
     gap:3px;
+
 }
 
 .nav-links a{
@@ -612,6 +723,7 @@ body{
     border-radius:9px;
 
     transition:.3s;
+
 }
 
 .nav-links a:hover{
@@ -620,6 +732,7 @@ body{
 
     background:
         rgba(255,255,255,.06);
+
 }
 
 .nav-links a.active{
@@ -629,9 +742,6 @@ body{
     background:
         rgba(255,255,255,.10);
 
-    box-shadow:
-        inset 0 0 20px
-        rgba(255,255,255,.025);
 }
 
 .nav-links a.active::after{
@@ -655,7 +765,8 @@ body{
         translateX(-50%);
 
     box-shadow:
-        0 0 8px #fff;
+        0 0 10px #fff;
+
 }
 
 
@@ -680,6 +791,7 @@ body{
         90px;
 
     overflow:hidden;
+
 }
 
 .hero-container{
@@ -698,10 +810,13 @@ body{
     gap:90px;
 
     align-items:center;
+
 }
 
 
-/* HERO TEXT */
+/* =========================================================
+   HERO TEXT
+========================================================= */
 
 .hero-content{
 
@@ -710,6 +825,7 @@ body{
         1s
         ease
         both;
+
 }
 
 @keyframes heroText{
@@ -731,6 +847,7 @@ body{
             translateY(0);
 
     }
+
 }
 
 .eyebrow{
@@ -748,6 +865,7 @@ body{
     letter-spacing:4px;
 
     margin-bottom:25px;
+
 }
 
 .eyebrow::before{
@@ -758,6 +876,7 @@ body{
     height:1px;
 
     background:#555;
+
 }
 
 .hero h1{
@@ -776,6 +895,7 @@ body{
     font-weight:800;
 
     margin-bottom:30px;
+
 }
 
 .hero h1 span{
@@ -786,6 +906,15 @@ body{
 
     -webkit-text-stroke:
         1px #666;
+
+    transition:.5s;
+
+}
+
+.hero h1:hover span{
+
+    -webkit-text-stroke-color:#fff;
+
 }
 
 .hero-description{
@@ -799,14 +928,19 @@ body{
     line-height:2;
 
     margin-bottom:35px;
+
 }
 
 .hero-description strong{
+
     color:#fff;
+
 }
 
 
-/* BUTTONS */
+/* =========================================================
+   BUTTONS
+========================================================= */
 
 .hero-buttons{
 
@@ -815,9 +949,12 @@ body{
     gap:10px;
 
     flex-wrap:wrap;
+
 }
 
 .btn{
+
+    position:relative;
 
     display:inline-flex;
 
@@ -846,7 +983,40 @@ body{
 
     letter-spacing:1.8px;
 
+    overflow:hidden;
+
     transition:.4s;
+
+}
+
+.btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent,
+            rgba(255,255,255,.15),
+            transparent
+        );
+
+    transform:
+        translateX(-100%);
+
+    transition:.5s;
+
+}
+
+.btn:hover::before{
+
+    transform:
+        translateX(100%);
+
 }
 
 .btn.primary{
@@ -856,23 +1026,26 @@ body{
     color:#000;
 
     border-color:#fff;
+
 }
 
 .btn:hover{
 
     transform:
-        translateY(-3px);
+        translateY(-4px);
 
     border-color:#aaa;
 
     box-shadow:
-        0 10px 30px
+        0 12px 35px
         rgba(255,255,255,.08);
+
 }
 
 .btn.primary:hover{
 
     background:#ddd;
+
 }
 
 .btn span{
@@ -880,12 +1053,14 @@ body{
     font-size:16px;
 
     transition:.3s;
+
 }
 
 .btn:hover span{
 
     transform:
         translateX(5px);
+
 }
 
 
@@ -907,6 +1082,10 @@ body{
         .1s
         ease
         both;
+
+    transition:
+        transform .2s ease-out;
+
 }
 
 @keyframes heroImage{
@@ -930,6 +1109,7 @@ body{
             scale(1);
 
     }
+
 }
 
 .photo-frame{
@@ -954,6 +1134,7 @@ body{
         rgba(0,0,0,.7);
 
     transition:.6s;
+
 }
 
 .photo-frame::before{
@@ -973,8 +1154,32 @@ body{
     pointer-events:none;
 
     box-shadow:
-        0 0 60px
-        rgba(255,255,255,.025);
+        0 0 70px
+        rgba(255,255,255,.035);
+
+}
+
+.photo-frame::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.12),
+            transparent 30%,
+            transparent 70%,
+            rgba(255,255,255,.05)
+        );
+
+    pointer-events:none;
+
 }
 
 .photo-frame:hover{
@@ -982,6 +1187,13 @@ body{
     transform:
         translateY(-10px)
         rotate(1deg);
+
+    box-shadow:
+        0 45px 120px
+        rgba(0,0,0,.85),
+        0 0 60px
+        rgba(255,255,255,.04);
+
 }
 
 .photo-frame img{
@@ -998,6 +1210,7 @@ body{
         contrast(1.08);
 
     transition:.7s;
+
 }
 
 .photo-frame:hover img{
@@ -1008,6 +1221,7 @@ body{
 
     transform:
         scale(1.02);
+
 }
 
 .photo-tag{
@@ -1037,6 +1251,7 @@ body{
 
     backdrop-filter:
         blur(10px);
+
 }
 
 
@@ -1067,6 +1282,7 @@ body{
     font-size:8px;
 
     letter-spacing:3px;
+
 }
 
 .scroll-arrow{
@@ -1085,19 +1301,19 @@ body{
         1.8s
         ease-in-out
         infinite;
+
 }
 
 @keyframes scrollArrow{
 
     0%,100%{
-        transform:
-            scaleY(.5);
+        transform:scaleY(.5);
     }
 
     50%{
-        transform:
-            scaleY(1);
+        transform:scaleY(1);
     }
+
 }
 
 
@@ -1119,6 +1335,7 @@ main{
 
     padding:
         30px;
+
 }
 
 
@@ -1155,6 +1372,18 @@ main{
         rgba(0,0,0,.3);
 
     scroll-margin-top:100px;
+
+    transition:
+        border-color .4s,
+        box-shadow .4s;
+
+}
+
+.section:hover{
+
+    border-color:
+        rgba(255,255,255,.18);
+
 }
 
 .section::before{
@@ -1178,12 +1407,14 @@ main{
 
     transition:
         transform 1s;
+
 }
 
 .section:hover::before{
 
     transform:
         translateX(100%);
+
 }
 
 
@@ -1208,6 +1439,7 @@ main{
     border-bottom:
         1px solid
         var(--line-soft);
+
 }
 
 .section-index{
@@ -1219,6 +1451,7 @@ main{
     letter-spacing:4px;
 
     margin-bottom:10px;
+
 }
 
 .section-header h2{
@@ -1235,6 +1468,7 @@ main{
     letter-spacing:-2px;
 
     font-weight:700;
+
 }
 
 
@@ -1267,6 +1501,7 @@ main{
         ),
 
         #07070a;
+
 }
 
 .cover-label{
@@ -1278,6 +1513,7 @@ main{
     letter-spacing:5px;
 
     margin-bottom:25px;
+
 }
 
 .cover h2{
@@ -1294,6 +1530,7 @@ main{
     letter-spacing:-9px;
 
     font-weight:800;
+
 }
 
 .cover h2 span{
@@ -1304,6 +1541,15 @@ main{
 
     -webkit-text-stroke:
         1px #666;
+
+    transition:.5s;
+
+}
+
+.cover:hover h2 span{
+
+    -webkit-text-stroke-color:#fff;
+
 }
 
 .cover-subtitle{
@@ -1315,6 +1561,7 @@ main{
     font-size:11px;
 
     letter-spacing:4px;
+
 }
 
 
@@ -1325,6 +1572,7 @@ main{
 .preface{
 
     max-width:850px;
+
 }
 
 .preface p{
@@ -1336,6 +1584,7 @@ main{
     line-height:2.1;
 
     margin-bottom:18px;
+
 }
 
 .preface p:last-child{
@@ -1355,9 +1604,12 @@ main{
         280px 1fr;
 
     gap:45px;
+
 }
 
 .profile-card{
+
+    position:relative;
 
     padding:22px;
 
@@ -1371,6 +1623,22 @@ main{
 
     background:
         rgba(255,255,255,.018);
+
+    transition:.5s;
+
+}
+
+.profile-card:hover{
+
+    transform:
+        translateY(-8px);
+
+    border-color:#555;
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.5);
+
 }
 
 .profile-card img{
@@ -1388,6 +1656,7 @@ main{
     margin-bottom:20px;
 
     transition:.6s;
+
 }
 
 .profile-card:hover img{
@@ -1397,6 +1666,7 @@ main{
 
     transform:
         scale(1.02);
+
 }
 
 .profile-card h3{
@@ -1404,6 +1674,7 @@ main{
     font-size:21px;
 
     margin-bottom:7px;
+
 }
 
 .profile-card p{
@@ -1413,6 +1684,7 @@ main{
     font-size:9px;
 
     letter-spacing:4px;
+
 }
 
 
@@ -1428,9 +1700,12 @@ main{
         repeat(2,1fr);
 
     gap:12px;
+
 }
 
 .info{
+
+    position:relative;
 
     padding:19px;
 
@@ -1443,13 +1718,46 @@ main{
     background:
         rgba(255,255,255,.012);
 
-    transition:.35s;
+    transition:.4s;
+
+    overflow:hidden;
+
+}
+
+.info::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:80px;
+    height:80px;
+
+    right:-40px;
+    top:-40px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    filter:blur(45px);
+
+    opacity:0;
+
+    transition:.4s;
+
+}
+
+.info:hover::after{
+
+    opacity:.05;
+
 }
 
 .info:hover{
 
     transform:
-        translateY(-3px);
+        translateY(-4px);
 
     background:
         rgba(255,255,255,.045);
@@ -1459,12 +1767,14 @@ main{
     box-shadow:
         0 10px 35px
         rgba(0,0,0,.3);
+
 }
 
 .info.full{
 
     grid-column:
         1 / -1;
+
 }
 
 .info-label{
@@ -1476,6 +1786,7 @@ main{
     letter-spacing:3px;
 
     margin-bottom:8px;
+
 }
 
 .info-value{
@@ -1485,6 +1796,7 @@ main{
     font-size:14px;
 
     line-height:1.7;
+
 }
 
 
@@ -1497,6 +1809,7 @@ main{
     display:grid;
 
     gap:10px;
+
 }
 
 .edu{
@@ -1519,12 +1832,13 @@ main{
     background:#08080b;
 
     transition:.4s;
+
 }
 
 .edu:hover{
 
     transform:
-        translateX(6px);
+        translateX(7px);
 
     background:#101014;
 
@@ -1533,6 +1847,7 @@ main{
     box-shadow:
         0 15px 40px
         rgba(0,0,0,.35);
+
 }
 
 .edu-year{
@@ -1542,6 +1857,7 @@ main{
     font-size:10px;
 
     letter-spacing:2px;
+
 }
 
 .edu h3{
@@ -1549,6 +1865,7 @@ main{
     font-size:17px;
 
     margin-bottom:7px;
+
 }
 
 .edu p{
@@ -1558,6 +1875,7 @@ main{
     font-size:13px;
 
     line-height:1.7;
+
 }
 
 
@@ -1573,6 +1891,7 @@ main{
         repeat(3,1fr);
 
     gap:14px;
+
 }
 
 .interest{
@@ -1599,7 +1918,25 @@ main{
 
     background:#08080b;
 
-    transition:.5s;
+    transition:
+        transform .45s,
+        border-color .45s,
+        box-shadow .45s;
+
+}
+
+.interest:hover{
+
+    transform:
+        translateY(-9px)
+        rotateX(2deg);
+
+    border-color:#666;
+
+    box-shadow:
+        0 25px 70px
+        rgba(255,255,255,.05);
+
 }
 
 .interest::after{
@@ -1608,32 +1945,28 @@ main{
 
     position:absolute;
 
-    width:100px;
-    height:100px;
+    width:120px;
+    height:120px;
 
-    top:-50px;
-    right:-50px;
+    top:-60px;
+    right:-60px;
 
     border-radius:50%;
 
     background:#fff;
 
-    filter:
-        blur(60px);
+    filter:blur(60px);
 
-    opacity:.03;
+    opacity:.025;
+
+    transition:.5s;
+
 }
 
-.interest:hover{
+.interest:hover::after{
 
-    transform:
-        translateY(-7px);
+    opacity:.1;
 
-    border-color:#666;
-
-    box-shadow:
-        0 20px 60px
-        rgba(255,255,255,.05);
 }
 
 .interest-number{
@@ -1648,6 +1981,7 @@ main{
     font-size:9px;
 
     letter-spacing:2px;
+
 }
 
 .interest h3{
@@ -1657,6 +1991,7 @@ main{
     font-size:20px;
 
     margin-bottom:10px;
+
 }
 
 .interest p{
@@ -1668,6 +2003,78 @@ main{
     font-size:13px;
 
     line-height:1.8;
+
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:12px;
+
+    margin-top:30px;
+
+}
+
+.stat{
+
+    padding:25px;
+
+    text-align:center;
+
+    border:
+        1px solid
+        var(--line-soft);
+
+    border-radius:14px;
+
+    background:
+        rgba(255,255,255,.015);
+
+    transition:.4s;
+
+}
+
+.stat:hover{
+
+    transform:
+        translateY(-5px);
+
+    border-color:#555;
+
+    background:
+        rgba(255,255,255,.04);
+
+}
+
+.stat-number{
+
+    font-size:35px;
+
+    font-weight:800;
+
+    letter-spacing:-2px;
+
+    margin-bottom:5px;
+
+}
+
+.stat-label{
+
+    color:#555;
+
+    font-size:8px;
+
+    letter-spacing:3px;
+
 }
 
 
@@ -1686,6 +2093,7 @@ main{
     line-height:1.9;
 
     margin-bottom:30px;
+
 }
 
 .activity-grid{
@@ -1696,9 +2104,12 @@ main{
         repeat(3,1fr);
 
     gap:15px;
+
 }
 
 .activity-card{
+
+    position:relative;
 
     overflow:hidden;
 
@@ -1710,12 +2121,16 @@ main{
 
     background:#07070a;
 
-    transition:.5s;
+    transition:
+        transform .5s,
+        border-color .4s,
+        box-shadow .4s;
 
     opacity:0;
 
     transform:
-        translateY(25px);
+        translateY(30px);
+
 }
 
 .activity-card.visible{
@@ -1724,22 +2139,26 @@ main{
 
     transform:
         translateY(0);
+
 }
 
 .activity-card:hover{
 
     transform:
-        translateY(-8px);
+        translateY(-9px);
 
     border-color:#666;
 
     box-shadow:
-        0 25px 70px
-        rgba(0,0,0,.6);
+        0 30px 80px
+        rgba(0,0,0,.65);
+
 }
 
 
-/* ACTIVITY IMAGE */
+/* =========================================================
+   ACTIVITY IMAGE
+========================================================= */
 
 .activity-image{
 
@@ -1752,6 +2171,28 @@ main{
     background:#111;
 
     cursor:pointer;
+
+}
+
+.activity-image::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:1;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent 60%,
+            rgba(0,0,0,.6)
+        );
+
+    pointer-events:none;
+
 }
 
 .activity-image::after{
@@ -1762,6 +2203,8 @@ main{
 
     left:50%;
     top:50%;
+
+    z-index:3;
 
     transform:
         translate(-50%,-50%)
@@ -1793,6 +2236,7 @@ main{
         blur(10px);
 
     pointer-events:none;
+
 }
 
 .activity-image:hover::after{
@@ -1802,6 +2246,7 @@ main{
     transform:
         translate(-50%,-50%)
         scale(1);
+
 }
 
 .activity-image img{
@@ -1817,23 +2262,25 @@ main{
     transition:
         transform .7s,
         filter .7s;
+
 }
 
 .activity-card:hover
 .activity-image img{
 
     transform:
-        scale(1.07);
+        scale(1.08);
 
     filter:
         grayscale(0%);
+
 }
 
 .activity-number{
 
     position:absolute;
 
-    z-index:2;
+    z-index:4;
 
     top:13px;
     left:13px;
@@ -1858,11 +2305,13 @@ main{
 
     backdrop-filter:
         blur(8px);
+
 }
 
 .activity-info{
 
     padding:20px;
+
 }
 
 .activity-info h3{
@@ -1870,6 +2319,7 @@ main{
     font-size:16px;
 
     margin-bottom:9px;
+
 }
 
 .activity-info p{
@@ -1879,6 +2329,7 @@ main{
     font-size:12px;
 
     line-height:1.8;
+
 }
 
 
@@ -1893,6 +2344,7 @@ main{
     flex-wrap:wrap;
 
     gap:9px;
+
 }
 
 .skill{
@@ -1913,7 +2365,8 @@ main{
     background:
         rgba(255,255,255,.015);
 
-    transition:.3s;
+    transition:.35s;
+
 }
 
 .skill:hover{
@@ -1925,11 +2378,12 @@ main{
     border-color:#fff;
 
     transform:
-        translateY(-3px);
+        translateY(-4px);
 
     box-shadow:
         0 8px 25px
         rgba(255,255,255,.1);
+
 }
 
 
@@ -1945,9 +2399,12 @@ main{
         repeat(2,1fr);
 
     gap:14px;
+
 }
 
 .contact-box{
+
+    position:relative;
 
     padding:25px;
 
@@ -1960,18 +2417,53 @@ main{
     background:
         rgba(255,255,255,.018);
 
-    transition:.35s;
+    overflow:hidden;
+
+    transition:.4s;
+
+}
+
+.contact-box::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:3px;
+    height:100%;
+
+    background:#fff;
+
+    transform:
+        scaleY(0);
+
+    transform-origin:
+        bottom;
+
+    transition:.4s;
+
+}
+
+.contact-box:hover::before{
+
+    transform:
+        scaleY(1);
+
 }
 
 .contact-box:hover{
 
     transform:
-        translateY(-5px);
+        translateY(-6px);
 
     border-color:#555;
 
     background:
         rgba(255,255,255,.04);
+
 }
 
 .contact-label{
@@ -1983,6 +2475,7 @@ main{
     letter-spacing:4px;
 
     margin-bottom:11px;
+
 }
 
 .contact-box a{
@@ -1996,11 +2489,13 @@ main{
     word-break:break-word;
 
     transition:.3s;
+
 }
 
 .contact-box a:hover{
 
     color:#fff;
+
 }
 
 
@@ -2016,6 +2511,7 @@ main{
 
     margin:
         10px 0 70px;
+
 }
 
 .back-home a{
@@ -2044,6 +2540,7 @@ main{
     letter-spacing:2px;
 
     transition:.35s;
+
 }
 
 .back-home a:hover{
@@ -2056,6 +2553,7 @@ main{
 
     transform:
         translateY(-3px);
+
 }
 
 
@@ -2077,6 +2575,7 @@ footer{
     border-top:
         1px solid
         var(--line-soft);
+
 }
 
 footer p{
@@ -2086,6 +2585,7 @@ footer p{
     font-size:9px;
 
     letter-spacing:3px;
+
 }
 
 
@@ -2098,11 +2598,12 @@ footer p{
     opacity:0;
 
     transform:
-        translateY(35px);
+        translateY(40px);
 
     transition:
         opacity .8s ease,
         transform .8s ease;
+
 }
 
 .reveal.show{
@@ -2111,6 +2612,7 @@ footer p{
 
     transform:
         translateY(0);
+
 }
 
 
@@ -2161,6 +2663,7 @@ footer p{
 
     backdrop-filter:
         blur(15px);
+
 }
 
 .back-top.show{
@@ -2171,6 +2674,7 @@ footer p{
 
     transform:
         translateY(0);
+
 }
 
 .back-top:hover{
@@ -2178,11 +2682,15 @@ footer p{
     background:#fff;
 
     color:#000;
+
+    transform:
+        translateY(-4px);
+
 }
 
 
 /* =========================================================
-   IMAGE LIGHTBOX
+   LIGHTBOX
 ========================================================= */
 
 .lightbox{
@@ -2202,16 +2710,17 @@ footer p{
     padding:30px;
 
     background:
-        rgba(0,0,0,.92);
+        rgba(0,0,0,.94);
 
     backdrop-filter:
-        blur(15px);
+        blur(18px);
 
     opacity:0;
 
     visibility:hidden;
 
     transition:.35s;
+
 }
 
 .lightbox.show{
@@ -2219,6 +2728,7 @@ footer p{
     opacity:1;
 
     visibility:visible;
+
 }
 
 .lightbox-content{
@@ -2243,6 +2753,7 @@ footer p{
         scale(.9);
 
     transition:.4s;
+
 }
 
 .lightbox.show
@@ -2250,6 +2761,7 @@ footer p{
 
     transform:
         scale(1);
+
 }
 
 .lightbox img{
@@ -2269,6 +2781,7 @@ footer p{
     box-shadow:
         0 30px 100px
         rgba(0,0,0,.8);
+
 }
 
 .lightbox-title{
@@ -2280,6 +2793,7 @@ footer p{
     letter-spacing:2px;
 
     text-align:center;
+
 }
 
 .lightbox-close{
@@ -2313,6 +2827,7 @@ footer p{
     font-size:20px;
 
     transition:.3s;
+
 }
 
 .lightbox-close:hover{
@@ -2320,6 +2835,7 @@ footer p{
     background:#fff;
 
     color:#000;
+
 }
 
 
@@ -2342,12 +2858,14 @@ footer p{
             9px 6px;
 
         font-size:8px;
+
     }
 
     .hero{
 
         padding:
             130px 20px 80px;
+
     }
 
     .hero-container{
@@ -2355,34 +2873,40 @@ footer p{
         grid-template-columns:1fr;
 
         gap:55px;
+
     }
 
     .hero-photo{
 
         order:-1;
+
     }
 
     .photo-frame{
 
         width:290px;
         height:370px;
+
     }
 
     main{
 
         padding:
             20px;
+
     }
 
     .section{
 
         padding:
             40px 25px;
+
     }
 
     .profile-layout{
 
         grid-template-columns:1fr;
+
     }
 
     .profile-card{
@@ -2390,23 +2914,41 @@ footer p{
         max-width:330px;
 
         margin:auto;
+
     }
 
     .interest-grid{
 
         grid-template-columns:1fr;
+
     }
 
     .activity-grid{
 
         grid-template-columns:
             repeat(2,1fr);
+
+    }
+
+    .stats{
+
+        grid-template-columns:
+            repeat(3,1fr);
+
     }
 
 }
 
 
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
 @media(max-width:620px){
+
+    .cursor-glow{
+        display:none;
+    }
 
     .navbar{
 
@@ -2416,6 +2958,7 @@ footer p{
             0 12px;
 
         border-radius:14px;
+
     }
 
     .logo{
@@ -2423,16 +2966,19 @@ footer p{
         font-size:9px;
 
         letter-spacing:2px;
+
     }
 
     .logo span{
 
         display:none;
+
     }
 
     .nav-links{
 
         gap:0;
+
     }
 
     .nav-links a{
@@ -2443,6 +2989,7 @@ footer p{
         font-size:6.5px;
 
         letter-spacing:.7px;
+
     }
 
     .hero h1{
@@ -2455,17 +3002,20 @@ footer p{
             );
 
         letter-spacing:-4px;
+
     }
 
     .hero-description{
 
         font-size:13px;
+
     }
 
     .photo-frame{
 
         width:240px;
         height:315px;
+
     }
 
     .section{
@@ -2474,6 +3024,7 @@ footer p{
             32px 20px;
 
         border-radius:14px;
+
     }
 
     .section-header{
@@ -2481,21 +3032,25 @@ footer p{
         display:block;
 
         margin-bottom:30px;
+
     }
 
     .section-header h2{
 
         font-size:30px;
+
     }
 
     .info-grid{
 
         grid-template-columns:1fr;
+
     }
 
     .info.full{
 
         grid-column:auto;
+
     }
 
     .edu{
@@ -2503,21 +3058,31 @@ footer p{
         grid-template-columns:1fr;
 
         gap:10px;
+
     }
 
     .activity-grid{
 
         grid-template-columns:1fr;
+
     }
 
     .contact-grid{
 
         grid-template-columns:1fr;
+
+    }
+
+    .stats{
+
+        grid-template-columns:1fr;
+
     }
 
     .cover{
 
         min-height:400px;
+
     }
 
     .cover h2{
@@ -2530,11 +3095,13 @@ footer p{
             );
 
         letter-spacing:-6px;
+
     }
 
     .scroll-hint{
 
         display:none;
+
     }
 
     .back-top{
@@ -2544,11 +3111,13 @@ footer p{
 
         width:40px;
         height:40px;
+
     }
 
     .lightbox{
 
         padding:15px;
+
     }
 
     .lightbox img{
@@ -2556,12 +3125,15 @@ footer p{
         max-height:75vh;
 
         border-radius:8px;
+
     }
 
     .lightbox-close{
 
         top:-50px;
+
         right:0;
+
     }
 
 }
@@ -2584,6 +3156,7 @@ footer p{
         scroll-behavior:auto !important;
 
         transition-duration:.01ms !important;
+
     }
 
 }
@@ -2597,6 +3170,28 @@ footer p{
 
 
 <!-- =========================================================
+     LOADER
+========================================================= -->
+
+<div class="page-loader">
+
+    <div class="loader-ring"></div>
+
+    <div class="loader-text">
+        WARANCHIT / PORTFOLIO
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     CURSOR
+========================================================= -->
+
+<div class="cursor-glow"></div>
+
+
+<!-- =========================================================
      SPACE BACKGROUND
 ========================================================= -->
 
@@ -2607,15 +3202,17 @@ footer p{
     <div class="star-field"></div>
 
     <div class="nebula one"></div>
+
     <div class="nebula two"></div>
 
-    <div class="shooting-star one"></div>
-    <div class="shooting-star two"></div>
-    <div class="shooting-star three"></div>
-    <div class="shooting-star four"></div>
+    <div class="grid-background"></div>
 
 </div>
 
+
+<!-- =========================================================
+     SCROLL PROGRESS
+========================================================= -->
 
 <div class="scroll-progress"></div>
 
@@ -2627,9 +3224,15 @@ footer p{
 <header class="navbar">
 
     <a href="#top" class="logo">
+
         WARANCHIT
-        <span>/ PORTFOLIO</span>
+
+        <span>
+            / PORTFOLIO
+        </span>
+
     </a>
+
 
     <nav class="nav-links">
 
@@ -2674,11 +3277,13 @@ footer p{
 
     <div class="hero-container">
 
+
         <div class="hero-content">
 
             <div class="eyebrow">
                 01 — INTRODUCTION
             </div>
+
 
             <h1>
 
@@ -2689,6 +3294,7 @@ footer p{
                 </span>
 
             </h1>
+
 
             <p class="hero-description">
 
@@ -2701,21 +3307,30 @@ footer p{
 
             </p>
 
+
             <div class="hero-buttons">
 
                 <a
                     href="#profile"
                     class="btn primary"
                 >
+
                     EXPLORE PORTFOLIO
-                    <span>→</span>
+
+                    <span>
+                        →
+                    </span>
+
                 </a>
+
 
                 <a
                     href="#activity"
                     class="btn"
                 >
+
                     VIEW ACTIVITIES
+
                 </a>
 
             </div>
@@ -2825,6 +3440,7 @@ footer p{
 
             </p>
 
+
             <p>
 
                 จุดประสงค์ของแฟ้มสะสมผลงานคือ
@@ -2869,6 +3485,7 @@ footer p{
 
         <div class="profile-layout">
 
+
             <div class="profile-card">
 
                 <img
@@ -2889,6 +3506,7 @@ footer p{
 
 
             <div class="info-grid">
+
 
                 <div class="info">
 
@@ -3016,6 +3634,7 @@ footer p{
 
                 </div>
 
+
             </div>
 
         </div>
@@ -3050,6 +3669,7 @@ footer p{
 
 
         <div class="education">
+
 
             <div class="edu">
 
@@ -3122,6 +3742,7 @@ footer p{
 
             </div>
 
+
         </div>
 
     </section>
@@ -3154,6 +3775,7 @@ footer p{
 
 
         <div class="interest-grid">
+
 
             <div class="interest">
 
@@ -3216,6 +3838,7 @@ footer p{
                 </p>
 
             </div>
+
 
         </div>
 
@@ -3717,6 +4340,60 @@ footer p{
 
         </div>
 
+
+        <!-- STATS -->
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <div
+                    class="stat-number"
+                    data-count="12"
+                >
+                    0
+                </div>
+
+                <div class="stat-label">
+                    ACTIVITIES
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div
+                    class="stat-number"
+                    data-count="3"
+                >
+                    0
+                </div>
+
+                <div class="stat-label">
+                    MAIN INTERESTS
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div
+                    class="stat-number"
+                    data-count="8"
+                >
+                    0
+                </div>
+
+                <div class="stat-label">
+                    SKILLS
+                </div>
+
+            </div>
+
+        </div>
+
     </section>
 
 
@@ -3813,6 +4490,7 @@ footer p{
 
         <div class="contact-grid">
 
+
             <div class="contact-box">
 
                 <div class="contact-label">
@@ -3842,6 +4520,7 @@ footer p{
 
             </div>
 
+
         </div>
 
     </section>
@@ -3870,8 +4549,10 @@ footer p{
 <footer>
 
     <p>
+
         © 2026 WARANCHIT WONGSUPALERD
         — SPACE PORTFOLIO
+
     </p>
 
 </footer>
@@ -3913,7 +4594,7 @@ footer p{
 
 
 <!-- =========================================================
-     FLOATING BACK TOP
+     BACK TOP
 ========================================================= -->
 
 <a
@@ -3930,6 +4611,51 @@ footer p{
 ========================================================= -->
 
 <script>
+
+
+/* =========================================================
+   PAGE LOADER
+========================================================= */
+
+window.addEventListener(
+    "load",
+    () => {
+
+        setTimeout(
+            () => {
+
+                document
+                    .querySelector(".page-loader")
+                    .classList
+                    .add("hide");
+
+            },
+            500
+        );
+
+    }
+);
+
+
+/* =========================================================
+   CURSOR GLOW
+========================================================= */
+
+const cursorGlow =
+    document.querySelector(".cursor-glow");
+
+document.addEventListener(
+    "mousemove",
+    event => {
+
+        cursorGlow.style.left =
+            event.clientX + "px";
+
+        cursorGlow.style.top =
+            event.clientY + "px";
+
+    }
+);
 
 
 /* =========================================================
@@ -3963,7 +4689,7 @@ window.addEventListener(
 
 
 /* =========================================================
-   NAVBAR SCROLL
+   NAVBAR
 ========================================================= */
 
 const navbar =
@@ -4014,6 +4740,11 @@ const revealObserver =
                             .classList
                             .add("show");
 
+                        revealObserver
+                            .unobserve(
+                                entry.target
+                            );
+
                     }
 
                 }
@@ -4060,13 +4791,11 @@ const activityObserver =
                         entry.isIntersecting
                     ){
 
-                        const cards =
-                            [...activityCards];
-
                         const index =
-                            cards.indexOf(
-                                entry.target
-                            );
+                            [...activityCards]
+                                .indexOf(
+                                    entry.target
+                                );
 
                         setTimeout(
                             () => {
@@ -4136,7 +4865,7 @@ function updateActiveNav(){
                 section.getBoundingClientRect().top;
 
             if(
-                sectionTop <= 150
+                sectionTop <= 170
             ){
 
                 current =
@@ -4156,7 +4885,9 @@ function updateActiveNav(){
             );
 
             const href =
-                link.getAttribute("href");
+                link.getAttribute(
+                    "href"
+                );
 
             if(
                 href === "#" + current
@@ -4215,13 +4946,15 @@ document
                         navbar.offsetHeight;
 
                     const offset =
-                        target.getBoundingClientRect().top
+                        target
+                            .getBoundingClientRect()
+                            .top
                         +
                         window.scrollY
                         -
                         navbarHeight
                         -
-                        30;
+                        25;
 
                     window.scrollTo({
 
@@ -4231,7 +4964,8 @@ document
                                 offset
                             ),
 
-                        behavior:"smooth"
+                        behavior:
+                            "smooth"
 
                     });
 
@@ -4243,7 +4977,7 @@ document
 
 
 /* =========================================================
-   BACK TO TOP
+   BACK TOP
 ========================================================= */
 
 const backTop =
@@ -4276,7 +5010,215 @@ window.addEventListener(
 
 
 /* =========================================================
-   ACTIVITY LIGHTBOX
+   HERO PARALLAX
+========================================================= */
+
+const heroPhoto =
+    document.querySelector(
+        ".hero-photo"
+    );
+
+window.addEventListener(
+    "mousemove",
+    event => {
+
+        if(
+            window.innerWidth <= 900
+        ) return;
+
+        const x =
+            (event.clientX /
+                window.innerWidth
+            - .5) * 10;
+
+        const y =
+            (event.clientY /
+                window.innerHeight
+            - .5) * 10;
+
+        heroPhoto.style.transform =
+            `translate(${x}px,${y}px)`;
+
+    }
+);
+
+
+/* =========================================================
+   CARD TILT
+========================================================= */
+
+const tiltCards =
+    document.querySelectorAll(
+        ".interest, .profile-card, .stat"
+    );
+
+
+tiltCards.forEach(
+    card => {
+
+        card.addEventListener(
+            "mousemove",
+            event => {
+
+                if(
+                    window.innerWidth <= 900
+                ) return;
+
+                const rect =
+                    card.getBoundingClientRect();
+
+                const x =
+                    event.clientX -
+                    rect.left;
+
+                const y =
+                    event.clientY -
+                    rect.top;
+
+                const centerX =
+                    rect.width / 2;
+
+                const centerY =
+                    rect.height / 2;
+
+                const rotateX =
+                    (y - centerY) /
+                    20;
+
+                const rotateY =
+                    (centerX - x) /
+                    20;
+
+                card.style.transform =
+                    `perspective(700px)
+                     rotateX(${rotateX}deg)
+                     rotateY(${rotateY}deg)
+                     translateY(-6px)`;
+
+            }
+        );
+
+
+        card.addEventListener(
+            "mouseleave",
+            () => {
+
+                card.style.transform =
+                    "";
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   COUNTER
+========================================================= */
+
+const counters =
+    document.querySelectorAll(
+        ".stat-number"
+    );
+
+let counterStarted = false;
+
+
+const counterObserver =
+    new IntersectionObserver(
+
+        entries => {
+
+            entries.forEach(
+                entry => {
+
+                    if(
+                        entry.isIntersecting
+                        &&
+                        !counterStarted
+                    ){
+
+                        counterStarted = true;
+
+                        counters.forEach(
+                            counter => {
+
+                                const target =
+                                    Number(
+                                        counter.dataset.count
+                                    );
+
+                                let current = 0;
+
+                                const step =
+                                    Math.max(
+                                        1,
+                                        Math.ceil(
+                                            target / 30
+                                        )
+                                    );
+
+                                const timer =
+                                    setInterval(
+                                        () => {
+
+                                            current += step;
+
+                                            if(
+                                                current >= target
+                                            ){
+
+                                                current =
+                                                    target;
+
+                                                clearInterval(
+                                                    timer
+                                                );
+
+                                            }
+
+                                            counter.textContent =
+                                                current;
+
+                                        },
+                                        35
+                                    );
+
+                            }
+                        );
+
+                    }
+
+                }
+            );
+
+        },
+
+        {
+            threshold:.5
+        }
+
+    );
+
+
+const statsSection =
+    document.querySelector(
+        ".stats"
+    );
+
+
+if(statsSection){
+
+    counterObserver.observe(
+        statsSection
+    );
+
+}
+
+
+/* =========================================================
+   LIGHTBOX
 ========================================================= */
 
 const lightbox =
@@ -4345,7 +5287,9 @@ document
     );
 
 
-/* CLOSE LIGHTBOX */
+/* =========================================================
+   CLOSE LIGHTBOX
+========================================================= */
 
 function closeLightbox(){
 
@@ -4374,7 +5318,9 @@ lightboxClose.addEventListener(
 );
 
 
-/* CLICK OUTSIDE */
+/* =========================================================
+   CLICK OUTSIDE LIGHTBOX
+========================================================= */
 
 lightbox.addEventListener(
     "click",
@@ -4392,7 +5338,9 @@ lightbox.addEventListener(
 );
 
 
-/* ESC KEY */
+/* =========================================================
+   ESC KEY
+========================================================= */
 
 document.addEventListener(
     "keydown",
@@ -4411,95 +5359,25 @@ document.addEventListener(
 
 
 /* =========================================================
-   RANDOM SHOOTING STARS
+   IMAGE ERROR HANDLING
 ========================================================= */
 
-const space =
-    document.querySelector(
-        ".space-background"
+document
+    .querySelectorAll("img")
+    .forEach(
+        image => {
+
+            image.addEventListener(
+                "error",
+                () => {
+
+                    image.style.opacity = "0";
+
+                }
+            );
+
+        }
     );
-
-
-function createShootingStar(){
-
-    const star =
-        document.createElement(
-            "div"
-        );
-
-    star.className =
-        "shooting-star";
-
-    const top =
-        Math.random() * 75 + 5;
-
-    const left =
-        Math.random() * 80 + 10;
-
-    const width =
-        Math.random() * 120 + 100;
-
-    const duration =
-        Math.random() * 3 + 3;
-
-    const delay =
-        Math.random() * 2;
-
-    star.style.top =
-        top + "%";
-
-    star.style.left =
-        left + "%";
-
-    star.style.width =
-        width + "px";
-
-    star.style.animationDuration =
-        duration + "s";
-
-    star.style.animationDelay =
-        delay + "s";
-
-    space.appendChild(
-        star
-    );
-
-
-    setTimeout(
-        () => {
-
-            star.remove();
-
-        },
-        (duration + delay) * 1000
-        + 1000
-    );
-
-}
-
-
-/* สร้างดาวตกใหม่เรื่อย ๆ */
-
-setInterval(
-    createShootingStar,
-    1800
-);
-
-
-/* เริ่มต้นหลายดวง */
-
-for(
-    let i = 0;
-    i < 5;
-    i++
-){
-
-    setTimeout(
-        createShootingStar,
-        i * 700
-    );
-
-}
 
 
 </script>
@@ -4508,3 +5386,4 @@ for(
 </body>
 
 </html>
+
