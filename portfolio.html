@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="th">
 
@@ -81,9 +80,7 @@ body{
     transform-origin:bottom;
 
     opacity:0.45;
-
     pointer-events:none;
-
     z-index:0;
 }
 
@@ -117,7 +114,6 @@ body::before{
     pointer-events:none;
 }
 
-
 body::after{
     content:"";
 
@@ -143,7 +139,6 @@ body::after{
     pointer-events:none;
 }
 
-
 @keyframes glowMove1{
 
     from{
@@ -155,7 +150,6 @@ body::after{
     }
 
 }
-
 
 @keyframes glowMove2{
 
@@ -183,7 +177,6 @@ body::after{
     z-index:1;
 }
 
-
 .particles span{
     position:absolute;
 
@@ -201,7 +194,6 @@ body::after{
     animation:
         particleFloat linear infinite;
 }
-
 
 .particles span:nth-child(1){
     left:5%;
@@ -257,7 +249,6 @@ body::after{
     animation-duration:9s;
 }
 
-
 @keyframes particleFloat{
 
     0%{
@@ -311,7 +302,6 @@ header{
     overflow:hidden;
 }
 
-
 header::after{
     content:"";
 
@@ -335,7 +325,6 @@ header::after{
         scanLine 4s linear infinite;
 }
 
-
 @keyframes scanLine{
 
     from{
@@ -350,7 +339,7 @@ header::after{
 
 
 /* =========================
-   PROFILE
+   PROFILE IMAGE
 ========================= */
 
 .profile-wrapper{
@@ -368,7 +357,6 @@ header::after{
     justify-content:center;
 
 }
-
 
 .profile-wrapper::before{
 
@@ -392,7 +380,6 @@ header::after{
 
 }
 
-
 .profile-wrapper::after{
 
     content:"";
@@ -414,7 +401,6 @@ header::after{
         rotateRingReverse 6s linear infinite;
 
 }
-
 
 .profile-img{
 
@@ -438,7 +424,6 @@ header::after{
 
 }
 
-
 @keyframes profileFloat{
 
     0%,100%{
@@ -451,7 +436,6 @@ header::after{
 
 }
 
-
 @keyframes rotateRing{
 
     from{
@@ -463,7 +447,6 @@ header::after{
     }
 
 }
-
 
 @keyframes rotateRingReverse{
 
@@ -491,7 +474,6 @@ header h1{
 
 }
 
-
 header h1 span{
 
     color:#00e5ff;
@@ -502,7 +484,6 @@ header h1 span{
 
 }
 
-
 header p{
 
     color:#aebed0;
@@ -512,7 +493,6 @@ header p{
     letter-spacing:1px;
 
 }
-
 
 .status{
 
@@ -539,7 +519,6 @@ header p{
         statusGlow 2s infinite alternate;
 
 }
-
 
 @keyframes statusGlow{
 
@@ -595,7 +574,6 @@ header p{
 
 }
 
-
 .nav a{
 
     color:#aebed0;
@@ -617,7 +595,6 @@ header p{
     white-space:nowrap;
 
 }
-
 
 .nav a:hover{
 
@@ -690,7 +667,6 @@ header p{
 
 }
 
-
 .section::before{
 
     content:"";
@@ -714,7 +690,6 @@ header p{
 
 }
 
-
 .section:hover{
 
     transform:
@@ -729,7 +704,6 @@ header p{
 
 }
 
-
 .section h2{
 
     color:#00e5ff;
@@ -743,7 +717,6 @@ header p{
         rgba(0,229,255,0.3);
 
 }
-
 
 .section p{
 
@@ -768,13 +741,11 @@ header p{
 
 }
 
-
 .cover-box h2{
 
     font-size:2.2rem;
 
 }
-
 
 .cover-box .big-title{
 
@@ -792,10 +763,213 @@ header p{
 
 }
 
-
 .cover-box .big-title span{
 
     color:#00e5ff;
+
+}
+
+
+/* =========================================================
+   PERSONAL PROFILE
+========================================================= */
+
+.profile-content{
+
+    display:grid;
+
+    grid-template-columns:
+        300px 1fr;
+
+    gap:35px;
+
+    align-items:start;
+
+}
+
+
+/* PROFILE CARD */
+
+.profile-card{
+
+    text-align:center;
+
+    padding:25px 15px;
+
+    background:
+        rgba(0,229,255,0.035);
+
+    border:
+        1px solid
+        rgba(0,229,255,0.18);
+
+    border-radius:18px;
+
+    box-shadow:
+        0 0 25px
+        rgba(0,229,255,0.08);
+
+    transition:0.35s;
+
+}
+
+.profile-card:hover{
+
+    transform:
+        translateY(-5px);
+
+    border-color:#00e5ff;
+
+    box-shadow:
+        0 0 30px
+        rgba(0,229,255,0.18);
+
+}
+
+.profile-page{
+
+    margin:0 auto 20px;
+
+}
+
+.profile-card h3{
+
+    color:#00e5ff;
+
+    font-size:22px;
+
+    margin-top:5px;
+
+    text-shadow:
+        0 0 10px
+        rgba(0,229,255,0.4);
+
+}
+
+.profile-card p{
+
+    color:#8fa5bb;
+
+    font-size:13px;
+
+    letter-spacing:2px;
+
+    margin-top:7px;
+
+}
+
+
+/* PERSONAL INFORMATION */
+
+.personal-info{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:15px;
+
+}
+
+.info-item{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:15px;
+
+    padding:18px;
+
+    background:
+        rgba(255,255,255,0.025);
+
+    border:
+        1px solid
+        rgba(0,229,255,0.12);
+
+    border-radius:13px;
+
+    transition:0.3s;
+
+}
+
+.info-item:hover{
+
+    transform:
+        translateY(-3px);
+
+    border-color:#00e5ff;
+
+    background:
+        rgba(0,229,255,0.045);
+
+    box-shadow:
+        0 0 20px
+        rgba(0,229,255,0.10);
+
+}
+
+.info-item.full{
+
+    grid-column:
+        1 / -1;
+
+}
+
+
+/* ICON */
+
+.info-icon{
+
+    width:42px;
+    height:42px;
+
+    min-width:42px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:20px;
+
+    border-radius:10px;
+
+    background:
+        rgba(0,229,255,0.08);
+
+    border:
+        1px solid
+        rgba(0,229,255,0.18);
+
+}
+
+
+/* INFO TEXT */
+
+.info-item strong{
+
+    display:block;
+
+    color:#00e5ff;
+
+    font-size:14px;
+
+    margin-bottom:5px;
+
+}
+
+.info-item p{
+
+    color:#b8c5d6;
+
+    font-size:15px;
+
+    line-height:1.7;
+
+    margin:0;
 
 }
 
@@ -811,7 +985,6 @@ header p{
     padding-left:30px;
 
 }
-
 
 .timeline::before{
 
@@ -840,7 +1013,6 @@ header p{
 
 }
 
-
 .timeline-item{
 
     position:relative;
@@ -860,7 +1032,6 @@ header p{
 
 }
 
-
 .timeline-item::before{
 
     content:"";
@@ -872,7 +1043,6 @@ header p{
     top:25px;
 
     width:14px;
-
     height:14px;
 
     background:#00e5ff;
@@ -885,7 +1055,6 @@ header p{
 
 }
 
-
 .timeline-item h3{
 
     color:white;
@@ -893,7 +1062,6 @@ header p{
     margin-bottom:8px;
 
 }
-
 
 .timeline-item p{
 
@@ -903,7 +1071,7 @@ header p{
 
 
 /* =========================
-   INTEREST CARDS
+   INTEREST
 ========================= */
 
 .interest-grid{
@@ -916,7 +1084,6 @@ header p{
     gap:15px;
 
 }
-
 
 .interest{
 
@@ -937,7 +1104,6 @@ header p{
 
 }
 
-
 .interest:hover{
 
     transform:
@@ -951,7 +1117,6 @@ header p{
 
 }
 
-
 .interest .icon{
 
     font-size:35px;
@@ -960,7 +1125,6 @@ header p{
 
 }
 
-
 .interest h3{
 
     color:#00e5ff;
@@ -968,7 +1132,6 @@ header p{
     margin-bottom:8px;
 
 }
-
 
 .interest p{
 
@@ -992,9 +1155,6 @@ header p{
 
 }
 
-
-/* CARD */
-
 .activity-card{
 
     position:relative;
@@ -1014,7 +1174,6 @@ header p{
 
 }
 
-
 .activity-card:hover{
 
     transform:
@@ -1031,9 +1190,6 @@ header p{
 
 }
 
-
-/* IMAGE */
-
 .activity-card img{
 
     width:100%;
@@ -1048,7 +1204,6 @@ header p{
 
 }
 
-
 .activity-card:hover img{
 
     transform:
@@ -1056,15 +1211,11 @@ header p{
 
 }
 
-
-/* NUMBER */
-
 .activity-number{
 
     position:absolute;
 
     top:12px;
-
     left:12px;
 
     z-index:2;
@@ -1091,9 +1242,6 @@ header p{
 
 }
 
-
-/* ACTIVITY INFO */
-
 .activity-info{
 
     padding:18px;
@@ -1102,7 +1250,6 @@ header p{
         rgba(5,12,25,0.92);
 
 }
-
 
 .activity-info h3{
 
@@ -1113,7 +1260,6 @@ header p{
     margin-bottom:8px;
 
 }
-
 
 .activity-info p{
 
@@ -1140,7 +1286,6 @@ header p{
 
 }
 
-
 .skill{
 
     background:
@@ -1160,7 +1305,6 @@ header p{
     transition:0.3s;
 
 }
-
 
 .skill:hover{
 
@@ -1188,7 +1332,6 @@ header p{
 
 }
 
-
 .contact a{
 
     color:#00e5ff;
@@ -1198,7 +1341,6 @@ header p{
     font-weight:bold;
 
 }
-
 
 .contact a:hover{
 
@@ -1240,7 +1382,6 @@ header p{
 
 }
 
-
 .btn-home:hover{
 
     background:white;
@@ -1280,7 +1421,6 @@ footer{
 
 }
 
-
 footer span{
 
     color:#00e5ff;
@@ -1306,20 +1446,17 @@ footer span{
 
     }
 
-
     .nav::-webkit-scrollbar{
 
         display:none;
 
     }
 
-
     .nav a{
 
         flex-shrink:0;
 
     }
-
 
     .profile-wrapper{
 
@@ -1328,14 +1465,12 @@ footer span{
 
     }
 
-
     .profile-img{
 
         width:140px;
         height:140px;
 
     }
-
 
     .container{
 
@@ -1344,7 +1479,6 @@ footer span{
 
     }
 
-
     .section{
 
         padding:
@@ -1352,6 +1486,37 @@ footer span{
 
     }
 
+    /* PROFILE MOBILE */
+
+    .profile-content{
+
+        grid-template-columns:1fr;
+
+        gap:25px;
+
+    }
+
+    .profile-card{
+
+        max-width:320px;
+
+        width:100%;
+
+        margin:auto;
+
+    }
+
+    .personal-info{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .info-item.full{
+
+        grid-column:auto;
+
+    }
 
     .interest-grid{
 
@@ -1359,20 +1524,17 @@ footer span{
 
     }
 
-
     .activity-grid{
 
         grid-template-columns:1fr;
 
     }
 
-
     .activity-card img{
 
         height:230px;
 
     }
-
 
     .cover-box .big-title{
 
@@ -1397,7 +1559,6 @@ footer span{
     }
 
 }
-
 
 </style>
 
@@ -1438,7 +1599,6 @@ footer span{
 
 <header>
 
-
     <!-- PROFILE IMAGE -->
 
     <div class="profile-wrapper">
@@ -1450,7 +1610,6 @@ footer span{
         >
 
     </div>
-
 
 
     <!-- NAME -->
@@ -1466,7 +1625,6 @@ footer span{
     </h1>
 
 
-
     <p>
 
         สายการเรียน GIFTED
@@ -1479,13 +1637,11 @@ footer span{
     </p>
 
 
-
     <div class="status">
 
         ● MY PORTFOLIO
 
     </div>
-
 
 </header>
 
@@ -1497,46 +1653,37 @@ footer span{
 
 <nav class="nav">
 
-
     <a href="#cover">
         หน้าปก
     </a>
-
 
     <a href="#preface">
         คำนำ
     </a>
 
-
     <a href="#profile">
         ประวัติส่วนตัว
     </a>
-
 
     <a href="#education">
         ประวัติการศึกษา
     </a>
 
-
     <a href="#interest">
         ความสนใจในการศึกษาต่อ
     </a>
-
 
     <a href="#activity">
         กิจกรรมที่เข้าร่วม
     </a>
 
-
     <a href="#special">
         ความสามารถพิเศษ
     </a>
 
-
     <a href="#contact">
         ติดต่อ
     </a>
-
 
 </nav>
 
@@ -1559,11 +1706,9 @@ footer span{
     id="cover"
 >
 
-
     <h2>
         ◈ หน้าปก
     </h2>
-
 
     <div class="big-title">
 
@@ -1571,24 +1716,19 @@ footer span{
 
     </div>
 
-
     <p>
         แฟ้มสะสมผลงาน
     </p>
 
-
     <br>
-
 
     <p>
         วรัญชิต (Waranchit)
     </p>
 
-
     <p>
         Computer Science & Engineering
     </p>
-
 
 </section>
 
@@ -1603,11 +1743,9 @@ footer span{
     id="preface"
 >
 
-
     <h2>
         ◈ คำนำ
     </h2>
-
 
     <p>
 
@@ -1619,9 +1757,7 @@ footer span{
 
     </p>
 
-
     <br>
-
 
     <p>
 
@@ -1631,77 +1767,291 @@ footer span{
 
     </p>
 
-
 </section>
 
 
 
-<!-- =========================
-     3. PROFILE
-========================= -->
+<!-- =====================================================
+     3. PERSONAL PROFILE
+===================================================== -->
 
 <section
     class="section"
     id="profile"
 >
 
-
     <h2>
         ◈ ประวัติส่วนตัว
     </h2>
 
 
-    <p>
-
-        <strong>
-            ชื่อ:
-        </strong>
-
-        วรัญชิต (Waranchit)
-
-    </p>
+    <div class="profile-content">
 
 
-    <p>
+        <!-- =========================
+             PROFILE IMAGE CARD
+        ========================= -->
 
-        <strong>
-            สาขาที่สนใจ:
-        </strong>
+        <div class="profile-card">
 
-        Computer Science & Engineering
+            <div class="profile-wrapper profile-page">
 
-    </p>
+                <img
+                    src="S__37978147.jpg"
+                    alt="รูปประวัติส่วนตัว"
+                    class="profile-img"
+                >
 
-
-    <p>
-
-        <strong>
-            ความสนใจ:
-        </strong>
-
-        การเขียนโปรแกรม
-        การพัฒนาเว็บไซต์
-        และเทคโนโลยีคอมพิวเตอร์
-
-    </p>
+            </div>
 
 
-    <br>
+            <h3>
+                วรัญชิต
+            </h3>
 
 
-    <p>
+            <p>
+                WARANCHIT
+            </p>
 
-        <strong>
-            เป้าหมาย:
-        </strong>
 
-        พัฒนาความรู้ด้านเทคโนโลยี
-        การเขียนโปรแกรม
-        และนำความรู้ไปสร้างสรรค์ผลงาน
-        ที่สามารถนำไปใช้งานได้จริง
+            <p>
+                GIFTED PROGRAM
+            </p>
 
-    </p>
+        </div>
 
+
+
+        <!-- =========================
+             PERSONAL INFORMATION
+        ========================= -->
+
+        <div class="personal-info">
+
+
+            <!-- NAME -->
+
+            <div class="info-item">
+
+                <span class="info-icon">
+                    👤
+                </span>
+
+                <div>
+
+                    <strong>
+                        ชื่อ-นามสกุล
+                    </strong>
+
+                    <p>
+                        วรัญชิต __________________
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- NICKNAME -->
+
+            <div class="info-item">
+
+                <span class="info-icon">
+                    ✨
+                </span>
+
+                <div>
+
+                    <strong>
+                        ชื่อเล่น
+                    </strong>
+
+                    <p>
+                        __________________
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- BIRTHDAY -->
+
+            <div class="info-item">
+
+                <span class="info-icon">
+                    🎂
+                </span>
+
+                <div>
+
+                    <strong>
+                        วัน / เดือน / ปีเกิด
+                    </strong>
+
+                    <p>
+                        ____ / ____ / ______
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- RACE -->
+
+            <div class="info-item">
+
+                <span class="info-icon">
+                    🌏
+                </span>
+
+                <div>
+
+                    <strong>
+                        เชื้อชาติ
+                    </strong>
+
+                    <p>
+                        ไทย
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- NATIONALITY -->
+
+            <div class="info-item">
+
+                <span class="info-icon">
+                    🇹🇭
+                </span>
+
+                <div>
+
+                    <strong>
+                        สัญชาติ
+                    </strong>
+
+                    <p>
+                        ไทย
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- RELIGION -->
+
+            <div class="info-item">
+
+                <span class="info-icon">
+                    ☸️
+                </span>
+
+                <div>
+
+                    <strong>
+                        ศาสนา
+                    </strong>
+
+                    <p>
+                        __________________
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- HOBBY -->
+
+            <div class="info-item full">
+
+                <span class="info-icon">
+                    🎮
+                </span>
+
+                <div>
+
+                    <strong>
+                        งานอดิเรก
+                    </strong>
+
+                    <p>
+                        เล่นเกม, ฟังเพลง, เขียนโปรแกรม,
+                        ออกแบบเว็บไซต์ และศึกษาความรู้ด้านเทคโนโลยี
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- INTEREST -->
+
+            <div class="info-item full">
+
+                <span class="info-icon">
+                    💻
+                </span>
+
+                <div>
+
+                    <strong>
+                        สาขาที่สนใจ
+                    </strong>
+
+                    <p>
+                        Computer Science & Engineering
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- GOAL -->
+
+            <div class="info-item full">
+
+                <span class="info-icon">
+                    🎯
+                </span>
+
+                <div>
+
+                    <strong>
+                        เป้าหมาย
+                    </strong>
+
+                    <p>
+                        พัฒนาความรู้ด้านเทคโนโลยี
+                        การเขียนโปรแกรม
+                        และนำความรู้ไปสร้างสรรค์ผลงาน
+                        ที่สามารถนำไปใช้งานได้จริง
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
 
 </section>
 
@@ -1715,7 +2065,6 @@ footer span{
     class="section"
     id="education"
 >
-
 
     <h2>
         ◈ ประวัติการศึกษา
@@ -1773,7 +2122,6 @@ footer span{
 
     </div>
 
-
 </section>
 
 
@@ -1786,7 +2134,6 @@ footer span{
     class="section"
     id="interest"
 >
-
 
     <h2>
         ◈ ความสนใจในการศึกษาต่อ
@@ -1860,7 +2207,6 @@ footer span{
 
     </div>
 
-
 </section>
 
 
@@ -1873,7 +2219,6 @@ footer span{
     class="section"
     id="activity"
 >
-
 
     <h2>
         ◈ กิจกรรมที่เข้าร่วม
@@ -1889,28 +2234,22 @@ footer span{
     </p>
 
 
-
     <div class="activity-grid">
 
 
 
-        <!-- =================
-             ACTIVITY 01
-        ================= -->
+        <!-- ACTIVITY 01 -->
 
         <div class="activity-card">
-
 
             <div class="activity-number">
                 ACT 01
             </div>
 
-
             <img
                 src="S__37978142.jpg"
                 alt="กิจกรรมที่ 1"
             >
-
 
             <div class="activity-info">
 
@@ -1926,28 +2265,22 @@ footer span{
 
             </div>
 
-
         </div>
 
 
 
-        <!-- =================
-             ACTIVITY 02
-        ================= -->
+        <!-- ACTIVITY 02 -->
 
         <div class="activity-card">
-
 
             <div class="activity-number">
                 ACT 02
             </div>
 
-
             <img
                 src="S__37978134.jpg"
                 alt="กิจกรรมที่ 2"
             >
-
 
             <div class="activity-info">
 
@@ -1963,28 +2296,22 @@ footer span{
 
             </div>
 
-
         </div>
 
 
 
-        <!-- =================
-             ACTIVITY 03
-        ================= -->
+        <!-- ACTIVITY 03 -->
 
         <div class="activity-card">
-
 
             <div class="activity-number">
                 ACT 03
             </div>
 
-
             <img
                 src="S__37978141.jpg"
                 alt="กิจกรรมที่ 3"
             >
-
 
             <div class="activity-info">
 
@@ -2000,28 +2327,22 @@ footer span{
 
             </div>
 
-
         </div>
 
 
 
-        <!-- =================
-             ACTIVITY 04
-        ================= -->
+        <!-- ACTIVITY 04 -->
 
         <div class="activity-card">
-
 
             <div class="activity-number">
                 ACT 04
             </div>
 
-
             <img
                 src="S__37978140.jpg"
                 alt="กิจกรรมที่ 4"
             >
-
 
             <div class="activity-info">
 
@@ -2037,28 +2358,22 @@ footer span{
 
             </div>
 
-
         </div>
 
 
 
-        <!-- =================
-             ACTIVITY 05
-        ================= -->
+        <!-- ACTIVITY 05 -->
 
         <div class="activity-card">
-
 
             <div class="activity-number">
                 ACT 05
             </div>
 
-
             <img
                 src="S__37978139.jpg"
                 alt="กิจกรรมที่ 5"
             >
-
 
             <div class="activity-info">
 
@@ -2074,28 +2389,22 @@ footer span{
 
             </div>
 
-
         </div>
 
 
 
-        <!-- =================
-             ACTIVITY 06
-        ================= -->
+        <!-- ACTIVITY 06 -->
 
         <div class="activity-card">
-
 
             <div class="activity-number">
                 ACT 06
             </div>
 
-
             <img
                 src="S__37978138.jpg"
                 alt="กิจกรรมที่ 6"
             >
-
 
             <div class="activity-info">
 
@@ -2111,28 +2420,22 @@ footer span{
 
             </div>
 
-
         </div>
 
 
 
-        <!-- =================
-             ACTIVITY 07
-        ================= -->
+        <!-- ACTIVITY 07 -->
 
         <div class="activity-card">
-
 
             <div class="activity-number">
                 ACT 07
             </div>
 
-
             <img
                 src="S__37978137.jpg"
                 alt="กิจกรรมที่ 7"
             >
-
 
             <div class="activity-info">
 
@@ -2148,28 +2451,22 @@ footer span{
 
             </div>
 
-
         </div>
 
 
 
-        <!-- =================
-             ACTIVITY 08
-        ================= -->
+        <!-- ACTIVITY 08 -->
 
         <div class="activity-card">
-
 
             <div class="activity-number">
                 ACT 08
             </div>
 
-
             <img
                 src="S__37978136.jpg"
                 alt="กิจกรรมที่ 8"
             >
-
 
             <div class="activity-info">
 
@@ -2185,28 +2482,22 @@ footer span{
 
             </div>
 
-
         </div>
 
 
 
-        <!-- =================
-             ACTIVITY 09
-        ================= -->
+        <!-- ACTIVITY 09 -->
 
         <div class="activity-card">
-
 
             <div class="activity-number">
                 ACT 09
             </div>
 
-
             <img
                 src="S__37978135.jpg"
                 alt="กิจกรรมที่ 9"
             >
-
 
             <div class="activity-info">
 
@@ -2222,13 +2513,11 @@ footer span{
 
             </div>
 
-
         </div>
 
 
 
     </div>
-
 
 </section>
 
@@ -2243,7 +2532,6 @@ footer span{
     id="special"
 >
 
-
     <h2>
         ◈ ความสามารถพิเศษ
     </h2>
@@ -2251,49 +2539,39 @@ footer span{
 
     <div class="skills">
 
-
         <span class="skill">
             HTML
         </span>
-
 
         <span class="skill">
             CSS
         </span>
 
-
         <span class="skill">
             JavaScript
         </span>
-
 
         <span class="skill">
             Python
         </span>
 
-
         <span class="skill">
             C
         </span>
-
 
         <span class="skill">
             Git & GitHub
         </span>
 
-
         <span class="skill">
             Web Development
         </span>
-
 
         <span class="skill">
             Programming
         </span>
 
-
     </div>
-
 
 </section>
 
@@ -2307,7 +2585,6 @@ footer span{
     class="section contact"
     id="contact"
 >
-
 
     <h2>
         ◈ ติดต่อ
@@ -2342,7 +2619,6 @@ footer span{
 
     </p>
 
-
 </section>
 
 
@@ -2361,7 +2637,6 @@ footer span{
 </a>
 
 
-
 </main>
 
 
@@ -2371,7 +2646,6 @@ footer span{
 ========================= -->
 
 <footer>
-
 
     <p>
 
@@ -2384,7 +2658,6 @@ footer span{
         Portfolio
 
     </p>
-
 
 </footer>
 
