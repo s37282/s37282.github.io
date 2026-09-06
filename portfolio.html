@@ -22,12 +22,15 @@
     --card:#0b0b0f;
 
     --white:#ffffff;
-    --text:#eeeeee;
-    --muted:#888;
-    --muted2:#444;
+    --text:#f5f5f5;
+    --text-soft:#d0d0d0;
+    --muted:#9a9a9a;
+    --muted2:#666;
 
-    --line:rgba(255,255,255,.13);
-    --line-soft:rgba(255,255,255,.06);
+    --line:rgba(255,255,255,.15);
+    --line-soft:rgba(255,255,255,.08);
+
+    --accent:#ffffff;
 
     --radius:18px;
 
@@ -62,16 +65,19 @@ body{
     color:var(--text);
 
     background:
+
         radial-gradient(
             circle at 50% -10%,
-            rgba(255,255,255,.09),
+            rgba(255,255,255,.12),
             transparent 35%
         ),
+
         radial-gradient(
             circle at 10% 90%,
-            rgba(255,255,255,.04),
+            rgba(255,255,255,.05),
             transparent 30%
         ),
+
         #020204;
 
     overflow-x:hidden;
@@ -101,12 +107,12 @@ body{
 }
 
 ::-webkit-scrollbar-thumb{
-    background:#444;
+    background:#555;
     border-radius:20px;
 }
 
 ::-webkit-scrollbar-thumb:hover{
-    background:#888;
+    background:#aaa;
 }
 
 
@@ -124,13 +130,22 @@ body{
     width:0%;
     height:3px;
 
-    background:#fff;
+    background:
+        linear-gradient(
+            90deg,
+            #777,
+            #fff,
+            #aaa
+        );
 
     z-index:99999;
 
     box-shadow:
-        0 0 12px
+        0 0 15px
         rgba(255,255,255,.8);
+
+    transition:
+        width .1s linear;
 }
 
 
@@ -155,8 +170,8 @@ body{
         radial-gradient(
             circle at 50% 50%,
             transparent 0%,
-            rgba(0,0,0,.15) 50%,
-            rgba(0,0,0,.65) 100%
+            rgba(0,0,0,.2) 50%,
+            rgba(0,0,0,.75) 100%
         );
 }
 
@@ -220,7 +235,7 @@ body{
 
     animation:
         starMove
-        35s
+        40s
         linear
         infinite;
 }
@@ -228,11 +243,13 @@ body{
 @keyframes starMove{
 
     from{
-        transform:translateY(0);
+        transform:
+            translateY(0);
     }
 
     to{
-        transform:translateY(240px);
+        transform:
+            translateY(240px);
     }
 }
 
@@ -247,7 +264,7 @@ body{
 
     inset:0;
 
-    opacity:.45;
+    opacity:.35;
 
     background-image:
 
@@ -280,7 +297,7 @@ body{
 
     animation:
         starDrift
-        50s
+        55s
         linear
         infinite;
 }
@@ -295,142 +312,6 @@ body{
     to{
         transform:
             translate(-100px,180px);
-    }
-}
-
-
-/* =========================================================
-   SHOOTING STAR
-========================================================= */
-
-.shooting-star{
-
-    position:absolute;
-
-    width:180px;
-    height:2px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,.95),
-            transparent
-        );
-
-    transform:
-        rotate(-35deg);
-
-    filter:
-        drop-shadow(
-            0 0 6px
-            rgba(255,255,255,.8)
-        );
-
-    opacity:0;
-
-    animation:
-        shootingStar
-        5s
-        linear
-        infinite;
-}
-
-.shooting-star::before{
-
-    content:"";
-
-    position:absolute;
-
-    right:0;
-
-    top:50%;
-
-    width:5px;
-    height:5px;
-
-    transform:
-        translateY(-50%);
-
-    border-radius:50%;
-
-    background:#fff;
-
-    box-shadow:
-        0 0 10px #fff,
-        0 0 20px #fff;
-}
-
-.shooting-star.one{
-
-    top:12%;
-    left:65%;
-
-    animation-delay:1s;
-}
-
-.shooting-star.two{
-
-    top:35%;
-    left:80%;
-
-    width:130px;
-
-    animation-delay:4s;
-}
-
-.shooting-star.three{
-
-    top:55%;
-    left:25%;
-
-    width:160px;
-
-    animation-delay:7s;
-}
-
-.shooting-star.four{
-
-    top:75%;
-    left:70%;
-
-    width:120px;
-
-    animation-delay:10s;
-}
-
-@keyframes shootingStar{
-
-    0%{
-
-        opacity:0;
-
-        transform:
-            translate(0,0)
-            rotate(-35deg);
-
-    }
-
-    8%{
-        opacity:1;
-    }
-
-    30%{
-
-        opacity:1;
-
-        transform:
-            translate(-420px,260px)
-            rotate(-35deg);
-
-    }
-
-    31%{
-        opacity:0;
-    }
-
-    100%{
-        opacity:0;
     }
 }
 
@@ -480,16 +361,89 @@ body{
 @keyframes nebulaMove{
 
     from{
+
         transform:
             translate(0,0)
             scale(1);
+
     }
 
     to{
+
         transform:
             translate(120px,-80px)
             scale(1.2);
+
     }
+}
+
+
+/* =========================================================
+   TEXT ANIMATION
+========================================================= */
+
+@keyframes textReveal{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(25px);
+
+        filter:
+            blur(8px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+
+        filter:
+            blur(0);
+
+    }
+
+}
+
+
+@keyframes shimmer{
+
+    0%{
+        background-position:
+            -200% center;
+    }
+
+    100%{
+        background-position:
+            200% center;
+    }
+
+}
+
+
+@keyframes softGlow{
+
+    0%,100%{
+
+        text-shadow:
+            0 0 0
+            rgba(255,255,255,0);
+
+    }
+
+    50%{
+
+        text-shadow:
+            0 0 18px
+            rgba(255,255,255,.16);
+
+    }
+
 }
 
 
@@ -550,7 +504,7 @@ body{
     top:9px;
 
     background:
-        rgba(2,2,4,.95);
+        rgba(2,2,4,.96);
 
     box-shadow:
         0 20px 70px
@@ -558,7 +512,9 @@ body{
 }
 
 
-/* LOGO */
+/* =========================================================
+   LOGO
+========================================================= */
 
 .logo{
 
@@ -573,17 +529,31 @@ body{
     letter-spacing:4px;
 
     white-space:nowrap;
+
+    transition:.3s;
 }
 
 .logo span{
 
-    color:#555;
+    color:#888;
 
     font-weight:500;
 }
 
+.logo:hover{
 
-/* NAV */
+    text-shadow:
+        0 0 15px
+        rgba(255,255,255,.45);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
 .nav-links{
 
@@ -598,11 +568,13 @@ body{
 
     position:relative;
 
-    color:#666;
+    color:#aaa;
 
     text-decoration:none;
 
     font-size:9px;
+
+    font-weight:600;
 
     letter-spacing:1.5px;
 
@@ -619,7 +591,12 @@ body{
     color:#fff;
 
     background:
-        rgba(255,255,255,.06);
+        rgba(255,255,255,.07);
+
+    text-shadow:
+        0 0 10px
+        rgba(255,255,255,.4);
+
 }
 
 .nav-links a.active{
@@ -627,11 +604,12 @@ body{
     color:#fff;
 
     background:
-        rgba(255,255,255,.10);
+        rgba(255,255,255,.11);
 
     box-shadow:
         inset 0 0 20px
-        rgba(255,255,255,.025);
+        rgba(255,255,255,.03);
+
 }
 
 .nav-links a.active::after{
@@ -641,7 +619,6 @@ body{
     position:absolute;
 
     bottom:4px;
-
     left:50%;
 
     width:4px;
@@ -701,36 +678,17 @@ body{
 }
 
 
-/* HERO TEXT */
+/* =========================================================
+   HERO CONTENT
+========================================================= */
 
 .hero-content{
 
     animation:
-        heroText
+        textReveal
         1s
         ease
         both;
-}
-
-@keyframes heroText{
-
-    from{
-
-        opacity:0;
-
-        transform:
-            translateY(35px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:
-            translateY(0);
-
-    }
 }
 
 .eyebrow{
@@ -741,13 +699,21 @@ body{
 
     gap:12px;
 
-    color:#666;
+    color:#aaa;
 
     font-size:10px;
+
+    font-weight:600;
 
     letter-spacing:4px;
 
     margin-bottom:25px;
+
+    animation:
+        textReveal
+        .8s
+        .15s
+        both;
 }
 
 .eyebrow::before{
@@ -757,8 +723,18 @@ body{
     width:35px;
     height:1px;
 
-    background:#555;
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #aaa
+        );
 }
+
+
+/* =========================================================
+   HERO TITLE
+========================================================= */
 
 .hero h1{
 
@@ -776,6 +752,12 @@ body{
     font-weight:800;
 
     margin-bottom:30px;
+
+    animation:
+        textReveal
+        1s
+        .25s
+        both;
 }
 
 .hero h1 span{
@@ -785,28 +767,72 @@ body{
     color:transparent;
 
     -webkit-text-stroke:
-        1px #666;
+        1px #aaa;
+
+    background:
+        linear-gradient(
+            120deg,
+            #777,
+            #fff,
+            #777
+        );
+
+    background-size:
+        250% auto;
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+    animation:
+        shimmer
+        7s
+        linear
+        infinite;
+
 }
+
+
+/* =========================================================
+   HERO DESCRIPTION
+========================================================= */
 
 .hero-description{
 
     max-width:610px;
 
-    color:#888;
+    color:#bdbdbd;
 
     font-size:15px;
 
     line-height:2;
 
     margin-bottom:35px;
+
+    animation:
+        textReveal
+        1s
+        .4s
+        both;
 }
 
 .hero-description strong{
+
     color:#fff;
+
+    font-weight:700;
+
+    animation:
+        softGlow
+        4s
+        ease-in-out
+        infinite;
 }
 
 
-/* BUTTONS */
+/* =========================================================
+   BUTTONS
+========================================================= */
 
 .hero-buttons{
 
@@ -815,6 +841,12 @@ body{
     gap:10px;
 
     flex-wrap:wrap;
+
+    animation:
+        textReveal
+        1s
+        .55s
+        both;
 }
 
 .btn{
@@ -834,7 +866,7 @@ body{
 
     border:
         1px solid
-        #444;
+        #555;
 
     border-radius:10px;
 
@@ -843,6 +875,8 @@ body{
     text-decoration:none;
 
     font-size:10px;
+
+    font-weight:600;
 
     letter-spacing:1.8px;
 
@@ -856,23 +890,27 @@ body{
     color:#000;
 
     border-color:#fff;
+
+    box-shadow:
+        0 10px 35px
+        rgba(255,255,255,.08);
 }
 
 .btn:hover{
 
     transform:
-        translateY(-3px);
+        translateY(-4px);
 
     border-color:#aaa;
 
     box-shadow:
-        0 10px 30px
-        rgba(255,255,255,.08);
+        0 12px 35px
+        rgba(255,255,255,.12);
 }
 
 .btn.primary:hover{
 
-    background:#ddd;
+    background:#e9e9e9;
 }
 
 .btn span{
@@ -885,7 +923,7 @@ body{
 .btn:hover span{
 
     transform:
-        translateX(5px);
+        translateX(6px);
 }
 
 
@@ -943,7 +981,7 @@ body{
 
     border:
         1px solid
-        #333;
+        #444;
 
     background:#09090c;
 
@@ -966,7 +1004,7 @@ body{
 
     border:
         1px solid
-        rgba(255,255,255,.08);
+        rgba(255,255,255,.09);
 
     border-radius:22px;
 
@@ -974,7 +1012,40 @@ body{
 
     box-shadow:
         0 0 60px
-        rgba(255,255,255,.025);
+        rgba(255,255,255,.035);
+}
+
+.photo-frame::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:18px;
+
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 30%,
+            rgba(255,255,255,.06),
+            transparent 70%
+        );
+
+    transform:
+        translateX(-120%);
+
+    transition:
+        transform 1s;
+}
+
+.photo-frame:hover::after{
+
+    transform:
+        translateX(120%);
 }
 
 .photo-frame:hover{
@@ -982,6 +1053,10 @@ body{
     transform:
         translateY(-10px)
         rotate(1deg);
+
+    box-shadow:
+        0 40px 110px
+        rgba(0,0,0,.85);
 }
 
 .photo-frame img{
@@ -1025,13 +1100,15 @@ body{
 
     border:
         1px solid
-        rgba(255,255,255,.2);
+        rgba(255,255,255,.25);
 
     border-radius:8px;
 
     color:#fff;
 
     font-size:9px;
+
+    font-weight:600;
 
     letter-spacing:2px;
 
@@ -1062,9 +1139,11 @@ body{
 
     gap:9px;
 
-    color:#555;
+    color:#888;
 
     font-size:8px;
+
+    font-weight:600;
 
     letter-spacing:3px;
 }
@@ -1076,7 +1155,7 @@ body{
 
     background:
         linear-gradient(
-            #777,
+            #aaa,
             transparent
         );
 
@@ -1090,14 +1169,23 @@ body{
 @keyframes scrollArrow{
 
     0%,100%{
+
         transform:
             scaleY(.5);
+
+        opacity:.4;
+
     }
 
     50%{
+
         transform:
             scaleY(1);
+
+        opacity:1;
+
     }
+
 }
 
 
@@ -1137,7 +1225,7 @@ main{
     background:
         linear-gradient(
             145deg,
-            rgba(255,255,255,.035),
+            rgba(255,255,255,.045),
             rgba(255,255,255,.008)
         );
 
@@ -1169,7 +1257,7 @@ main{
         linear-gradient(
             120deg,
             transparent,
-            rgba(255,255,255,.025),
+            rgba(255,255,255,.035),
             transparent
         );
 
@@ -1212,13 +1300,21 @@ main{
 
 .section-index{
 
-    color:#555;
+    color:#999;
 
     font-size:9px;
+
+    font-weight:600;
 
     letter-spacing:4px;
 
     margin-bottom:10px;
+
+    animation:
+        softGlow
+        5s
+        ease-in-out
+        infinite;
 }
 
 .section-header h2{
@@ -1234,7 +1330,20 @@ main{
 
     letter-spacing:-2px;
 
-    font-weight:700;
+    font-weight:750;
+
+    color:#fff;
+
+    transition:.4s;
+}
+
+.section-header h2:hover{
+
+    letter-spacing:-1px;
+
+    text-shadow:
+        0 0 20px
+        rgba(255,255,255,.18);
 }
 
 
@@ -1256,13 +1365,13 @@ main{
 
         radial-gradient(
             circle at 80% 20%,
-            rgba(255,255,255,.07),
+            rgba(255,255,255,.08),
             transparent 35%
         ),
 
         radial-gradient(
             circle at 20% 80%,
-            rgba(255,255,255,.035),
+            rgba(255,255,255,.04),
             transparent 30%
         ),
 
@@ -1271,13 +1380,20 @@ main{
 
 .cover-label{
 
-    color:#666;
+    color:#aaa;
 
     font-size:10px;
+
+    font-weight:600;
 
     letter-spacing:5px;
 
     margin-bottom:25px;
+
+    animation:
+        textReveal
+        .8s
+        both;
 }
 
 .cover h2{
@@ -1294,6 +1410,14 @@ main{
     letter-spacing:-9px;
 
     font-weight:800;
+
+    color:#fff;
+
+    animation:
+        textReveal
+        1s
+        .2s
+        both;
 }
 
 .cover h2 span{
@@ -1303,18 +1427,47 @@ main{
     color:transparent;
 
     -webkit-text-stroke:
-        1px #666;
+        1px #999;
+
+    background:
+        linear-gradient(
+            90deg,
+            #777,
+            #fff,
+            #777
+        );
+
+    background-size:
+        200% auto;
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+    animation:
+        shimmer
+        6s
+        linear
+        infinite;
 }
 
 .cover-subtitle{
 
     margin-top:35px;
 
-    color:#666;
+    color:#aaa;
 
     font-size:11px;
 
+    font-weight:600;
+
     letter-spacing:4px;
+
+    animation:
+        textReveal
+        1s
+        .45s
+        both;
 }
 
 
@@ -1329,13 +1482,23 @@ main{
 
 .preface p{
 
-    color:#999;
+    color:#c2c2c2;
 
     font-size:15px;
 
     line-height:2.1;
 
     margin-bottom:18px;
+
+    transition:.35s;
+}
+
+.preface p:hover{
+
+    color:#fff;
+
+    transform:
+        translateX(5px);
 }
 
 .preface p:last-child{
@@ -1371,6 +1534,20 @@ main{
 
     background:
         rgba(255,255,255,.018);
+
+    transition:.5s;
+}
+
+.profile-card:hover{
+
+    transform:
+        translateY(-6px);
+
+    border-color:#666;
+
+    box-shadow:
+        0 20px 50px
+        rgba(0,0,0,.5);
 }
 
 .profile-card img{
@@ -1403,14 +1580,24 @@ main{
 
     font-size:21px;
 
+    color:#fff;
+
     margin-bottom:7px;
+
+    animation:
+        softGlow
+        5s
+        ease-in-out
+        infinite;
 }
 
 .profile-card p{
 
-    color:#555;
+    color:#999;
 
     font-size:9px;
+
+    font-weight:600;
 
     letter-spacing:4px;
 }
@@ -1454,7 +1641,7 @@ main{
     background:
         rgba(255,255,255,.045);
 
-    border-color:#444;
+    border-color:#555;
 
     box-shadow:
         0 10px 35px
@@ -1469,9 +1656,11 @@ main{
 
 .info-label{
 
-    color:#555;
+    color:#888;
 
     font-size:8px;
+
+    font-weight:700;
 
     letter-spacing:3px;
 
@@ -1480,11 +1669,22 @@ main{
 
 .info-value{
 
-    color:#ddd;
+    color:#eee;
 
     font-size:14px;
 
     line-height:1.7;
+
+    transition:.3s;
+}
+
+.info:hover .info-value{
+
+    color:#fff;
+
+    text-shadow:
+        0 0 10px
+        rgba(255,255,255,.08);
 }
 
 
@@ -1528,7 +1728,7 @@ main{
 
     background:#101014;
 
-    border-color:#444;
+    border-color:#555;
 
     box-shadow:
         0 15px 40px
@@ -1537,14 +1737,18 @@ main{
 
 .edu-year{
 
-    color:#555;
+    color:#999;
 
     font-size:10px;
+
+    font-weight:700;
 
     letter-spacing:2px;
 }
 
 .edu h3{
+
+    color:#fff;
 
     font-size:17px;
 
@@ -1553,7 +1757,7 @@ main{
 
 .edu p{
 
-    color:#777;
+    color:#aaa;
 
     font-size:13px;
 
@@ -1621,7 +1825,17 @@ main{
     filter:
         blur(60px);
 
-    opacity:.03;
+    opacity:.04;
+
+    transition:.5s;
+}
+
+.interest:hover::after{
+
+    opacity:.1;
+
+    transform:
+        scale(1.4);
 }
 
 .interest:hover{
@@ -1643,9 +1857,11 @@ main{
     top:20px;
     right:20px;
 
-    color:#444;
+    color:#777;
 
     font-size:9px;
+
+    font-weight:600;
 
     letter-spacing:2px;
 }
@@ -1654,16 +1870,30 @@ main{
 
     position:relative;
 
+    color:#fff;
+
     font-size:20px;
 
     margin-bottom:10px;
+
+    transition:.35s;
+}
+
+.interest:hover h3{
+
+    transform:
+        translateX(5px);
+
+    text-shadow:
+        0 0 15px
+        rgba(255,255,255,.15);
 }
 
 .interest p{
 
     position:relative;
 
-    color:#777;
+    color:#aaa;
 
     font-size:13px;
 
@@ -1679,7 +1909,7 @@ main{
 
     max-width:800px;
 
-    color:#777;
+    color:#aaa;
 
     font-size:14px;
 
@@ -1739,7 +1969,9 @@ main{
 }
 
 
-/* ACTIVITY IMAGE */
+/* =========================================================
+   ACTIVITY IMAGE
+========================================================= */
 
 .activity-image{
 
@@ -1782,6 +2014,8 @@ main{
     border-radius:8px;
 
     font-size:9px;
+
+    font-weight:600;
 
     letter-spacing:3px;
 
@@ -1854,6 +2088,8 @@ main{
 
     font-size:8px;
 
+    font-weight:600;
+
     letter-spacing:2px;
 
     backdrop-filter:
@@ -1867,6 +2103,8 @@ main{
 
 .activity-info h3{
 
+    color:#fff;
+
     font-size:16px;
 
     margin-bottom:9px;
@@ -1874,7 +2112,7 @@ main{
 
 .activity-info p{
 
-    color:#777;
+    color:#aaa;
 
     font-size:12px;
 
@@ -1900,13 +2138,15 @@ main{
     padding:
         11px 17px;
 
-    color:#aaa;
+    color:#ccc;
 
     font-size:11px;
 
+    font-weight:600;
+
     border:
         1px solid
-        #333;
+        #444;
 
     border-radius:30px;
 
@@ -1972,13 +2212,19 @@ main{
 
     background:
         rgba(255,255,255,.04);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,.3);
 }
 
 .contact-label{
 
-    color:#555;
+    color:#888;
 
     font-size:8px;
+
+    font-weight:700;
 
     letter-spacing:4px;
 
@@ -1987,11 +2233,13 @@ main{
 
 .contact-box a{
 
-    color:#ddd;
+    color:#eee;
 
     text-decoration:none;
 
     font-size:15px;
+
+    font-weight:500;
 
     word-break:break-word;
 
@@ -2001,6 +2249,10 @@ main{
 .contact-box a:hover{
 
     color:#fff;
+
+    text-shadow:
+        0 0 15px
+        rgba(255,255,255,.3);
 }
 
 
@@ -2029,17 +2281,19 @@ main{
     padding:
         13px 23px;
 
-    color:#aaa;
+    color:#ccc;
 
     text-decoration:none;
 
     border:
         1px solid
-        #333;
+        #444;
 
     border-radius:10px;
 
     font-size:10px;
+
+    font-weight:600;
 
     letter-spacing:2px;
 
@@ -2056,6 +2310,10 @@ main{
 
     transform:
         translateY(-3px);
+
+    box-shadow:
+        0 10px 30px
+        rgba(255,255,255,.1);
 }
 
 
@@ -2081,9 +2339,11 @@ footer{
 
 footer p{
 
-    color:#444;
+    color:#777;
 
     font-size:9px;
+
+    font-weight:600;
 
     letter-spacing:3px;
 }
@@ -2178,11 +2438,14 @@ footer p{
     background:#fff;
 
     color:#000;
+
+    transform:
+        translateY(-4px);
 }
 
 
 /* =========================================================
-   IMAGE LIGHTBOX
+   LIGHTBOX
 ========================================================= */
 
 .lightbox{
@@ -2276,6 +2539,8 @@ footer p{
     color:#fff;
 
     font-size:13px;
+
+    font-weight:600;
 
     letter-spacing:2px;
 
@@ -2406,6 +2671,10 @@ footer p{
 }
 
 
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
 @media(max-width:620px){
 
     .navbar{
@@ -2460,6 +2729,8 @@ footer p{
     .hero-description{
 
         font-size:13px;
+
+        color:#ccc;
     }
 
     .photo-frame{
@@ -2609,13 +2880,12 @@ footer p{
     <div class="nebula one"></div>
     <div class="nebula two"></div>
 
-    <div class="shooting-star one"></div>
-    <div class="shooting-star two"></div>
-    <div class="shooting-star three"></div>
-    <div class="shooting-star four"></div>
-
 </div>
 
+
+<!-- =========================================================
+     SCROLL PROGRESS
+========================================================= -->
 
 <div class="scroll-progress"></div>
 
@@ -2674,6 +2944,7 @@ footer p{
 
     <div class="hero-container">
 
+
         <div class="hero-content">
 
             <div class="eyebrow">
@@ -2700,6 +2971,7 @@ footer p{
                 และการเรียนรู้สิ่งใหม่ ๆ
 
             </p>
+
 
             <div class="hero-buttons">
 
@@ -2765,7 +3037,9 @@ footer p{
          COVER
     ====================================================== -->
 
-    <section class="section cover reveal">
+    <section
+        class="section cover reveal"
+    >
 
         <div class="cover-label">
             PERSONAL PORTFOLIO
@@ -2869,6 +3143,7 @@ footer p{
 
         <div class="profile-layout">
 
+
             <div class="profile-card">
 
                 <img
@@ -2889,6 +3164,7 @@ footer p{
 
 
             <div class="info-grid">
+
 
                 <div class="info">
 
@@ -2977,7 +3253,8 @@ footer p{
 
                     <div class="info-value">
 
-                        เล่นเกม / ฟังเพลง /
+                        เล่นเกม /
+                        ฟังเพลง /
                         ออกกำลังกาย /
                         ออกแบบเว็บไซต์ /
                         ศึกษาเทคโนโลยี
@@ -3016,6 +3293,7 @@ footer p{
 
                 </div>
 
+
             </div>
 
         </div>
@@ -3050,6 +3328,7 @@ footer p{
 
 
         <div class="education">
+
 
             <div class="edu">
 
@@ -3122,6 +3401,7 @@ footer p{
 
             </div>
 
+
         </div>
 
     </section>
@@ -3154,6 +3434,7 @@ footer p{
 
 
         <div class="interest-grid">
+
 
             <div class="interest">
 
@@ -3216,6 +3497,7 @@ footer p{
                 </p>
 
             </div>
+
 
         </div>
 
@@ -3813,6 +4095,7 @@ footer p{
 
         <div class="contact-grid">
 
+
             <div class="contact-box">
 
                 <div class="contact-label">
@@ -3841,6 +4124,7 @@ footer p{
                 </a>
 
             </div>
+
 
         </div>
 
@@ -3948,12 +4232,15 @@ window.addEventListener(
 
         const pageHeight =
             document.documentElement.scrollHeight
-            - window.innerHeight;
+            -
+            window.innerHeight;
 
         const percentage =
             pageHeight > 0
-                ? (scrollTop / pageHeight) * 100
-                : 0;
+                ?
+                (scrollTop / pageHeight) * 100
+                :
+                0;
 
         progress.style.width =
             percentage + "%";
@@ -3996,7 +4283,9 @@ window.addEventListener(
 ========================================================= */
 
 const revealElements =
-    document.querySelectorAll(".reveal");
+    document.querySelectorAll(
+        ".reveal"
+    );
 
 const revealObserver =
     new IntersectionObserver(
@@ -4133,7 +4422,8 @@ function updateActiveNav(){
         section => {
 
             const sectionTop =
-                section.getBoundingClientRect().top;
+                section.getBoundingClientRect()
+                .top;
 
             if(
                 sectionTop <= 150
@@ -4156,7 +4446,9 @@ function updateActiveNav(){
             );
 
             const href =
-                link.getAttribute("href");
+                link.getAttribute(
+                    "href"
+                );
 
             if(
                 href === "#" + current
@@ -4215,7 +4507,9 @@ document
                         navbar.offsetHeight;
 
                     const offset =
-                        target.getBoundingClientRect().top
+                        target
+                            .getBoundingClientRect()
+                            .top
                         +
                         window.scrollY
                         -
@@ -4345,7 +4639,9 @@ document
     );
 
 
-/* CLOSE LIGHTBOX */
+/* =========================================================
+   CLOSE LIGHTBOX
+========================================================= */
 
 function closeLightbox(){
 
@@ -4374,7 +4670,9 @@ lightboxClose.addEventListener(
 );
 
 
-/* CLICK OUTSIDE */
+/* =========================================================
+   CLICK OUTSIDE
+========================================================= */
 
 lightbox.addEventListener(
     "click",
@@ -4392,7 +4690,9 @@ lightbox.addEventListener(
 );
 
 
-/* ESC KEY */
+/* =========================================================
+   ESC KEY
+========================================================= */
 
 document.addEventListener(
     "keydown",
@@ -4410,101 +4710,10 @@ document.addEventListener(
 );
 
 
-/* =========================================================
-   RANDOM SHOOTING STARS
-========================================================= */
-
-const space =
-    document.querySelector(
-        ".space-background"
-    );
-
-
-function createShootingStar(){
-
-    const star =
-        document.createElement(
-            "div"
-        );
-
-    star.className =
-        "shooting-star";
-
-    const top =
-        Math.random() * 75 + 5;
-
-    const left =
-        Math.random() * 80 + 10;
-
-    const width =
-        Math.random() * 120 + 100;
-
-    const duration =
-        Math.random() * 3 + 3;
-
-    const delay =
-        Math.random() * 2;
-
-    star.style.top =
-        top + "%";
-
-    star.style.left =
-        left + "%";
-
-    star.style.width =
-        width + "px";
-
-    star.style.animationDuration =
-        duration + "s";
-
-    star.style.animationDelay =
-        delay + "s";
-
-    space.appendChild(
-        star
-    );
-
-
-    setTimeout(
-        () => {
-
-            star.remove();
-
-        },
-        (duration + delay) * 1000
-        + 1000
-    );
-
-}
-
-
-/* สร้างดาวตกใหม่เรื่อย ๆ */
-
-setInterval(
-    createShootingStar,
-    1800
-);
-
-
-/* เริ่มต้นหลายดวง */
-
-for(
-    let i = 0;
-    i < 5;
-    i++
-){
-
-    setTimeout(
-        createShootingStar,
-        i * 700
-    );
-
-}
-
-
 </script>
 
 
 </body>
 
 </html>
+
