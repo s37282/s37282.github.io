@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="th">
 
@@ -33,7 +34,7 @@ body{
         Arial,
         sans-serif;
 
-    background:#050505;
+    background:#000;
 
     color:#fff;
 
@@ -63,26 +64,254 @@ body{
     background:
 
         radial-gradient(
-            circle at 50% 45%,
+            circle at 50% 50%,
             rgba(255,255,255,.09),
-            transparent 32%
+            transparent 20%
         ),
 
         radial-gradient(
-            circle at 20% 80%,
-            rgba(255,255,255,.035),
-            transparent 30%
+            circle at 15% 20%,
+            rgba(255,255,255,.04),
+            transparent 25%
         ),
 
         radial-gradient(
-            circle at 80% 20%,
-            rgba(255,255,255,.035),
-            transparent 30%
+            circle at 85% 75%,
+            rgba(255,255,255,.04),
+            transparent 25%
         ),
 
-        #050505;
+        #000;
 
     overflow:hidden;
+
+    isolation:isolate;
+}
+
+
+/* =========================================================
+   SPACE STARS
+========================================================= */
+
+.loading-screen .stars{
+
+    position:absolute;
+
+    inset:0;
+
+    background-image:
+
+        radial-gradient(
+            1px 1px at 10% 20%,
+            rgba(255,255,255,.9),
+            transparent
+        ),
+
+        radial-gradient(
+            1px 1px at 20% 80%,
+            rgba(255,255,255,.7),
+            transparent
+        ),
+
+        radial-gradient(
+            1px 1px at 35% 30%,
+            rgba(255,255,255,.8),
+            transparent
+        ),
+
+        radial-gradient(
+            1px 1px at 50% 70%,
+            rgba(255,255,255,.6),
+            transparent
+        ),
+
+        radial-gradient(
+            1px 1px at 65% 15%,
+            rgba(255,255,255,.8),
+            transparent
+        ),
+
+        radial-gradient(
+            1px 1px at 78% 45%,
+            rgba(255,255,255,.7),
+            transparent
+        ),
+
+        radial-gradient(
+            1px 1px at 90% 85%,
+            rgba(255,255,255,.9),
+            transparent
+        );
+
+    background-size:
+        250px 250px;
+
+    opacity:.7;
+
+    animation:
+        starMove 20s linear infinite;
+
+    z-index:-5;
+}
+
+
+/* =========================================================
+   SHOOTING STARS
+========================================================= */
+
+.shooting-stars{
+
+    position:absolute;
+
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+    z-index:-2;
+}
+
+
+.shooting-star{
+
+    position:absolute;
+
+    width:180px;
+
+    height:1px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.15),
+            #fff
+        );
+
+    box-shadow:
+        0 0 8px rgba(255,255,255,.7);
+
+    opacity:0;
+
+    transform:
+        rotate(-35deg);
+
+    animation:
+        shooting 5s linear infinite;
+}
+
+
+/* STAR 1 */
+
+.shooting-star:nth-child(1){
+
+    top:8%;
+
+    left:5%;
+
+    animation-delay:0s;
+
+    animation-duration:4.5s;
+}
+
+
+/* STAR 2 */
+
+.shooting-star:nth-child(2){
+
+    top:20%;
+
+    left:55%;
+
+    animation-delay:1.8s;
+
+    animation-duration:5s;
+}
+
+
+/* STAR 3 */
+
+.shooting-star:nth-child(3){
+
+    top:5%;
+
+    left:78%;
+
+    animation-delay:3.5s;
+
+    animation-duration:4.8s;
+}
+
+
+/* STAR 4 */
+
+.shooting-star:nth-child(4){
+
+    top:55%;
+
+    left:15%;
+
+    animation-delay:5s;
+
+    animation-duration:5.5s;
+}
+
+
+/* STAR 5 */
+
+.shooting-star:nth-child(5){
+
+    top:35%;
+
+    left:88%;
+
+    animation-delay:7s;
+
+    animation-duration:4.5s;
+}
+
+
+/* STAR 6 */
+
+.shooting-star:nth-child(6){
+
+    top:75%;
+
+    left:65%;
+
+    animation-delay:9s;
+
+    animation-duration:5s;
+}
+
+
+/* STAR 7 */
+
+.shooting-star:nth-child(7){
+
+    top:45%;
+
+    left:40%;
+
+    animation-delay:11s;
+
+    animation-duration:6s;
+}
+
+
+/* STAR 8 */
+
+.shooting-star:nth-child(8){
+
+    top:85%;
+
+    left:5%;
+
+    animation-delay:13s;
+
+    animation-duration:5s;
 }
 
 
@@ -90,9 +319,7 @@ body{
    BACKGROUND GRID
 ========================================================= */
 
-.loading-screen::before{
-
-    content:"";
+.loading-screen .grid{
 
     position:absolute;
 
@@ -103,13 +330,13 @@ body{
         linear-gradient(
             90deg,
             transparent 49.5%,
-            rgba(255,255,255,.035) 50%,
+            rgba(255,255,255,.025) 50%,
             transparent 50.5%
         ),
 
         linear-gradient(
             transparent 49.5%,
-            rgba(255,255,255,.035) 50%,
+            rgba(255,255,255,.025) 50%,
             transparent 50.5%
         );
 
@@ -126,6 +353,8 @@ body{
     opacity:.5;
 
     pointer-events:none;
+
+    z-index:-3;
 }
 
 
@@ -133,9 +362,7 @@ body{
    NOISE
 ========================================================= */
 
-.loading-screen::after{
-
-    content:"";
+.loading-screen .noise{
 
     position:absolute;
 
@@ -148,6 +375,8 @@ body{
     background-image:
 
         url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.8'/%3E%3C/svg%3E");
+
+    z-index:10;
 }
 
 
@@ -179,7 +408,7 @@ body{
 
     letter-spacing:8px;
 
-    color:#777;
+    color:#888;
 
     margin-bottom:28px;
 
@@ -214,6 +443,7 @@ body{
     opacity:0;
 
     animation:
+
         titleReveal 1.3s
         cubic-bezier(.16,1,.3,1)
         .7s
@@ -233,10 +463,13 @@ body{
     text-shadow:
 
         0 0 25px
-        rgba(255,255,255,.1),
+        rgba(255,255,255,.12),
 
         0 0 60px
-        rgba(255,255,255,.05);
+        rgba(255,255,255,.06);
+
+    animation:
+        titleGlow 3s ease-in-out infinite;
 }
 
 
@@ -277,6 +510,10 @@ body{
 
     margin:
         35px auto 30px;
+
+    box-shadow:
+        0 0 12px
+        rgba(255,255,255,.6);
 
     animation:
         lineGrow 1.2s ease 2.5s forwards;
@@ -349,8 +586,8 @@ body{
     background:#fff;
 
     box-shadow:
-        0 0 12px
-        rgba(255,255,255,.6);
+        0 0 15px
+        rgba(255,255,255,.9);
 
     animation:
         loading 3s
@@ -398,6 +635,21 @@ body{
     border-style:solid;
 
     opacity:.6;
+
+    z-index:6;
+
+    transition:
+        all .4s ease;
+}
+
+
+.corner:hover{
+
+    border-color:#fff;
+
+    width:55px;
+
+    height:55px;
 }
 
 
@@ -446,7 +698,7 @@ body{
 
 
 /* =========================================================
-   TOP / BOTTOM INFO
+   TOP INFO
 ========================================================= */
 
 .top-info{
@@ -465,8 +717,14 @@ body{
     letter-spacing:5px;
 
     color:#444;
+
+    z-index:6;
 }
 
+
+/* =========================================================
+   BOTTOM INFO
+========================================================= */
 
 .bottom-info{
 
@@ -486,6 +744,8 @@ body{
     color:#444;
 
     white-space:nowrap;
+
+    z-index:6;
 }
 
 
@@ -562,6 +822,25 @@ body{
 }
 
 
+@keyframes titleGlow{
+
+    0%,
+    100%{
+
+        text-shadow:
+            0 0 20px
+            rgba(255,255,255,.08);
+    }
+
+    50%{
+
+        text-shadow:
+            0 0 35px
+            rgba(255,255,255,.18);
+    }
+}
+
+
 @keyframes lineGrow{
 
     from{
@@ -586,6 +865,63 @@ body{
 }
 
 
+@keyframes starMove{
+
+    from{
+
+        transform:
+            translateY(0);
+    }
+
+    to{
+
+        transform:
+            translateY(-80px);
+    }
+}
+
+
+@keyframes shooting{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+            translate(0,0)
+            rotate(-35deg);
+    }
+
+    5%{
+
+        opacity:1;
+    }
+
+    25%{
+
+        opacity:.9;
+    }
+
+    40%{
+
+        opacity:0;
+
+        transform:
+            translate(650px,650px)
+            rotate(-35deg);
+    }
+
+    100%{
+
+        opacity:0;
+
+        transform:
+            translate(650px,650px)
+            rotate(-35deg);
+    }
+}
+
+
 @keyframes exitScreen{
 
     0%{
@@ -601,7 +937,7 @@ body{
         opacity:0;
 
         transform:
-            scale(1.06);
+            scale(1.08);
 
         visibility:hidden;
     }
@@ -664,6 +1000,14 @@ body{
     }
 
 
+    .corner:hover{
+
+        width:30px;
+
+        height:30px;
+    }
+
+
     .corner.top-left,
     .corner.top-right{
 
@@ -711,6 +1055,12 @@ body{
         letter-spacing:2px;
     }
 
+
+    .shooting-star{
+
+        width:120px;
+    }
+
 }
 
 
@@ -747,7 +1097,48 @@ body{
      LOADING SCREEN
 ========================================================= -->
 
-<section class="loading-screen" id="loadingScreen">
+<section
+    class="loading-screen"
+    id="loadingScreen"
+>
+
+
+    <!-- SPACE STARS -->
+
+    <div class="stars"></div>
+
+
+    <!-- BACKGROUND GRID -->
+
+    <div class="grid"></div>
+
+
+    <!-- SHOOTING STARS -->
+
+    <div class="shooting-stars">
+
+        <span class="shooting-star"></span>
+
+        <span class="shooting-star"></span>
+
+        <span class="shooting-star"></span>
+
+        <span class="shooting-star"></span>
+
+        <span class="shooting-star"></span>
+
+        <span class="shooting-star"></span>
+
+        <span class="shooting-star"></span>
+
+        <span class="shooting-star"></span>
+
+    </div>
+
+
+    <!-- NOISE -->
+
+    <div class="noise"></div>
 
 
     <!-- CORNERS -->
@@ -848,8 +1239,8 @@ const loadingScreen =
 
 
 /*
-    รอให้ Animation โหลดเสร็จ
-    แล้วเปลี่ยนไปหน้า portfolio.html
+    เริ่มเอฟเฟกต์ออกจากหน้าจอ
+    หลังจาก Loading ทำงานประมาณ 5.9 วินาที
 */
 
 setTimeout(() => {
@@ -860,13 +1251,13 @@ setTimeout(() => {
 
 
 /*
-    หลังจากหน้า Loading เริ่มหาย
-    ให้เปิด portfolio.html อัตโนมัติ
+    เปิดหน้า Portfolio
 */
 
 setTimeout(() => {
 
-    window.location.href = "portfolio.html";
+    window.location.href =
+        "portfolio.html";
 
 }, 6900);
 
@@ -876,3 +1267,4 @@ setTimeout(() => {
 </body>
 
 </html>
+```
