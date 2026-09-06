@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="th">
 
@@ -377,8 +377,6 @@ body{
    TEXT ANIMATION
 ========================================================= */
 
-/* เปิดเข้ามา */
-
 @keyframes textReveal{
 
     0%{
@@ -420,8 +418,6 @@ body{
 }
 
 
-/* เลื่อนขึ้นแบบนุ่ม */
-
 @keyframes textUp{
 
     from{
@@ -445,8 +441,6 @@ body{
 }
 
 
-/* แสงวิ่งบนตัวอักษร */
-
 @keyframes shimmer{
 
     0%{
@@ -459,8 +453,6 @@ body{
 
 }
 
-
-/* Glow */
 
 @keyframes softGlow{
 
@@ -483,8 +475,6 @@ body{
 }
 
 
-/* เส้นใต้หัวข้อ */
-
 @keyframes lineGrow{
 
     from{
@@ -499,8 +489,6 @@ body{
 
 }
 
-
-/* กระพริบเล็กน้อย */
 
 @keyframes textPulse{
 
@@ -1431,9 +1419,6 @@ main{
         both;
 }
 
-
-/* เส้นแสงใต้หัวข้อ */
-
 .section-header h2::after{
 
     content:"";
@@ -1868,34 +1853,48 @@ main{
 
     display:grid;
 
-    gap:10px;
+    gap:18px;
 }
+
+
+/* =========================================================
+   EDUCATION CARD
+========================================================= */
 
 .edu{
 
     display:grid;
 
     grid-template-columns:
-        160px 1fr;
+        220px 150px 1fr;
 
     gap:30px;
 
-    padding:25px;
+    align-items:center;
+
+    padding:18px;
 
     border:
         1px solid
         var(--line-soft);
 
-    border-radius:12px;
+    border-radius:14px;
 
-    background:#08080b;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.035),
+            rgba(255,255,255,.008)
+        );
 
-    transition:.4s;
+    transition:.5s;
 
     animation:
         textReveal
         .8s
         both;
+
+    overflow:hidden;
 }
 
 .edu:nth-child(1){
@@ -1910,19 +1909,87 @@ main{
     animation-delay:.4s;
 }
 
-.edu:hover{
+
+/* =========================================================
+   EDUCATION IMAGE
+========================================================= */
+
+.edu-image{
+
+    width:220px;
+
+    height:145px;
+
+    overflow:hidden;
+
+    border-radius:11px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+    background:#08080b;
+
+    position:relative;
+}
+
+.edu-image::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 25%,
+            rgba(255,255,255,.12),
+            transparent 70%
+        );
 
     transform:
-        translateX(6px);
+        translateX(-120%);
 
-    background:#101014;
-
-    border-color:#555;
-
-    box-shadow:
-        0 15px 40px
-        rgba(0,0,0,.35);
+    transition:
+        transform 1s;
 }
+
+.edu:hover .edu-image::after{
+
+    transform:
+        translateX(120%);
+}
+
+.edu-image img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    filter:
+        grayscale(100%)
+        contrast(1.05);
+
+    transition:.7s;
+}
+
+.edu:hover .edu-image img{
+
+    filter:
+        grayscale(0%)
+        contrast(1.05);
+
+    transform:
+        scale(1.06);
+}
+
+
+/* =========================================================
+   EDUCATION YEAR
+========================================================= */
 
 .edu-year{
 
@@ -1933,7 +2000,14 @@ main{
     font-weight:700;
 
     letter-spacing:2px;
+
+    line-height:1.6;
 }
+
+
+/* =========================================================
+   EDUCATION CONTENT
+========================================================= */
 
 .edu h3{
 
@@ -1963,6 +2037,25 @@ main{
     font-size:13px;
 
     line-height:1.7;
+}
+
+
+/* =========================================================
+   EDUCATION HOVER
+========================================================= */
+
+.edu:hover{
+
+    transform:
+        translateX(7px);
+
+    background:#101014;
+
+    border-color:#555;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,.4);
 }
 
 
@@ -2948,6 +3041,24 @@ footer p{
             repeat(2,1fr);
     }
 
+
+    /* EDUCATION TABLET */
+
+    .edu{
+
+        grid-template-columns:
+            180px 120px 1fr;
+
+        gap:20px;
+    }
+
+    .edu-image{
+
+        width:180px;
+
+        height:130px;
+    }
+
 }
 
 
@@ -3049,11 +3160,60 @@ footer p{
         grid-column:auto;
     }
 
+
+    /* EDUCATION MOBILE */
+
+    .education{
+
+        gap:15px;
+    }
+
     .edu{
 
         grid-template-columns:1fr;
 
-        gap:10px;
+        gap:14px;
+
+        padding:15px;
+
+        transform:none !important;
+    }
+
+    .edu-image{
+
+        width:100%;
+
+        height:210px;
+
+        order:1;
+    }
+
+    .edu-year{
+
+        order:2;
+
+        font-size:9px;
+    }
+
+    .edu > div:last-child{
+
+        order:3;
+    }
+
+    .edu h3{
+
+        font-size:16px;
+    }
+
+    .edu p{
+
+        font-size:12px;
+    }
+
+
+    .interest-grid{
+
+        grid-template-columns:1fr;
     }
 
     .activity-grid{
@@ -3158,6 +3318,7 @@ footer p{
     <div class="star-field"></div>
 
     <div class="nebula one"></div>
+
     <div class="nebula two"></div>
 
 </div>
@@ -3177,13 +3338,22 @@ footer p{
 <header class="navbar">
 
     <a href="#top" class="logo">
+
         WARANCHIT
-        <span>/ PORTFOLIO</span>
+
+        <span>
+            / PORTFOLIO
+        </span>
+
     </a>
+
 
     <nav class="nav-links">
 
-        <a href="#top" class="active">
+        <a
+            href="#top"
+            class="active"
+        >
             HOME
         </a>
 
@@ -3220,7 +3390,10 @@ footer p{
      HERO
 ========================================================= -->
 
-<section class="hero" id="top">
+<section
+    class="hero"
+    id="top"
+>
 
     <div class="hero-container">
 
@@ -3230,6 +3403,7 @@ footer p{
             <div class="eyebrow">
                 01 — INTRODUCTION
             </div>
+
 
             <h1>
 
@@ -3241,10 +3415,14 @@ footer p{
 
             </h1>
 
+
             <p class="hero-description">
 
                 แฟ้มสะสมผลงานของ
-                <strong>วรัญชิต วงศ์ศุภเลิศ</strong>
+                <strong>
+                    วรัญชิต วงศ์ศุภเลิศ
+                </strong>
+
                 นักเรียนสายการเรียน GIFTED
                 ผู้สนใจด้านวิทยาศาสตร์การกีฬา
                 เทคโนโลยี วิศวกรรม
@@ -3259,15 +3437,23 @@ footer p{
                     href="#profile"
                     class="btn primary"
                 >
+
                     EXPLORE PORTFOLIO
-                    <span>→</span>
+
+                    <span>
+                        →
+                    </span>
+
                 </a>
+
 
                 <a
                     href="#activity"
                     class="btn"
                 >
+
                     VIEW ACTIVITIES
+
                 </a>
 
             </div>
@@ -3285,7 +3471,9 @@ footer p{
                 >
 
                 <div class="photo-tag">
+
                     WARANCHIT / 2026
+
                 </div>
 
             </div>
@@ -3313,7 +3501,9 @@ footer p{
 <main>
 
 
-    <!-- COVER -->
+    <!-- =====================================================
+         COVER
+    ===================================================== -->
 
     <section
         class="section cover reveal"
@@ -3322,6 +3512,7 @@ footer p{
         <div class="cover-label">
             PERSONAL PORTFOLIO
         </div>
+
 
         <h2>
 
@@ -3333,14 +3524,19 @@ footer p{
 
         </h2>
 
+
         <div class="cover-subtitle">
+
             WARANCHIT WONGSUPALERD
+
         </div>
 
     </section>
 
 
-    <!-- PREFACE -->
+    <!-- =====================================================
+         PREFACE
+    ===================================================== -->
 
     <section
         class="section reveal"
@@ -3375,6 +3571,7 @@ footer p{
 
             </p>
 
+
             <p>
 
                 จุดประสงค์ของแฟ้มสะสมผลงานคือ
@@ -3391,7 +3588,9 @@ footer p{
     </section>
 
 
-    <!-- PROFILE -->
+    <!-- =====================================================
+         PROFILE
+    ===================================================== -->
 
     <section
         class="section reveal"
@@ -3426,9 +3625,11 @@ footer p{
                     loading="lazy"
                 >
 
+
                 <h3>
                     วรัญชิต
                 </h3>
+
 
                 <p>
                     WARANCHIT
@@ -3512,8 +3713,10 @@ footer p{
                     </div>
 
                     <div class="info-value">
+
                         โรงเรียนบ้านบึง
                         "อุตสาหกรรมนุเคราะห์"
+
                     </div>
 
                 </div>
@@ -3567,7 +3770,6 @@ footer p{
 
                 </div>
 
-
             </div>
 
         </div>
@@ -3575,7 +3777,9 @@ footer p{
     </section>
 
 
-    <!-- EDUCATION -->
+    <!-- =====================================================
+         EDUCATION
+    ===================================================== -->
 
     <section
         class="section reveal"
@@ -3602,11 +3806,29 @@ footer p{
         <div class="education">
 
 
+            <!-- =================================================
+                 PRIMARY
+            ================================================= -->
+
             <div class="edu">
 
-                <div class="edu-year">
-                    PRIMARY
+                <div class="edu-image">
+
+                    <img
+                        src="1.jpg"
+                        alt="ระดับประถมศึกษา"
+                        loading="lazy"
+                    >
+
                 </div>
+
+
+                <div class="edu-year">
+
+                    PRIMARY
+
+                </div>
+
 
                 <div>
 
@@ -3615,8 +3837,13 @@ footer p{
                     </h3>
 
                     <p>
+
                         โรงเรียนบุญประทีปวิทยาคาร
+
+                        <br>
+
                         สายวิทย์-คณิต
+
                     </p>
 
                 </div>
@@ -3624,11 +3851,29 @@ footer p{
             </div>
 
 
+            <!-- =================================================
+                 SECONDARY
+            ================================================= -->
+
             <div class="edu">
 
-                <div class="edu-year">
-                    SECONDARY
+                <div class="edu-image">
+
+                    <img
+                        src="1.jpg"
+                        alt="ระดับมัธยมศึกษาตอนต้น"
+                        loading="lazy"
+                    >
+
                 </div>
+
+
+                <div class="edu-year">
+
+                    SECONDARY
+
+                </div>
+
 
                 <div>
 
@@ -3637,8 +3882,13 @@ footer p{
                     </h3>
 
                     <p>
+
                         โรงเรียนบุญประทีปวิทยาคาร
+
+                        <br>
+
                         สายวิทย์-คณิต
+
                     </p>
 
                 </div>
@@ -3646,11 +3896,29 @@ footer p{
             </div>
 
 
+            <!-- =================================================
+                 HIGH SCHOOL
+            ================================================= -->
+
             <div class="edu">
 
-                <div class="edu-year">
-                    HIGH SCHOOL
+                <div class="edu-image">
+
+                    <img
+                        src="2.jpg"
+                        alt="ระดับมัธยมศึกษาตอนปลาย"
+                        loading="lazy"
+                    >
+
                 </div>
+
+
+                <div class="edu-year">
+
+                    HIGH SCHOOL
+
+                </div>
+
 
                 <div>
 
@@ -3679,7 +3947,9 @@ footer p{
     </section>
 
 
-    <!-- INTEREST -->
+    <!-- =====================================================
+         INTEREST
+    ===================================================== -->
 
     <section
         class="section reveal"
@@ -3768,13 +4038,14 @@ footer p{
 
             </div>
 
-
         </div>
 
     </section>
 
 
-    <!-- ACTIVITIES -->
+    <!-- =====================================================
+         ACTIVITIES
+    ===================================================== -->
 
     <section
         class="section reveal"
@@ -3833,6 +4104,7 @@ footer p{
 
                 </div>
 
+
                 <div class="activity-info">
 
                     <h3>
@@ -3840,9 +4112,11 @@ footer p{
                     </h3>
 
                     <p>
+
                         เข้าร่วมกิจกรรมปลูกต้นโกงกาง
                         ทำบ้านปลา ณ สะพานป่าชายเลน
                         เทศบาลบางทราย
+
                     </p>
 
                 </div>
@@ -3871,6 +4145,7 @@ footer p{
 
                 </div>
 
+
                 <div class="activity-info">
 
                     <h3>
@@ -3878,9 +4153,11 @@ footer p{
                     </h3>
 
                     <p>
+
                         เข้าร่วมกิจกรรม
                         K-Engineering World Tour
                         and Competency Challenge 2026
+
                     </p>
 
                 </div>
@@ -3909,6 +4186,7 @@ footer p{
 
                 </div>
 
+
                 <div class="activity-info">
 
                     <h3>
@@ -3916,8 +4194,10 @@ footer p{
                     </h3>
 
                     <p>
+
                         เข้าร่วมกิจกรรมเชิงปฏิบัติการ
                         โครงการเปิดโลกวิชาการ 2026
+
                     </p>
 
                 </div>
@@ -3946,6 +4226,7 @@ footer p{
 
                 </div>
 
+
                 <div class="activity-info">
 
                     <h3>
@@ -3953,9 +4234,11 @@ footer p{
                     </h3>
 
                     <p>
+
                         อบรมกิจกรรมผู้นำรุ่นใหม่
                         ในยุคสื่อดิจิทัล
                         สู่ผู้สร้างการเปลี่ยนแปลงทางสังคม
+
                     </p>
 
                 </div>
@@ -3984,6 +4267,7 @@ footer p{
 
                 </div>
 
+
                 <div class="activity-info">
 
                     <h3>
@@ -3991,9 +4275,11 @@ footer p{
                     </h3>
 
                     <p>
+
                         เรียนรู้การปกป้องข้อมูลส่วนตัว
                         และการสร้างรหัสผ่านที่ปลอดภัย
                         จาก Google Interland
+
                     </p>
 
                 </div>
@@ -4022,6 +4308,7 @@ footer p{
 
                 </div>
 
+
                 <div class="activity-info">
 
                     <h3>
@@ -4029,8 +4316,10 @@ footer p{
                     </h3>
 
                     <p>
+
                         เข้าร่วมกิจกรรมกับกลุ่มอาสาไทยแลนด์
                         ณ หาดบางแสน
+
                     </p>
 
                 </div>
@@ -4059,6 +4348,7 @@ footer p{
 
                 </div>
 
+
                 <div class="activity-info">
 
                     <h3>
@@ -4066,9 +4356,11 @@ footer p{
                     </h3>
 
                     <p>
+
                         เข้าร่วมอบรมกิจกรรม
                         การป้องกันและรณรงค์
                         การต่อต้านยาเสพติด
+
                     </p>
 
                 </div>
@@ -4097,6 +4389,7 @@ footer p{
 
                 </div>
 
+
                 <div class="activity-info">
 
                     <h3>
@@ -4104,9 +4397,11 @@ footer p{
                     </h3>
 
                     <p>
+
                         Workshop ปัญญาประดิษฐ์พื้นฐาน
                         ร่วมกับข้อมูลด้านความมั่นคงปลอดภัย
                         ทางไซเบอร์
+
                     </p>
 
                 </div>
@@ -4135,6 +4430,7 @@ footer p{
 
                 </div>
 
+
                 <div class="activity-info">
 
                     <h3>
@@ -4142,8 +4438,10 @@ footer p{
                     </h3>
 
                     <p>
+
                         เรียนรู้ระบบเครือข่ายพื้นฐาน
                         จากสายสื่อสารถึงอินเทอร์เน็ต
+
                     </p>
 
                 </div>
@@ -4172,6 +4470,7 @@ footer p{
 
                 </div>
 
+
                 <div class="activity-info">
 
                     <h3>
@@ -4179,9 +4478,11 @@ footer p{
                     </h3>
 
                     <p>
+
                         ได้รับประกาศนียบัตรจากกิจกรรม
                         Google Interland
                         ด้านการใช้อินเทอร์เน็ตอย่างปลอดภัย
+
                     </p>
 
                 </div>
@@ -4210,6 +4511,7 @@ footer p{
 
                 </div>
 
+
                 <div class="activity-info">
 
                     <h3>
@@ -4217,9 +4519,11 @@ footer p{
                     </h3>
 
                     <p>
+
                         ได้รับประกาศนียบัตร
                         Certificate of Kindness
                         จากกิจกรรม Google Interland
+
                     </p>
 
                 </div>
@@ -4248,6 +4552,7 @@ footer p{
 
                 </div>
 
+
                 <div class="activity-info">
 
                     <h3>
@@ -4255,9 +4560,11 @@ footer p{
                     </h3>
 
                     <p>
+
                         แสดงถึงความมีน้ำใจ
                         ความรับผิดชอบ
                         และการเป็นพลเมืองดิจิทัลที่ดี
+
                     </p>
 
                 </div>
@@ -4270,7 +4577,9 @@ footer p{
     </section>
 
 
-    <!-- SKILLS -->
+    <!-- =====================================================
+         SKILLS
+    ===================================================== -->
 
     <section
         class="section reveal"
@@ -4333,7 +4642,9 @@ footer p{
     </section>
 
 
-    <!-- CONTACT -->
+    <!-- =====================================================
+         CONTACT
+    ===================================================== -->
 
     <section
         class="section reveal"
@@ -4395,12 +4706,16 @@ footer p{
     </section>
 
 
-    <!-- BACK HOME -->
+    <!-- =====================================================
+         BACK HOME
+    ===================================================== -->
 
     <div class="back-home">
 
         <a href="#top">
+
             ↑ BACK TO TOP
+
         </a>
 
     </div>
@@ -4416,8 +4731,10 @@ footer p{
 <footer>
 
     <p>
+
         © 2026 WARANCHIT WONGSUPALERD
         — SPACE PORTFOLIO
+
     </p>
 
 </footer>
@@ -4434,6 +4751,7 @@ footer p{
 
     <div class="lightbox-content">
 
+
         <button
             class="lightbox-close"
             id="lightboxClose"
@@ -4442,16 +4760,19 @@ footer p{
             ×
         </button>
 
+
         <img
             id="lightboxImage"
             src=""
             alt="Activity Preview"
         >
 
+
         <div
             class="lightbox-title"
             id="lightboxTitle"
         ></div>
+
 
     </div>
 
@@ -4483,7 +4804,10 @@ footer p{
 ========================================================= */
 
 const progress =
-    document.querySelector(".scroll-progress");
+    document.querySelector(
+        ".scroll-progress"
+    );
+
 
 window.addEventListener(
     "scroll",
@@ -4516,13 +4840,18 @@ window.addEventListener(
 ========================================================= */
 
 const navbar =
-    document.querySelector(".navbar");
+    document.querySelector(
+        ".navbar"
+    );
+
 
 window.addEventListener(
     "scroll",
     () => {
 
-        if(window.scrollY > 50){
+        if(
+            window.scrollY > 50
+        ){
 
             navbar.classList.add(
                 "scrolled"
@@ -4548,6 +4877,7 @@ const revealElements =
     document.querySelectorAll(
         ".reveal"
     );
+
 
 const revealObserver =
     new IntersectionObserver(
@@ -4599,6 +4929,7 @@ const activityCards =
         ".activity-card"
     );
 
+
 const activityObserver =
     new IntersectionObserver(
 
@@ -4629,6 +4960,7 @@ const activityObserver =
                             },
                             (index % 3) * 120
                         );
+
 
                         activityObserver
                             .unobserve(
@@ -4669,6 +5001,7 @@ const navSections =
         "section[id]"
     );
 
+
 const navLinks =
     document.querySelectorAll(
         ".nav-links a"
@@ -4680,12 +5013,15 @@ function updateActiveNav(){
     let current =
         "top";
 
+
     navSections.forEach(
         section => {
 
             const sectionTop =
-                section.getBoundingClientRect()
-                .top;
+                section
+                    .getBoundingClientRect()
+                    .top;
+
 
             if(
                 sectionTop <= 150
@@ -4707,10 +5043,12 @@ function updateActiveNav(){
                 "active"
             );
 
+
             const href =
                 link.getAttribute(
                     "href"
                 );
+
 
             if(
                 href === "#" + current
@@ -4732,6 +5070,7 @@ window.addEventListener(
     "scroll",
     updateActiveNav
 );
+
 
 updateActiveNav();
 
@@ -4756,17 +5095,23 @@ document
                             "href"
                         );
 
+
                     const target =
                         document.querySelector(
                             id
                         );
 
-                    if(!target) return;
+
+                    if(!target)
+                        return;
+
 
                     event.preventDefault();
 
+
                     const navbarHeight =
                         navbar.offsetHeight;
+
 
                     const offset =
                         target
@@ -4779,6 +5124,7 @@ document
                         -
                         30;
 
+
                     window.scrollTo({
 
                         top:
@@ -4787,7 +5133,8 @@ document
                                 offset
                             ),
 
-                        behavior:"smooth"
+                        behavior:
+                            "smooth"
 
                     });
 
@@ -4806,6 +5153,7 @@ const backTop =
     document.querySelector(
         ".back-top"
     );
+
 
 window.addEventListener(
     "scroll",
@@ -4840,15 +5188,18 @@ const lightbox =
         "lightbox"
     );
 
+
 const lightboxImage =
     document.getElementById(
         "lightboxImage"
     );
 
+
 const lightboxTitle =
     document.getElementById(
         "lightboxTitle"
     );
+
 
 const lightboxClose =
     document.getElementById(
@@ -4872,23 +5223,29 @@ document
                             "img"
                         );
 
+
                     const title =
                         item.dataset.title
                         ||
                         image.alt;
 
+
                     lightboxImage.src =
                         image.src;
+
 
                     lightboxImage.alt =
                         image.alt;
 
+
                     lightboxTitle.textContent =
                         title;
+
 
                     lightbox.classList.add(
                         "show"
                     );
+
 
                     document.body.style
                         .overflow =
@@ -4911,8 +5268,10 @@ function closeLightbox(){
         "show"
     );
 
+
     document.body.style
         .overflow = "";
+
 
     setTimeout(
         () => {
@@ -4978,4 +5337,4 @@ document.addEventListener(
 </body>
 
 </html>
-```
+
