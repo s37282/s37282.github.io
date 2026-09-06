@@ -65,20 +65,20 @@ body{
 
         radial-gradient(
             circle at 50% 50%,
-            rgba(255,255,255,.09),
-            transparent 20%
+            rgba(255,255,255,.08),
+            transparent 18%
         ),
 
         radial-gradient(
-            circle at 15% 20%,
-            rgba(255,255,255,.04),
-            transparent 25%
+            circle at 20% 20%,
+            rgba(100,100,255,.04),
+            transparent 30%
         ),
 
         radial-gradient(
-            circle at 85% 75%,
-            rgba(255,255,255,.04),
-            transparent 25%
+            circle at 80% 80%,
+            rgba(255,255,255,.035),
+            transparent 30%
         ),
 
         #000;
@@ -86,14 +86,50 @@ body{
     overflow:hidden;
 
     isolation:isolate;
+
+    perspective:1000px;
 }
 
 
 /* =========================================================
-   SPACE STARS
+   STAR FIELD
 ========================================================= */
 
-.loading-screen .stars{
+.stars{
+
+    position:absolute;
+
+    inset:-100px;
+
+    background-image:
+
+        radial-gradient(1px 1px at 5% 10%,#fff,transparent),
+        radial-gradient(1px 1px at 15% 40%,#fff,transparent),
+        radial-gradient(1px 1px at 25% 80%,#fff,transparent),
+        radial-gradient(1px 1px at 35% 20%,#fff,transparent),
+        radial-gradient(1px 1px at 45% 65%,#fff,transparent),
+        radial-gradient(1px 1px at 55% 15%,#fff,transparent),
+        radial-gradient(1px 1px at 65% 85%,#fff,transparent),
+        radial-gradient(1px 1px at 75% 45%,#fff,transparent),
+        radial-gradient(1px 1px at 85% 10%,#fff,transparent),
+        radial-gradient(1px 1px at 95% 70%,#fff,transparent);
+
+    background-size:320px 320px;
+
+    opacity:.65;
+
+    animation:
+        starsMove 35s linear infinite;
+
+    z-index:-10;
+}
+
+
+/* SECOND STAR LAYER */
+
+.stars::after{
+
+    content:"";
 
     position:absolute;
 
@@ -101,57 +137,231 @@ body{
 
     background-image:
 
-        radial-gradient(
-            1px 1px at 10% 20%,
-            rgba(255,255,255,.9),
-            transparent
-        ),
+        radial-gradient(2px 2px at 12% 30%,rgba(255,255,255,.8),transparent),
+        radial-gradient(1px 1px at 30% 55%,rgba(255,255,255,.7),transparent),
+        radial-gradient(2px 2px at 48% 25%,rgba(255,255,255,.8),transparent),
+        radial-gradient(1px 1px at 70% 60%,rgba(255,255,255,.8),transparent),
+        radial-gradient(2px 2px at 90% 35%,rgba(255,255,255,.7),transparent);
+
+    background-size:500px 500px;
+
+    animation:
+        starsMoveReverse 50s linear infinite;
+
+    opacity:.45;
+}
+
+
+/* =========================================================
+   BLACK HOLE
+========================================================= */
+
+.black-hole{
+
+    position:absolute;
+
+    width:420px;
+
+    height:420px;
+
+    left:50%;
+
+    top:50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    z-index:-3;
+
+    pointer-events:none;
+
+    animation:
+        blackHoleFloat 8s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   OUTER GRAVITY GLOW
+========================================================= */
+
+.black-hole::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-90px;
+
+    border-radius:50%;
+
+    background:
 
         radial-gradient(
-            1px 1px at 20% 80%,
+            circle,
+            rgba(255,255,255,.08) 0%,
+            rgba(255,255,255,.025) 35%,
+            transparent 70%
+        );
+
+    filter:blur(15px);
+
+    animation:
+        gravityPulse 4s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   ACCRETION DISK
+========================================================= */
+
+.accretion-disk{
+
+    position:absolute;
+
+    width:100%;
+
+    height:100%;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+            ellipse,
+            transparent 0%,
+            transparent 24%,
+
+            rgba(255,255,255,.95) 25%,
+            rgba(255,255,255,.35) 30%,
+
+            rgba(255,255,255,.08) 39%,
+
+            transparent 52%
+        );
+
+    transform:
+        rotateX(68deg)
+        rotateZ(-15deg);
+
+    filter:
+        blur(.3px)
+        drop-shadow(
+            0 0 20px
+            rgba(255,255,255,.4)
+        );
+
+    animation:
+        diskRotate 8s linear infinite;
+}
+
+
+/* =========================================================
+   INNER DISK
+========================================================= */
+
+.accretion-disk::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:45px;
+
+    border-radius:50%;
+
+    background:
+
+        conic-gradient(
+            from 0deg,
+            transparent,
             rgba(255,255,255,.7),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 35% 30%,
-            rgba(255,255,255,.8),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 50% 70%,
-            rgba(255,255,255,.6),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 65% 15%,
-            rgba(255,255,255,.8),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 78% 45%,
-            rgba(255,255,255,.7),
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 90% 85%,
-            rgba(255,255,255,.9),
+            transparent,
+            rgba(255,255,255,.25),
             transparent
         );
 
-    background-size:
-        250px 250px;
-
-    opacity:.7;
+    filter:blur(5px);
 
     animation:
-        starMove 20s linear infinite;
+        diskRotateReverse 4s linear infinite;
+}
 
-    z-index:-5;
+
+/* =========================================================
+   EVENT HORIZON
+========================================================= */
+
+.event-horizon{
+
+    position:absolute;
+
+    width:145px;
+
+    height:145px;
+
+    left:50%;
+
+    top:50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    border-radius:50%;
+
+    background:#000;
+
+    box-shadow:
+
+        0 0 20px #000,
+
+        0 0 50px rgba(0,0,0,.9),
+
+        0 0 90px rgba(255,255,255,.15);
+
+    z-index:3;
+
+    animation:
+        horizonPulse 4s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   GRAVITY WAVES
+========================================================= */
+
+.gravity-wave{
+
+    position:absolute;
+
+    left:50%;
+
+    top:50%;
+
+    width:220px;
+
+    height:220px;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    border-radius:50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    animation:
+        gravityWave 5s ease-out infinite;
+}
+
+
+.gravity-wave:nth-child(2){
+
+    animation-delay:1.6s;
+}
+
+
+.gravity-wave:nth-child(3){
+
+    animation-delay:3.2s;
 }
 
 
@@ -169,7 +379,7 @@ body{
 
     pointer-events:none;
 
-    z-index:-2;
+    z-index:-1;
 }
 
 
@@ -177,9 +387,14 @@ body{
 
     position:absolute;
 
-    width:180px;
+    width:220px;
 
     height:1px;
+
+    opacity:0;
+
+    transform:
+        rotate(-35deg);
 
     background:
 
@@ -187,156 +402,91 @@ body{
             90deg,
             transparent,
             rgba(255,255,255,.15),
+            rgba(255,255,255,.7),
             #fff
         );
 
     box-shadow:
-        0 0 8px rgba(255,255,255,.7);
-
-    opacity:0;
-
-    transform:
-        rotate(-35deg);
+        0 0 10px rgba(255,255,255,.8);
 
     animation:
-        shooting 5s linear infinite;
+        shootingStar 6s cubic-bezier(.2,.7,.2,1) infinite;
 }
 
 
-/* STAR 1 */
+/* STAR POSITIONS */
 
 .shooting-star:nth-child(1){
-
-    top:8%;
-
-    left:5%;
-
+    top:5%;
+    left:3%;
     animation-delay:0s;
-
-    animation-duration:4.5s;
 }
-
-
-/* STAR 2 */
 
 .shooting-star:nth-child(2){
-
-    top:20%;
-
-    left:55%;
-
-    animation-delay:1.8s;
-
-    animation-duration:5s;
+    top:18%;
+    left:50%;
+    animation-delay:1.5s;
 }
-
-
-/* STAR 3 */
 
 .shooting-star:nth-child(3){
-
-    top:5%;
-
-    left:78%;
-
-    animation-delay:3.5s;
-
-    animation-duration:4.8s;
+    top:8%;
+    left:80%;
+    animation-delay:3s;
 }
-
-
-/* STAR 4 */
 
 .shooting-star:nth-child(4){
-
-    top:55%;
-
-    left:15%;
-
-    animation-delay:5s;
-
-    animation-duration:5.5s;
+    top:42%;
+    left:90%;
+    animation-delay:4.5s;
 }
-
-
-/* STAR 5 */
 
 .shooting-star:nth-child(5){
-
-    top:35%;
-
-    left:88%;
-
-    animation-delay:7s;
-
-    animation-duration:4.5s;
+    top:70%;
+    left:5%;
+    animation-delay:6s;
 }
-
-
-/* STAR 6 */
 
 .shooting-star:nth-child(6){
-
-    top:75%;
-
-    left:65%;
-
-    animation-delay:9s;
-
-    animation-duration:5s;
+    top:82%;
+    left:55%;
+    animation-delay:7.5s;
 }
-
-
-/* STAR 7 */
 
 .shooting-star:nth-child(7){
-
-    top:45%;
-
-    left:40%;
-
-    animation-delay:11s;
-
-    animation-duration:6s;
+    top:50%;
+    left:25%;
+    animation-delay:9s;
 }
 
-
-/* STAR 8 */
-
 .shooting-star:nth-child(8){
-
-    top:85%;
-
-    left:5%;
-
-    animation-delay:13s;
-
-    animation-duration:5s;
+    top:90%;
+    left:80%;
+    animation-delay:11s;
 }
 
 
 /* =========================================================
-   BACKGROUND GRID
+   GRID
 ========================================================= */
 
-.loading-screen .grid{
+.grid{
 
     position:absolute;
 
-    inset:0;
+    inset:-50%;
 
     background:
 
         linear-gradient(
             90deg,
             transparent 49.5%,
-            rgba(255,255,255,.025) 50%,
+            rgba(255,255,255,.035) 50%,
             transparent 50.5%
         ),
 
         linear-gradient(
             transparent 49.5%,
-            rgba(255,255,255,.025) 50%,
+            rgba(255,255,255,.035) 50%,
             transparent 50.5%
         );
 
@@ -344,17 +494,50 @@ body{
         100px 100px;
 
     mask-image:
+
         radial-gradient(
             ellipse at center,
             black 0%,
-            transparent 75%
+            transparent 65%
         );
 
     opacity:.5;
 
+    transform:
+        perspective(500px)
+        rotateX(65deg);
+
+    animation:
+        gridMove 18s linear infinite;
+
     pointer-events:none;
 
-    z-index:-3;
+    z-index:-6;
+}
+
+
+/* =========================================================
+   VIGNETTE
+========================================================= */
+
+.vignette{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            transparent 35%,
+            rgba(0,0,0,.35) 65%,
+            rgba(0,0,0,.9) 100%
+        );
+
+    pointer-events:none;
+
+    z-index:2;
 }
 
 
@@ -362,13 +545,13 @@ body{
    NOISE
 ========================================================= */
 
-.loading-screen .noise{
+.noise{
 
     position:absolute;
 
     inset:0;
 
-    opacity:.035;
+    opacity:.025;
 
     pointer-events:none;
 
@@ -381,7 +564,7 @@ body{
 
 
 /* =========================================================
-   CENTER
+   CENTER CONTENT
 ========================================================= */
 
 .loading-content{
@@ -392,9 +575,12 @@ body{
 
     width:90%;
 
-    max-width:1000px;
+    max-width:1100px;
 
     text-align:center;
+
+    transform:
+        translateZ(0);
 }
 
 
@@ -415,28 +601,29 @@ body{
     opacity:0;
 
     animation:
-        fadeUp .9s ease .3s forwards;
+        fadeUp 1s ease .3s forwards;
 }
 
 
 /* =========================================================
-   MAIN TITLE
+   TITLE
 ========================================================= */
 
 .title{
 
     font-size:
+
         clamp(
-            42px,
+            44px,
             8vw,
-            100px
+            105px
         );
 
     font-weight:700;
 
-    line-height:.95;
+    line-height:.92;
 
-    letter-spacing:-4px;
+    letter-spacing:-5px;
 
     text-transform:uppercase;
 
@@ -444,9 +631,9 @@ body{
 
     animation:
 
-        titleReveal 1.3s
+        titleReveal 1.4s
         cubic-bezier(.16,1,.3,1)
-        .7s
+        .6s
         forwards;
 }
 
@@ -455,21 +642,19 @@ body{
 
     display:block;
 
-    color:#050505;
+    color:transparent;
 
     -webkit-text-stroke:
-        1px #fff;
+        1px rgba(255,255,255,.9);
 
     text-shadow:
 
-        0 0 25px
-        rgba(255,255,255,.12),
+        0 0 20px rgba(255,255,255,.08),
 
-        0 0 60px
-        rgba(255,255,255,.06);
+        0 0 50px rgba(255,255,255,.05);
 
     animation:
-        titleGlow 3s ease-in-out infinite;
+        titleGlow 4s ease-in-out infinite;
 }
 
 
@@ -479,11 +664,11 @@ body{
 
 .subtitle{
 
-    margin-top:30px;
+    margin-top:32px;
 
-    font-size:13px;
+    font-size:12px;
 
-    letter-spacing:5px;
+    letter-spacing:6px;
 
     color:#999;
 
@@ -492,7 +677,7 @@ body{
     opacity:0;
 
     animation:
-        fadeUp .9s ease 1.9s forwards;
+        fadeUp 1s ease 1.8s forwards;
 }
 
 
@@ -506,17 +691,23 @@ body{
 
     height:1px;
 
-    background:#fff;
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            #fff,
+            transparent
+        );
 
     margin:
         35px auto 30px;
 
     box-shadow:
-        0 0 12px
-        rgba(255,255,255,.6);
+        0 0 15px rgba(255,255,255,.7);
 
     animation:
-        lineGrow 1.2s ease 2.5s forwards;
+        lineGrow 1.3s ease 2.3s forwards;
 }
 
 
@@ -528,7 +719,7 @@ body{
 
     font-size:10px;
 
-    letter-spacing:4px;
+    letter-spacing:5px;
 
     color:#666;
 
@@ -537,7 +728,7 @@ body{
     opacity:0;
 
     animation:
-        fadeIn .7s ease 2.8s forwards;
+        fadeIn .8s ease 2.6s forwards;
 }
 
 
@@ -547,13 +738,19 @@ body{
 
 .progress{
 
-    width:260px;
+    width:280px;
 
     max-width:70%;
 
     height:2px;
 
-    background:#222;
+    background:
+
+        linear-gradient(
+            90deg,
+            #111,
+            #222
+        );
 
     margin:
         18px auto 0;
@@ -565,7 +762,7 @@ body{
     opacity:0;
 
     animation:
-        fadeIn .7s ease 2.8s forwards;
+        fadeIn .8s ease 2.6s forwards;
 }
 
 
@@ -586,14 +783,44 @@ body{
     background:#fff;
 
     box-shadow:
-        0 0 15px
-        rgba(255,255,255,.9);
+        0 0 18px rgba(255,255,255,1);
 
     animation:
-        loading 3s
+
+        loading 3.2s
         cubic-bezier(.4,0,.2,1)
-        2.9s
+        2.7s
         forwards;
+}
+
+
+/* MOVING LIGHT */
+
+.progress::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-100px;
+
+    width:80px;
+
+    height:100%;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.9),
+            transparent
+        );
+
+    animation:
+        progressLight 2s linear infinite;
 }
 
 
@@ -605,16 +832,16 @@ body{
 
     margin-top:15px;
 
-    font-size:10px;
+    font-size:9px;
 
     color:#555;
 
-    letter-spacing:3px;
+    letter-spacing:4px;
 
     opacity:0;
 
     animation:
-        fadeIn .7s ease 2.8s forwards;
+        fadeIn .8s ease 2.6s forwards;
 }
 
 
@@ -626,37 +853,26 @@ body{
 
     position:absolute;
 
-    width:45px;
+    width:48px;
 
-    height:45px;
+    height:48px;
 
     border-color:#444;
 
     border-style:solid;
 
-    opacity:.6;
+    opacity:.65;
 
     z-index:6;
 
     transition:
-        all .4s ease;
-}
-
-
-.corner:hover{
-
-    border-color:#fff;
-
-    width:55px;
-
-    height:55px;
+        all .5s ease;
 }
 
 
 .corner.top-left{
 
     top:30px;
-
     left:30px;
 
     border-width:
@@ -667,7 +883,6 @@ body{
 .corner.top-right{
 
     top:30px;
-
     right:30px;
 
     border-width:
@@ -678,7 +893,6 @@ body{
 .corner.bottom-left{
 
     bottom:30px;
-
     left:30px;
 
     border-width:
@@ -689,11 +903,25 @@ body{
 .corner.bottom-right{
 
     bottom:30px;
-
     right:30px;
 
     border-width:
         0 1px 1px 0;
+}
+
+
+.corner:hover{
+
+    width:60px;
+
+    height:60px;
+
+    border-color:#fff;
+
+    filter:
+        drop-shadow(
+            0 0 8px #fff
+        );
 }
 
 
@@ -714,11 +942,13 @@ body{
 
     font-size:9px;
 
-    letter-spacing:5px;
+    letter-spacing:6px;
 
     color:#444;
 
     z-index:6;
+
+    white-space:nowrap;
 }
 
 
@@ -756,7 +986,9 @@ body{
 .loading-screen.exit{
 
     animation:
-        exitScreen 1s
+
+        exitScreen
+        1.2s
         cubic-bezier(.76,0,.24,1)
         forwards;
 }
@@ -773,7 +1005,7 @@ body{
         opacity:0;
 
         transform:
-            translateY(25px);
+            translateY(30px);
     }
 
     to{
@@ -805,9 +1037,10 @@ body{
         opacity:0;
 
         transform:
-            translateY(50px);
+            translateY(70px)
+            scale(.96);
 
-        letter-spacing:15px;
+        letter-spacing:18px;
     }
 
     to{
@@ -815,9 +1048,10 @@ body{
         opacity:1;
 
         transform:
-            translateY(0);
+            translateY(0)
+            scale(1);
 
-        letter-spacing:-4px;
+        letter-spacing:-5px;
     }
 }
 
@@ -829,14 +1063,18 @@ body{
 
         text-shadow:
             0 0 20px
-            rgba(255,255,255,.08);
+            rgba(255,255,255,.05);
     }
 
     50%{
 
         text-shadow:
-            0 0 35px
-            rgba(255,255,255,.18);
+
+            0 0 30px
+            rgba(255,255,255,.16),
+
+            0 0 70px
+            rgba(255,255,255,.07);
     }
 }
 
@@ -848,7 +1086,7 @@ body{
     }
 
     to{
-        width:180px;
+        width:190px;
     }
 }
 
@@ -865,23 +1103,198 @@ body{
 }
 
 
-@keyframes starMove{
+@keyframes progressLight{
+
+    0%{
+        left:-100px;
+    }
+
+    100%{
+        left:100%;
+    }
+}
+
+
+/* =========================================================
+   STAR ANIMATION
+========================================================= */
+
+@keyframes starsMove{
+
+    0%{
+        transform:
+            translate3d(0,0,0)
+            scale(1);
+    }
+
+    50%{
+        transform:
+            translate3d(-40px,60px,0)
+            scale(1.02);
+    }
+
+    100%{
+        transform:
+            translate3d(0,120px,0)
+            scale(1);
+    }
+}
+
+
+@keyframes starsMoveReverse{
 
     from{
-
         transform:
             translateY(0);
     }
 
     to{
-
         transform:
-            translateY(-80px);
+            translateY(-160px);
     }
 }
 
 
-@keyframes shooting{
+/* =========================================================
+   BLACK HOLE ANIMATION
+========================================================= */
+
+@keyframes blackHoleFloat{
+
+    0%,
+    100%{
+
+        transform:
+            translate(-50%,-50%)
+            scale(1);
+    }
+
+    50%{
+
+        transform:
+            translate(-50%,-50%)
+            scale(1.035);
+    }
+}
+
+
+@keyframes gravityPulse{
+
+    0%,
+    100%{
+
+        opacity:.4;
+
+        transform:
+            scale(.9);
+    }
+
+    50%{
+
+        opacity:.9;
+
+        transform:
+            scale(1.05);
+    }
+}
+
+
+@keyframes diskRotate{
+
+    from{
+
+        transform:
+            rotateX(68deg)
+            rotateZ(0deg);
+    }
+
+    to{
+
+        transform:
+            rotateX(68deg)
+            rotateZ(360deg);
+    }
+}
+
+
+@keyframes diskRotateReverse{
+
+    from{
+
+        transform:
+            rotate(0deg);
+    }
+
+    to{
+
+        transform:
+            rotate(-360deg);
+    }
+}
+
+
+@keyframes horizonPulse{
+
+    0%,
+    100%{
+
+        box-shadow:
+
+            0 0 20px #000,
+
+            0 0 50px rgba(0,0,0,.9),
+
+            0 0 90px rgba(255,255,255,.12);
+    }
+
+    50%{
+
+        box-shadow:
+
+            0 0 25px #000,
+
+            0 0 70px rgba(0,0,0,1),
+
+            0 0 110px rgba(255,255,255,.2);
+    }
+}
+
+
+@keyframes gravityWave{
+
+    0%{
+
+        width:160px;
+
+        height:160px;
+
+        opacity:.5;
+
+        transform:
+            translate(-50%,-50%)
+            scale(.5);
+    }
+
+    100%{
+
+        width:700px;
+
+        height:700px;
+
+        opacity:0;
+
+        transform:
+            translate(-50%,-50%)
+            scale(1);
+    }
+}
+
+
+/* =========================================================
+   SHOOTING STAR ANIMATION
+========================================================= */
+
+@keyframes shootingStar{
 
     0%{
 
@@ -889,12 +1302,18 @@ body{
 
         transform:
             translate(0,0)
-            rotate(-35deg);
+            rotate(-35deg)
+            scaleX(.2);
     }
 
     5%{
 
         opacity:1;
+
+        transform:
+            translate(50px,50px)
+            rotate(-35deg)
+            scaleX(1);
     }
 
     25%{
@@ -902,13 +1321,14 @@ body{
         opacity:.9;
     }
 
-    40%{
+    45%{
 
         opacity:0;
 
         transform:
-            translate(650px,650px)
-            rotate(-35deg);
+            translate(700px,700px)
+            rotate(-35deg)
+            scaleX(1.2);
     }
 
     100%{
@@ -916,11 +1336,35 @@ body{
         opacity:0;
 
         transform:
-            translate(650px,650px)
+            translate(700px,700px)
             rotate(-35deg);
     }
 }
 
+
+/* =========================================================
+   GRID ANIMATION
+========================================================= */
+
+@keyframes gridMove{
+
+    from{
+
+        background-position:
+            0 0;
+    }
+
+    to{
+
+        background-position:
+            0 100px;
+    }
+}
+
+
+/* =========================================================
+   EXIT ANIMATION
+========================================================= */
 
 @keyframes exitScreen{
 
@@ -932,12 +1376,20 @@ body{
             scale(1);
     }
 
+    70%{
+
+        opacity:1;
+
+        transform:
+            scale(1.03);
+    }
+
     100%{
 
         opacity:0;
 
         transform:
-            scale(1.08);
+            scale(1.1);
 
         visibility:hidden;
     }
@@ -950,9 +1402,25 @@ body{
 
 @media(max-width:600px){
 
+    .black-hole{
+
+        width:280px;
+
+        height:280px;
+    }
+
+
+    .event-horizon{
+
+        width:100px;
+
+        height:100px;
+    }
+
+
     .small-text{
 
-        font-size:9px;
+        font-size:8px;
 
         letter-spacing:5px;
 
@@ -964,13 +1432,13 @@ body{
 
         font-size:40px;
 
-        letter-spacing:-2px;
+        letter-spacing:-3px;
     }
 
 
     .subtitle{
 
-        font-size:9px;
+        font-size:8px;
 
         letter-spacing:3px;
 
@@ -1058,7 +1526,15 @@ body{
 
     .shooting-star{
 
-        width:120px;
+        width:130px;
+    }
+
+
+    .gravity-wave{
+
+        width:150px;
+
+        height:150px;
     }
 
 }
@@ -1066,15 +1542,33 @@ body{
 
 @media(max-width:400px){
 
+    .black-hole{
+
+        width:230px;
+
+        height:230px;
+    }
+
+
+    .event-horizon{
+
+        width:80px;
+
+        height:80px;
+    }
+
+
     .title{
 
         font-size:32px;
+
+        letter-spacing:-2px;
     }
 
 
     .subtitle{
 
-        font-size:8px;
+        font-size:7px;
     }
 
 
@@ -1093,27 +1587,52 @@ body{
 <body>
 
 
-<!-- =========================================================
-     LOADING SCREEN
-========================================================= -->
-
 <section
     class="loading-screen"
     id="loadingScreen"
 >
 
 
-    <!-- SPACE STARS -->
+    <!-- =====================================================
+         STAR FIELD
+    ====================================================== -->
 
     <div class="stars"></div>
 
 
-    <!-- BACKGROUND GRID -->
+    <!-- =====================================================
+         SCI-FI GRID
+    ====================================================== -->
 
     <div class="grid"></div>
 
 
-    <!-- SHOOTING STARS -->
+    <!-- =====================================================
+         BLACK HOLE
+    ====================================================== -->
+
+    <div class="black-hole">
+
+
+        <div class="gravity-wave"></div>
+
+        <div class="gravity-wave"></div>
+
+        <div class="gravity-wave"></div>
+
+
+        <div class="accretion-disk"></div>
+
+
+        <div class="event-horizon"></div>
+
+
+    </div>
+
+
+    <!-- =====================================================
+         SHOOTING STARS
+    ====================================================== -->
 
     <div class="shooting-stars">
 
@@ -1136,12 +1655,23 @@ body{
     </div>
 
 
-    <!-- NOISE -->
+    <!-- =====================================================
+         VIGNETTE
+    ====================================================== -->
+
+    <div class="vignette"></div>
+
+
+    <!-- =====================================================
+         NOISE
+    ====================================================== -->
 
     <div class="noise"></div>
 
 
-    <!-- CORNERS -->
+    <!-- =====================================================
+         CORNERS
+    ====================================================== -->
 
     <div class="corner top-left"></div>
 
@@ -1152,7 +1682,9 @@ body{
     <div class="corner bottom-right"></div>
 
 
-    <!-- TOP -->
+    <!-- =====================================================
+         TOP INFO
+    ====================================================== -->
 
     <div class="top-info">
 
@@ -1161,7 +1693,9 @@ body{
     </div>
 
 
-    <!-- CENTER -->
+    <!-- =====================================================
+         CENTER CONTENT
+    ====================================================== -->
 
     <div class="loading-content">
 
@@ -1216,7 +1750,9 @@ body{
     </div>
 
 
-    <!-- BOTTOM -->
+    <!-- =====================================================
+         BOTTOM INFO
+    ====================================================== -->
 
     <div class="bottom-info">
 
@@ -1231,7 +1767,7 @@ body{
 <script>
 
 /* =========================================================
-   AUTO REDIRECT
+   LOADING SYSTEM
 ========================================================= */
 
 const loadingScreen =
@@ -1239,8 +1775,7 @@ const loadingScreen =
 
 
 /*
-    เริ่มเอฟเฟกต์ออกจากหน้าจอ
-    หลังจาก Loading ทำงานประมาณ 5.9 วินาที
+    เริ่ม Transition ออกจากหน้า Loading
 */
 
 setTimeout(() => {
@@ -1251,7 +1786,7 @@ setTimeout(() => {
 
 
 /*
-    เปิดหน้า Portfolio
+    เปลี่ยนไปหน้า Portfolio
 */
 
 setTimeout(() => {
@@ -1259,7 +1794,7 @@ setTimeout(() => {
     window.location.href =
         "portfolio.html";
 
-}, 6900);
+}, 7100);
 
 </script>
 
