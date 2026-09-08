@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
 
 <meta charset="UTF-8">
@@ -16,9 +17,8 @@
 :root{
     --bg:#02030a;
     --bg2:#050816;
-    --card:rgba(10,14,30,.62);
 
-    --white:#ffffff;
+    --white:#fff;
     --text:#f7f9ff;
     --soft:#d9deea;
     --muted:#929bad;
@@ -32,7 +32,7 @@
 
     --ease:cubic-bezier(.22,1,.36,1);
 
-    --max:1200px;
+    --nav-height:64px;
 }
 
 
@@ -46,12 +46,20 @@
     box-sizing:border-box;
 }
 
+html,
+body{
+    width:100%;
+    height:100%;
+}
+
 html{
     scroll-behavior:smooth;
 }
 
 body{
+
     min-height:100vh;
+
     font-family:
         "Segoe UI",
         "Noto Sans Thai",
@@ -60,37 +68,15 @@ body{
 
     color:var(--text);
 
-    background:
-        radial-gradient(
-            circle at 50% -10%,
-            rgba(83,115,255,.22),
-            transparent 32%
-        ),
-        radial-gradient(
-            circle at 0% 60%,
-            rgba(98,233,255,.10),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 100% 80%,
-            rgba(167,108,255,.12),
-            transparent 30%
-        ),
-        #02030a;
+    background:#02030a;
 
-    overflow-x:hidden;
-
-    animation:pageIn 1.2s ease both;
+    overflow:hidden;
 }
 
-@keyframes pageIn{
-    from{
-        opacity:0;
-    }
-    to{
-        opacity:1;
-    }
-}
+
+/* =========================================================
+   SELECTION / SCROLLBAR
+========================================================= */
 
 ::selection{
     background:var(--cyan);
@@ -98,7 +84,7 @@ body{
 }
 
 ::-webkit-scrollbar{
-    width:6px;
+    width:5px;
 }
 
 ::-webkit-scrollbar-track{
@@ -111,77 +97,121 @@ body{
             var(--cyan),
             var(--purple)
         );
+
     border-radius:20px;
 }
 
 
 /* =========================================================
-   CURSOR GLOW
+   PAGE LOADER
 ========================================================= */
 
-body::before{
-    content:"";
+.loader{
 
     position:fixed;
 
-    width:450px;
-    height:450px;
+    inset:0;
 
-    left:var(--mx,50%);
-    top:var(--my,50%);
+    z-index:999999;
 
-    transform:translate(-50%,-50%);
+    display:flex;
 
-    border-radius:50%;
+    align-items:center;
+    justify-content:center;
 
-    background:
-        radial-gradient(
-            circle,
-            rgba(98,233,255,.09),
-            rgba(93,124,255,.04) 30%,
-            transparent 70%
-        );
+    flex-direction:column;
 
-    pointer-events:none;
+    background:#02030a;
 
-    z-index:1;
+    transition:
+        opacity .8s ease,
+        visibility .8s ease;
+}
+
+.loader.hide{
 
     opacity:0;
 
-    transition:opacity .5s ease;
+    visibility:hidden;
+
+    pointer-events:none;
 }
 
-body.mouse-active::before{
-    opacity:1;
+.loader-logo{
+
+    font-size:24px;
+
+    font-weight:800;
+
+    letter-spacing:8px;
+
+    color:#fff;
+
+    text-shadow:
+        0 0 20px var(--cyan),
+        0 0 50px rgba(98,233,255,.3);
+
+    animation:
+        loaderPulse 1.5s ease-in-out infinite;
 }
 
+.loader-line{
 
-/* =========================================================
-   SCROLL PROGRESS
-========================================================= */
+    width:180px;
 
-.scroll-progress{
-    position:fixed;
+    height:1px;
 
-    top:0;
-    left:0;
+    margin-top:22px;
 
-    width:0;
-    height:3px;
+    overflow:hidden;
+
+    background:
+        rgba(255,255,255,.12);
+}
+
+.loader-line::after{
+
+    content:"";
+
+    display:block;
+
+    width:50%;
+
+    height:100%;
 
     background:
         linear-gradient(
             90deg,
+            transparent,
             var(--cyan),
-            var(--blue),
-            var(--purple)
+            var(--purple),
+            transparent
         );
 
-    z-index:99999;
+    animation:
+        loaderMove 1.3s ease-in-out infinite;
+}
 
-    box-shadow:
-        0 0 10px var(--cyan),
-        0 0 25px rgba(93,124,255,.6);
+@keyframes loaderPulse{
+
+    0%,100%{
+        opacity:.55;
+    }
+
+    50%{
+        opacity:1;
+    }
+}
+
+@keyframes loaderMove{
+
+    from{
+        transform:translateX(-100%);
+    }
+
+    to{
+        transform:translateX(300%);
+    }
 }
 
 
@@ -190,22 +220,38 @@ body.mouse-active::before{
 ========================================================= */
 
 .space-background{
+
     position:fixed;
+
     inset:0;
 
     z-index:0;
 
-    pointer-events:none;
-
     overflow:hidden;
 
+    pointer-events:none;
+
     background:
+
         radial-gradient(
-            ellipse at center,
-            transparent 0%,
-            rgba(0,0,0,.2) 50%,
-            rgba(0,0,0,.8) 100%
-        );
+            circle at 50% -10%,
+            rgba(83,115,255,.23),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 0% 70%,
+            rgba(98,233,255,.10),
+            transparent 32%
+        ),
+
+        radial-gradient(
+            circle at 100% 80%,
+            rgba(167,108,255,.13),
+            transparent 32%
+        ),
+
+        #02030a;
 }
 
 
@@ -214,47 +260,57 @@ body.mouse-active::before{
 ========================================================= */
 
 .stars{
+
     position:absolute;
+
     inset:-100px;
 
     background-image:
+
         radial-gradient(
             1px 1px at 10% 20%,
-            rgba(255,255,255,.9),
+            #fff,
             transparent
         ),
+
         radial-gradient(
             2px 2px at 20% 80%,
-            rgba(98,233,255,.8),
+            var(--cyan),
             transparent
         ),
+
         radial-gradient(
             1px 1px at 35% 30%,
-            rgba(255,255,255,.9),
+            #fff,
             transparent
         ),
+
         radial-gradient(
             2px 2px at 50% 70%,
-            rgba(167,108,255,.7),
+            var(--purple),
             transparent
         ),
+
         radial-gradient(
             1px 1px at 65% 20%,
-            rgba(255,255,255,.9),
+            #fff,
             transparent
         ),
+
         radial-gradient(
             2px 2px at 80% 60%,
-            rgba(98,233,255,.9),
+            var(--cyan),
             transparent
         ),
+
         radial-gradient(
             1px 1px at 90% 30%,
-            rgba(255,255,255,.8),
+            #fff,
             transparent
         );
 
-    background-size:260px 260px;
+    background-size:
+        260px 260px;
 
     animation:
         starMove 50s linear infinite,
@@ -262,6 +318,7 @@ body.mouse-active::before{
 }
 
 @keyframes starMove{
+
     from{
         transform:translateY(0);
     }
@@ -272,8 +329,9 @@ body.mouse-active::before{
 }
 
 @keyframes starPulse{
+
     0%,100%{
-        opacity:.55;
+        opacity:.45;
     }
 
     50%{
@@ -283,38 +341,45 @@ body.mouse-active::before{
 
 
 /* =========================================================
-   STAR FIELD 2
+   STAR FIELD
 ========================================================= */
 
 .star-field{
+
     position:absolute;
+
     inset:-100px;
 
-    opacity:.45;
+    opacity:.5;
 
     background-image:
+
         radial-gradient(
             1px 1px at 15% 15%,
             #fff,
             transparent
         ),
+
         radial-gradient(
             2px 2px at 45% 45%,
             var(--cyan),
             transparent
         ),
+
         radial-gradient(
             1px 1px at 75% 25%,
             #fff,
             transparent
         ),
+
         radial-gradient(
             2px 2px at 85% 85%,
             var(--purple),
             transparent
         );
 
-    background-size:190px 190px;
+    background-size:
+        190px 190px;
 
     animation:
         starDrift 80s linear infinite,
@@ -322,6 +387,7 @@ body.mouse-active::before{
 }
 
 @keyframes starDrift{
+
     from{
         transform:translate(0,0);
     }
@@ -332,12 +398,13 @@ body.mouse-active::before{
 }
 
 @keyframes starTwinkle{
+
     0%,100%{
         opacity:.2;
     }
 
     50%{
-        opacity:.7;
+        opacity:.75;
     }
 }
 
@@ -347,6 +414,7 @@ body.mouse-active::before{
 ========================================================= */
 
 .nebula{
+
     position:absolute;
 
     width:650px;
@@ -362,6 +430,7 @@ body.mouse-active::before{
 }
 
 .nebula.one{
+
     left:-300px;
     top:5%;
 
@@ -377,6 +446,7 @@ body.mouse-active::before{
 }
 
 .nebula.two{
+
     right:-300px;
     bottom:0;
 
@@ -392,6 +462,7 @@ body.mouse-active::before{
 }
 
 .nebula.three{
+
     width:450px;
     height:450px;
 
@@ -411,13 +482,13 @@ body.mouse-active::before{
 
 @keyframes nebulaOne{
 
-    0%{
+    from{
         transform:
             translate(-30px,20px)
             scale(.8);
     }
 
-    100%{
+    to{
         transform:
             translate(200px,-120px)
             scale(1.4);
@@ -426,13 +497,13 @@ body.mouse-active::before{
 
 @keyframes nebulaTwo{
 
-    0%{
+    from{
         transform:
             translate(40px,0)
             scale(1);
     }
 
-    100%{
+    to{
         transform:
             translate(-180px,-130px)
             scale(1.5);
@@ -460,6 +531,7 @@ body.mouse-active::before{
 ========================================================= */
 
 .aurora{
+
     position:absolute;
 
     width:100%;
@@ -483,16 +555,20 @@ body.mouse-active::before{
 @keyframes auroraMove{
 
     from{
+
         transform:
             translateX(-8%)
             rotate(-2deg);
-        opacity:.35;
+
+        opacity:.3;
     }
 
     to{
+
         transform:
             translateX(8%)
             rotate(2deg);
+
         opacity:.8;
     }
 }
@@ -503,6 +579,7 @@ body.mouse-active::before{
 ========================================================= */
 
 .space-grid{
+
     position:absolute;
 
     inset:0;
@@ -510,10 +587,12 @@ body.mouse-active::before{
     opacity:.10;
 
     background-image:
+
         linear-gradient(
             rgba(98,233,255,.12) 1px,
             transparent 1px
         ),
+
         linear-gradient(
             90deg,
             rgba(98,233,255,.12) 1px,
@@ -547,108 +626,90 @@ body.mouse-active::before{
 
 
 /* =========================================================
-   FLOATING ORBS
+   PARTICLES
 ========================================================= */
 
-.orb{
+.particle{
+
     position:absolute;
+
+    width:2px;
+    height:2px;
 
     border-radius:50%;
 
-    filter:blur(2px);
-
-    opacity:.7;
-}
-
-.orb.one{
-    width:5px;
-    height:5px;
-
     background:var(--cyan);
 
-    left:18%;
-    top:30%;
-
     box-shadow:
-        0 0 15px var(--cyan),
-        0 0 35px var(--cyan);
+        0 0 12px var(--cyan);
 
     animation:
-        floatOne 9s ease-in-out infinite;
+        particleFloat
+        var(--duration)
+        ease-in-out
+        infinite alternate;
+
+    animation-delay:
+        var(--delay);
 }
 
-.orb.two{
-    width:4px;
-    height:4px;
+@keyframes particleFloat{
 
-    background:var(--purple);
+    from{
 
-    right:22%;
-    top:45%;
-
-    box-shadow:
-        0 0 15px var(--purple),
-        0 0 35px var(--purple);
-
-    animation:
-        floatTwo 11s ease-in-out infinite;
-}
-
-.orb.three{
-    width:3px;
-    height:3px;
-
-    background:white;
-
-    left:70%;
-    top:18%;
-
-    box-shadow:
-        0 0 15px white;
-
-    animation:
-        floatThree 7s ease-in-out infinite;
-}
-
-@keyframes floatOne{
-
-    0%,100%{
         transform:
-            translate(0,0)
+            translate3d(
+                0,
+                0,
+                0
+            )
             scale(1);
+
     }
 
-    50%{
+    to{
+
         transform:
-            translate(90px,-60px)
+            translate3d(
+                var(--x),
+                var(--y),
+                0
+            )
             scale(1.5);
     }
 }
 
-@keyframes floatTwo{
 
-    0%,100%{
-        transform:
-            translate(0,0);
-    }
+/* =========================================================
+   SCROLL PROGRESS
+========================================================= */
 
-    50%{
-        transform:
-            translate(-80px,80px);
-    }
-}
+.scroll-progress{
 
-@keyframes floatThree{
+    position:fixed;
 
-    0%,100%{
-        opacity:.3;
-        transform:translateY(0);
-    }
+    top:0;
+    left:0;
 
-    50%{
-        opacity:1;
-        transform:translateY(60px);
-    }
+    width:0;
+
+    height:3px;
+
+    z-index:10000;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--blue),
+            var(--purple)
+        );
+
+    box-shadow:
+        0 0 15px var(--cyan);
+
+    transition:
+        width .6s var(--ease);
 }
 
 
@@ -663,58 +724,61 @@ body.mouse-active::before{
     top:18px;
     left:50%;
 
-    transform:translateX(-50%);
+    transform:
+        translateX(-50%);
 
-    width:min(
-        calc(100% - 40px),
-        1160px
-    );
+    width:
+        min(
+            calc(100% - 40px),
+            1160px
+        );
 
-    height:64px;
+    height:
+        var(--nav-height);
 
     display:flex;
 
     align-items:center;
+
     justify-content:space-between;
 
-    padding:0 22px;
+    padding:
+        0 20px;
 
-    z-index:1000;
+    z-index:5000;
 
-    background:
-        linear-gradient(
-            120deg,
-            rgba(8,13,28,.82),
-            rgba(7,8,18,.62)
-        );
-
-    border:1px solid var(--line);
+    border:
+        1px solid
+        var(--line);
 
     border-radius:18px;
 
-    backdrop-filter:blur(25px);
+    background:
+        rgba(7,10,23,.72);
+
+    backdrop-filter:
+        blur(25px);
 
     box-shadow:
-        0 20px 70px rgba(0,0,0,.55),
-        inset 0 1px rgba(255,255,255,.06);
+        0 20px 70px
+        rgba(0,0,0,.55);
 
     transition:
-        top .5s var(--ease),
-        width .6s var(--ease),
-        background .5s ease,
-        box-shadow .5s ease;
+        .6s var(--ease);
 }
 
 .navbar.scrolled{
 
-    top:9px;
+    top:8px;
 
     background:
-        rgba(3,5,14,.94);
+        rgba(3,5,14,.92);
 
     box-shadow:
-        0 20px 80px rgba(0,0,0,.8),
-        0 0 40px rgba(93,124,255,.08);
+        0 20px 80px
+        rgba(0,0,0,.8),
+        0 0 40px
+        rgba(93,124,255,.08);
 }
 
 .navbar::before{
@@ -738,8 +802,6 @@ body.mouse-active::before{
             var(--purple),
             transparent
         );
-
-    opacity:.7;
 }
 
 
@@ -761,10 +823,7 @@ body.mouse-active::before{
 
     white-space:nowrap;
 
-    transition:.35s;
-
-    text-shadow:
-        0 0 20px rgba(98,233,255,.25);
+    transition:.4s;
 }
 
 .logo span{
@@ -776,13 +835,12 @@ body.mouse-active::before{
 
 .logo:hover{
 
-    transform:
-        translateY(-2px)
-        scale(1.02);
-
     text-shadow:
         0 0 15px var(--cyan),
-        0 0 35px rgba(98,233,255,.5);
+        0 0 35px rgba(98,233,255,.4);
+
+    transform:
+        translateY(-2px);
 }
 
 
@@ -811,13 +869,15 @@ body.mouse-active::before{
 
     font-weight:600;
 
-    letter-spacing:1.5px;
+    letter-spacing:1.4px;
 
-    padding:10px 11px;
+    padding:
+        10px 10px;
 
     border-radius:9px;
 
-    transition:.4s var(--ease);
+    transition:
+        .4s var(--ease);
 }
 
 .nav-links a:hover,
@@ -828,17 +888,15 @@ body.mouse-active::before{
     background:
         linear-gradient(
             135deg,
-            rgba(98,233,255,.10),
-            rgba(167,108,255,.10)
+            rgba(98,233,255,.11),
+            rgba(167,108,255,.11)
         );
 
-    transform:translateY(-2px);
-
-    box-shadow:
-        inset 0 0 15px rgba(255,255,255,.025);
+    transform:
+        translateY(-2px);
 }
 
-.nav-links a::before{
+.nav-links a::after{
 
     content:"";
 
@@ -858,160 +916,338 @@ body.mouse-active::before{
             var(--purple)
         );
 
-    transform:scaleX(0);
+    transform:
+        scaleX(0);
 
     transition:
-        transform .4s var(--ease);
+        .4s var(--ease);
 }
 
-.nav-links a:hover::before,
-.nav-links a.active::before{
+.nav-links a.active::after,
+.nav-links a:hover::after{
 
-    transform:scaleX(.7);
+    transform:
+        scaleX(.7);
 }
 
 
 /* =========================================================
-   HERO
+   PAGE SYSTEM
 ========================================================= */
 
-.hero{
-
-    min-height:100vh;
+.page-container{
 
     position:relative;
 
     z-index:2;
 
-    display:flex;
+    width:100%;
 
-    align-items:center;
-
-    padding:
-        140px
-        30px
-        90px;
+    height:100vh;
 
     overflow:hidden;
 }
 
-.hero::before{
-
-    content:"";
+.page{
 
     position:absolute;
 
-    width:700px;
-    height:700px;
-
-    right:-300px;
-    top:10%;
-
-    border-radius:50%;
-
-    border:
-        1px solid
-        rgba(98,233,255,.10);
-
-    box-shadow:
-        0 0 100px
-        rgba(98,233,255,.05);
-
-    animation:
-        orbitSpin 35s linear infinite;
-}
-
-.hero::after{
-
-    content:"";
-
-    position:absolute;
-
-    width:500px;
-    height:500px;
-
-    right:-200px;
-    top:20%;
-
-    border-radius:50%;
-
-    border:
-        1px dashed
-        rgba(167,108,255,.15);
-
-    animation:
-        orbitSpinReverse 25s linear infinite;
-}
-
-@keyframes orbitSpin{
-
-    from{
-        transform:rotate(0deg);
-    }
-
-    to{
-        transform:rotate(360deg);
-    }
-}
-
-@keyframes orbitSpinReverse{
-
-    from{
-        transform:rotate(360deg);
-    }
-
-    to{
-        transform:rotate(0deg);
-    }
-}
-
-.hero-container{
+    inset:0;
 
     width:100%;
+    height:100%;
 
-    max-width:var(--max);
+    padding:
+        120px 30px 40px;
 
-    margin:auto;
-
-    display:grid;
-
-    grid-template-columns:
-        1fr
-        430px;
-
-    gap:90px;
+    display:flex;
 
     align-items:center;
+
+    justify-content:center;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    pointer-events:none;
+
+    transform:
+        translateX(70px)
+        scale(.96);
+
+    filter:blur(12px);
+
+    transition:
+        opacity .7s var(--ease),
+        transform .9s var(--ease),
+        filter .8s var(--ease),
+        visibility .7s;
+
+    overflow-y:auto;
+
+    scrollbar-width:thin;
+}
+
+.page.active{
+
+    opacity:1;
+
+    visibility:visible;
+
+    pointer-events:auto;
+
+    transform:
+        translateX(0)
+        scale(1);
+
+    filter:blur(0);
+
+    z-index:10;
+}
+
+.page.previous{
+
+    transform:
+        translateX(-70px)
+        scale(.96);
+
+    filter:blur(12px);
 }
 
 
 /* =========================================================
-   HERO CONTENT
+   PAGE CONTENT
 ========================================================= */
 
-.hero-content{
+.page-content{
 
-    animation:
-        textReveal 1s .1s var(--ease) both;
+    width:100%;
 
-    will-change:transform;
+    max-width:1200px;
+
+    margin:auto;
+
+    position:relative;
 }
 
-@keyframes textReveal{
+.page.active .page-content{
+
+    animation:
+        pageContentIn
+        .9s
+        .15s
+        var(--ease)
+        both;
+}
+
+@keyframes pageContentIn{
 
     from{
+
         opacity:0;
+
         transform:
-            translateY(45px);
-        filter:blur(10px);
+            translateY(40px)
+            scale(.97);
     }
 
     to{
+
         opacity:1;
+
         transform:
-            translateY(0);
-        filter:blur(0);
+            translateY(0)
+            scale(1);
     }
+}
+
+
+/* =========================================================
+   SECTION PANEL
+========================================================= */
+
+.panel{
+
+    position:relative;
+
+    width:100%;
+
+    padding:
+        48px;
+
+    border:
+        1px solid
+        var(--line);
+
+    border-radius:22px;
+
+    background:
+
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(98,233,255,.07),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            145deg,
+            rgba(14,20,42,.78),
+            rgba(5,7,16,.68)
+        );
+
+    backdrop-filter:
+        blur(18px);
+
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,.45),
+
+        inset 0 1px
+        rgba(255,255,255,.04);
+
+    overflow:hidden;
+}
+
+.panel::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent,
+            rgba(98,233,255,.035),
+            rgba(167,108,255,.025),
+            transparent
+        );
+
+    transform:
+        translateX(-100%);
+
+    transition:
+        transform 1.5s var(--ease);
+
+    pointer-events:none;
+}
+
+.panel:hover::before{
+
+    transform:
+        translateX(100%);
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.page-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-end;
+
+    gap:20px;
+
+    padding-bottom:20px;
+
+    margin-bottom:35px;
+
+    border-bottom:
+        1px solid
+        var(--line-soft);
+}
+
+.page-number{
+
+    color:#738098;
+
+    font-size:9px;
+
+    font-weight:700;
+
+    letter-spacing:4px;
+
+    margin-bottom:10px;
+}
+
+.page-header h2{
+
+    font-size:
+        clamp(
+            30px,
+            5vw,
+            52px
+        );
+
+    line-height:1;
+
+    letter-spacing:-2px;
+
+    font-weight:800;
+
+    color:#fff;
+}
+
+.page-header h2::after{
+
+    content:"";
+
+    display:block;
+
+    width:75px;
+
+    height:2px;
+
+    margin-top:14px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--purple),
+            transparent
+        );
+
+    box-shadow:
+        0 0 15px var(--cyan);
+}
+
+.page-status{
+
+    color:#68758c;
+
+    font-size:8px;
+
+    font-weight:600;
+
+    letter-spacing:3px;
+
+    white-space:nowrap;
+}
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+.home-content{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 380px;
+
+    gap:80px;
+
+    align-items:center;
 }
 
 .eyebrow{
@@ -1052,20 +1288,13 @@ body.mouse-active::before{
         0 0 10px var(--cyan);
 }
 
-
-/* =========================================================
-   HERO TITLE
-========================================================= */
-
-.hero h1{
-
-    position:relative;
+.home-title{
 
     font-size:
         clamp(
-            58px,
+            55px,
             8vw,
-            110px
+            105px
         );
 
     line-height:.88;
@@ -1074,16 +1303,16 @@ body.mouse-active::before{
 
     font-weight:800;
 
-    margin-bottom:30px;
-
     color:#fff;
 
-    animation:
-        textReveal 1s .3s both,
-        titleGlow 5s 1.3s ease-in-out infinite;
+    margin-bottom:30px;
+
+    text-shadow:
+        0 0 35px
+        rgba(98,233,255,.08);
 }
 
-.hero h1 span{
+.home-title span{
 
     display:block;
 
@@ -1096,9 +1325,9 @@ body.mouse-active::before{
         linear-gradient(
             110deg,
             #7080a0,
-            #ffffff,
+            #fff,
             var(--cyan),
-            #ffffff,
+            #fff,
             var(--purple),
             #7080a0
         );
@@ -1116,40 +1345,18 @@ body.mouse-active::before{
 
 @keyframes shimmer{
 
-    0%{
-        background-position:
-            -200% center;
+    from{
+        background-position:-200% center;
     }
 
-    100%{
-        background-position:
-            200% center;
+    to{
+        background-position:200% center;
     }
 }
 
-@keyframes titleGlow{
+.home-description{
 
-    0%,100%{
-        text-shadow:
-            0 0 0
-            rgba(98,233,255,0);
-    }
-
-    50%{
-        text-shadow:
-            0 0 35px
-            rgba(98,233,255,.16);
-    }
-}
-
-
-/* =========================================================
-   HERO DESCRIPTION
-========================================================= */
-
-.hero-description{
-
-    max-width:610px;
+    max-width:650px;
 
     color:#c8cfdd;
 
@@ -1157,13 +1364,10 @@ body.mouse-active::before{
 
     line-height:2;
 
-    margin-bottom:35px;
-
-    animation:
-        textReveal 1s .45s both;
+    margin-bottom:30px;
 }
 
-.hero-description strong{
+.home-description strong{
 
     color:#fff;
 
@@ -1174,19 +1378,16 @@ body.mouse-active::before{
 
 
 /* =========================================================
-   BUTTONS
+   BUTTON
 ========================================================= */
 
-.hero-buttons{
+.buttons{
 
     display:flex;
 
     gap:10px;
 
     flex-wrap:wrap;
-
-    animation:
-        textReveal 1s .6s both;
 }
 
 .btn{
@@ -1199,35 +1400,38 @@ body.mouse-active::before{
 
     justify-content:center;
 
-    gap:15px;
+    gap:13px;
 
     min-height:48px;
 
-    padding:0 20px;
+    padding:
+        0 20px;
 
-    border:1px solid
-        rgba(255,255,255,.25);
+    border:
+        1px solid
+        rgba(255,255,255,.23);
 
     border-radius:10px;
 
     color:#fff;
 
+    background:
+        rgba(255,255,255,.025);
+
     text-decoration:none;
 
-    font-size:10px;
+    font-size:9px;
 
-    font-weight:600;
+    font-weight:700;
 
     letter-spacing:1.8px;
 
     overflow:hidden;
 
-    transition:.5s var(--ease);
+    transition:
+        .5s var(--ease);
 
-    background:
-        rgba(255,255,255,.025);
-
-    backdrop-filter:blur(10px);
+    cursor:pointer;
 }
 
 .btn::before{
@@ -1248,7 +1452,7 @@ body.mouse-active::before{
         linear-gradient(
             90deg,
             transparent,
-            rgba(255,255,255,.5),
+            rgba(255,255,255,.55),
             transparent
         );
 
@@ -1260,6 +1464,7 @@ body.mouse-active::before{
 }
 
 .btn:hover::before{
+
     left:140%;
 }
 
@@ -1297,73 +1502,48 @@ body.mouse-active::before{
 .btn span{
 
     font-size:16px;
-
-    transition:.4s;
-}
-
-.btn:hover span{
-
-    transform:
-        translateX(7px);
 }
 
 
 /* =========================================================
-   HERO PHOTO
+   HOME PHOTO
 ========================================================= */
 
-.hero-photo{
-
-    position:relative;
+.home-photo{
 
     display:flex;
 
     justify-content:center;
 
     animation:
-        heroImage 1.2s .1s ease both;
-
-    will-change:transform;
+        floatingPhoto 5s ease-in-out infinite;
 }
 
-@keyframes heroImage{
+@keyframes floatingPhoto{
 
-    from{
-        opacity:0;
-
-        transform:
-            translateY(40px)
-            scale(.9)
-            rotate(2deg);
+    0%,100%{
+        transform:translateY(0);
     }
 
-    to{
-        opacity:1;
-
-        transform:
-            translateY(0)
-            scale(1)
-            rotate(0);
+    50%{
+        transform:translateY(-12px);
     }
 }
-
-
-/* =========================================================
-   PHOTO FRAME
-========================================================= */
 
 .photo-frame{
 
     position:relative;
 
-    width:360px;
-    height:470px;
+    width:350px;
+    height:450px;
 
     padding:10px;
 
     border:
         1px solid
         rgba(98,233,255,.28);
+
+    border-radius:22px;
 
     background:
         linear-gradient(
@@ -1372,10 +1552,10 @@ body.mouse-active::before{
             rgba(5,7,16,.9)
         );
 
-    border-radius:22px;
-
     box-shadow:
-        0 35px 100px rgba(0,0,0,.7),
+        0 35px 100px
+        rgba(0,0,0,.7),
+
         0 0 60px
         rgba(93,124,255,.08);
 
@@ -1393,11 +1573,9 @@ body.mouse-active::before{
 
     border:
         1px solid
-        rgba(98,233,255,.10);
+        rgba(98,233,255,.1);
 
     border-radius:27px;
-
-    pointer-events:none;
 
     animation:
         framePulse 4s ease-in-out infinite;
@@ -1406,7 +1584,7 @@ body.mouse-active::before{
 @keyframes framePulse{
 
     0%,100%{
-        opacity:.35;
+        opacity:.3;
         transform:scale(1);
     }
 
@@ -1415,56 +1593,6 @@ body.mouse-active::before{
         transform:scale(1.015);
     }
 }
-
-.photo-frame::after{
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    border-radius:20px;
-
-    pointer-events:none;
-
-    background:
-        linear-gradient(
-            110deg,
-            transparent 20%,
-            rgba(98,233,255,.18),
-            rgba(167,108,255,.15),
-            transparent 70%
-        );
-
-    transform:
-        translateX(-120%);
-
-    transition:
-        transform 1.2s var(--ease);
-}
-
-.photo-frame:hover::after{
-    transform:
-        translateX(120%);
-}
-
-.photo-frame:hover{
-
-    transform:
-        translateY(-10px)
-        rotate(1deg);
-
-    box-shadow:
-        0 45px 120px rgba(0,0,0,.85),
-        0 0 70px
-        rgba(98,233,255,.12);
-}
-
-
-/* =========================================================
-   PHOTO
-========================================================= */
 
 .photo-frame img{
 
@@ -1477,28 +1605,35 @@ body.mouse-active::before{
 
     filter:
         saturate(1.08)
-        contrast(1.03)
-        brightness(.98);
+        contrast(1.03);
 
     transition:
         .8s var(--ease);
 }
 
+.photo-frame:hover{
+
+    transform:
+        translateY(-8px)
+        rotate(1deg);
+
+    box-shadow:
+        0 45px 120px
+        rgba(0,0,0,.85),
+
+        0 0 70px
+        rgba(98,233,255,.12);
+}
+
 .photo-frame:hover img{
+
+    transform:scale(1.025);
 
     filter:
         saturate(1.18)
         contrast(1.05)
         brightness(1.05);
-
-    transform:
-        scale(1.025);
 }
-
-
-/* =========================================================
-   PHOTO TAG
-========================================================= */
 
 .photo-tag{
 
@@ -1527,367 +1662,20 @@ body.mouse-active::before{
 
     letter-spacing:2px;
 
-    backdrop-filter:
-        blur(15px);
-
-    box-shadow:
-        0 0 20px
-        rgba(98,233,255,.05);
+    backdrop-filter:blur(15px);
 }
 
 
 /* =========================================================
-   SCROLL HINT
+   COVER PAGE
 ========================================================= */
 
-.scroll-hint{
+.cover-page{
 
-    position:absolute;
+    text-align:center;
 
-    bottom:30px;
-
-    left:50%;
-
-    transform:
-        translateX(-50%);
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    gap:9px;
-
-    color:#737d91;
-
-    font-size:8px;
-
-    font-weight:600;
-
-    letter-spacing:3px;
-}
-
-.scroll-arrow{
-
-    position:relative;
-
-    width:1px;
-
-    height:40px;
-
-    overflow:hidden;
-
-    background:
-        linear-gradient(
-            var(--cyan),
-            transparent
-        );
-}
-
-.scroll-arrow::after{
-
-    content:"";
-
-    position:absolute;
-
-    top:-100%;
-
-    width:100%;
-
-    height:50%;
-
-    background:#fff;
-
-    box-shadow:
-        0 0 10px
-        var(--cyan);
-
-    animation:
-        arrowLight 2s ease-in-out infinite;
-}
-
-@keyframes arrowLight{
-
-    0%{
-        top:-100%;
-        opacity:0;
-    }
-
-    30%{
-        opacity:1;
-    }
-
-    70%{
-        opacity:0;
-    }
-
-    100%{
-        top:150%;
-        opacity:0;
-    }
-}
-
-
-/* =========================================================
-   MAIN
-========================================================= */
-
-main{
-
-    position:relative;
-
-    z-index:3;
-
-    width:100%;
-
-    max-width:
-        var(--max);
-
-    margin:auto;
-
-    padding:30px;
-}
-
-
-/* =========================================================
-   SECTION
-========================================================= */
-
-.section{
-
-    position:relative;
-
-    margin-bottom:24px;
-
-    padding:55px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(14,20,42,.65),
-            rgba(5,7,16,.45)
-        );
-
-    border:
-        1px solid
-        var(--line);
-
-    border-radius:20px;
-
-    overflow:hidden;
-
-    box-shadow:
-        0 25px 80px
-        rgba(0,0,0,.3),
-        inset 0 1px
-        rgba(255,255,255,.035);
-
-    scroll-margin-top:100px;
-
-    transition:
-        border-color .5s ease,
-        box-shadow .6s ease,
-        transform .5s var(--ease);
-
-    backdrop-filter:
-        blur(15px);
-}
-
-.section:hover{
-
-    border-color:
-        rgba(98,233,255,.22);
-
-    box-shadow:
-        0 30px 90px
-        rgba(0,0,0,.45),
-        0 0 40px
-        rgba(93,124,255,.04);
-}
-
-.section::before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-        linear-gradient(
-            120deg,
-            transparent,
-            rgba(98,233,255,.035),
-            rgba(167,108,255,.025),
-            transparent
-        );
-
-    transform:
-        translateX(-100%);
-
-    transition:
-        transform 1.4s var(--ease);
-
-    pointer-events:none;
-}
-
-.section:hover::before{
-
-    transform:
-        translateX(100%);
-}
-
-
-/* =========================================================
-   CORNER DECORATION
-========================================================= */
-
-.section::after{
-
-    content:"";
-
-    position:absolute;
-
-    width:70px;
-    height:70px;
-
-    right:-35px;
-    top:-35px;
-
-    border-radius:50%;
-
-    border:
-        1px solid
-        rgba(98,233,255,.12);
-
-    box-shadow:
-        0 0 30px
-        rgba(98,233,255,.04);
-}
-
-
-/* =========================================================
-   SECTION HEADER
-========================================================= */
-
-.section-header{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:end;
-
-    gap:25px;
-
-    padding-bottom:20px;
-
-    margin-bottom:38px;
-
-    border-bottom:
-        1px solid
-        var(--line-soft);
-}
-
-.section-index{
-
-    color:
-        #758198;
-
-    font-size:9px;
-
-    font-weight:600;
-
-    letter-spacing:4px;
-
-    margin-bottom:10px;
-}
-
-.section-header h2{
-
-    display:inline-block;
-
-    font-size:
-        clamp(
-            28px,
-            4vw,
-            45px
-        );
-
-    line-height:1;
-
-    letter-spacing:-2px;
-
-    font-weight:750;
-
-    color:#fff;
-}
-
-.section-header h2::after{
-
-    content:"";
-
-    display:block;
-
-    width:70px;
-
-    height:2px;
-
-    margin-top:14px;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--cyan),
-            var(--purple),
-            transparent
-        );
-
-    box-shadow:
-        0 0 12px
-        rgba(98,233,255,.5);
-
-    transition:
-        .6s var(--ease);
-}
-
-.section-header h2:hover::after{
-
-    width:130px;
-}
-
-
-/* =========================================================
-   COVER
-========================================================= */
-
-.cover{
-
-    min-height:470px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    background:
-        radial-gradient(
-            circle at 80% 20%,
-            rgba(98,233,255,.10),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 20% 80%,
-            rgba(167,108,255,.08),
-            transparent 30%
-        ),
-        linear-gradient(
-            145deg,
-            #070b1a,
-            #04050c
-        );
+    padding:
+        55px;
 }
 
 .cover-label{
@@ -1903,7 +1691,7 @@ main{
     margin-bottom:25px;
 }
 
-.cover h2{
+.cover-title{
 
     font-size:
         clamp(
@@ -1919,13 +1707,9 @@ main{
     font-weight:800;
 
     color:#fff;
-
-    animation:
-        textReveal 1s .2s both,
-        titleGlow 5s 1.2s infinite;
 }
 
-.cover h2 span{
+.cover-title span{
 
     display:block;
 
@@ -1987,17 +1771,7 @@ main{
 
     line-height:2.1;
 
-    margin-bottom:18px;
-
-    transition:.4s;
-}
-
-.preface p:hover{
-
-    color:#fff;
-
-    transform:
-        translateX(7px);
+    margin-bottom:20px;
 }
 
 
@@ -2013,11 +1787,15 @@ main{
         280px 1fr;
 
     gap:45px;
+
+    align-items:start;
 }
 
 .profile-card{
 
-    padding:22px;
+    padding:20px;
+
+    text-align:center;
 
     border:
         1px solid
@@ -2025,14 +1803,8 @@ main{
 
     border-radius:16px;
 
-    text-align:center;
-
     background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.04),
-            rgba(98,233,255,.02)
-        );
+        rgba(255,255,255,.025);
 
     transition:
         .6s var(--ease);
@@ -2048,9 +1820,7 @@ main{
 
     box-shadow:
         0 25px 60px
-        rgba(0,0,0,.5),
-        0 0 35px
-        rgba(98,233,255,.06);
+        rgba(0,0,0,.5);
 }
 
 .profile-card img{
@@ -2063,39 +1833,26 @@ main{
 
     border-radius:12px;
 
-    filter:
-        saturate(1.08)
-        contrast(1.03);
+    margin-bottom:18px;
 
-    margin-bottom:20px;
-
-    transition:
-        .8s var(--ease);
+    transition:.7s;
 }
 
 .profile-card:hover img{
 
-    transform:
-        scale(1.03);
-
-    filter:
-        saturate(1.2)
-        contrast(1.05);
+    transform:scale(1.03);
 }
 
 .profile-card h3{
 
     font-size:21px;
 
-    color:#fff;
-
     margin-bottom:7px;
 }
 
 .profile-card p{
 
-    color:
-        #8290a9;
+    color:#8290a9;
 
     font-size:9px;
 
@@ -2121,11 +1878,7 @@ main{
 
 .info{
 
-    position:relative;
-
-    overflow:hidden;
-
-    padding:19px;
+    padding:18px;
 
     border:
         1px solid
@@ -2140,54 +1893,16 @@ main{
         .5s var(--ease);
 }
 
-.info::before{
-
-    content:"";
-
-    position:absolute;
-
-    left:-100%;
-
-    top:0;
-
-    width:50%;
-
-    height:100%;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(98,233,255,.08),
-            transparent
-        );
-
-    transform:
-        skewX(-20deg);
-
-    transition:
-        left .8s var(--ease);
-}
-
-.info:hover::before{
-
-    left:140%;
-}
-
 .info:hover{
 
     transform:
         translateY(-4px);
 
-    background:
-        rgba(98,233,255,.035);
-
     border-color:
         rgba(98,233,255,.22);
 
-    box-shadow:
-        0 10px 30px
-        rgba(0,0,0,.25);
+    background:
+        rgba(98,233,255,.035);
 }
 
 .info.full{
@@ -2227,25 +1942,23 @@ main{
 
     display:grid;
 
-    gap:18px;
+    gap:15px;
 }
 
 .edu{
 
-    position:relative;
-
     display:grid;
 
     grid-template-columns:
-        220px
+        200px
         150px
         1fr;
 
-    gap:30px;
+    gap:25px;
 
     align-items:center;
 
-    padding:18px;
+    padding:15px;
 
     border:
         1px solid
@@ -2254,60 +1967,16 @@ main{
     border-radius:15px;
 
     background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.035),
-            rgba(98,233,255,.01)
-        );
-
-    transition:
-        .65s var(--ease);
-
-    overflow:hidden;
-}
-
-.edu::before{
-
-    content:"";
-
-    position:absolute;
-
-    left:0;
-
-    top:0;
-
-    bottom:0;
-
-    width:2px;
-
-    background:
-        linear-gradient(
-            transparent,
-            var(--cyan),
-            var(--purple),
-            transparent
-        );
-
-    transform:
-        scaleY(0);
+        rgba(255,255,255,.025);
 
     transition:
         .6s var(--ease);
 }
 
-.edu:hover::before{
-
-    transform:
-        scaleY(1);
-}
-
 .edu:hover{
 
     transform:
-        translateX(7px);
-
-    background:
-        rgba(15,23,45,.75);
+        translateX(8px);
 
     border-color:
         rgba(98,233,255,.25);
@@ -2319,17 +1988,13 @@ main{
 
 .edu-image{
 
-    width:220px;
+    width:200px;
 
-    height:145px;
+    height:130px;
 
     overflow:hidden;
 
     border-radius:11px;
-
-    border:
-        1px solid
-        rgba(98,233,255,.16);
 }
 
 .edu-image img{
@@ -2339,28 +2004,17 @@ main{
 
     object-fit:cover;
 
-    filter:
-        saturate(1.08)
-        contrast(1.03);
-
-    transition:
-        .8s var(--ease);
+    transition:.8s;
 }
 
 .edu:hover .edu-image img{
 
-    transform:
-        scale(1.08);
-
-    filter:
-        saturate(1.2)
-        contrast(1.05);
+    transform:scale(1.08);
 }
 
 .edu-year{
 
-    color:
-        var(--cyan);
+    color:var(--cyan);
 
     font-size:10px;
 
@@ -2370,8 +2024,6 @@ main{
 }
 
 .edu h3{
-
-    color:#fff;
 
     font-size:17px;
 
@@ -2399,14 +2051,14 @@ main{
     grid-template-columns:
         repeat(3,1fr);
 
-    gap:14px;
+    gap:15px;
 }
 
 .interest{
 
-    min-height:235px;
+    min-height:230px;
 
-    padding:27px;
+    padding:25px;
 
     position:relative;
 
@@ -2422,8 +2074,6 @@ main{
 
     border-radius:15px;
 
-    overflow:hidden;
-
     background:
         linear-gradient(
             145deg,
@@ -2432,112 +2082,36 @@ main{
         );
 
     transition:
-        .65s var(--ease);
-}
+        .5s var(--ease);
 
-.interest::before{
-
-    content:"";
-
-    position:absolute;
-
-    width:180px;
-    height:180px;
-
-    top:-100px;
-    right:-100px;
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(98,233,255,.18),
-            transparent 65%
-        );
-
-    transition:.6s;
-}
-
-.interest::after{
-
-    content:"";
-
-    position:absolute;
-
-    width:1px;
-
-    height:100%;
-
-    left:20px;
-
-    top:0;
-
-    background:
-        linear-gradient(
-            transparent,
-            rgba(98,233,255,.4),
-            transparent
-        );
-
-    opacity:0;
-
-    transition:.5s;
+    transform-style:preserve-3d;
 }
 
 .interest:hover{
 
     transform:
-        translateY(-9px)
-        scale(1.01);
+        translateY(-8px);
 
     border-color:
         rgba(98,233,255,.3);
 
     box-shadow:
         0 25px 65px
-        rgba(0,0,0,.5),
-        0 0 35px
-        rgba(98,233,255,.06);
-}
-
-.interest:hover::before{
-
-    transform:
-        scale(1.6);
-
-    opacity:1;
-}
-
-.interest:hover::after{
-
-    opacity:1;
+        rgba(0,0,0,.5);
 }
 
 .interest-number{
 
     position:absolute;
 
-    top:20px;
-    right:20px;
+    top:18px;
+    right:18px;
 
     color:#66738c;
 
     font-size:9px;
 
-    font-weight:600;
-
     letter-spacing:2px;
-
-    transition:.4s;
-}
-
-.interest:hover .interest-number{
-
-    color:var(--cyan);
-
-    transform:
-        translateY(-4px);
 }
 
 .interest h3{
@@ -2547,10 +2121,6 @@ main{
     font-size:20px;
 
     margin-bottom:10px;
-
-    position:relative;
-
-    z-index:2;
 }
 
 .interest p{
@@ -2560,15 +2130,11 @@ main{
     font-size:13px;
 
     line-height:1.8;
-
-    position:relative;
-
-    z-index:2;
 }
 
 
 /* =========================================================
-   ACTIVITY
+   ACTIVITIES
 ========================================================= */
 
 .activity-intro{
@@ -2581,7 +2147,7 @@ main{
 
     line-height:1.9;
 
-    margin-bottom:30px;
+    margin-bottom:25px;
 }
 
 .activity-grid{
@@ -2592,6 +2158,12 @@ main{
         repeat(3,1fr);
 
     gap:15px;
+
+    max-height:55vh;
+
+    overflow-y:auto;
+
+    padding-right:5px;
 }
 
 .activity-card{
@@ -2607,58 +2179,30 @@ main{
     background:
         rgba(5,8,18,.72);
 
-    opacity:0;
-
-    transform:
-        translateY(35px)
-        scale(.97);
-
     transition:
-        opacity .8s var(--ease),
-        transform .8s var(--ease),
-        border-color .5s ease,
-        box-shadow .6s ease;
-}
-
-.activity-card.visible{
-
-    opacity:1;
-
-    transform:
-        translateY(0)
-        scale(1);
+        .55s var(--ease);
 }
 
 .activity-card:hover{
 
     transform:
-        translateY(-10px)
-        scale(1.015);
+        translateY(-8px);
 
     border-color:
         rgba(98,233,255,.3);
 
     box-shadow:
         0 25px 70px
-        rgba(0,0,0,.6),
-        0 0 35px
-        rgba(98,233,255,.05);
+        rgba(0,0,0,.6);
 }
-
-
-/* =========================================================
-   ACTIVITY IMAGE
-========================================================= */
 
 .activity-image{
 
-    height:245px;
+    height:210px;
 
     position:relative;
 
     overflow:hidden;
-
-    background:#111;
 
     cursor:pointer;
 }
@@ -2682,7 +2226,7 @@ main{
     color:#fff;
 
     background:
-        rgba(2,5,15,.75);
+        rgba(2,5,15,.78);
 
     border:
         1px solid
@@ -2692,21 +2236,13 @@ main{
 
     font-size:9px;
 
-    font-weight:600;
-
     letter-spacing:3px;
 
     opacity:0;
 
-    transition:
-        .5s var(--ease);
+    transition:.5s;
 
-    backdrop-filter:
-        blur(10px);
-
-    box-shadow:
-        0 0 30px
-        rgba(98,233,255,.12);
+    backdrop-filter:blur(10px);
 }
 
 .activity-image:hover::after{
@@ -2725,29 +2261,14 @@ main{
 
     object-fit:cover;
 
-    filter:
-        saturate(1.08)
-        contrast(1.04);
-
-    transition:
-        .9s var(--ease);
+    transition:.8s;
 }
 
 .activity-card:hover
 .activity-image img{
 
-    filter:
-        saturate(1.2)
-        contrast(1.06);
-
-    transform:
-        scale(1.08);
+    transform:scale(1.08);
 }
-
-
-/* =========================================================
-   ACTIVITY NUMBER
-========================================================= */
 
 .activity-number{
 
@@ -2755,8 +2276,8 @@ main{
 
     z-index:2;
 
-    top:13px;
-    left:13px;
+    top:12px;
+    left:12px;
 
     padding:
         6px 9px;
@@ -2774,35 +2295,21 @@ main{
 
     font-size:8px;
 
-    font-weight:600;
-
     letter-spacing:2px;
 
-    backdrop-filter:
-        blur(8px);
-
-    box-shadow:
-        0 0 20px
-        rgba(98,233,255,.06);
+    backdrop-filter:blur(8px);
 }
-
-
-/* =========================================================
-   ACTIVITY INFO
-========================================================= */
 
 .activity-info{
 
-    padding:20px;
+    padding:18px;
 }
 
 .activity-info h3{
 
-    color:#fff;
-
     font-size:16px;
 
-    margin-bottom:9px;
+    margin-bottom:8px;
 }
 
 .activity-info p{
@@ -2825,17 +2332,13 @@ main{
 
     flex-wrap:wrap;
 
-    gap:9px;
+    gap:10px;
 }
 
 .skill{
 
-    position:relative;
-
-    overflow:hidden;
-
     padding:
-        11px 17px;
+        12px 18px;
 
     color:#d7deea;
 
@@ -2856,33 +2359,6 @@ main{
         .5s var(--ease);
 }
 
-.skill::before{
-
-    content:"";
-
-    position:absolute;
-
-    width:10px;
-    height:10px;
-
-    left:50%;
-    top:50%;
-
-    border-radius:50%;
-
-    background:
-        var(--cyan);
-
-    transform:
-        translate(-50%,-50%)
-        scale(0);
-
-    opacity:.15;
-
-    transition:
-        .6s var(--ease);
-}
-
 .skill:hover{
 
     color:#02030a;
@@ -2899,17 +2375,6 @@ main{
 
     transform:
         translateY(-4px);
-
-    box-shadow:
-        0 10px 30px
-        rgba(98,233,255,.12);
-}
-
-.skill:hover::before{
-
-    transform:
-        translate(-50%,-50%)
-        scale(12);
 }
 
 
@@ -2924,14 +2389,10 @@ main{
     grid-template-columns:
         repeat(2,1fr);
 
-    gap:14px;
+    gap:15px;
 }
 
 .contact-box{
-
-    position:relative;
-
-    overflow:hidden;
 
     padding:25px;
 
@@ -2958,46 +2419,6 @@ main{
 
     background:
         rgba(98,233,255,.035);
-
-    box-shadow:
-        0 20px 45px
-        rgba(0,0,0,.35),
-        0 0 30px
-        rgba(98,233,255,.04);
-}
-
-.contact-box::after{
-
-    content:"";
-
-    position:absolute;
-
-    left:0;
-    bottom:0;
-
-    width:100%;
-    height:1px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            var(--cyan),
-            var(--purple),
-            transparent
-        );
-
-    transform:
-        scaleX(0);
-
-    transition:
-        .6s var(--ease);
-}
-
-.contact-box:hover::after{
-
-    transform:
-        scaleX(1);
 }
 
 .contact-label{
@@ -3029,198 +2450,97 @@ main{
 .contact-box a:hover{
 
     color:var(--cyan);
-
-    transform:
-        translateX(5px);
 }
 
 
 /* =========================================================
-   BACK HOME
+   PAGE NAVIGATION
 ========================================================= */
 
-.back-home{
+.page-navigation{
+
+    position:fixed;
+
+    left:50%;
+
+    bottom:22px;
+
+    transform:
+        translateX(-50%);
+
+    z-index:5000;
 
     display:flex;
 
-    justify-content:center;
-
-    margin:
-        10px 0 70px;
-}
-
-.back-home a{
-
-    display:inline-flex;
-
     align-items:center;
 
-    gap:13px;
+    gap:8px;
 
     padding:
-        13px 23px;
-
-    color:#d0d7e4;
-
-    text-decoration:none;
+        7px 10px;
 
     border:
         1px solid
-        rgba(98,233,255,.18);
+        var(--line);
 
-    border-radius:10px;
-
-    font-size:10px;
-
-    font-weight:600;
-
-    letter-spacing:2px;
-
-    transition:
-        .5s var(--ease);
+    border-radius:30px;
 
     background:
-        rgba(255,255,255,.025);
-}
+        rgba(5,8,18,.72);
 
-.back-home a:hover{
-
-    color:#02030a;
-
-    background:
-        linear-gradient(
-            135deg,
-            #fff,
-            #bff8ff
-        );
-
-    border-color:#fff;
-
-    transform:
-        translateY(-4px);
+    backdrop-filter:
+        blur(20px);
 
     box-shadow:
-        0 15px 40px
-        rgba(98,233,255,.12);
+        0 15px 50px
+        rgba(0,0,0,.45);
 }
 
+.page-dot{
 
-/* =========================================================
-   FOOTER
-========================================================= */
+    width:7px;
+    height:7px;
 
-footer{
+    border-radius:50%;
 
-    position:relative;
+    background:#465067;
 
-    z-index:3;
+    cursor:pointer;
 
-    padding:
-        35px 25px;
-
-    text-align:center;
-
-    border-top:
-        1px solid
-        var(--line-soft);
-
-    overflow:hidden;
+    transition:
+        .4s var(--ease);
 }
 
-footer::before{
+.page-dot.active{
 
-    content:"";
+    width:25px;
 
-    position:absolute;
-
-    top:0;
-
-    left:-30%;
-
-    width:30%;
-
-    height:1px;
+    border-radius:10px;
 
     background:
         linear-gradient(
             90deg,
-            transparent,
             var(--cyan),
-            var(--purple),
-            transparent
+            var(--purple)
         );
 
-    animation:
-        footerScan 7s linear infinite;
-}
-
-@keyframes footerScan{
-
-    from{
-        left:-30%;
-    }
-
-    to{
-        left:100%;
-    }
-}
-
-footer p{
-
-    color:#737e94;
-
-    font-size:9px;
-
-    font-weight:600;
-
-    letter-spacing:3px;
+    box-shadow:
+        0 0 15px
+        rgba(98,233,255,.5);
 }
 
 
 /* =========================================================
-   REVEAL
+   ARROWS
 ========================================================= */
 
-.reveal{
-
-    opacity:0;
-
-    transform:
-        translateY(55px)
-        scale(.97);
-
-    filter:
-        blur(7px);
-
-    transition:
-        opacity 1s var(--ease),
-        transform 1s var(--ease),
-        filter 1s var(--ease);
-}
-
-.reveal.show{
-
-    opacity:1;
-
-    transform:
-        translateY(0)
-        scale(1);
-
-    filter:
-        blur(0);
-}
-
-
-/* =========================================================
-   BACK TOP
-========================================================= */
-
-.back-top{
+.page-arrow{
 
     position:fixed;
 
-    right:25px;
-    bottom:25px;
+    z-index:4000;
+
+    top:50%;
 
     width:45px;
     height:45px;
@@ -3233,49 +2553,27 @@ footer p{
     color:#fff;
 
     background:
-        rgba(8,12,25,.85);
+        rgba(7,10,23,.65);
 
     border:
         1px solid
-        rgba(98,233,255,.25);
+        rgba(98,233,255,.18);
 
     border-radius:50%;
 
-    text-decoration:none;
-
-    font-size:16px;
-
-    opacity:0;
-
-    visibility:hidden;
+    cursor:pointer;
 
     transform:
-        translateY(10px);
+        translateY(-50%);
 
-    transition:
-        .5s var(--ease);
+    transition:.4s;
 
-    z-index:500;
-
-    backdrop-filter:
-        blur(15px);
-
-    box-shadow:
-        0 0 20px
-        rgba(98,233,255,.04);
+    backdrop-filter:blur(15px);
 }
 
-.back-top.show{
+.page-arrow:hover{
 
-    opacity:1;
-
-    visibility:visible;
-
-    transform:
-        translateY(0);
-}
-
-.back-top:hover{
+    color:#02030a;
 
     background:
         linear-gradient(
@@ -3284,14 +2582,19 @@ footer p{
             #bff8ff
         );
 
-    color:#02030a;
-
-    transform:
-        translateY(-5px);
+    border-color:#fff;
 
     box-shadow:
         0 0 30px
-        rgba(98,233,255,.18);
+        rgba(98,233,255,.2);
+}
+
+.page-arrow.prev{
+    left:20px;
+}
+
+.page-arrow.next{
+    right:20px;
 }
 
 
@@ -3313,7 +2616,7 @@ footer p{
 
     justify-content:center;
 
-    padding:30px;
+    padding:25px;
 
     background:
         rgba(0,0,0,.94);
@@ -3325,7 +2628,7 @@ footer p{
 
     visibility:hidden;
 
-    transition:.5s ease;
+    transition:.5s;
 }
 
 .lightbox.show{
@@ -3339,8 +2642,7 @@ footer p{
 
     position:relative;
 
-    max-width:
-        min(1100px,95vw);
+    max-width:1100px;
 
     max-height:90vh;
 
@@ -3356,8 +2658,7 @@ footer p{
         scale(.85)
         translateY(30px);
 
-    transition:
-        .7s var(--ease);
+    transition:.6s var(--ease);
 }
 
 .lightbox.show
@@ -3370,7 +2671,7 @@ footer p{
 
 .lightbox img{
 
-    max-width:100%;
+    max-width:95vw;
 
     max-height:80vh;
 
@@ -3384,9 +2685,7 @@ footer p{
 
     box-shadow:
         0 30px 100px
-        rgba(0,0,0,.8),
-        0 0 60px
-        rgba(98,233,255,.06);
+        rgba(0,0,0,.8);
 }
 
 .lightbox-title{
@@ -3432,8 +2731,7 @@ footer p{
 
     font-size:20px;
 
-    transition:
-        .5s var(--ease);
+    transition:.4s;
 }
 
 .lightbox-close:hover{
@@ -3443,13 +2741,12 @@ footer p{
     color:#000;
 
     transform:
-        rotate(90deg)
-        scale(1.08);
+        rotate(90deg);
 }
 
 
 /* =========================================================
-   MOBILE 900
+   MOBILE
 ========================================================= */
 
 @media(max-width:900px){
@@ -3457,53 +2754,60 @@ footer p{
     .navbar{
 
         width:
-            calc(100% - 25px);
+            calc(100% - 24px);
+
+        top:10px;
     }
 
     .nav-links a{
 
         padding:
-            9px 6px;
+            8px 5px;
 
-        font-size:8px;
+        font-size:7px;
+
+        letter-spacing:.7px;
     }
 
-    .hero{
+    .page{
 
         padding:
-            130px
-            20px
-            80px;
+            95px 20px 80px;
     }
 
-    .hero-container{
+    .home-content{
 
         grid-template-columns:1fr;
 
-        gap:55px;
+        gap:35px;
+
+        text-align:center;
     }
 
-    .hero-photo{
+    .home-photo{
 
         order:-1;
     }
 
     .photo-frame{
 
-        width:290px;
-
-        height:370px;
+        width:260px;
+        height:335px;
     }
 
-    main{
+    .eyebrow{
 
-        padding:20px;
+        justify-content:center;
     }
 
-    .section{
+    .buttons{
 
-        padding:
-            40px 25px;
+        justify-content:center;
+    }
+
+    .panel{
+
+        padding:30px 22px;
     }
 
     .profile-layout{
@@ -3513,37 +2817,37 @@ footer p{
 
     .profile-card{
 
-        max-width:330px;
+        max-width:320px;
 
         margin:auto;
     }
 
-    .interest-grid{
+    .education .edu{
 
-        grid-template-columns:1fr;
+        grid-template-columns:
+            170px
+            110px
+            1fr;
+
+        gap:15px;
+    }
+
+    .edu-image{
+
+        width:170px;
     }
 
     .activity-grid{
 
         grid-template-columns:
             repeat(2,1fr);
+
+        max-height:55vh;
     }
 
-    .edu{
+    .interest-grid{
 
-        grid-template-columns:
-            180px
-            120px
-            1fr;
-
-        gap:20px;
-    }
-
-    .edu-image{
-
-        width:180px;
-
-        height:130px;
+        grid-template-columns:1fr;
     }
 }
 
@@ -3554,18 +2858,18 @@ footer p{
 
 @media(max-width:620px){
 
-    body::before{
-        display:none;
+    :root{
+        --nav-height:55px;
     }
 
     .navbar{
 
-        height:58px;
+        height:55px;
 
         padding:
-            0 12px;
+            0 10px;
 
-        border-radius:14px;
+        border-radius:13px;
     }
 
     .logo{
@@ -3587,55 +2891,73 @@ footer p{
     .nav-links a{
 
         padding:
-            7px 4px;
+            7px 3px;
 
-        font-size:6.5px;
+        font-size:5.7px;
 
-        letter-spacing:.7px;
+        letter-spacing:.4px;
     }
 
-    .hero h1{
+    .page{
+
+        padding:
+            78px 12px 70px;
+    }
+
+    .panel{
+
+        padding:
+            25px 17px;
+
+        border-radius:16px;
+    }
+
+    .home-title{
 
         font-size:
             clamp(
-                50px,
-                17vw,
-                80px
+                48px,
+                16vw,
+                75px
             );
 
         letter-spacing:-4px;
     }
 
-    .hero-description{
+    .home-description{
 
         font-size:13px;
+
+        line-height:1.9;
     }
 
     .photo-frame{
 
-        width:240px;
+        width:220px;
 
-        height:315px;
+        height:285px;
     }
 
-    .section{
-
-        padding:
-            32px 20px;
-
-        border-radius:14px;
-    }
-
-    .section-header{
+    .page-header{
 
         display:block;
 
-        margin-bottom:30px;
+        margin-bottom:25px;
     }
 
-    .section-header h2{
+    .page-status{
+
+        margin-top:15px;
+    }
+
+    .page-header h2{
 
         font-size:30px;
+    }
+
+    .preface p{
+
+        font-size:13px;
     }
 
     .info-grid{
@@ -3648,44 +2970,52 @@ footer p{
         grid-column:auto;
     }
 
-    .edu{
+    .education .edu{
 
         grid-template-columns:1fr;
 
-        gap:14px;
-
-        padding:15px;
+        gap:12px;
     }
 
     .edu-image{
 
         width:100%;
 
+        height:180px;
+    }
+
+    .activity-grid{
+
+        grid-template-columns:1fr;
+
+        max-height:53vh;
+    }
+
+    .activity-image{
+
         height:210px;
     }
 
-    .interest-grid,
-    .activity-grid,
     .contact-grid{
 
         grid-template-columns:1fr;
     }
 
-    .activity-image{
+    .page-arrow{
 
-        height:230px;
+        display:none;
     }
 
-    .cover{
+    .page-navigation{
 
-        min-height:400px;
+        bottom:13px;
     }
 
-    .cover h2{
+    .cover-title{
 
         font-size:
             clamp(
-                58px,
+                55px,
                 19vw,
                 90px
             );
@@ -3693,47 +3023,17 @@ footer p{
         letter-spacing:-6px;
     }
 
-    .scroll-hint{
+    .cover-subtitle{
 
-        display:none;
-    }
+        font-size:8px;
 
-    .back-top{
-
-        right:15px;
-
-        bottom:15px;
-
-        width:40px;
-
-        height:40px;
-    }
-
-    .lightbox{
-
-        padding:15px;
-    }
-
-    .lightbox img{
-
-        max-height:75vh;
-    }
-
-    .lightbox-close{
-
-        top:-50px;
-    }
-
-    .space-grid{
-
-        background-size:
-            45px 45px;
+        letter-spacing:2px;
     }
 }
 
 
 /* =========================================================
-   REDUCE MOTION
+   REDUCED MOTION
 ========================================================= */
 
 @media(prefers-reduced-motion:reduce){
@@ -3745,12 +3045,11 @@ footer p{
         animation:none !important;
 
         transition:none !important;
-
-        scroll-behavior:auto !important;
     }
 }
 
 </style>
+
 </head>
 
 
@@ -3758,7 +3057,22 @@ footer p{
 
 
 <!-- =====================================================
-     SPACE BACKGROUND
+     LOADER
+===================================================== -->
+
+<div class="loader" id="loader">
+
+    <div class="loader-logo">
+        WARANCHIT
+    </div>
+
+    <div class="loader-line"></div>
+
+</div>
+
+
+<!-- =====================================================
+     SPACE
 ===================================================== -->
 
 <div class="space-background">
@@ -3777,12 +3091,6 @@ footer p{
 
     <div class="space-grid"></div>
 
-    <div class="orb one"></div>
-
-    <div class="orb two"></div>
-
-    <div class="orb three"></div>
-
 </div>
 
 
@@ -3795,7 +3103,10 @@ footer p{
 
 <header class="navbar">
 
-    <a href="#top" class="logo">
+    <a
+        href="#home"
+        class="logo page-link"
+    >
 
         WARANCHIT
 
@@ -3808,31 +3119,53 @@ footer p{
 
     <nav class="nav-links">
 
-        <a href="#top" class="active">
+        <a
+            href="#home"
+            class="active"
+            data-page="home"
+        >
             HOME
         </a>
 
-        <a href="#profile">
+        <a
+            href="#profile"
+            data-page="profile"
+        >
             PROFILE
         </a>
 
-        <a href="#education">
+        <a
+            href="#education"
+            data-page="education"
+        >
             EDUCATION
         </a>
 
-        <a href="#interest">
+        <a
+            href="#interest"
+            data-page="interest"
+        >
             INTEREST
         </a>
 
-        <a href="#activity">
+        <a
+            href="#activity"
+            data-page="activity"
+        >
             ACTIVITY
         </a>
 
-        <a href="#skills">
+        <a
+            href="#skills"
+            data-page="skills"
+        >
             SKILLS
         </a>
 
-        <a href="#contact">
+        <a
+            href="#contact"
+            data-page="contact"
+        >
             CONTACT
         </a>
 
@@ -3842,201 +3175,111 @@ footer p{
 
 
 <!-- =====================================================
-     HERO
+     PAGE CONTAINER
 ===================================================== -->
 
-<section class="hero" id="top">
-
-    <div class="hero-container">
+<div class="page-container">
 
 
-        <div class="hero-content">
+<!-- =====================================================
+     HOME
+===================================================== -->
 
-            <div class="eyebrow">
+<section
+    class="page active"
+    id="home"
+    data-index="0"
+>
 
-                01 — INTRODUCTION
+    <div class="page-content">
 
-            </div>
-
-
-            <h1>
-
-                WARANCHIT
-
-                <span>
-                    PORTFOLIO
-                </span>
-
-            </h1>
+        <div class="home-content">
 
 
-            <p class="hero-description">
+            <div>
 
-                แฟ้มสะสมผลงานของ
+                <div class="eyebrow">
 
-                <strong>
-                    วรัญชิต วงศ์ศุภเลิศ
-                </strong>
+                    01 — INTRODUCTION
 
-                นักเรียนสายการเรียน GIFTED
-                ผู้สนใจด้านวิทยาศาสตร์การกีฬา
-                เทคโนโลยี วิศวกรรม
-                และการเรียนรู้สิ่งใหม่ ๆ
-
-            </p>
+                </div>
 
 
-            <div class="hero-buttons">
+                <h1 class="home-title">
 
-                <a
-                    href="#profile"
-                    class="btn primary"
-                >
-
-                    EXPLORE PORTFOLIO
+                    WARANCHIT
 
                     <span>
-                        →
+                        PORTFOLIO
                     </span>
 
-                </a>
+                </h1>
 
 
-                <a
-                    href="#activity"
-                    class="btn"
-                >
+                <p class="home-description">
 
-                    VIEW ACTIVITIES
+                    แฟ้มสะสมผลงานของ
 
-                </a>
+                    <strong>
+                        วรัญชิต วงศ์ศุภเลิศ
+                    </strong>
+
+                    นักเรียนสายการเรียน GIFTED
+                    ผู้สนใจด้านวิทยาศาสตร์การกีฬา
+                    เทคโนโลยี วิศวกรรม
+                    และการเรียนรู้สิ่งใหม่ ๆ
+
+                </p>
+
+
+                <div class="buttons">
+
+                    <a
+                        href="#profile"
+                        class="btn primary page-link"
+                    >
+
+                        EXPLORE PROFILE
+
+                        <span>→</span>
+
+                    </a>
+
+
+                    <a
+                        href="#activity"
+                        class="btn page-link"
+                    >
+
+                        VIEW ACTIVITIES
+
+                    </a>
+
+                </div>
 
             </div>
 
-        </div>
 
+            <div class="home-photo">
 
-        <div class="hero-photo">
+                <div class="photo-frame">
 
-            <div class="photo-frame">
+                    <img
+                        src="S__37978144.jpg"
+                        alt="Waranchit"
+                    >
 
-                <img
-                    src="S__37978144.jpg"
-                    alt="Waranchit"
-                >
+                    <div class="photo-tag">
 
-                <div class="photo-tag">
+                        WARANCHIT / 2026
 
-                    WARANCHIT / 2026
+                    </div>
 
                 </div>
 
             </div>
 
         </div>
-
-    </div>
-
-
-    <div class="scroll-hint">
-
-        SCROLL
-
-        <div class="scroll-arrow"></div>
-
-    </div>
-
-</section>
-
-
-<main>
-
-
-<!-- =====================================================
-     COVER
-===================================================== -->
-
-<section
-    class="section cover reveal"
->
-
-    <div class="cover-label">
-
-        PERSONAL PORTFOLIO
-
-    </div>
-
-
-    <h2>
-
-        PORT
-
-        <span>
-            FOLIO
-        </span>
-
-    </h2>
-
-
-    <div class="cover-subtitle">
-
-        WARANCHIT WONGSUPALERD
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     PREFACE
-===================================================== -->
-
-<section
-    class="section reveal"
-    id="preface"
->
-
-    <div class="section-header">
-
-        <div>
-
-            <div class="section-index">
-
-                02 — PREFACE
-
-            </div>
-
-            <h2>
-                คำนำ
-            </h2>
-
-        </div>
-
-    </div>
-
-
-    <div class="preface">
-
-        <p>
-
-            แฟ้มสะสมผลงานฉบับนี้จัดทำขึ้นเพื่อรวบรวม
-            ประวัติส่วนตัว ประวัติการศึกษา
-            ความสนใจ กิจกรรม และความสามารถ
-            ของผู้จัดทำ
-
-        </p>
-
-
-        <p>
-
-            จุดประสงค์ของแฟ้มสะสมผลงานคือ
-            เพื่อแสดงให้เห็นถึงประสบการณ์
-            ความสามารถ ความสนใจ
-            และพัฒนาการของผู้จัดทำ
-            ผ่านผลงานและกิจกรรมต่าง ๆ
-            ที่ได้เข้าร่วม
-
-        </p>
 
     </div>
 
@@ -4048,178 +3291,189 @@ footer p{
 ===================================================== -->
 
 <section
-    class="section reveal"
+    class="page"
     id="profile"
+    data-index="1"
 >
 
-    <div class="section-header">
+    <div class="page-content">
 
-        <div>
-
-            <div class="section-index">
-
-                03 — PROFILE
-
-            </div>
-
-            <h2>
-                ประวัติส่วนตัว
-            </h2>
-
-        </div>
-
-    </div>
+        <div class="panel">
 
 
-    <div class="profile-layout">
+            <div class="page-header">
 
+                <div>
 
-        <div class="profile-card">
+                    <div class="page-number">
+                        02 — PROFILE
+                    </div>
 
-            <img
-                src="S__38019074.jpg"
-                alt="Waranchit Profile"
-                loading="lazy"
-            >
+                    <h2>
+                        ประวัติส่วนตัว
+                    </h2>
 
-            <h3>
-                วรัญชิต
-            </h3>
-
-            <p>
-                WARANCHIT
-            </p>
-
-        </div>
-
-
-        <div class="info-grid">
-
-
-            <div class="info">
-
-                <div class="info-label">
-                    FULL NAME
                 </div>
 
-                <div class="info-value">
-                    วรัญชิต วงศ์ศุภเลิศ
+                <div class="page-status">
+                    PERSONAL INFORMATION
                 </div>
 
             </div>
 
 
-            <div class="info">
-
-                <div class="info-label">
-                    NICKNAME
-                </div>
-
-                <div class="info-value">
-                    เคน
-                </div>
-
-            </div>
+            <div class="profile-layout">
 
 
-            <div class="info">
+                <div class="profile-card">
 
-                <div class="info-label">
-                    BIRTH DATE
-                </div>
+                    <img
+                        src="S__38019074.jpg"
+                        alt="Waranchit Profile"
+                    >
 
-                <div class="info-value">
-                    21 / 02 / 2552
-                </div>
+                    <h3>
+                        วรัญชิต
+                    </h3>
 
-            </div>
-
-
-            <div class="info">
-
-                <div class="info-label">
-                    NATIONALITY
-                </div>
-
-                <div class="info-value">
-                    ไทย
-                </div>
-
-            </div>
-
-
-            <div class="info">
-
-                <div class="info-label">
-                    SCHOOL PROGRAM
-                </div>
-
-                <div class="info-value">
-                    GIFTED
-                </div>
-
-            </div>
-
-
-            <div class="info">
-
-                <div class="info-label">
-                    SCHOOL
-                </div>
-
-                <div class="info-value">
-
-                    โรงเรียนบ้านบึง
-                    "อุตสาหกรรมนุเคราะห์"
+                    <p>
+                        WARANCHIT
+                    </p>
 
                 </div>
 
-            </div>
+
+                <div class="info-grid">
 
 
-            <div class="info full">
+                    <div class="info">
 
-                <div class="info-label">
-                    HOBBIES
-                </div>
+                        <div class="info-label">
+                            FULL NAME
+                        </div>
 
-                <div class="info-value">
+                        <div class="info-value">
+                            วรัญชิต วงศ์ศุภเลิศ
+                        </div>
 
-                    เล่นเกม / ฟังเพลง /
-                    ออกกำลังกาย / ออกแบบเว็บไซต์ /
-                    ศึกษาเทคโนโลยี
-
-                </div>
-
-            </div>
+                    </div>
 
 
-            <div class="info full">
+                    <div class="info">
 
-                <div class="info-label">
-                    FIELD OF INTEREST
-                </div>
+                        <div class="info-label">
+                            NICKNAME
+                        </div>
 
-                <div class="info-value">
+                        <div class="info-value">
+                            เคน
+                        </div>
 
-                    เทคโนโลยีการกีฬา
-
-                </div>
-
-            </div>
+                    </div>
 
 
-            <div class="info full">
+                    <div class="info">
 
-                <div class="info-label">
-                    GOAL
-                </div>
+                        <div class="info-label">
+                            BIRTH DATE
+                        </div>
 
-                <div class="info-value">
+                        <div class="info-value">
+                            21 / 02 / 2552
+                        </div>
 
-                    พัฒนาความรู้ด้านเทคโนโลยี
-                    ภาษาอังกฤษ และการกีฬา
-                    เพื่อนำความรู้ไปต่อยอดในอนาคต
+                    </div>
+
+
+                    <div class="info">
+
+                        <div class="info-label">
+                            NATIONALITY
+                        </div>
+
+                        <div class="info-value">
+                            ไทย
+                        </div>
+
+                    </div>
+
+
+                    <div class="info">
+
+                        <div class="info-label">
+                            SCHOOL PROGRAM
+                        </div>
+
+                        <div class="info-value">
+                            GIFTED
+                        </div>
+
+                    </div>
+
+
+                    <div class="info">
+
+                        <div class="info-label">
+                            SCHOOL
+                        </div>
+
+                        <div class="info-value">
+
+                            โรงเรียนบ้านบึง
+                            "อุตสาหกรรมนุเคราะห์"
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info full">
+
+                        <div class="info-label">
+                            HOBBIES
+                        </div>
+
+                        <div class="info-value">
+
+                            เล่นเกม / ฟังเพลง /
+                            ออกกำลังกาย / ออกแบบเว็บไซต์ /
+                            ศึกษาเทคโนโลยี
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info full">
+
+                        <div class="info-label">
+                            FIELD OF INTEREST
+                        </div>
+
+                        <div class="info-value">
+
+                            เทคโนโลยีการกีฬา
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info full">
+
+                        <div class="info-label">
+                            GOAL
+                        </div>
+
+                        <div class="info-value">
+
+                            พัฒนาความรู้ด้านเทคโนโลยี
+                            ภาษาอังกฤษ และการกีฬา
+                            เพื่อนำความรู้ไปต่อยอดในอนาคต
+
+                        </div>
+
+                    </div>
 
                 </div>
 
@@ -4237,150 +3491,147 @@ footer p{
 ===================================================== -->
 
 <section
-    class="section reveal"
+    class="page"
     id="education"
+    data-index="2"
 >
 
-    <div class="section-header">
+    <div class="page-content">
 
-        <div>
-
-            <div class="section-index">
-
-                04 — EDUCATION
-
-            </div>
-
-            <h2>
-                ประวัติการศึกษา
-            </h2>
-
-        </div>
-
-    </div>
+        <div class="panel">
 
 
-    <div class="education">
+            <div class="page-header">
 
+                <div>
 
-        <div class="edu">
+                    <div class="page-number">
+                        03 — EDUCATION
+                    </div>
 
-            <div class="edu-image">
+                    <h2>
+                        ประวัติการศึกษา
+                    </h2>
 
-                <img
-                    src="1.jpg"
-                    alt="ระดับประถมศึกษา"
-                    loading="lazy"
-                >
+                </div>
+
+                <div class="page-status">
+                    EDUCATIONAL JOURNEY
+                </div>
 
             </div>
 
 
-            <div class="edu-year">
-
-                PRIMARY
-
-            </div>
+            <div class="education">
 
 
-            <div>
+                <div class="edu">
 
-                <h3>
-                    ระดับประถมศึกษา
-                </h3>
+                    <div class="edu-image">
 
-                <p>
+                        <img
+                            src="1.jpg"
+                            alt="ระดับประถมศึกษา"
+                        >
 
-                    โรงเรียนบุญประทีปวิทยาคาร
+                    </div>
 
-                    <br>
+                    <div class="edu-year">
+                        PRIMARY
+                    </div>
 
-                    สายวิทย์-คณิต
+                    <div>
 
-                </p>
+                        <h3>
+                            ระดับประถมศึกษา
+                        </h3>
 
-            </div>
+                        <p>
 
-        </div>
+                            โรงเรียนบุญประทีปวิทยาคาร
 
+                            <br>
 
-        <div class="edu">
+                            สายวิทย์-คณิต
 
-            <div class="edu-image">
+                        </p>
 
-                <img
-                    src="1.jpg"
-                    alt="ระดับมัธยมศึกษาตอนต้น"
-                    loading="lazy"
-                >
+                    </div>
 
-            </div>
-
-
-            <div class="edu-year">
-
-                SECONDARY
-
-            </div>
+                </div>
 
 
-            <div>
+                <div class="edu">
 
-                <h3>
-                    ระดับมัธยมศึกษาตอนต้น
-                </h3>
+                    <div class="edu-image">
 
-                <p>
+                        <img
+                            src="1.jpg"
+                            alt="ระดับมัธยมศึกษาตอนต้น"
+                        >
 
-                    โรงเรียนบุญประทีปวิทยาคาร
+                    </div>
 
-                    <br>
+                    <div class="edu-year">
+                        SECONDARY
+                    </div>
 
-                    สายวิทย์-คณิต
+                    <div>
 
-                </p>
+                        <h3>
+                            ระดับมัธยมศึกษาตอนต้น
+                        </h3>
 
-            </div>
+                        <p>
 
-        </div>
+                            โรงเรียนบุญประทีปวิทยาคาร
 
+                            <br>
 
-        <div class="edu">
+                            สายวิทย์-คณิต
 
-            <div class="edu-image">
+                        </p>
 
-                <img
-                    src="2.jpg"
-                    alt="ระดับมัธยมศึกษาตอนปลาย"
-                    loading="lazy"
-                >
+                    </div>
 
-            </div>
-
-
-            <div class="edu-year">
-
-                HIGH SCHOOL
-
-            </div>
+                </div>
 
 
-            <div>
+                <div class="edu">
 
-                <h3>
-                    ระดับมัธยมศึกษาตอนปลาย
-                </h3>
+                    <div class="edu-image">
 
-                <p>
+                        <img
+                            src="2.jpg"
+                            alt="ระดับมัธยมศึกษาตอนปลาย"
+                        >
 
-                    โรงเรียนบ้านบึง
-                    "อุตสาหกรรมนุเคราะห์"
+                    </div>
 
-                    <br>
+                    <div class="edu-year">
+                        HIGH SCHOOL
+                    </div>
 
-                    สายการเรียน GIFTED
+                    <div>
 
-                </p>
+                        <h3>
+                            ระดับมัธยมศึกษาตอนปลาย
+                        </h3>
+
+                        <p>
+
+                            โรงเรียนบ้านบึง
+                            "อุตสาหกรรมนุเคราะห์"
+
+                            <br>
+
+                            สายการเรียน GIFTED
+
+                        </p>
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -4396,91 +3647,103 @@ footer p{
 ===================================================== -->
 
 <section
-    class="section reveal"
+    class="page"
     id="interest"
+    data-index="3"
 >
 
-    <div class="section-header">
+    <div class="page-content">
 
-        <div>
+        <div class="panel">
 
-            <div class="section-index">
 
-                05 — INTEREST
+            <div class="page-header">
+
+                <div>
+
+                    <div class="page-number">
+                        04 — INTEREST
+                    </div>
+
+                    <h2>
+                        ความสนใจ
+                    </h2>
+
+                </div>
+
+                <div class="page-status">
+                    AREAS OF INTEREST
+                </div>
 
             </div>
 
-            <h2>
-                ความสนใจ
-            </h2>
 
-        </div>
-
-    </div>
+            <div class="interest-grid">
 
 
-    <div class="interest-grid">
+                <div class="interest">
+
+                    <div class="interest-number">
+                        01
+                    </div>
+
+                    <h3>
+                        วิทยาศาสตร์การกีฬา
+                    </h3>
+
+                    <p>
+
+                        สนใจด้านการออกกำลังกาย
+                        การกีฬา และการนำวิทยาศาสตร์
+                        มาประยุกต์ใช้กับการกีฬา
+
+                    </p>
+
+                </div>
 
 
-        <div class="interest">
+                <div class="interest">
 
-            <div class="interest-number">
-                01
+                    <div class="interest-number">
+                        02
+                    </div>
+
+                    <h3>
+                        วิศวกรรม
+                    </h3>
+
+                    <p>
+
+                        สนใจด้านวิศวกรรมเมคคาทรอนิกส์
+                        ระบบวัดคุม กลไก
+                        และการออกแบบระบบ
+
+                    </p>
+
+                </div>
+
+
+                <div class="interest">
+
+                    <div class="interest-number">
+                        03
+                    </div>
+
+                    <h3>
+                        Technology
+                    </h3>
+
+                    <p>
+
+                        สนใจเทคโนโลยีใหม่ ๆ
+                        คอมพิวเตอร์ การเขียนเว็บไซต์
+                        และนวัตกรรม
+
+                    </p>
+
+                </div>
+
             </div>
-
-            <h3>
-                วิทยาศาสตร์การกีฬา
-            </h3>
-
-            <p>
-
-                สนใจด้านการออกกำลังกาย
-                การกีฬา และการนำวิทยาศาสตร์
-                มาประยุกต์ใช้กับการกีฬา
-
-            </p>
-
-        </div>
-
-
-        <div class="interest">
-
-            <div class="interest-number">
-                02
-            </div>
-
-            <h3>
-                วิศวกรรม
-            </h3>
-
-            <p>
-
-                สนใจด้านวิศวกรรมเมคคาทรอนิกส์
-                ระบบวัดคุม กลไก
-                และการออกแบบระบบ
-
-            </p>
-
-        </div>
-
-
-        <div class="interest">
-
-            <div class="interest-number">
-                03
-            </div>
-
-            <h3>
-                Technology
-            </h3>
-
-            <p>
-
-                สนใจเทคโนโลยีใหม่ ๆ
-                คอมพิวเตอร์ การเขียนเว็บไซต์
-                และนวัตกรรม
-
-            </p>
 
         </div>
 
@@ -4490,534 +3753,522 @@ footer p{
 
 
 <!-- =====================================================
-     ACTIVITIES
+     ACTIVITY
 ===================================================== -->
 
 <section
-    class="section reveal"
+    class="page"
     id="activity"
+    data-index="4"
 >
 
-    <div class="section-header">
+    <div class="page-content">
 
-        <div>
+        <div class="panel">
 
-            <div class="section-index">
 
-                06 — ACTIVITIES
+            <div class="page-header">
+
+                <div>
+
+                    <div class="page-number">
+                        05 — ACTIVITIES
+                    </div>
+
+                    <h2>
+                        กิจกรรม
+                    </h2>
+
+                </div>
+
+                <div class="page-status">
+                    EXPERIENCE / 2026
+                </div>
 
             </div>
 
-            <h2>
-                กิจกรรม
-            </h2>
+
+            <p class="activity-intro">
+
+                กิจกรรมและประสบการณ์ที่ได้เข้าร่วม
+                เพื่อพัฒนาความรู้ ทักษะ
+                ความรับผิดชอบ และประสบการณ์
+                ทั้งด้านวิชาการ เทคโนโลยี
+                การอนุรักษ์ และการพัฒนาตนเอง
+
+            </p>
+
+
+            <div class="activity-grid">
+
+
+                <!-- 01 -->
+
+                <article class="activity-card">
+
+                    <div
+                        class="activity-image"
+                        data-title="ACT 01 — ปลูกต้นโกงกาง"
+                    >
+
+                        <div class="activity-number">
+                            ACT 01
+                        </div>
+
+                        <img
+                            src="S__37978142.jpg"
+                            alt="กิจกรรมปลูกต้นโกงกาง"
+                        >
+
+                    </div>
+
+                    <div class="activity-info">
+
+                        <h3>
+                            ปลูกต้นโกงกาง
+                        </h3>
+
+                        <p>
+
+                            เข้าร่วมกิจกรรมปลูกต้นโกงกาง
+                            ทำบ้านปลา ณ สะพานป่าชายเลน
+                            เทศบาลบางทราย
+
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 02 -->
+
+                <article class="activity-card">
+
+                    <div
+                        class="activity-image"
+                        data-title="ACT 02 — K-Engineering"
+                    >
+
+                        <div class="activity-number">
+                            ACT 02
+                        </div>
+
+                        <img
+                            src="S__37978134.jpg"
+                            alt="K-Engineering"
+                        >
+
+                    </div>
+
+                    <div class="activity-info">
+
+                        <h3>
+                            K-Engineering
+                        </h3>
+
+                        <p>
+
+                            เข้าร่วมกิจกรรม
+                            K-Engineering World Tour
+                            and Competency Challenge 2026
+
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 03 -->
+
+                <article class="activity-card">
+
+                    <div
+                        class="activity-image"
+                        data-title="ACT 03 — เปิดโลกวิชาการ"
+                    >
+
+                        <div class="activity-number">
+                            ACT 03
+                        </div>
+
+                        <img
+                            src="S__37978141.jpg"
+                            alt="กิจกรรมเปิดโลกวิชาการ"
+                        >
+
+                    </div>
+
+                    <div class="activity-info">
+
+                        <h3>
+                            เปิดโลกวิชาการ
+                        </h3>
+
+                        <p>
+
+                            เข้าร่วมกิจกรรมเชิงปฏิบัติการ
+                            โครงการเปิดโลกวิชาการ 2026
+
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 04 -->
+
+                <article class="activity-card">
+
+                    <div
+                        class="activity-image"
+                        data-title="ACT 04 — ผู้นำรุ่นใหม่"
+                    >
+
+                        <div class="activity-number">
+                            ACT 04
+                        </div>
+
+                        <img
+                            src="S__37978140.jpg"
+                            alt="กิจกรรมผู้นำรุ่นใหม่"
+                        >
+
+                    </div>
+
+                    <div class="activity-info">
+
+                        <h3>
+                            ผู้นำรุ่นใหม่
+                        </h3>
+
+                        <p>
+
+                            อบรมกิจกรรมผู้นำรุ่นใหม่
+                            ในยุคสื่อดิจิทัล
+                            สู่ผู้สร้างการเปลี่ยนแปลงทางสังคม
+
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 05 -->
+
+                <article class="activity-card">
+
+                    <div
+                        class="activity-image"
+                        data-title="ACT 05 — Internet Strength"
+                    >
+
+                        <div class="activity-number">
+                            ACT 05
+                        </div>
+
+                        <img
+                            src="Google_Interland_waranchit wongsupalerd_Certificate_of_Smartness.pdf - Google Chrome 9_6_2026 10_21_42 AM.png"
+                            alt="Certificate of Smartness"
+                        >
+
+                    </div>
+
+                    <div class="activity-info">
+
+                        <h3>
+                            Internet Strength
+                        </h3>
+
+                        <p>
+
+                            เรียนรู้การปกป้องข้อมูลส่วนตัว
+                            และการสร้างรหัสผ่านที่ปลอดภัย
+                            จาก Google Interland
+
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 06 -->
+
+                <article class="activity-card">
+
+                    <div
+                        class="activity-image"
+                        data-title="ACT 06 — กลุ่มอาสาไทยแลนด์"
+                    >
+
+                        <div class="activity-number">
+                            ACT 06
+                        </div>
+
+                        <img
+                            src="S__37978138.jpg"
+                            alt="กลุ่มอาสาไทยแลนด์"
+                        >
+
+                    </div>
+
+                    <div class="activity-info">
+
+                        <h3>
+                            กลุ่มอาสาไทยแลนด์
+                        </h3>
+
+                        <p>
+
+                            เข้าร่วมกิจกรรมกับกลุ่มอาสาไทยแลนด์
+                            ณ หาดบางแสน
+
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 07 -->
+
+                <article class="activity-card">
+
+                    <div
+                        class="activity-image"
+                        data-title="ACT 07 — ต่อต้านยาเสพติด"
+                    >
+
+                        <div class="activity-number">
+                            ACT 07
+                        </div>
+
+                        <img
+                            src="S__37978137.jpg"
+                            alt="กิจกรรมต่อต้านยาเสพติด"
+                        >
+
+                    </div>
+
+                    <div class="activity-info">
+
+                        <h3>
+                            ต่อต้านยาเสพติด
+                        </h3>
+
+                        <p>
+
+                            เข้าร่วมอบรมกิจกรรม
+                            การป้องกันและรณรงค์
+                            การต่อต้านยาเสพติด
+
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 08 -->
+
+                <article class="activity-card">
+
+                    <div
+                        class="activity-image"
+                        data-title="ACT 08 — AI & Cyber Security"
+                    >
+
+                        <div class="activity-number">
+                            ACT 08
+                        </div>
+
+                        <img
+                            src="S__37978136.jpg"
+                            alt="AI Cyber Security"
+                        >
+
+                    </div>
+
+                    <div class="activity-info">
+
+                        <h3>
+                            AI & Cyber Security
+                        </h3>
+
+                        <p>
+
+                            Workshop ปัญญาประดิษฐ์พื้นฐาน
+                            ร่วมกับข้อมูลด้านความมั่นคงปลอดภัย
+                            ทางไซเบอร์
+
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 09 -->
+
+                <article class="activity-card">
+
+                    <div
+                        class="activity-image"
+                        data-title="ACT 09 — Network Technology"
+                    >
+
+                        <div class="activity-number">
+                            ACT 09
+                        </div>
+
+                        <img
+                            src="S__37978135.jpg"
+                            alt="Network Technology"
+                        >
+
+                    </div>
+
+                    <div class="activity-info">
+
+                        <h3>
+                            Network Technology
+                        </h3>
+
+                        <p>
+
+                            เรียนรู้ระบบเครือข่ายพื้นฐาน
+                            จากสายสื่อสารถึงอินเทอร์เน็ต
+
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 10 -->
+
+                <article class="activity-card">
+
+                    <div
+                        class="activity-image"
+                        data-title="ACT 10 — Certificate of Smartness"
+                    >
+
+                        <div class="activity-number">
+                            ACT 10
+                        </div>
+
+                        <img
+                            src="Google_Interland_waranchit wongsupalerd_Certificate_of_Smartness.pdf - Google Chrome 9_6_2026 10_21_28 AM.png"
+                            alt="Certificate of Smartness"
+                        >
+
+                    </div>
+
+                    <div class="activity-info">
+
+                        <h3>
+                            Certificate of Smartness
+                        </h3>
+
+                        <p>
+
+                            ได้รับประกาศนียบัตรจากกิจกรรม
+                            Google Interland
+                            ด้านการใช้อินเทอร์เน็ตอย่างปลอดภัย
+
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 11 -->
+
+                <article class="activity-card">
+
+                    <div
+                        class="activity-image"
+                        data-title="ACT 11 — Certificate of Kindness"
+                    >
+
+                        <div class="activity-number">
+                            ACT 11
+                        </div>
+
+                        <img
+                            src="Google_Interland_waranchit wongsupalerd_Certificate_of_Kindness.pdf - Google Chrome 9_6_2026 10_21_12 AM.png"
+                            alt="Certificate of Kindness"
+                        >
+
+                    </div>
+
+                    <div class="activity-info">
+
+                        <h3>
+                            Certificate of Kindness
+                        </h3>
+
+                        <p>
+
+                            ได้รับประกาศนียบัตร
+                            Certificate of Kindness
+                            จากกิจกรรม Google Interland
+
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 12 -->
+
+                <article class="activity-card">
+
+                    <div
+                        class="activity-image"
+                        data-title="ACT 12 — Digital Citizenship"
+                    >
+
+                        <div class="activity-number">
+                            ACT 12
+                        </div>
+
+                        <img
+                            src="Google_Interland_waranchit wongsupalerd_Certificate_of_Kindness.pdf - Google Chrome 9_6_2026 10_19_14 AM.png"
+                            alt="Certificate of Kindness"
+                        >
+
+                    </div>
+
+                    <div class="activity-info">
+
+                        <h3>
+                            Digital Citizenship
+                        </h3>
+
+                        <p>
+
+                            แสดงถึงความมีน้ำใจ
+                            ความรับผิดชอบ
+                            และการเป็นพลเมืองดิจิทัลที่ดี
+
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
 
         </div>
-
-    </div>
-
-
-    <p class="activity-intro">
-
-        กิจกรรมและประสบการณ์ที่ได้เข้าร่วม
-        เพื่อพัฒนาความรู้ ทักษะ
-        ความรับผิดชอบ และประสบการณ์
-        ทั้งด้านวิชาการ เทคโนโลยี
-        การอนุรักษ์ และการพัฒนาตนเอง
-
-    </p>
-
-
-    <div class="activity-grid">
-
-
-        <!-- ACT 01 -->
-
-        <article class="activity-card">
-
-            <div
-                class="activity-image"
-                data-title="ACT 01 — ปลูกต้นโกงกาง"
-            >
-
-                <div class="activity-number">
-                    ACT 01
-                </div>
-
-                <img
-                    src="S__37978142.jpg"
-                    alt="กิจกรรมปลูกต้นโกงกาง"
-                    loading="lazy"
-                >
-
-            </div>
-
-
-            <div class="activity-info">
-
-                <h3>
-                    ปลูกต้นโกงกาง
-                </h3>
-
-                <p>
-
-                    เข้าร่วมกิจกรรมปลูกต้นโกงกาง
-                    ทำบ้านปลา ณ สะพานป่าชายเลน
-                    เทศบาลบางทราย
-
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- ACT 02 -->
-
-        <article class="activity-card">
-
-            <div
-                class="activity-image"
-                data-title="ACT 02 — K-Engineering"
-            >
-
-                <div class="activity-number">
-                    ACT 02
-                </div>
-
-                <img
-                    src="S__37978134.jpg"
-                    alt="K-Engineering"
-                    loading="lazy"
-                >
-
-            </div>
-
-
-            <div class="activity-info">
-
-                <h3>
-                    K-Engineering
-                </h3>
-
-                <p>
-
-                    เข้าร่วมกิจกรรม
-                    K-Engineering World Tour
-                    and Competency Challenge 2026
-
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- ACT 03 -->
-
-        <article class="activity-card">
-
-            <div
-                class="activity-image"
-                data-title="ACT 03 — เปิดโลกวิชาการ"
-            >
-
-                <div class="activity-number">
-                    ACT 03
-                </div>
-
-                <img
-                    src="S__37978141.jpg"
-                    alt="กิจกรรมเปิดโลกวิชาการ"
-                    loading="lazy"
-                >
-
-            </div>
-
-
-            <div class="activity-info">
-
-                <h3>
-                    เปิดโลกวิชาการ
-                </h3>
-
-                <p>
-
-                    เข้าร่วมกิจกรรมเชิงปฏิบัติการ
-                    โครงการเปิดโลกวิชาการ 2026
-
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- ACT 04 -->
-
-        <article class="activity-card">
-
-            <div
-                class="activity-image"
-                data-title="ACT 04 — ผู้นำรุ่นใหม่"
-            >
-
-                <div class="activity-number">
-                    ACT 04
-                </div>
-
-                <img
-                    src="S__37978140.jpg"
-                    alt="กิจกรรมผู้นำรุ่นใหม่"
-                    loading="lazy"
-                >
-
-            </div>
-
-
-            <div class="activity-info">
-
-                <h3>
-                    ผู้นำรุ่นใหม่
-                </h3>
-
-                <p>
-
-                    อบรมกิจกรรมผู้นำรุ่นใหม่
-                    ในยุคสื่อดิจิทัล
-                    สู่ผู้สร้างการเปลี่ยนแปลงทางสังคม
-
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- ACT 05 -->
-
-        <article class="activity-card">
-
-            <div
-                class="activity-image"
-                data-title="ACT 05 — Internet Strength"
-            >
-
-                <div class="activity-number">
-                    ACT 05
-                </div>
-
-                <img
-                    src="Google_Interland_waranchit wongsupalerd_Certificate_of_Smartness.pdf - Google Chrome 9_6_2026 10_21_42 AM.png"
-                    alt="Certificate of Smartness"
-                    loading="lazy"
-                >
-
-            </div>
-
-
-            <div class="activity-info">
-
-                <h3>
-                    Internet Strength
-                </h3>
-
-                <p>
-
-                    เรียนรู้การปกป้องข้อมูลส่วนตัว
-                    และการสร้างรหัสผ่านที่ปลอดภัย
-                    จาก Google Interland
-
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- ACT 06 -->
-
-        <article class="activity-card">
-
-            <div
-                class="activity-image"
-                data-title="ACT 06 — กลุ่มอาสาไทยแลนด์"
-            >
-
-                <div class="activity-number">
-                    ACT 06
-                </div>
-
-                <img
-                    src="S__37978138.jpg"
-                    alt="กลุ่มอาสาไทยแลนด์"
-                    loading="lazy"
-                >
-
-            </div>
-
-
-            <div class="activity-info">
-
-                <h3>
-                    กลุ่มอาสาไทยแลนด์
-                </h3>
-
-                <p>
-
-                    เข้าร่วมกิจกรรมกับกลุ่มอาสาไทยแลนด์
-                    ณ หาดบางแสน
-
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- ACT 07 -->
-
-        <article class="activity-card">
-
-            <div
-                class="activity-image"
-                data-title="ACT 07 — ต่อต้านยาเสพติด"
-            >
-
-                <div class="activity-number">
-                    ACT 07
-                </div>
-
-                <img
-                    src="S__37978137.jpg"
-                    alt="กิจกรรมต่อต้านยาเสพติด"
-                    loading="lazy"
-                >
-
-            </div>
-
-
-            <div class="activity-info">
-
-                <h3>
-                    ต่อต้านยาเสพติด
-                </h3>
-
-                <p>
-
-                    เข้าร่วมอบรมกิจกรรม
-                    การป้องกันและรณรงค์
-                    การต่อต้านยาเสพติด
-
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- ACT 08 -->
-
-        <article class="activity-card">
-
-            <div
-                class="activity-image"
-                data-title="ACT 08 — AI & Cyber Security"
-            >
-
-                <div class="activity-number">
-                    ACT 08
-                </div>
-
-                <img
-                    src="S__37978136.jpg"
-                    alt="AI Cyber Security"
-                    loading="lazy"
-                >
-
-            </div>
-
-
-            <div class="activity-info">
-
-                <h3>
-                    AI & Cyber Security
-                </h3>
-
-                <p>
-
-                    Workshop ปัญญาประดิษฐ์พื้นฐาน
-                    ร่วมกับข้อมูลด้านความมั่นคงปลอดภัย
-                    ทางไซเบอร์
-
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- ACT 09 -->
-
-        <article class="activity-card">
-
-            <div
-                class="activity-image"
-                data-title="ACT 09 — Network Technology"
-            >
-
-                <div class="activity-number">
-                    ACT 09
-                </div>
-
-                <img
-                    src="S__37978135.jpg"
-                    alt="Network Technology"
-                    loading="lazy"
-                >
-
-            </div>
-
-
-            <div class="activity-info">
-
-                <h3>
-                    Network Technology
-                </h3>
-
-                <p>
-
-                    เรียนรู้ระบบเครือข่ายพื้นฐาน
-                    จากสายสื่อสารถึงอินเทอร์เน็ต
-
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- ACT 10 -->
-
-        <article class="activity-card">
-
-            <div
-                class="activity-image"
-                data-title="ACT 10 — Certificate of Smartness"
-            >
-
-                <div class="activity-number">
-                    ACT 10
-                </div>
-
-                <img
-                    src="Google_Interland_waranchit wongsupalerd_Certificate_of_Smartness.pdf - Google Chrome 9_6_2026 10_21_28 AM.png"
-                    alt="Certificate of Smartness"
-                    loading="lazy"
-                >
-
-            </div>
-
-
-            <div class="activity-info">
-
-                <h3>
-                    Certificate of Smartness
-                </h3>
-
-                <p>
-
-                    ได้รับประกาศนียบัตรจากกิจกรรม
-                    Google Interland
-                    ด้านการใช้อินเทอร์เน็ตอย่างปลอดภัย
-
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- ACT 11 -->
-
-        <article class="activity-card">
-
-            <div
-                class="activity-image"
-                data-title="ACT 11 — Certificate of Kindness"
-            >
-
-                <div class="activity-number">
-                    ACT 11
-                </div>
-
-                <img
-                    src="Google_Interland_waranchit wongsupalerd_Certificate_of_Kindness.pdf - Google Chrome 9_6_2026 10_21_12 AM.png"
-                    alt="Certificate of Kindness"
-                    loading="lazy"
-                >
-
-            </div>
-
-
-            <div class="activity-info">
-
-                <h3>
-                    Certificate of Kindness
-                </h3>
-
-                <p>
-
-                    ได้รับประกาศนียบัตร
-                    Certificate of Kindness
-                    จากกิจกรรม Google Interland
-
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- ACT 12 -->
-
-        <article class="activity-card">
-
-            <div
-                class="activity-image"
-                data-title="ACT 12 — Digital Citizenship"
-            >
-
-                <div class="activity-number">
-                    ACT 12
-                </div>
-
-                <img
-                    src="Google_Interland_waranchit wongsupalerd_Certificate_of_Kindness.pdf - Google Chrome 9_6_2026 10_19_14 AM.png"
-                    alt="Certificate of Kindness"
-                    loading="lazy"
-                >
-
-            </div>
-
-
-            <div class="activity-info">
-
-                <h3>
-                    Digital Citizenship
-                </h3>
-
-                <p>
-
-                    แสดงถึงความมีน้ำใจ
-                    ความรับผิดชอบ
-                    และการเป็นพลเมืองดิจิทัลที่ดี
-
-                </p>
-
-            </div>
-
-        </article>
 
     </div>
 
@@ -5029,61 +4280,73 @@ footer p{
 ===================================================== -->
 
 <section
-    class="section reveal"
+    class="page"
     id="skills"
+    data-index="5"
 >
 
-    <div class="section-header">
+    <div class="page-content">
 
-        <div>
+        <div class="panel">
 
-            <div class="section-index">
 
-                07 — SKILLS
+            <div class="page-header">
+
+                <div>
+
+                    <div class="page-number">
+                        06 — SKILLS
+                    </div>
+
+                    <h2>
+                        ความสามารถ
+                    </h2>
+
+                </div>
+
+                <div class="page-status">
+                    PERSONAL SKILLS
+                </div>
 
             </div>
 
-            <h2>
-                ความสามารถ
-            </h2>
 
-        </div>
+            <div class="skills">
 
-    </div>
+                <div class="skill">
+                    วิ่ง
+                </div>
 
+                <div class="skill">
+                    ปั่นจักรยาน
+                </div>
 
-    <div class="skills">
+                <div class="skill">
+                    ว่ายน้ำ
+                </div>
 
-        <div class="skill">
-            วิ่ง
-        </div>
+                <div class="skill">
+                    เล่นเกม
+                </div>
 
-        <div class="skill">
-            ปั่นจักรยาน
-        </div>
+                <div class="skill">
+                    แก้ปัญหาเฉพาะหน้า
+                </div>
 
-        <div class="skill">
-            ว่ายน้ำ
-        </div>
+                <div class="skill">
+                    ควบคุมอารมณ์
+                </div>
 
-        <div class="skill">
-            เล่นเกม
-        </div>
+                <div class="skill">
+                    มนุษยสัมพันธ์
+                </div>
 
-        <div class="skill">
-            แก้ปัญหาเฉพาะหน้า
-        </div>
+                <div class="skill">
+                    เรียนรู้สิ่งใหม่
+                </div>
 
-        <div class="skill">
-            ควบคุมอารมณ์
-        </div>
+            </div>
 
-        <div class="skill">
-            มนุษยสัมพันธ์
-        </div>
-
-        <div class="skill">
-            เรียนรู้สิ่งใหม่
         </div>
 
     </div>
@@ -5096,62 +4359,89 @@ footer p{
 ===================================================== -->
 
 <section
-    class="section reveal"
+    class="page"
     id="contact"
+    data-index="6"
 >
 
-    <div class="section-header">
+    <div class="page-content">
 
-        <div>
+        <div class="panel">
 
-            <div class="section-index">
 
-                08 — CONTACT
+            <div class="page-header">
+
+                <div>
+
+                    <div class="page-number">
+                        07 — CONTACT
+                    </div>
+
+                    <h2>
+                        ติดต่อ
+                    </h2>
+
+                </div>
+
+                <div class="page-status">
+                    GET IN TOUCH
+                </div>
 
             </div>
 
-            <h2>
-                ติดต่อ
-            </h2>
 
-        </div>
-
-    </div>
+            <div class="contact-grid">
 
 
-    <div class="contact-grid">
+                <div class="contact-box">
+
+                    <div class="contact-label">
+                        EMAIL
+                    </div>
+
+                    <a href="mailto:s37282@gmail.com">
+
+                        s37282@gmail.com
+
+                    </a>
+
+                </div>
 
 
-        <div class="contact-box">
+                <div class="contact-box">
 
-            <div class="contact-label">
-                EMAIL
+                    <div class="contact-label">
+                        GITHUB
+                    </div>
+
+                    <a
+                        href="https://github.com/yourusername"
+                        target="_blank"
+                        rel="noopener"
+                    >
+
+                        s37282.github.io
+
+                    </a>
+
+                </div>
+
             </div>
 
-            <a href="mailto:s37282@gmail.com">
 
-                s37282@gmail.com
-
-            </a>
-
-        </div>
-
-
-        <div class="contact-box">
-
-            <div class="contact-label">
-                GITHUB
-            </div>
-
-            <a
-                href="https://github.com/yourusername"
-                target="_blank"
-                rel="noopener"
+            <div
+                style="
+                    margin-top:50px;
+                    text-align:center;
+                    color:#737e94;
+                    font-size:9px;
+                    letter-spacing:3px;
+                "
             >
 
-                s37282.github.io
+                © 2026 WARANCHIT WONGSUPALERD
 
-            </a>
+            </div>
 
         </div>
 
@@ -5160,38 +4450,72 @@ footer p{
 </section>
 
 
-<!-- =====================================================
-     BACK HOME
-===================================================== -->
-
-<div class="back-home">
-
-    <a href="#top">
-
-        ↑ BACK TO TOP
-
-    </a>
-
 </div>
 
 
-</main>
+<!-- =====================================================
+     PAGE ARROWS
+===================================================== -->
+
+<button
+    class="page-arrow prev"
+    id="prevPage"
+    aria-label="Previous page"
+>
+    ←
+</button>
+
+<button
+    class="page-arrow next"
+    id="nextPage"
+    aria-label="Next page"
+>
+    →
+</button>
 
 
 <!-- =====================================================
-     FOOTER
+     PAGE DOTS
 ===================================================== -->
 
-<footer>
+<div class="page-navigation">
 
-    <p>
+    <div
+        class="page-dot active"
+        data-page="home"
+    ></div>
 
-        © 2026 WARANCHIT WONGSUPALERD
-        — FUTURISTIC SPACE PORTFOLIO
+    <div
+        class="page-dot"
+        data-page="profile"
+    ></div>
 
-    </p>
+    <div
+        class="page-dot"
+        data-page="education"
+    ></div>
 
-</footer>
+    <div
+        class="page-dot"
+        data-page="interest"
+    ></div>
+
+    <div
+        class="page-dot"
+        data-page="activity"
+    ></div>
+
+    <div
+        class="page-dot"
+        data-page="skills"
+    ></div>
+
+    <div
+        class="page-dot"
+        data-page="contact"
+    ></div>
+
+</div>
 
 
 <!-- =====================================================
@@ -5205,24 +4529,18 @@ footer p{
 
     <div class="lightbox-content">
 
-
         <button
             class="lightbox-close"
             id="lightboxClose"
-            aria-label="Close"
         >
-
             ×
-
         </button>
-
 
         <img
             id="lightboxImage"
             src=""
-            alt="Activity Preview"
+            alt=""
         >
-
 
         <div
             class="lightbox-title"
@@ -5234,348 +4552,183 @@ footer p{
 </div>
 
 
-<!-- =====================================================
-     BACK TOP
-===================================================== -->
-
-<a
-    href="#top"
-    class="back-top"
-    aria-label="Back to top"
->
-
-    ↑
-
-</a>
-
-
 <script>
 
-
 /* =========================================================
-   BASIC ELEMENTS
+   PAGE SYSTEM
 ========================================================= */
 
-const root =
-    document.documentElement;
+const pages =
+    [...document.querySelectorAll(".page")];
 
-const navbar =
-    document.querySelector(".navbar");
+const navLinks =
+    [...document.querySelectorAll(".nav-links a[data-page]")];
+
+const dots =
+    [...document.querySelectorAll(".page-dot")];
 
 const progress =
     document.querySelector(".scroll-progress");
 
-const backTop =
-    document.querySelector(".back-top");
+const navbar =
+    document.querySelector(".navbar");
+
+const prevButton =
+    document.getElementById("prevPage");
+
+const nextButton =
+    document.getElementById("nextPage");
+
+let currentIndex = 0;
+
+let isAnimating = false;
 
 
 /* =========================================================
-   MOUSE GLOW
+   PAGE CHANGE
 ========================================================= */
 
-let mx =
-    innerWidth / 2;
+function changePage(
+    target,
+    direction = 1
+){
 
-let my =
-    innerHeight / 2;
+    let index;
 
-let tx =
-    mx;
+    if(typeof target === "number"){
 
-let ty =
-    my;
+        index = target;
 
+    }else{
 
-window.addEventListener(
-    "mousemove",
-    e => {
-
-        tx =
-            e.clientX;
-
-        ty =
-            e.clientY;
-
-        document.body
-            .classList
-            .add("mouse-active");
+        index =
+            pages.findIndex(
+                page =>
+                    page.id === target
+            );
 
     }
-);
 
 
-function mouseAnimation(){
+    if(index < 0)
+        return;
 
-    mx +=
-        (tx - mx) * .08;
+    if(index === currentIndex)
+        return;
 
-    my +=
-        (ty - my) * .08;
+    if(isAnimating)
+        return;
 
-    root.style
-        .setProperty(
-            "--mx",
-            mx + "px"
-        );
 
-    root.style
-        .setProperty(
-            "--my",
-            my + "px"
-        );
+    isAnimating = true;
 
-    requestAnimationFrame(
-        mouseAnimation
+
+    const current =
+        pages[currentIndex];
+
+    const next =
+        pages[index];
+
+
+    current.classList.remove(
+        "active"
     );
+
+    current.classList.add(
+        "previous"
+    );
+
+
+    next.classList.remove(
+        "previous"
+    );
+
+    next.classList.add(
+        "active"
+    );
+
+
+    currentIndex = index;
+
+
+    updateNavigation();
+
+
+    setTimeout(
+        () => {
+
+            current.classList.remove(
+                "previous"
+            );
+
+            isAnimating = false;
+
+        },
+        900
+    );
+
 }
 
-mouseAnimation();
-
 
 /* =========================================================
-   SCROLL PROGRESS
+   NAV UPDATE
 ========================================================= */
 
-window.addEventListener(
-    "scroll",
-    () => {
+function updateNavigation(){
 
-        const top =
-            window.scrollY;
-
-        const height =
-            document.documentElement
-                .scrollHeight
-            -
-            window.innerHeight;
-
-        progress.style.width =
-            height > 0
-                ? (
-                    top /
-                    height *
-                    100
-                ) + "%"
-                : "0%";
-
-    }
-);
-
-
-/* =========================================================
-   NAVBAR
-========================================================= */
-
-window.addEventListener(
-    "scroll",
-    () => {
-
-        navbar.classList.toggle(
-            "scrolled",
-            window.scrollY > 50
-        );
-
-        backTop.classList.toggle(
-            "show",
-            window.scrollY > 600
-        );
-
-    }
-);
-
-
-/* =========================================================
-   REVEAL
-========================================================= */
-
-const reveals =
-    document.querySelectorAll(
-        ".reveal"
-    );
-
-const revealObserver =
-    new IntersectionObserver(
-        entries => {
-
-            entries.forEach(
-                entry => {
-
-                    if(
-                        entry.isIntersecting
-                    ){
-
-                        entry.target
-                            .classList
-                            .add("show");
-
-                        revealObserver
-                            .unobserve(
-                                entry.target
-                            );
-
-                    }
-
-                }
-            );
-
-        },
-        {
-            threshold:.12
-        }
-    );
-
-
-reveals.forEach(
-    el => {
-
-        revealObserver.observe(
-            el
-        );
-
-    }
-);
-
-
-/* =========================================================
-   ACTIVITY STAGGER
-========================================================= */
-
-const activityCards =
-    document.querySelectorAll(
-        ".activity-card"
-    );
-
-const activityObserver =
-    new IntersectionObserver(
-        entries => {
-
-            entries.forEach(
-                entry => {
-
-                    if(
-                        entry.isIntersecting
-                    ){
-
-                        const index =
-                            [
-                                ...activityCards
-                            ]
-                            .indexOf(
-                                entry.target
-                            );
-
-                        setTimeout(
-                            () => {
-
-                                entry.target
-                                    .classList
-                                    .add(
-                                        "visible"
-                                    );
-
-                            },
-                            (index % 3) * 120
-                        );
-
-                        activityObserver
-                            .unobserve(
-                                entry.target
-                            );
-
-                    }
-
-                }
-            );
-
-        },
-        {
-            threshold:.08
-        }
-    );
-
-
-activityCards.forEach(
-    card => {
-
-        activityObserver.observe(
-            card
-        );
-
-    }
-);
-
-
-/* =========================================================
-   ACTIVE NAV
-========================================================= */
-
-const sections =
-    document.querySelectorAll(
-        "section[id]"
-    );
-
-const links =
-    document.querySelectorAll(
-        ".nav-links a"
-    );
-
-
-function updateNav(){
-
-    let current =
-        "top";
-
-    sections.forEach(
-        section => {
-
-            if(
-                section
-                    .getBoundingClientRect()
-                    .top
-                <= 150
-            ){
-
-                current =
-                    section.id;
-
-            }
-
-        }
-    );
-
-
-    links.forEach(
+    navLinks.forEach(
         link => {
 
             link.classList.toggle(
                 "active",
-                link.getAttribute(
-                    "href"
-                )
-                ===
-                "#" + current
+                link.dataset.page ===
+                pages[currentIndex].id
             );
 
         }
     );
 
+
+    dots.forEach(
+        dot => {
+
+            dot.classList.toggle(
+                "active",
+                dot.dataset.page ===
+                pages[currentIndex].id
+            );
+
+        }
+    );
+
+
+    const total =
+        pages.length - 1;
+
+
+    progress.style.width =
+        (
+            currentIndex /
+            total *
+            100
+        ) + "%";
+
+
+    navbar.classList.toggle(
+        "scrolled",
+        currentIndex > 0
+    );
+
 }
-
-window.addEventListener(
-    "scroll",
-    updateNav
-);
-
-updateNav();
 
 
 /* =========================================================
-   SMOOTH NAVIGATION
+   NAV LINKS
 ========================================================= */
 
 document
     .querySelectorAll(
-        'a[href^="#"]'
+        ".page-link"
     )
     .forEach(
         link => {
@@ -5584,44 +4737,30 @@ document
                 "click",
                 e => {
 
-                    const id =
+                    const href =
                         link.getAttribute(
                             "href"
                         );
 
-                    const target =
-                        document.querySelector(
-                            id
+                    if(
+                        href &&
+                        href.startsWith("#")
+                    ){
+
+                        e.preventDefault();
+
+                        changePage(
+                            href.substring(1),
+                            1
                         );
 
-                    if(!target)
-                        return;
+                        history.replaceState(
+                            null,
+                            "",
+                            href
+                        );
 
-                    e.preventDefault();
-
-                    const offset =
-                        target
-                            .getBoundingClientRect()
-                            .top
-                        +
-                        window.scrollY
-                        -
-                        navbar.offsetHeight
-                        -
-                        30;
-
-                    window.scrollTo({
-
-                        top:
-                            Math.max(
-                                0,
-                                offset
-                            ),
-
-                        behavior:
-                            "smooth"
-
-                    });
+                    }
 
                 }
             );
@@ -5631,141 +4770,33 @@ document
 
 
 /* =========================================================
-   HERO PARALLAX
+   NAVBAR LINKS
 ========================================================= */
 
-const heroContent =
-    document.querySelector(
-        ".hero-content"
-    );
+navLinks.forEach(
+    link => {
 
-const heroPhoto =
-    document.querySelector(
-        ".hero-photo"
-    );
-
-
-window.addEventListener(
-    "mousemove",
-    e => {
-
-        if(innerWidth <= 900)
-            return;
-
-        const x =
-            e.clientX /
-            innerWidth
-            - .5;
-
-        const y =
-            e.clientY /
-            innerHeight
-            - .5;
-
-
-        heroContent.style.transform =
-            `
-            translate3d(
-                ${x * -8}px,
-                ${y * -6}px,
-                0
-            )
-            `;
-
-
-        heroPhoto.style.transform =
-            `
-            translate3d(
-                ${x * 12}px,
-                ${y * 9}px,
-                0
-            )
-            `;
-
-    }
-);
-
-
-/* =========================================================
-   3D CARD TILT
-========================================================= */
-
-const tiltCards =
-    document.querySelectorAll(
-        ".interest,"
-        + ".activity-card,"
-        + ".profile-card,"
-        + ".contact-box"
-    );
-
-
-tiltCards.forEach(
-    card => {
-
-        card.addEventListener(
-            "mousemove",
+        link.addEventListener(
+            "click",
             e => {
 
-                if(innerWidth <= 900)
-                    return;
+                e.preventDefault();
 
-                const rect =
-                    card.getBoundingClientRect();
+                const page =
+                    link.dataset.page;
 
-                const x =
-                    e.clientX -
-                    rect.left;
+                changePage(
+                    page,
+                    page > pages[currentIndex].id
+                        ? 1
+                        : -1
+                );
 
-                const y =
-                    e.clientY -
-                    rect.top;
-
-                const rx =
-                    (
-                        (
-                            y -
-                            rect.height / 2
-                        )
-                        /
-                        (
-                            rect.height / 2
-                        )
-                    )
-                    * -3;
-
-                const ry =
-                    (
-                        (
-                            x -
-                            rect.width / 2
-                        )
-                        /
-                        (
-                            rect.width / 2
-                        )
-                    )
-                    * 3;
-
-
-                card.style.transform =
-                    `
-                    perspective(900px)
-                    rotateX(${rx}deg)
-                    rotateY(${ry}deg)
-                    translateY(-7px)
-                    scale(1.01)
-                    `;
-
-            }
-        );
-
-
-        card.addEventListener(
-            "mouseleave",
-            () => {
-
-                card.style.transform =
-                    "";
+                history.replaceState(
+                    null,
+                    "",
+                    "#" + page
+                );
 
             }
         );
@@ -5775,137 +4806,324 @@ tiltCards.forEach(
 
 
 /* =========================================================
-   MAGNETIC BUTTON
+   DOT NAVIGATION
 ========================================================= */
 
-document
-    .querySelectorAll(
-        ".btn,.back-home a"
-    )
-    .forEach(
-        button => {
+dots.forEach(
+    dot => {
 
-            button.addEventListener(
-                "mousemove",
-                e => {
+        dot.addEventListener(
+            "click",
+            () => {
 
-                    if(innerWidth <= 900)
-                        return;
+                const page =
+                    dot.dataset.page;
 
-                    const rect =
-                        button
-                            .getBoundingClientRect();
+                changePage(
+                    page
+                );
 
-                    const x =
-                        e.clientX -
-                        rect.left -
-                        rect.width / 2;
+                history.replaceState(
+                    null,
+                    "",
+                    "#" + page
+                );
 
-                    const y =
-                        e.clientY -
-                        rect.top -
-                        rect.height / 2;
+            }
+        );
 
-
-                    button.style.transform =
-                        `
-                        translate(
-                            ${x * .12}px,
-                            ${y * .12}px
-                        )
-                        `;
-
-                }
-            );
-
-
-            button.addEventListener(
-                "mouseleave",
-                () => {
-
-                    button.style.transform =
-                        "";
-
-                }
-            );
-
-        }
-    );
+    }
+);
 
 
 /* =========================================================
-   ACTIVITY IMAGE PARALLAX
+   NEXT / PREVIOUS
 ========================================================= */
 
-document
-    .querySelectorAll(
-        ".activity-image"
-    )
-    .forEach(
-        box => {
+nextButton.addEventListener(
+    "click",
+    () => {
 
-            const image =
-                box.querySelector(
-                    "img"
-                );
+        if(
+            currentIndex <
+            pages.length - 1
+        ){
 
+            const next =
+                currentIndex + 1;
 
-            box.addEventListener(
-                "mousemove",
-                e => {
+            changePage(next);
 
-                    if(innerWidth <= 900)
-                        return;
-
-                    const rect =
-                        box.getBoundingClientRect();
-
-                    const x =
-                        (
-                            e.clientX -
-                            rect.left
-                        )
-                        /
-                        rect.width
-                        -
-                        .5;
-
-                    const y =
-                        (
-                            e.clientY -
-                            rect.top
-                        )
-                        /
-                        rect.height
-                        -
-                        .5;
-
-
-                    image.style.transform =
-                        `
-                        scale(1.08)
-                        translate(
-                            ${x * 5}px,
-                            ${y * 5}px
-                        )
-                        `;
-
-                }
-            );
-
-
-            box.addEventListener(
-                "mouseleave",
-                () => {
-
-                    image.style.transform =
-                        "";
-
-                }
+            history.replaceState(
+                null,
+                "",
+                "#" + pages[next].id
             );
 
         }
-    );
+
+    }
+);
+
+
+prevButton.addEventListener(
+    "click",
+    () => {
+
+        if(
+            currentIndex > 0
+        ){
+
+            const prev =
+                currentIndex - 1;
+
+            changePage(prev);
+
+            history.replaceState(
+                null,
+                "",
+                "#" + pages[prev].id
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   KEYBOARD
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    e => {
+
+        if(
+            e.key === "ArrowRight" ||
+            e.key === "ArrowDown"
+        ){
+
+            if(
+                currentIndex <
+                pages.length - 1
+            ){
+
+                changePage(
+                    currentIndex + 1
+                );
+
+            }
+
+        }
+
+
+        if(
+            e.key === "ArrowLeft" ||
+            e.key === "ArrowUp"
+        ){
+
+            if(
+                currentIndex > 0
+            ){
+
+                changePage(
+                    currentIndex - 1
+                );
+
+            }
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   MOUSE WHEEL PAGE CHANGE
+========================================================= */
+
+let wheelLocked = false;
+
+window.addEventListener(
+    "wheel",
+    e => {
+
+        if(
+            window.innerWidth <= 900
+        )
+            return;
+
+
+        if(wheelLocked)
+            return;
+
+
+        wheelLocked = true;
+
+
+        if(
+            e.deltaY > 0 &&
+            currentIndex <
+            pages.length - 1
+        ){
+
+            changePage(
+                currentIndex + 1
+            );
+
+        }else if(
+            e.deltaY < 0 &&
+            currentIndex > 0
+        ){
+
+            changePage(
+                currentIndex - 1
+            );
+
+        }
+
+
+        setTimeout(
+            () => {
+
+                wheelLocked = false;
+
+            },
+            1000
+        );
+
+    },
+    {
+        passive:true
+    }
+);
+
+
+/* =========================================================
+   TOUCH SWIPE
+========================================================= */
+
+let touchStartX = 0;
+
+let touchStartY = 0;
+
+document.addEventListener(
+    "touchstart",
+    e => {
+
+        touchStartX =
+            e.touches[0].clientX;
+
+        touchStartY =
+            e.touches[0].clientY;
+
+    },
+    {
+        passive:true
+    }
+);
+
+
+document.addEventListener(
+    "touchend",
+    e => {
+
+        const endX =
+            e.changedTouches[0].clientX;
+
+        const endY =
+            e.changedTouches[0].clientY;
+
+        const dx =
+            endX - touchStartX;
+
+        const dy =
+            endY - touchStartY;
+
+
+        if(
+            Math.abs(dx) >
+            Math.abs(dy) &&
+            Math.abs(dx) > 60
+        ){
+
+            if(
+                dx < 0 &&
+                currentIndex <
+                pages.length - 1
+            ){
+
+                changePage(
+                    currentIndex + 1
+                );
+
+            }
+
+            if(
+                dx > 0 &&
+                currentIndex > 0
+            ){
+
+                changePage(
+                    currentIndex - 1
+                );
+
+            }
+
+        }
+
+    },
+    {
+        passive:true
+    }
+);
+
+
+/* =========================================================
+   HASH ON LOAD
+========================================================= */
+
+function loadHash(){
+
+    const hash =
+        location.hash.replace(
+            "#",
+            ""
+        );
+
+    if(!hash)
+        return;
+
+    const index =
+        pages.findIndex(
+            page =>
+                page.id === hash
+        );
+
+    if(index >= 0){
+
+        pages.forEach(
+            page =>
+                page.classList.remove(
+                    "active"
+                )
+        );
+
+        pages[index]
+            .classList
+            .add("active");
+
+        currentIndex =
+            index;
+
+        updateNavigation();
+
+    }
+
+}
+
+loadHash();
 
 
 /* =========================================================
@@ -5944,29 +5162,24 @@ document
                 "click",
                 () => {
 
-                    const image =
+                    const img =
                         item.querySelector(
                             "img"
                         );
 
                     lightboxImage.src =
-                        image.src;
+                        img.src;
 
                     lightboxImage.alt =
-                        image.alt;
+                        img.alt;
 
                     lightboxTitle.textContent =
-                        item.dataset.title
-                        ||
-                        image.alt;
+                        item.dataset.title ||
+                        img.alt;
 
                     lightbox.classList.add(
                         "show"
                     );
-
-                    document.body.style
-                        .overflow =
-                        "hidden";
 
                 }
             );
@@ -5981,18 +5194,6 @@ function closeLightbox(){
         "show"
     );
 
-    document.body.style.overflow =
-        "";
-
-    setTimeout(
-        () => {
-
-            lightboxImage.src =
-                "";
-
-        },
-        400
-    );
 }
 
 
@@ -6035,56 +5236,146 @@ document.addEventListener(
 
 
 /* =========================================================
-   IMAGE LOADING
+   3D TILT
 ========================================================= */
 
-document
-    .querySelectorAll("img")
-    .forEach(
-        img => {
+const tiltCards =
+    document.querySelectorAll(
+        ".interest,"
+        + ".activity-card,"
+        + ".profile-card,"
+        + ".contact-box"
+    );
 
-            if(!img.complete){
 
-                img.addEventListener(
-                    "load",
-                    () => {
+tiltCards.forEach(
+    card => {
 
-                        img.classList.add(
-                            "loaded"
-                        );
+        card.addEventListener(
+            "mousemove",
+            e => {
 
-                    }
-                );
+                if(
+                    window.innerWidth <= 900
+                )
+                    return;
+
+
+                const rect =
+                    card.getBoundingClientRect();
+
+
+                const x =
+                    e.clientX -
+                    rect.left;
+
+                const y =
+                    e.clientY -
+                    rect.top;
+
+
+                const rotateX =
+                    (
+                        (
+                            y -
+                            rect.height / 2
+                        )
+                        /
+                        rect.height
+                    )
+                    * -5;
+
+
+                const rotateY =
+                    (
+                        (
+                            x -
+                            rect.width / 2
+                        )
+                        /
+                        rect.width
+                    )
+                    * 5;
+
+
+                card.style.transform =
+                    `
+                    perspective(900px)
+                    rotateX(${rotateX}deg)
+                    rotateY(${rotateY}deg)
+                    translateY(-5px)
+                    scale(1.01)
+                    `;
 
             }
-
-        }
-    );
-
-
-/* =========================================================
-   DYNAMIC YEAR
-========================================================= */
-
-const footer =
-    document.querySelector(
-        "footer p"
-    );
-
-if(footer){
-
-    footer.textContent =
-        footer.textContent.replace(
-            "2026",
-            new Date()
-                .getFullYear()
         );
 
-}
+
+        card.addEventListener(
+            "mouseleave",
+            () => {
+
+                card.style.transform =
+                    "";
+
+            }
+        );
+
+    }
+);
 
 
 /* =========================================================
-   RANDOM SPACE PARTICLES
+   HERO MOUSE PARALLAX
+========================================================= */
+
+const home =
+    document.getElementById(
+        "home"
+    );
+
+const homeContent =
+    home.querySelector(
+        ".home-content"
+    );
+
+
+window.addEventListener(
+    "mousemove",
+    e => {
+
+        if(
+            window.innerWidth <= 900
+        )
+            return;
+
+
+        const x =
+            e.clientX /
+            window.innerWidth
+            - .5;
+
+        const y =
+            e.clientY /
+            window.innerHeight
+            - .5;
+
+
+        homeContent.style.transform =
+            `
+            translate3d(
+                ${x * -8}px,
+                ${y * -5}px,
+                0
+            )
+            `;
+
+    }
+);
+
+
+/* =========================================================
+   CREATE PARTICLES
 ========================================================= */
 
 const space =
@@ -6095,7 +5386,7 @@ const space =
 
 for(
     let i = 0;
-    i < 35;
+    i < 45;
     i++
 ){
 
@@ -6104,49 +5395,60 @@ for(
             "span"
         );
 
-    particle.style.position =
-        "absolute";
 
-    particle.style.width =
-        Math.random() * 2 + 1
-        + "px";
+    particle.className =
+        "particle";
 
-    particle.style.height =
-        particle.style.width;
 
     particle.style.left =
-        Math.random() * 100
-        + "%";
+        Math.random() * 100 +
+        "%";
+
 
     particle.style.top =
-        Math.random() * 100
-        + "%";
+        Math.random() * 100 +
+        "%";
 
-    particle.style.borderRadius =
-        "50%";
 
-    particle.style.background =
-        Math.random() > .5
-        ? "#62e9ff"
-        : "#ffffff";
+    particle.style.setProperty(
+        "--x",
+        (
+            Math.random() * 100 -
+            50
+        ) + "px"
+    );
 
-    particle.style.boxShadow =
-        "0 0 10px currentColor";
+
+    particle.style.setProperty(
+        "--y",
+        (
+            Math.random() * 120 -
+            60
+        ) + "px"
+    );
+
+
+    particle.style.setProperty(
+        "--duration",
+        (
+            8 +
+            Math.random() * 15
+        ) + "s"
+    );
+
+
+    particle.style.setProperty(
+        "--delay",
+        (
+            Math.random() * 5
+        ) + "s"
+    );
+
 
     particle.style.opacity =
-        Math.random() * .7 + .2;
+        .2 +
+        Math.random() * .7;
 
-    particle.style.animation =
-        `
-        particleFloat
-        ${8 + Math.random() * 15}s
-        ease-in-out
-        infinite
-        alternate
-        `;
-
-    particle.style.animationDelay =
-        Math.random() * 5 + "s";
 
     space.appendChild(
         particle
@@ -6156,49 +5458,36 @@ for(
 
 
 /* =========================================================
-   PARTICLE ANIMATION
+   LOADER
 ========================================================= */
 
-const particleStyle =
-    document.createElement(
-        "style"
-    );
+window.addEventListener(
+    "load",
+    () => {
 
-particleStyle.innerHTML = `
+        setTimeout(
+            () => {
 
-@keyframes particleFloat{
+                document
+                    .getElementById(
+                        "loader"
+                    )
+                    .classList
+                    .add("hide");
 
-    from{
-
-        transform:
-            translate3d(
-                0,
-                0,
-                0
-            )
-            scale(1);
-
-    }
-
-    to{
-
-        transform:
-            translate3d(
-                ${Math.random() * 80 - 40}px,
-                ${Math.random() * 100 - 50}px,
-                0
-            )
-            scale(1.5);
+            },
+            900
+        );
 
     }
-
-}
-
-`;
-
-document.head.appendChild(
-    particleStyle
 );
+
+
+/* =========================================================
+   INITIAL
+========================================================= */
+
+updateNavigation();
 
 </script>
 
