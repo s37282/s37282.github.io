@@ -15,6 +15,7 @@
 ========================================================= */
 
 :root{
+
     --bg:#02030a;
     --bg2:#050816;
 
@@ -33,6 +34,7 @@
     --ease:cubic-bezier(.22,1,.36,1);
 
     --nav-height:64px;
+
 }
 
 
@@ -41,19 +43,26 @@
 ========================================================= */
 
 *{
+
     margin:0;
     padding:0;
+
     box-sizing:border-box;
+
 }
 
 html,
 body{
+
     width:100%;
     height:100%;
+
 }
 
 html{
+
     scroll-behavior:smooth;
+
 }
 
 body{
@@ -71,27 +80,40 @@ body{
     background:#02030a;
 
     overflow:hidden;
+
 }
 
 
 /* =========================================================
-   SELECTION / SCROLLBAR
+   SELECTION
 ========================================================= */
 
 ::selection{
+
     background:var(--cyan);
     color:#02030a;
+
 }
 
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
 ::-webkit-scrollbar{
+
     width:5px;
+
 }
 
 ::-webkit-scrollbar-track{
+
     background:#02030a;
+
 }
 
 ::-webkit-scrollbar-thumb{
+
     background:
         linear-gradient(
             var(--cyan),
@@ -99,11 +121,12 @@ body{
         );
 
     border-radius:20px;
+
 }
 
 
 /* =========================================================
-   PAGE LOADER
+   LOADER
 ========================================================= */
 
 .loader{
@@ -124,8 +147,10 @@ body{
     background:#02030a;
 
     transition:
+
         opacity .8s ease,
         visibility .8s ease;
+
 }
 
 .loader.hide{
@@ -135,6 +160,7 @@ body{
     visibility:hidden;
 
     pointer-events:none;
+
 }
 
 .loader-logo{
@@ -148,18 +174,23 @@ body{
     color:#fff;
 
     text-shadow:
+
         0 0 20px var(--cyan),
         0 0 50px rgba(98,233,255,.3);
 
     animation:
-        loaderPulse 1.5s ease-in-out infinite;
+
+        loaderPulse 1.5s
+        ease-in-out
+        infinite;
+
 }
 
 .loader-line{
 
-    width:180px;
+    width:200px;
 
-    height:1px;
+    height:2px;
 
     margin-top:22px;
 
@@ -167,6 +198,7 @@ body{
 
     background:
         rgba(255,255,255,.12);
+
 }
 
 .loader-line::after{
@@ -188,30 +220,40 @@ body{
             transparent
         );
 
+    box-shadow:
+        0 0 15px var(--cyan);
+
     animation:
-        loaderMove 1.3s ease-in-out infinite;
+        loaderMove 1.3s
+        ease-in-out
+        infinite;
+
 }
 
 @keyframes loaderPulse{
 
     0%,100%{
-        opacity:.55;
+        opacity:.45;
+        transform:scale(.97);
     }
 
     50%{
         opacity:1;
+        transform:scale(1.03);
     }
+
 }
 
 @keyframes loaderMove{
 
     from{
-        transform:translateX(-100%);
+        transform:translateX(-150%);
     }
 
     to{
         transform:translateX(300%);
     }
+
 }
 
 
@@ -235,23 +277,24 @@ body{
 
         radial-gradient(
             circle at 50% -10%,
-            rgba(83,115,255,.23),
+            rgba(83,115,255,.25),
             transparent 35%
         ),
 
         radial-gradient(
             circle at 0% 70%,
-            rgba(98,233,255,.10),
+            rgba(98,233,255,.12),
             transparent 32%
         ),
 
         radial-gradient(
             circle at 100% 80%,
-            rgba(167,108,255,.13),
+            rgba(167,108,255,.15),
             transparent 32%
         ),
 
         #02030a;
+
 }
 
 
@@ -309,12 +352,18 @@ body{
             transparent
         );
 
-    background-size:
-        260px 260px;
+    background-size:260px 260px;
 
     animation:
-        starMove 50s linear infinite,
-        starPulse 5s ease-in-out infinite;
+
+        starMove 50s
+        linear
+        infinite,
+
+        starPulse 5s
+        ease-in-out
+        infinite;
+
 }
 
 @keyframes starMove{
@@ -326,22 +375,24 @@ body{
     to{
         transform:translateY(260px);
     }
+
 }
 
 @keyframes starPulse{
 
     0%,100%{
-        opacity:.45;
+        opacity:.4;
     }
 
     50%{
         opacity:1;
     }
+
 }
 
 
 /* =========================================================
-   STAR FIELD
+   SECOND STAR FIELD
 ========================================================= */
 
 .star-field{
@@ -378,12 +429,18 @@ body{
             transparent
         );
 
-    background-size:
-        190px 190px;
+    background-size:190px 190px;
 
     animation:
-        starDrift 80s linear infinite,
-        starTwinkle 4s ease-in-out infinite;
+
+        starDrift 80s
+        linear
+        infinite,
+
+        starTwinkle 4s
+        ease-in-out
+        infinite;
+
 }
 
 @keyframes starDrift{
@@ -395,6 +452,7 @@ body{
     to{
         transform:translate(-120px,200px);
     }
+
 }
 
 @keyframes starTwinkle{
@@ -404,8 +462,9 @@ body{
     }
 
     50%{
-        opacity:.75;
+        opacity:.8;
     }
+
 }
 
 
@@ -426,7 +485,8 @@ body{
 
     mix-blend-mode:screen;
 
-    opacity:.15;
+    opacity:.17;
+
 }
 
 .nebula.one{
@@ -442,7 +502,11 @@ body{
         );
 
     animation:
-        nebulaOne 20s ease-in-out infinite alternate;
+        nebulaOne 20s
+        ease-in-out
+        infinite
+        alternate;
+
 }
 
 .nebula.two{
@@ -458,7 +522,11 @@ body{
         );
 
     animation:
-        nebulaTwo 26s ease-in-out infinite alternate;
+        nebulaTwo 26s
+        ease-in-out
+        infinite
+        alternate;
+
 }
 
 .nebula.three{
@@ -477,7 +545,11 @@ body{
         );
 
     animation:
-        nebulaThree 18s ease-in-out infinite alternate;
+        nebulaThree 18s
+        ease-in-out
+        infinite
+        alternate;
+
 }
 
 @keyframes nebulaOne{
@@ -493,6 +565,7 @@ body{
             translate(200px,-120px)
             scale(1.4);
     }
+
 }
 
 @keyframes nebulaTwo{
@@ -508,6 +581,7 @@ body{
             translate(-180px,-130px)
             scale(1.5);
     }
+
 }
 
 @keyframes nebulaThree{
@@ -523,6 +597,7 @@ body{
             translate(120px,-80px)
             scale(1.3);
     }
+
 }
 
 
@@ -542,14 +617,18 @@ body{
     background:
         radial-gradient(
             ellipse at center,
-            rgba(98,233,255,.07),
+            rgba(98,233,255,.08),
             transparent 65%
         );
 
     filter:blur(35px);
 
     animation:
-        auroraMove 12s ease-in-out infinite alternate;
+        auroraMove 12s
+        ease-in-out
+        infinite
+        alternate;
+
 }
 
 @keyframes auroraMove{
@@ -561,6 +640,7 @@ body{
             rotate(-2deg);
 
         opacity:.3;
+
     }
 
     to{
@@ -570,7 +650,9 @@ body{
             rotate(2deg);
 
         opacity:.8;
+
     }
+
 }
 
 
@@ -584,7 +666,7 @@ body{
 
     inset:0;
 
-    opacity:.10;
+    opacity:.09;
 
     background-image:
 
@@ -599,8 +681,7 @@ body{
             transparent 1px
         );
 
-    background-size:
-        70px 70px;
+    background-size:70px 70px;
 
     mask-image:
         radial-gradient(
@@ -610,7 +691,10 @@ body{
         );
 
     animation:
-        gridMove 30s linear infinite;
+        gridMove 30s
+        linear
+        infinite;
+
 }
 
 @keyframes gridMove{
@@ -622,6 +706,7 @@ body{
     to{
         transform:translateY(70px);
     }
+
 }
 
 
@@ -647,10 +732,12 @@ body{
         particleFloat
         var(--duration)
         ease-in-out
-        infinite alternate;
+        infinite
+        alternate;
 
     animation-delay:
         var(--delay);
+
 }
 
 @keyframes particleFloat{
@@ -658,11 +745,7 @@ body{
     from{
 
         transform:
-            translate3d(
-                0,
-                0,
-                0
-            )
+            translate3d(0,0,0)
             scale(1);
 
     }
@@ -676,7 +759,128 @@ body{
                 0
             )
             scale(1.5);
+
     }
+
+}
+
+
+/* =========================================================
+   PAGE TRANSITION ENERGY
+========================================================= */
+
+.page-flash{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:9000;
+
+    pointer-events:none;
+
+    opacity:0;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(98,233,255,.18),
+            transparent 25%
+        );
+
+}
+
+.page-flash.active{
+
+    animation:
+        pageFlash .8s
+        ease;
+
+}
+
+@keyframes pageFlash{
+
+    0%{
+        opacity:0;
+        transform:scale(.5);
+    }
+
+    35%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:0;
+        transform:scale(2);
+    }
+
+}
+
+
+/* =========================================================
+   SCAN LINE
+========================================================= */
+
+.scan-line{
+
+    position:fixed;
+
+    left:0;
+    right:0;
+
+    top:-10%;
+
+    height:2px;
+
+    z-index:8999;
+
+    pointer-events:none;
+
+    opacity:0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--cyan),
+            var(--purple),
+            transparent
+        );
+
+    box-shadow:
+        0 0 20px var(--cyan);
+
+}
+
+.scan-line.active{
+
+    animation:
+        scanPage .8s
+        ease-in-out;
+
+}
+
+@keyframes scanPage{
+
+    0%{
+        top:-10%;
+        opacity:0;
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    85%{
+        opacity:1;
+    }
+
+    100%{
+        top:110%;
+        opacity:0;
+    }
+
 }
 
 
@@ -710,6 +914,7 @@ body{
 
     transition:
         width .6s var(--ease);
+
 }
 
 
@@ -742,8 +947,7 @@ body{
 
     justify-content:space-between;
 
-    padding:
-        0 20px;
+    padding:0 20px;
 
     z-index:5000;
 
@@ -765,6 +969,7 @@ body{
 
     transition:
         .6s var(--ease);
+
 }
 
 .navbar.scrolled{
@@ -775,10 +980,13 @@ body{
         rgba(3,5,14,.92);
 
     box-shadow:
+
         0 20px 80px
         rgba(0,0,0,.8),
+
         0 0 40px
         rgba(93,124,255,.08);
+
 }
 
 .navbar::before{
@@ -802,6 +1010,7 @@ body{
             var(--purple),
             transparent
         );
+
 }
 
 
@@ -824,6 +1033,7 @@ body{
     white-space:nowrap;
 
     transition:.4s;
+
 }
 
 .logo span{
@@ -831,6 +1041,7 @@ body{
     color:#778196;
 
     font-weight:500;
+
 }
 
 .logo:hover{
@@ -841,6 +1052,7 @@ body{
 
     transform:
         translateY(-2px);
+
 }
 
 
@@ -855,6 +1067,7 @@ body{
     align-items:center;
 
     gap:3px;
+
 }
 
 .nav-links a{
@@ -871,13 +1084,13 @@ body{
 
     letter-spacing:1.4px;
 
-    padding:
-        10px 10px;
+    padding:10px;
 
     border-radius:9px;
 
     transition:
         .4s var(--ease);
+
 }
 
 .nav-links a:hover,
@@ -894,6 +1107,10 @@ body{
 
     transform:
         translateY(-2px);
+
+    text-shadow:
+        0 0 10px rgba(98,233,255,.5);
+
 }
 
 .nav-links a::after{
@@ -921,6 +1138,7 @@ body{
 
     transition:
         .4s var(--ease);
+
 }
 
 .nav-links a.active::after,
@@ -928,6 +1146,7 @@ body{
 
     transform:
         scaleX(.7);
+
 }
 
 
@@ -946,6 +1165,7 @@ body{
     height:100vh;
 
     overflow:hidden;
+
 }
 
 .page{
@@ -973,20 +1193,24 @@ body{
     pointer-events:none;
 
     transform:
-        translateX(70px)
-        scale(.96);
+        translateX(100px)
+        rotateY(-8deg)
+        scale(.94);
 
-    filter:blur(12px);
+    filter:
+        blur(18px);
 
     transition:
-        opacity .7s var(--ease),
+
+        opacity .65s var(--ease),
         transform .9s var(--ease),
         filter .8s var(--ease),
-        visibility .7s;
+        visibility .65s;
 
     overflow-y:auto;
 
-    scrollbar-width:thin;
+    perspective:1400px;
+
 }
 
 .page.active{
@@ -999,20 +1223,74 @@ body{
 
     transform:
         translateX(0)
+        rotateY(0)
         scale(1);
 
-    filter:blur(0);
+    filter:
+        blur(0);
 
     z-index:10;
+
 }
 
 .page.previous{
 
     transform:
-        translateX(-70px)
-        scale(.96);
+        translateX(-100px)
+        rotateY(8deg)
+        scale(.94);
 
-    filter:blur(12px);
+    filter:
+        blur(18px);
+
+}
+
+
+/* =========================================================
+   CONTENT ENTER
+========================================================= */
+
+.page.active .page-content{
+
+    animation:
+        pageContentIn
+        .95s
+        .08s
+        var(--ease)
+        both;
+
+}
+
+@keyframes pageContentIn{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+            translateY(55px)
+            scale(.94)
+            rotateX(7deg);
+
+    }
+
+    65%{
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1)
+            rotateX(0);
+
+    }
+
 }
 
 
@@ -1029,42 +1307,12 @@ body{
     margin:auto;
 
     position:relative;
-}
 
-.page.active .page-content{
-
-    animation:
-        pageContentIn
-        .9s
-        .15s
-        var(--ease)
-        both;
-}
-
-@keyframes pageContentIn{
-
-    from{
-
-        opacity:0;
-
-        transform:
-            translateY(40px)
-            scale(.97);
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:
-            translateY(0)
-            scale(1);
-    }
 }
 
 
 /* =========================================================
-   SECTION PANEL
+   PANEL
 ========================================================= */
 
 .panel{
@@ -1073,8 +1321,7 @@ body{
 
     width:100%;
 
-    padding:
-        48px;
+    padding:48px;
 
     border:
         1px solid
@@ -1100,6 +1347,7 @@ body{
         blur(18px);
 
     box-shadow:
+
         0 30px 100px
         rgba(0,0,0,.45),
 
@@ -1107,6 +1355,7 @@ body{
         rgba(255,255,255,.04);
 
     overflow:hidden;
+
 }
 
 .panel::before{
@@ -1121,8 +1370,8 @@ body{
         linear-gradient(
             120deg,
             transparent,
-            rgba(98,233,255,.035),
-            rgba(167,108,255,.025),
+            rgba(98,233,255,.05),
+            rgba(167,108,255,.04),
             transparent
         );
 
@@ -1133,12 +1382,45 @@ body{
         transform 1.5s var(--ease);
 
     pointer-events:none;
+
 }
 
 .panel:hover::before{
 
     transform:
         translateX(100%);
+
+}
+
+
+/* =========================================================
+   PANEL CORNERS
+========================================================= */
+
+.panel::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:14px;
+    right:14px;
+
+    width:35px;
+    height:35px;
+
+    border-top:
+        1px solid
+        rgba(98,233,255,.5);
+
+    border-right:
+        1px solid
+        rgba(167,108,255,.5);
+
+    border-radius:0 8px 0 0;
+
+    opacity:.7;
+
 }
 
 
@@ -1163,6 +1445,7 @@ body{
     border-bottom:
         1px solid
         var(--line-soft);
+
 }
 
 .page-number{
@@ -1176,16 +1459,13 @@ body{
     letter-spacing:4px;
 
     margin-bottom:10px;
+
 }
 
 .page-header h2{
 
     font-size:
-        clamp(
-            30px,
-            5vw,
-            52px
-        );
+        clamp(30px,5vw,52px);
 
     line-height:1;
 
@@ -1194,6 +1474,7 @@ body{
     font-weight:800;
 
     color:#fff;
+
 }
 
 .page-header h2::after{
@@ -1218,6 +1499,7 @@ body{
 
     box-shadow:
         0 0 15px var(--cyan);
+
 }
 
 .page-status{
@@ -1231,6 +1513,7 @@ body{
     letter-spacing:3px;
 
     white-space:nowrap;
+
 }
 
 
@@ -1248,6 +1531,10 @@ body{
     gap:80px;
 
     align-items:center;
+
+    transition:
+        transform .3s ease;
+
 }
 
 .eyebrow{
@@ -1267,6 +1554,7 @@ body{
     letter-spacing:4px;
 
     margin-bottom:25px;
+
 }
 
 .eyebrow::before{
@@ -1286,16 +1574,13 @@ body{
 
     box-shadow:
         0 0 10px var(--cyan);
+
 }
 
 .home-title{
 
     font-size:
-        clamp(
-            55px,
-            8vw,
-            105px
-        );
+        clamp(55px,8vw,105px);
 
     line-height:.88;
 
@@ -1310,6 +1595,7 @@ body{
     text-shadow:
         0 0 35px
         rgba(98,233,255,.08);
+
 }
 
 .home-title span{
@@ -1332,8 +1618,7 @@ body{
             #7080a0
         );
 
-    background-size:
-        300% auto;
+    background-size:300% auto;
 
     -webkit-background-clip:text;
 
@@ -1341,6 +1626,7 @@ body{
 
     animation:
         shimmer 7s linear infinite;
+
 }
 
 @keyframes shimmer{
@@ -1352,6 +1638,7 @@ body{
     to{
         background-position:200% center;
     }
+
 }
 
 .home-description{
@@ -1365,6 +1652,7 @@ body{
     line-height:2;
 
     margin-bottom:30px;
+
 }
 
 .home-description strong{
@@ -1374,6 +1662,7 @@ body{
     text-shadow:
         0 0 15px
         rgba(98,233,255,.25);
+
 }
 
 
@@ -1388,6 +1677,7 @@ body{
     gap:10px;
 
     flex-wrap:wrap;
+
 }
 
 .btn{
@@ -1404,8 +1694,7 @@ body{
 
     min-height:48px;
 
-    padding:
-        0 20px;
+    padding:0 20px;
 
     border:
         1px solid
@@ -1432,6 +1721,7 @@ body{
         .5s var(--ease);
 
     cursor:pointer;
+
 }
 
 .btn::before{
@@ -1441,11 +1731,9 @@ body{
     position:absolute;
 
     left:-120%;
-
     top:0;
 
     width:70%;
-
     height:100%;
 
     background:
@@ -1461,11 +1749,13 @@ body{
 
     transition:
         left .8s var(--ease);
+
 }
 
 .btn:hover::before{
 
     left:140%;
+
 }
 
 .btn.primary{
@@ -1484,6 +1774,7 @@ body{
     box-shadow:
         0 0 25px
         rgba(98,233,255,.15);
+
 }
 
 .btn:hover{
@@ -1497,11 +1788,13 @@ body{
     box-shadow:
         0 15px 45px
         rgba(98,233,255,.10);
+
 }
 
 .btn span{
 
     font-size:16px;
+
 }
 
 
@@ -1516,7 +1809,10 @@ body{
     justify-content:center;
 
     animation:
-        floatingPhoto 5s ease-in-out infinite;
+        floatingPhoto 5s
+        ease-in-out
+        infinite;
+
 }
 
 @keyframes floatingPhoto{
@@ -1528,6 +1824,7 @@ body{
     50%{
         transform:translateY(-12px);
     }
+
 }
 
 .photo-frame{
@@ -1553,6 +1850,7 @@ body{
         );
 
     box-shadow:
+
         0 35px 100px
         rgba(0,0,0,.7),
 
@@ -1561,6 +1859,7 @@ body{
 
     transition:
         .7s var(--ease);
+
 }
 
 .photo-frame::before{
@@ -1578,7 +1877,10 @@ body{
     border-radius:27px;
 
     animation:
-        framePulse 4s ease-in-out infinite;
+        framePulse 4s
+        ease-in-out
+        infinite;
+
 }
 
 @keyframes framePulse{
@@ -1592,6 +1894,7 @@ body{
         opacity:1;
         transform:scale(1.015);
     }
+
 }
 
 .photo-frame img{
@@ -1601,6 +1904,8 @@ body{
 
     object-fit:cover;
 
+    object-position:center;
+
     border-radius:14px;
 
     filter:
@@ -1609,6 +1914,7 @@ body{
 
     transition:
         .8s var(--ease);
+
 }
 
 .photo-frame:hover{
@@ -1618,11 +1924,13 @@ body{
         rotate(1deg);
 
     box-shadow:
+
         0 45px 120px
         rgba(0,0,0,.85),
 
         0 0 70px
         rgba(98,233,255,.12);
+
 }
 
 .photo-frame:hover img{
@@ -1633,6 +1941,7 @@ body{
         saturate(1.18)
         contrast(1.05)
         brightness(1.05);
+
 }
 
 .photo-tag{
@@ -1642,8 +1951,7 @@ body{
     left:25px;
     bottom:25px;
 
-    padding:
-        8px 12px;
+    padding:8px 12px;
 
     background:
         rgba(2,4,12,.78);
@@ -1662,116 +1970,9 @@ body{
 
     letter-spacing:2px;
 
-    backdrop-filter:blur(15px);
-}
+    backdrop-filter:
+        blur(15px);
 
-
-/* =========================================================
-   COVER PAGE
-========================================================= */
-
-.cover-page{
-
-    text-align:center;
-
-    padding:
-        55px;
-}
-
-.cover-label{
-
-    color:#8f9ab0;
-
-    font-size:10px;
-
-    font-weight:600;
-
-    letter-spacing:5px;
-
-    margin-bottom:25px;
-}
-
-.cover-title{
-
-    font-size:
-        clamp(
-            65px,
-            12vw,
-            145px
-        );
-
-    line-height:.8;
-
-    letter-spacing:-9px;
-
-    font-weight:800;
-
-    color:#fff;
-}
-
-.cover-title span{
-
-    display:block;
-
-    color:transparent;
-
-    -webkit-text-stroke:
-        1px rgba(120,220,255,.6);
-
-    background:
-        linear-gradient(
-            90deg,
-            #53627d,
-            #fff,
-            var(--cyan),
-            #fff,
-            var(--purple),
-            #53627d
-        );
-
-    background-size:
-        250% auto;
-
-    -webkit-background-clip:text;
-
-    background-clip:text;
-
-    animation:
-        shimmer 6s linear infinite;
-}
-
-.cover-subtitle{
-
-    margin-top:35px;
-
-    color:#8490a6;
-
-    font-size:11px;
-
-    font-weight:600;
-
-    letter-spacing:4px;
-}
-
-
-/* =========================================================
-   PREFACE
-========================================================= */
-
-.preface{
-
-    max-width:850px;
-}
-
-.preface p{
-
-    color:#d0d7e4;
-
-    font-size:15px;
-
-    line-height:2.1;
-
-    margin-bottom:20px;
 }
 
 
@@ -1789,6 +1990,7 @@ body{
     gap:45px;
 
     align-items:start;
+
 }
 
 .profile-card{
@@ -1808,6 +2010,7 @@ body{
 
     transition:
         .6s var(--ease);
+
 }
 
 .profile-card:hover{
@@ -1821,26 +2024,41 @@ body{
     box-shadow:
         0 25px 60px
         rgba(0,0,0,.5);
+
 }
 
 .profile-card img{
 
+    display:block;
+
     width:100%;
 
-    height:330px;
+    /*
+       สำคัญ:
+       ใช้ aspect-ratio เพื่อให้
+       กรอบภาพสม่ำเสมอ
+    */
+
+    aspect-ratio:4 / 5;
+
+    height:auto;
 
     object-fit:cover;
+
+    object-position:center;
 
     border-radius:12px;
 
     margin-bottom:18px;
 
     transition:.7s;
+
 }
 
 .profile-card:hover img{
 
     transform:scale(1.03);
+
 }
 
 .profile-card h3{
@@ -1848,6 +2066,7 @@ body{
     font-size:21px;
 
     margin-bottom:7px;
+
 }
 
 .profile-card p{
@@ -1859,6 +2078,7 @@ body{
     font-weight:600;
 
     letter-spacing:4px;
+
 }
 
 
@@ -1874,6 +2094,7 @@ body{
         repeat(2,1fr);
 
     gap:12px;
+
 }
 
 .info{
@@ -1891,6 +2112,7 @@ body{
 
     transition:
         .5s var(--ease);
+
 }
 
 .info:hover{
@@ -1903,12 +2125,13 @@ body{
 
     background:
         rgba(98,233,255,.035);
+
 }
 
 .info.full{
 
-    grid-column:
-        1/-1;
+    grid-column:1/-1;
+
 }
 
 .info-label{
@@ -1922,6 +2145,7 @@ body{
     letter-spacing:3px;
 
     margin-bottom:8px;
+
 }
 
 .info-value{
@@ -1931,6 +2155,7 @@ body{
     font-size:14px;
 
     line-height:1.7;
+
 }
 
 
@@ -1943,6 +2168,7 @@ body{
     display:grid;
 
     gap:15px;
+
 }
 
 .edu{
@@ -1971,6 +2197,7 @@ body{
 
     transition:
         .6s var(--ease);
+
 }
 
 .edu:hover{
@@ -1984,7 +2211,13 @@ body{
     box-shadow:
         0 20px 50px
         rgba(0,0,0,.45);
+
 }
+
+
+/*
+   ปรับรูปการศึกษาให้พอดี
+*/
 
 .edu-image{
 
@@ -1995,22 +2228,56 @@ body{
     overflow:hidden;
 
     border-radius:11px;
+
+    background:#050711;
+
+    border:
+        1px solid
+        rgba(98,233,255,.12);
+
 }
 
 .edu-image img{
+
+    display:block;
 
     width:100%;
     height:100%;
 
     object-fit:cover;
 
-    transition:.8s;
+    object-position:center;
+
+    transition:
+        .8s var(--ease);
+
 }
 
 .edu:hover .edu-image img{
 
-    transform:scale(1.08);
+    transform:scale(1.07);
+
 }
+
+
+/* =========================================================
+   EDUCATION IMAGE MODE
+   ถ้ารูปมีข้อความ/ใบประกาศ
+   ให้ใช้ contain
+========================================================= */
+
+.edu-image.contain img{
+
+    object-fit:contain;
+
+    padding:6px;
+
+}
+
+
+/* =========================================================
+   EDUCATION TEXT
+========================================================= */
 
 .edu-year{
 
@@ -2021,6 +2288,7 @@ body{
     font-weight:700;
 
     letter-spacing:2px;
+
 }
 
 .edu h3{
@@ -2028,6 +2296,7 @@ body{
     font-size:17px;
 
     margin-bottom:7px;
+
 }
 
 .edu p{
@@ -2037,6 +2306,7 @@ body{
     font-size:13px;
 
     line-height:1.7;
+
 }
 
 
@@ -2052,6 +2322,7 @@ body{
         repeat(3,1fr);
 
     gap:15px;
+
 }
 
 .interest{
@@ -2085,6 +2356,7 @@ body{
         .5s var(--ease);
 
     transform-style:preserve-3d;
+
 }
 
 .interest:hover{
@@ -2098,6 +2370,7 @@ body{
     box-shadow:
         0 25px 65px
         rgba(0,0,0,.5);
+
 }
 
 .interest-number{
@@ -2112,6 +2385,7 @@ body{
     font-size:9px;
 
     letter-spacing:2px;
+
 }
 
 .interest h3{
@@ -2121,6 +2395,7 @@ body{
     font-size:20px;
 
     margin-bottom:10px;
+
 }
 
 .interest p{
@@ -2130,6 +2405,7 @@ body{
     font-size:13px;
 
     line-height:1.8;
+
 }
 
 
@@ -2148,6 +2424,7 @@ body{
     line-height:1.9;
 
     margin-bottom:25px;
+
 }
 
 .activity-grid{
@@ -2164,6 +2441,7 @@ body{
     overflow-y:auto;
 
     padding-right:5px;
+
 }
 
 .activity-card{
@@ -2181,6 +2459,7 @@ body{
 
     transition:
         .55s var(--ease);
+
 }
 
 .activity-card:hover{
@@ -2194,6 +2473,7 @@ body{
     box-shadow:
         0 25px 70px
         rgba(0,0,0,.6);
+
 }
 
 .activity-image{
@@ -2205,6 +2485,7 @@ body{
     overflow:hidden;
 
     cursor:pointer;
+
 }
 
 .activity-image::after{
@@ -2242,7 +2523,9 @@ body{
 
     transition:.5s;
 
-    backdrop-filter:blur(10px);
+    backdrop-filter:
+        blur(10px);
+
 }
 
 .activity-image:hover::after{
@@ -2252,6 +2535,7 @@ body{
     transform:
         translate(-50%,-50%)
         scale(1);
+
 }
 
 .activity-image img{
@@ -2261,13 +2545,17 @@ body{
 
     object-fit:cover;
 
+    object-position:center;
+
     transition:.8s;
+
 }
 
 .activity-card:hover
 .activity-image img{
 
     transform:scale(1.08);
+
 }
 
 .activity-number{
@@ -2297,12 +2585,15 @@ body{
 
     letter-spacing:2px;
 
-    backdrop-filter:blur(8px);
+    backdrop-filter:
+        blur(8px);
+
 }
 
 .activity-info{
 
     padding:18px;
+
 }
 
 .activity-info h3{
@@ -2310,6 +2601,7 @@ body{
     font-size:16px;
 
     margin-bottom:8px;
+
 }
 
 .activity-info p{
@@ -2319,6 +2611,7 @@ body{
     font-size:12px;
 
     line-height:1.8;
+
 }
 
 
@@ -2333,6 +2626,7 @@ body{
     flex-wrap:wrap;
 
     gap:10px;
+
 }
 
 .skill{
@@ -2357,6 +2651,7 @@ body{
 
     transition:
         .5s var(--ease);
+
 }
 
 .skill:hover{
@@ -2375,6 +2670,11 @@ body{
 
     transform:
         translateY(-4px);
+
+    box-shadow:
+        0 10px 30px
+        rgba(98,233,255,.15);
+
 }
 
 
@@ -2390,6 +2690,7 @@ body{
         repeat(2,1fr);
 
     gap:15px;
+
 }
 
 .contact-box{
@@ -2407,6 +2708,7 @@ body{
 
     transition:
         .6s var(--ease);
+
 }
 
 .contact-box:hover{
@@ -2419,6 +2721,7 @@ body{
 
     background:
         rgba(98,233,255,.035);
+
 }
 
 .contact-label{
@@ -2432,6 +2735,7 @@ body{
     letter-spacing:4px;
 
     margin-bottom:11px;
+
 }
 
 .contact-box a{
@@ -2445,11 +2749,17 @@ body{
     word-break:break-word;
 
     transition:.4s;
+
 }
 
 .contact-box a:hover{
 
     color:var(--cyan);
+
+    text-shadow:
+        0 0 15px
+        rgba(98,233,255,.4);
+
 }
 
 
@@ -2494,6 +2804,7 @@ body{
     box-shadow:
         0 15px 50px
         rgba(0,0,0,.45);
+
 }
 
 .page-dot{
@@ -2509,6 +2820,7 @@ body{
 
     transition:
         .4s var(--ease);
+
 }
 
 .page-dot.active{
@@ -2527,6 +2839,7 @@ body{
     box-shadow:
         0 0 15px
         rgba(98,233,255,.5);
+
 }
 
 
@@ -2568,7 +2881,9 @@ body{
 
     transition:.4s;
 
-    backdrop-filter:blur(15px);
+    backdrop-filter:
+        blur(15px);
+
 }
 
 .page-arrow:hover{
@@ -2587,6 +2902,7 @@ body{
     box-shadow:
         0 0 30px
         rgba(98,233,255,.2);
+
 }
 
 .page-arrow.prev{
@@ -2613,7 +2929,6 @@ body{
     display:flex;
 
     align-items:center;
-
     justify-content:center;
 
     padding:25px;
@@ -2629,6 +2944,7 @@ body{
     visibility:hidden;
 
     transition:.5s;
+
 }
 
 .lightbox.show{
@@ -2636,6 +2952,7 @@ body{
     opacity:1;
 
     visibility:visible;
+
 }
 
 .lightbox-content{
@@ -2655,10 +2972,12 @@ body{
     gap:15px;
 
     transform:
-        scale(.85)
+        scale(.75)
         translateY(30px);
 
-    transition:.6s var(--ease);
+    transition:
+        .6s var(--ease);
+
 }
 
 .lightbox.show
@@ -2667,6 +2986,7 @@ body{
     transform:
         scale(1)
         translateY(0);
+
 }
 
 .lightbox img{
@@ -2685,7 +3005,11 @@ body{
 
     box-shadow:
         0 30px 100px
-        rgba(0,0,0,.8);
+        rgba(0,0,0,.8),
+
+        0 0 50px
+        rgba(98,233,255,.08);
+
 }
 
 .lightbox-title{
@@ -2699,6 +3023,7 @@ body{
     letter-spacing:2px;
 
     text-align:center;
+
 }
 
 .lightbox-close{
@@ -2732,6 +3057,7 @@ body{
     font-size:20px;
 
     transition:.4s;
+
 }
 
 .lightbox-close:hover{
@@ -2742,6 +3068,7 @@ body{
 
     transform:
         rotate(90deg);
+
 }
 
 
@@ -2757,6 +3084,7 @@ body{
             calc(100% - 24px);
 
         top:10px;
+
     }
 
     .nav-links a{
@@ -2767,12 +3095,16 @@ body{
         font-size:7px;
 
         letter-spacing:.7px;
+
     }
 
     .page{
 
         padding:
             95px 20px 80px;
+
+        align-items:flex-start;
+
     }
 
     .home-content{
@@ -2782,37 +3114,45 @@ body{
         gap:35px;
 
         text-align:center;
+
     }
 
     .home-photo{
 
         order:-1;
+
     }
 
     .photo-frame{
 
         width:260px;
+
         height:335px;
+
     }
 
     .eyebrow{
 
         justify-content:center;
+
     }
 
     .buttons{
 
         justify-content:center;
+
     }
 
     .panel{
 
         padding:30px 22px;
+
     }
 
     .profile-layout{
 
         grid-template-columns:1fr;
+
     }
 
     .profile-card{
@@ -2820,6 +3160,7 @@ body{
         max-width:320px;
 
         margin:auto;
+
     }
 
     .education .edu{
@@ -2830,11 +3171,15 @@ body{
             1fr;
 
         gap:15px;
+
     }
 
     .edu-image{
 
         width:170px;
+
+        height:130px;
+
     }
 
     .activity-grid{
@@ -2843,12 +3188,15 @@ body{
             repeat(2,1fr);
 
         max-height:55vh;
+
     }
 
     .interest-grid{
 
         grid-template-columns:1fr;
+
     }
+
 }
 
 
@@ -2870,6 +3218,7 @@ body{
             0 10px;
 
         border-radius:13px;
+
     }
 
     .logo{
@@ -2877,6 +3226,7 @@ body{
         font-size:9px;
 
         letter-spacing:2px;
+
     }
 
     .logo span{
@@ -2886,6 +3236,7 @@ body{
     .nav-links{
 
         gap:0;
+
     }
 
     .nav-links a{
@@ -2896,12 +3247,14 @@ body{
         font-size:5.7px;
 
         letter-spacing:.4px;
+
     }
 
     .page{
 
         padding:
             78px 12px 70px;
+
     }
 
     .panel{
@@ -2910,6 +3263,7 @@ body{
             25px 17px;
 
         border-radius:16px;
+
     }
 
     .home-title{
@@ -2922,6 +3276,7 @@ body{
             );
 
         letter-spacing:-4px;
+
     }
 
     .home-description{
@@ -2929,6 +3284,7 @@ body{
         font-size:13px;
 
         line-height:1.9;
+
     }
 
     .photo-frame{
@@ -2936,6 +3292,7 @@ body{
         width:220px;
 
         height:285px;
+
     }
 
     .page-header{
@@ -2943,31 +3300,37 @@ body{
         display:block;
 
         margin-bottom:25px;
+
     }
 
     .page-status{
 
         margin-top:15px;
+
     }
 
     .page-header h2{
 
         font-size:30px;
+
     }
 
     .preface p{
 
         font-size:13px;
+
     }
 
     .info-grid{
 
         grid-template-columns:1fr;
+
     }
 
     .info.full{
 
         grid-column:auto;
+
     }
 
     .education .edu{
@@ -2975,13 +3338,15 @@ body{
         grid-template-columns:1fr;
 
         gap:12px;
+
     }
 
     .edu-image{
 
         width:100%;
 
-        height:180px;
+        height:190px;
+
     }
 
     .activity-grid{
@@ -2989,46 +3354,33 @@ body{
         grid-template-columns:1fr;
 
         max-height:53vh;
+
     }
 
     .activity-image{
 
         height:210px;
+
     }
 
     .contact-grid{
 
         grid-template-columns:1fr;
+
     }
 
     .page-arrow{
 
         display:none;
+
     }
 
     .page-navigation{
 
         bottom:13px;
+
     }
 
-    .cover-title{
-
-        font-size:
-            clamp(
-                55px,
-                19vw,
-                90px
-            );
-
-        letter-spacing:-6px;
-    }
-
-    .cover-subtitle{
-
-        font-size:8px;
-
-        letter-spacing:2px;
-    }
 }
 
 
@@ -3045,7 +3397,9 @@ body{
         animation:none !important;
 
         transition:none !important;
+
     }
+
 }
 
 </style>
@@ -3068,6 +3422,21 @@ body{
 
     <div class="loader-line"></div>
 
+</div>
+
+
+<!-- =====================================================
+     PAGE TRANSITION EFFECT
+===================================================== -->
+
+<div
+    class="page-flash"
+    id="pageFlash">
+</div>
+
+<div
+    class="scan-line"
+    id="scanLine">
 </div>
 
 
@@ -3199,9 +3568,7 @@ body{
             <div>
 
                 <div class="eyebrow">
-
                     01 — INTRODUCTION
-
                 </div>
 
 
@@ -3270,9 +3637,7 @@ body{
                     >
 
                     <div class="photo-tag">
-
                         WARANCHIT / 2026
-
                     </div>
 
                 </div>
@@ -3418,10 +3783,8 @@ body{
                         </div>
 
                         <div class="info-value">
-
                             โรงเรียนบ้านบึง
                             "อุตสาหกรรมนุเคราะห์"
-
                         </div>
 
                     </div>
@@ -3451,9 +3814,7 @@ body{
                         </div>
 
                         <div class="info-value">
-
                             เทคโนโลยีการกีฬา
-
                         </div>
 
                     </div>
@@ -3633,6 +3994,7 @@ body{
 
                 </div>
 
+
             </div>
 
         </div>
@@ -3655,7 +4017,6 @@ body{
     <div class="page-content">
 
         <div class="panel">
-
 
             <div class="page-header">
 
@@ -3743,6 +4104,7 @@ body{
 
                 </div>
 
+
             </div>
 
         </div>
@@ -3802,8 +4164,6 @@ body{
             <div class="activity-grid">
 
 
-                <!-- 01 -->
-
                 <article class="activity-card">
 
                     <div
@@ -3840,8 +4200,6 @@ body{
 
                 </article>
 
-
-                <!-- 02 -->
 
                 <article class="activity-card">
 
@@ -3880,8 +4238,6 @@ body{
                 </article>
 
 
-                <!-- 03 -->
-
                 <article class="activity-card">
 
                     <div
@@ -3917,8 +4273,6 @@ body{
 
                 </article>
 
-
-                <!-- 04 -->
 
                 <article class="activity-card">
 
@@ -3957,8 +4311,6 @@ body{
                 </article>
 
 
-                <!-- 05 -->
-
                 <article class="activity-card">
 
                     <div
@@ -3996,8 +4348,6 @@ body{
                 </article>
 
 
-                <!-- 06 -->
-
                 <article class="activity-card">
 
                     <div
@@ -4033,8 +4383,6 @@ body{
 
                 </article>
 
-
-                <!-- 07 -->
 
                 <article class="activity-card">
 
@@ -4073,8 +4421,6 @@ body{
                 </article>
 
 
-                <!-- 08 -->
-
                 <article class="activity-card">
 
                     <div
@@ -4112,8 +4458,6 @@ body{
                 </article>
 
 
-                <!-- 09 -->
-
                 <article class="activity-card">
 
                     <div
@@ -4149,8 +4493,6 @@ body{
 
                 </article>
 
-
-                <!-- 10 -->
 
                 <article class="activity-card">
 
@@ -4189,8 +4531,6 @@ body{
                 </article>
 
 
-                <!-- 11 -->
-
                 <article class="activity-card">
 
                     <div
@@ -4228,8 +4568,6 @@ body{
                 </article>
 
 
-                <!-- 12 -->
-
                 <article class="activity-card">
 
                     <div
@@ -4265,6 +4603,7 @@ body{
                     </div>
 
                 </article>
+
 
             </div>
 
@@ -4400,9 +4739,7 @@ body{
                     </div>
 
                     <a href="mailto:s37282@gmail.com">
-
                         s37282@gmail.com
-
                     </a>
 
                 </div>
@@ -4419,12 +4756,11 @@ body{
                         target="_blank"
                         rel="noopener"
                     >
-
                         s37282.github.io
-
                     </a>
 
                 </div>
+
 
             </div>
 
@@ -4454,7 +4790,7 @@ body{
 
 
 <!-- =====================================================
-     PAGE ARROWS
+     ARROWS
 ===================================================== -->
 
 <button
@@ -4464,6 +4800,7 @@ body{
 >
     ←
 </button>
+
 
 <button
     class="page-arrow next"
@@ -4475,7 +4812,7 @@ body{
 
 
 <!-- =====================================================
-     PAGE DOTS
+     DOTS
 ===================================================== -->
 
 <div class="page-navigation">
@@ -4555,7 +4892,7 @@ body{
 <script>
 
 /* =========================================================
-   PAGE SYSTEM
+   ELEMENTS
 ========================================================= */
 
 const pages =
@@ -4579,6 +4916,13 @@ const prevButton =
 const nextButton =
     document.getElementById("nextPage");
 
+const pageFlash =
+    document.getElementById("pageFlash");
+
+const scanLine =
+    document.getElementById("scanLine");
+
+
 let currentIndex = 0;
 
 let isAnimating = false;
@@ -4588,10 +4932,7 @@ let isAnimating = false;
    PAGE CHANGE
 ========================================================= */
 
-function changePage(
-    target,
-    direction = 1
-){
+function changePage(target){
 
     let index;
 
@@ -4630,22 +4971,55 @@ function changePage(
         pages[index];
 
 
-    current.classList.remove(
-        "active"
-    );
+    /*
+       Direction
+    */
 
-    current.classList.add(
-        "previous"
-    );
+    const direction =
+        index > currentIndex
+            ? 1
+            : -1;
 
 
-    next.classList.remove(
-        "previous"
-    );
+    /*
+       Prepare next page
+    */
 
-    next.classList.add(
-        "active"
-    );
+    next.style.transform =
+        direction > 0
+            ? "translateX(100px) rotateY(-8deg) scale(.94)"
+            : "translateX(-100px) rotateY(8deg) scale(.94)";
+
+
+    /*
+       Transition effects
+    */
+
+    pageFlash.classList.remove("active");
+    scanLine.classList.remove("active");
+
+    void pageFlash.offsetWidth;
+
+    pageFlash.classList.add("active");
+    scanLine.classList.add("active");
+
+
+    /*
+       Current page
+    */
+
+    current.classList.remove("active");
+
+    current.classList.add("previous");
+
+
+    /*
+       Next page
+    */
+
+    next.classList.remove("previous");
+
+    next.classList.add("active");
 
 
     currentIndex = index;
@@ -4654,52 +5028,49 @@ function changePage(
     updateNavigation();
 
 
-    setTimeout(
-        () => {
+    /*
+       Reset
+    */
 
-            current.classList.remove(
-                "previous"
-            );
+    setTimeout(() => {
 
-            isAnimating = false;
+        next.style.transform = "";
 
-        },
-        900
-    );
+        current.classList.remove("previous");
+
+        isAnimating = false;
+
+    },900);
 
 }
 
 
 /* =========================================================
-   NAV UPDATE
+   NAVIGATION UPDATE
 ========================================================= */
 
 function updateNavigation(){
 
-    navLinks.forEach(
-        link => {
+    navLinks.forEach(link => {
 
-            link.classList.toggle(
-                "active",
-                link.dataset.page ===
-                pages[currentIndex].id
-            );
+        link.classList.toggle(
+            "active",
+            link.dataset.page ===
+            pages[currentIndex].id
+        );
 
-        }
-    );
+    });
 
 
-    dots.forEach(
-        dot => {
+    dots.forEach(dot => {
 
-            dot.classList.toggle(
-                "active",
-                dot.dataset.page ===
-                pages[currentIndex].id
-            );
+        dot.classList.toggle(
+            "active",
+            dot.dataset.page ===
+            pages[currentIndex].id
+        );
 
-        }
-    );
+    });
 
 
     const total =
@@ -4723,224 +5094,200 @@ function updateNavigation(){
 
 
 /* =========================================================
-   NAV LINKS
+   PAGE LINKS
 ========================================================= */
 
 document
-    .querySelectorAll(
-        ".page-link"
-    )
-    .forEach(
-        link => {
+.querySelectorAll(".page-link")
+.forEach(link => {
 
-            link.addEventListener(
-                "click",
-                e => {
+    link.addEventListener("click",e => {
 
-                    const href =
-                        link.getAttribute(
-                            "href"
-                        );
+        const href =
+            link.getAttribute("href");
 
-                    if(
-                        href &&
-                        href.startsWith("#")
-                    ){
-
-                        e.preventDefault();
-
-                        changePage(
-                            href.substring(1),
-                            1
-                        );
-
-                        history.replaceState(
-                            null,
-                            "",
-                            href
-                        );
-
-                    }
-
-                }
-            );
-
-        }
-    );
-
-
-/* =========================================================
-   NAVBAR LINKS
-========================================================= */
-
-navLinks.forEach(
-    link => {
-
-        link.addEventListener(
-            "click",
-            e => {
-
-                e.preventDefault();
-
-                const page =
-                    link.dataset.page;
-
-                changePage(
-                    page,
-                    page > pages[currentIndex].id
-                        ? 1
-                        : -1
-                );
-
-                history.replaceState(
-                    null,
-                    "",
-                    "#" + page
-                );
-
-            }
-        );
-
-    }
-);
-
-
-/* =========================================================
-   DOT NAVIGATION
-========================================================= */
-
-dots.forEach(
-    dot => {
-
-        dot.addEventListener(
-            "click",
-            () => {
-
-                const page =
-                    dot.dataset.page;
-
-                changePage(
-                    page
-                );
-
-                history.replaceState(
-                    null,
-                    "",
-                    "#" + page
-                );
-
-            }
-        );
-
-    }
-);
-
-
-/* =========================================================
-   NEXT / PREVIOUS
-========================================================= */
-
-nextButton.addEventListener(
-    "click",
-    () => {
 
         if(
-            currentIndex <
-            pages.length - 1
+            href &&
+            href.startsWith("#")
         ){
 
-            const next =
-                currentIndex + 1;
+            e.preventDefault();
 
-            changePage(next);
+
+            changePage(
+                href.substring(1)
+            );
+
 
             history.replaceState(
                 null,
                 "",
-                "#" + pages[next].id
+                href
             );
 
         }
 
+    });
+
+});
+
+
+/* =========================================================
+   NAV LINKS
+========================================================= */
+
+navLinks.forEach(link => {
+
+    link.addEventListener("click",e => {
+
+        e.preventDefault();
+
+
+        const page =
+            link.dataset.page;
+
+
+        changePage(page);
+
+
+        history.replaceState(
+            null,
+            "",
+            "#" + page
+        );
+
+    });
+
+});
+
+
+/* =========================================================
+   DOTS
+========================================================= */
+
+dots.forEach(dot => {
+
+    dot.addEventListener("click",() => {
+
+        const page =
+            dot.dataset.page;
+
+
+        changePage(page);
+
+
+        history.replaceState(
+            null,
+            "",
+            "#" + page
+        );
+
+    });
+
+});
+
+
+/* =========================================================
+   NEXT
+========================================================= */
+
+nextButton.addEventListener("click",() => {
+
+    if(
+        currentIndex <
+        pages.length - 1
+    ){
+
+        const next =
+            currentIndex + 1;
+
+
+        changePage(next);
+
+
+        history.replaceState(
+            null,
+            "",
+            "#" + pages[next].id
+        );
+
     }
-);
+
+});
 
 
-prevButton.addEventListener(
-    "click",
-    () => {
+/* =========================================================
+   PREVIOUS
+========================================================= */
 
-        if(
-            currentIndex > 0
-        ){
+prevButton.addEventListener("click",() => {
 
-            const prev =
-                currentIndex - 1;
+    if(currentIndex > 0){
 
-            changePage(prev);
+        const prev =
+            currentIndex - 1;
 
-            history.replaceState(
-                null,
-                "",
-                "#" + pages[prev].id
-            );
 
-        }
+        changePage(prev);
+
+
+        history.replaceState(
+            null,
+            "",
+            "#" + pages[prev].id
+        );
 
     }
-);
+
+});
 
 
 /* =========================================================
    KEYBOARD
 ========================================================= */
 
-document.addEventListener(
-    "keydown",
-    e => {
+document.addEventListener("keydown",e => {
+
+    if(
+        e.key === "ArrowRight" ||
+        e.key === "ArrowDown"
+    ){
 
         if(
-            e.key === "ArrowRight" ||
-            e.key === "ArrowDown"
+            currentIndex <
+            pages.length - 1
         ){
 
-            if(
-                currentIndex <
-                pages.length - 1
-            ){
-
-                changePage(
-                    currentIndex + 1
-                );
-
-            }
-
-        }
-
-
-        if(
-            e.key === "ArrowLeft" ||
-            e.key === "ArrowUp"
-        ){
-
-            if(
-                currentIndex > 0
-            ){
-
-                changePage(
-                    currentIndex - 1
-                );
-
-            }
+            changePage(
+                currentIndex + 1
+            );
 
         }
 
     }
-);
+
+
+    if(
+        e.key === "ArrowLeft" ||
+        e.key === "ArrowUp"
+    ){
+
+        if(currentIndex > 0){
+
+            changePage(
+                currentIndex - 1
+            );
+
+        }
+
+    }
+
+});
 
 
 /* =========================================================
-   MOUSE WHEEL PAGE CHANGE
+   MOUSE WHEEL
 ========================================================= */
 
 let wheelLocked = false;
@@ -4949,9 +5296,7 @@ window.addEventListener(
     "wheel",
     e => {
 
-        if(
-            window.innerWidth <= 900
-        )
+        if(window.innerWidth <= 900)
             return;
 
 
@@ -4972,7 +5317,9 @@ window.addEventListener(
                 currentIndex + 1
             );
 
-        }else if(
+        }
+
+        else if(
             e.deltaY < 0 &&
             currentIndex > 0
         ){
@@ -4984,14 +5331,11 @@ window.addEventListener(
         }
 
 
-        setTimeout(
-            () => {
+        setTimeout(() => {
 
-                wheelLocked = false;
+            wheelLocked = false;
 
-            },
-            1000
-        );
+        },1000);
 
     },
     {
@@ -5007,6 +5351,7 @@ window.addEventListener(
 let touchStartX = 0;
 
 let touchStartY = 0;
+
 
 document.addEventListener(
     "touchstart",
@@ -5035,6 +5380,7 @@ document.addEventListener(
         const endY =
             e.changedTouches[0].clientY;
 
+
         const dx =
             endX - touchStartX;
 
@@ -5060,6 +5406,7 @@ document.addEventListener(
 
             }
 
+
             if(
                 dx > 0 &&
                 currentIndex > 0
@@ -5081,19 +5428,18 @@ document.addEventListener(
 
 
 /* =========================================================
-   HASH ON LOAD
+   HASH
 ========================================================= */
 
 function loadHash(){
 
     const hash =
-        location.hash.replace(
-            "#",
-            ""
-        );
+        location.hash.replace("#","");
+
 
     if(!hash)
         return;
+
 
     const index =
         pages.findIndex(
@@ -5101,21 +5447,24 @@ function loadHash(){
                 page.id === hash
         );
 
+
     if(index >= 0){
 
-        pages.forEach(
-            page =>
-                page.classList.remove(
-                    "active"
-                )
-        );
+        pages.forEach(page => {
+
+            page.classList.remove("active");
+
+        });
+
 
         pages[index]
             .classList
             .add("active");
 
+
         currentIndex =
             index;
+
 
         updateNavigation();
 
@@ -5131,68 +5480,51 @@ loadHash();
 ========================================================= */
 
 const lightbox =
-    document.getElementById(
-        "lightbox"
-    );
+    document.getElementById("lightbox");
 
 const lightboxImage =
-    document.getElementById(
-        "lightboxImage"
-    );
+    document.getElementById("lightboxImage");
 
 const lightboxTitle =
-    document.getElementById(
-        "lightboxTitle"
-    );
+    document.getElementById("lightboxTitle");
 
 const lightboxClose =
-    document.getElementById(
-        "lightboxClose"
-    );
+    document.getElementById("lightboxClose");
 
 
 document
-    .querySelectorAll(
-        ".activity-image"
-    )
-    .forEach(
-        item => {
+.querySelectorAll(".activity-image")
+.forEach(item => {
 
-            item.addEventListener(
-                "click",
-                () => {
+    item.addEventListener("click",() => {
 
-                    const img =
-                        item.querySelector(
-                            "img"
-                        );
+        const img =
+            item.querySelector("img");
 
-                    lightboxImage.src =
-                        img.src;
 
-                    lightboxImage.alt =
-                        img.alt;
+        lightboxImage.src =
+            img.src;
 
-                    lightboxTitle.textContent =
-                        item.dataset.title ||
-                        img.alt;
 
-                    lightbox.classList.add(
-                        "show"
-                    );
+        lightboxImage.alt =
+            img.alt;
 
-                }
-            );
 
-        }
-    );
+        lightboxTitle.textContent =
+            item.dataset.title ||
+            img.alt;
+
+
+        lightbox.classList.add("show");
+
+    });
+
+});
 
 
 function closeLightbox(){
 
-    lightbox.classList.remove(
-        "show"
-    );
+    lightbox.classList.remove("show");
 
 }
 
@@ -5223,9 +5555,7 @@ document.addEventListener(
     "keydown",
     e => {
 
-        if(
-            e.key === "Escape"
-        ){
+        if(e.key === "Escape"){
 
             closeLightbox();
 
@@ -5248,105 +5578,94 @@ const tiltCards =
     );
 
 
-tiltCards.forEach(
-    card => {
+tiltCards.forEach(card => {
 
-        card.addEventListener(
-            "mousemove",
-            e => {
+    card.addEventListener(
+        "mousemove",
+        e => {
 
-                if(
-                    window.innerWidth <= 900
+            if(window.innerWidth <= 900)
+                return;
+
+
+            const rect =
+                card.getBoundingClientRect();
+
+
+            const x =
+                e.clientX -
+                rect.left;
+
+            const y =
+                e.clientY -
+                rect.top;
+
+
+            const rotateX =
+                (
+                    (
+                        y -
+                        rect.height / 2
+                    )
+                    /
+                    rect.height
                 )
-                    return;
+                * -5;
 
 
-                const rect =
-                    card.getBoundingClientRect();
-
-
-                const x =
-                    e.clientX -
-                    rect.left;
-
-                const y =
-                    e.clientY -
-                    rect.top;
-
-
-                const rotateX =
+            const rotateY =
+                (
                     (
-                        (
-                            y -
-                            rect.height / 2
-                        )
-                        /
-                        rect.height
+                        x -
+                        rect.width / 2
                     )
-                    * -5;
+                    /
+                    rect.width
+                )
+                * 5;
 
 
-                const rotateY =
-                    (
-                        (
-                            x -
-                            rect.width / 2
-                        )
-                        /
-                        rect.width
-                    )
-                    * 5;
+            card.style.transform =
+                `
+                perspective(900px)
+                rotateX(${rotateX}deg)
+                rotateY(${rotateY}deg)
+                translateY(-5px)
+                scale(1.01)
+                `;
+
+        }
+    );
 
 
-                card.style.transform =
-                    `
-                    perspective(900px)
-                    rotateX(${rotateX}deg)
-                    rotateY(${rotateY}deg)
-                    translateY(-5px)
-                    scale(1.01)
-                    `;
+    card.addEventListener(
+        "mouseleave",
+        () => {
 
-            }
-        );
+            card.style.transform = "";
 
+        }
+    );
 
-        card.addEventListener(
-            "mouseleave",
-            () => {
-
-                card.style.transform =
-                    "";
-
-            }
-        );
-
-    }
-);
+});
 
 
 /* =========================================================
-   HERO MOUSE PARALLAX
+   HERO PARALLAX
 ========================================================= */
 
 const home =
-    document.getElementById(
-        "home"
-    );
+    document.getElementById("home");
 
 const homeContent =
-    home.querySelector(
-        ".home-content"
-    );
+    home.querySelector(".home-content");
 
 
 window.addEventListener(
     "mousemove",
     e => {
 
-        if(
-            window.innerWidth <= 900
-        )
+        if(window.innerWidth <= 900)
             return;
 
 
@@ -5354,6 +5673,7 @@ window.addEventListener(
             e.clientX /
             window.innerWidth
             - .5;
+
 
         const y =
             e.clientY /
@@ -5384,16 +5704,10 @@ const space =
     );
 
 
-for(
-    let i = 0;
-    i < 45;
-    i++
-){
+for(let i=0;i<55;i++){
 
     const particle =
-        document.createElement(
-            "span"
-        );
+        document.createElement("span");
 
 
     particle.className =
@@ -5401,13 +5715,11 @@ for(
 
 
     particle.style.left =
-        Math.random() * 100 +
-        "%";
+        Math.random() * 100 + "%";
 
 
     particle.style.top =
-        Math.random() * 100 +
-        "%";
+        Math.random() * 100 + "%";
 
 
     particle.style.setProperty(
@@ -5465,19 +5777,14 @@ window.addEventListener(
     "load",
     () => {
 
-        setTimeout(
-            () => {
+        setTimeout(() => {
 
-                document
-                    .getElementById(
-                        "loader"
-                    )
-                    .classList
-                    .add("hide");
+            document
+                .getElementById("loader")
+                .classList
+                .add("hide");
 
-            },
-            900
-        );
+        },900);
 
     }
 );
@@ -5492,4 +5799,5 @@ updateNavigation();
 </script>
 
 </body>
+
 </html>
