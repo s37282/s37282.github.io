@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="th">
 
@@ -11,399 +10,1301 @@
 
 <link rel="stylesheet" href="style.css">
 
+<style>
+
+/* =========================================================
+   ACTIVITY GALLERY
+========================================================= */
+
+.activity-section{
+    margin-top:120px;
+    padding-bottom:80px;
+}
+
+.activity-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px;
+    margin-top:50px;
+}
+
+.activity-card{
+    position:relative;
+    overflow:hidden;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    border-radius:20px;
+
+    backdrop-filter:blur(12px);
+
+    transition:
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+}
+
+.activity-card:hover{
+    transform:translateY(-8px);
+
+    border-color:rgba(255,255,255,.35);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.35);
+}
+
+
+/* IMAGE */
+
+.activity-img{
+    width:100%;
+    aspect-ratio:16/10;
+
+    overflow:hidden;
+
+    cursor:pointer;
+
+    background:#080a12;
+}
+
+.activity-img img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    transition:
+        transform .5s ease,
+        filter .5s ease;
+}
+
+.activity-card:hover .activity-img img{
+    transform:scale(1.06);
+}
+
+
+/* INFO */
+
+.activity-info{
+    padding:20px 22px 24px;
+}
+
+.activity-info span{
+    display:block;
+
+    font-size:12px;
+    letter-spacing:2px;
+
+    opacity:.55;
+
+    margin-bottom:8px;
+}
+
+.activity-info h2{
+    font-size:18px;
+    line-height:1.5;
+
+    margin:0;
+}
+
+
+/* =========================================================
+   LIGHTBOX
+========================================================= */
+
+.lightbox{
+    position:fixed;
+
+    inset:0;
+
+    z-index:9999;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:30px;
+
+    background:rgba(0,0,0,.88);
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:
+        opacity .3s ease,
+        visibility .3s ease;
+}
+
+.lightbox.show{
+    opacity:1;
+    visibility:visible;
+}
+
+.lightbox img{
+    max-width:92vw;
+    max-height:88vh;
+
+    width:auto;
+    height:auto;
+
+    object-fit:contain;
+
+    border-radius:12px;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.6);
+
+    transform:scale(.94);
+
+    transition:transform .3s ease;
+}
+
+.lightbox.show img{
+    transform:scale(1);
+}
+
+.close-lightbox{
+    position:absolute;
+
+    top:25px;
+    right:30px;
+
+    width:45px;
+    height:45px;
+
+    border:0;
+    border-radius:50%;
+
+    background:rgba(255,255,255,.1);
+
+    color:#fff;
+
+    font-size:30px;
+    line-height:1;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    z-index:2;
+}
+
+.close-lightbox:hover{
+    background:rgba(255,255,255,.2);
+
+    transform:rotate(90deg);
+}
+
+
+/* =========================================================
+   REDUCE MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    .activity-card,
+    .activity-img img,
+    .lightbox,
+    .lightbox img,
+    .close-lightbox{
+        transition:none !important;
+    }
+
+    .activity-card:hover{
+        transform:none;
+    }
+
+    .activity-card:hover .activity-img img{
+        transform:none;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:900px){
+
+    .activity-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:600px){
+
+    .activity-section{
+        margin-top:80px;
+    }
+
+    .activity-grid{
+        grid-template-columns:1fr;
+
+        gap:20px;
+    }
+
+    .activity-info{
+        padding:16px 18px 20px;
+    }
+
+    .activity-info h2{
+        font-size:16px;
+    }
+
+    .lightbox{
+        padding:15px;
+    }
+
+    .lightbox img{
+        max-width:96vw;
+        max-height:82vh;
+    }
+
+    .close-lightbox{
+        top:15px;
+        right:15px;
+
+        width:42px;
+        height:42px;
+    }
+
+}
+
+</style>
+
 </head>
+
 
 <body>
 
+
+<!-- =========================================================
+     PAGE TRANSITION
+========================================================= -->
+
 <div class="page-transition"></div>
 
+
+<!-- =========================================================
+     BACKGROUND
+========================================================= -->
+
 <div class="stars"></div>
+
 <div class="nebula one"></div>
 <div class="nebula two"></div>
 <div class="nebula three"></div>
 
 
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
 <nav class="navbar">
 
-<div class="nav-container">
+    <div class="nav-container">
 
-<a href="index.html" class="logo">
-MY<span>PORTFOLIO</span>
-</a>
+        <a href="index.html" class="logo">
+            MY<span>PORTFOLIO</span>
+        </a>
 
-<ul class="nav-links">
-<li><a href="index.html">หน้าหลัก</a></li>
-<li><a href="preface.html">คำนำ</a></li>
-<li><a href="profile.html">ประวัติส่วนตัว</a></li>
-<li><a href="education.html">การศึกษา</a></li>
-<li><a href="interests.html">ศึกษาต่อ</a></li>
-<li><a href="certificates.html" class="active">เกียรติบัตร</a></li>
-<li><a href="contact.html">ติดต่อ</a></li>
-</ul>
 
-</div>
+        <ul class="nav-links">
+
+            <li>
+                <a href="index.html">
+                    หน้าหลัก
+                </a>
+            </li>
+
+            <li>
+                <a href="preface.html">
+                    คำนำ
+                </a>
+            </li>
+
+            <li>
+                <a href="profile.html">
+                    ประวัติส่วนตัว
+                </a>
+            </li>
+
+            <li>
+                <a href="education.html">
+                    การศึกษา
+                </a>
+            </li>
+
+            <li>
+                <a href="interests.html">
+                    ศึกษาต่อ
+                </a>
+            </li>
+
+            <li>
+                <a href="certificates.html" class="active">
+                    เกียรติบัตร
+                </a>
+            </li>
+
+            <li>
+                <a href="contact.html">
+                    ติดต่อ
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+
 </nav>
 
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
 
 <main class="page">
 
 <div class="container">
 
+
+<!-- =========================================================
+     PAGE TITLE
+========================================================= -->
+
 <div class="section-title">
 
-<small>CERTIFICATES</small>
+    <small>
+        CERTIFICATES
+    </small>
 
-<h1>เกียรติบัตร</h1>
+    <h1>
+        เกียรติบัตร
+    </h1>
 
-<p>
-รวบรวมเกียรติบัตรและผลงานที่ได้รับจากกิจกรรมต่าง ๆ
-</p>
+    <p>
+        รวบรวมเกียรติบัตรและผลงานที่ได้รับจากกิจกรรมต่าง ๆ
+    </p>
 
 </div>
 
+
+
+<!-- =========================================================
+     CERTIFICATE GRID
+========================================================= -->
 
 <div class="certificate-grid">
 
 
-<!-- 01 -->
+<!-- =========================================================
+     CERTIFICATE 01
+========================================================= -->
 
 <div class="card certificate-card reveal">
 
-<div class="certificate-img">
+    <div class="certificate-img">
 
-<img src="S__37978134.jpg"
-alt="เกียรติบัตร 1">
+        <img
+            src="S__37978134.jpg"
+            alt="เกียรติบัตร 1"
+        >
+
+    </div>
+
+
+    <div class="certificate-info">
+
+        <span>
+            CERTIFICATE 01
+        </span>
+
+        <h2>
+            เกียรติบัตรเข้าร่วมกิจกรรม K-Engineering World Tour and Competency Challenge 2026
+        </h2>
+
+        <p>
+            เกียรติบัตรฉบับนี้ออกโดย คณะวิศวกรรมศาสตร์
+            สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง (KMITL)
+            เพื่อรับรองว่า วรัญชิต วงศ์ศุภเลิศ
+            ได้ผ่านการเข้าร่วมกิจกรรม
+            "K-Engineering World Tour and Competency Challenge 2026"
+            เมื่อวันที่ 5 กรกฎาคม พ.ศ. 2569
+            ลงนามโดย รองศาสตราจารย์ ดร.สมยศ เกียรติวุฒินนทวิไล
+            คณบดีคณะวิศวกรรมศาสตร์
+        </p>
+
+    </div>
 
 </div>
 
-<div class="certificate-info">
-
-<span>CERTIFICATE 01</span>
-
-<h2>เกียรติบัตรเข้าร่วมกิจกรรม K-Engineering World Tour and Competency Challenge 2026</h2>
-
-<p>
-คเกียรติบัตรฉบับนี้ออกโดย คณะวิศวกรรมศาสตร์ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง (KMITL) เพื่อรับรองว่า วรัญชิต วงศ์ศุภเลิศ ได้ผ่านการเข้าร่วมกิจกรรม "K-Engineering World Tour and Competency Challenge 2026" เมื่อวันที่ 5 กรกฎาคม พ.ศ. 2569 ลงนามโดย รองศาสตราจารย์ ดร.สมยศ เกียรติวุฒินนทวิไล คณบดีคณะวิศวกรรมศาสตร์
-</p>
-
-</div>
-
-</div>
 
 
-<!-- 02 -->
+<!-- =========================================================
+     CERTIFICATE 02
+========================================================= -->
 
 <div class="card certificate-card reveal">
 
-<div class="certificate-img">
+    <div class="certificate-img">
 
-<img src="S__37978135.jpg"
-alt="เกียรติบัตร 2">
+        <img
+            src="S__37978135.jpg"
+            alt="เกียรติบัตร 2"
+        >
+
+    </div>
+
+
+    <div class="certificate-info">
+
+        <span>
+            CERTIFICATE 02
+        </span>
+
+        <h2>
+            เกียรติบัตรเข้าร่วม Workshop หัวข้อ ระบบเครือข่ายพื้นฐานจากสายสื่อสารถึงอินเทอร์เน็ต [EE, Computing]
+        </h2>
+
+        <p>
+            เกียรติบัตรฉบับนี้ออกโดย คณะวิศวกรรมศาสตร์
+            สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง (KMITL)
+            เพื่อรับรองว่า วรัญชิต วงศ์ศุภเลิศ
+            ได้ผ่านการเข้าร่วมกิจกรรม
+            "K-Engineering World Tour and Competency Challenge 2026"
+            เมื่อวันที่ 5 กรกฎาคม พ.ศ. 2569
+            ลงนามโดย รองศาสตราจารย์ ดร.สมยศ เกียรติวุฒินนทวิไล
+            คณบดีคณะวิศวกรรมศาสตร์
+        </p>
+
+    </div>
 
 </div>
 
-<div class="certificate-info">
-
-<span>CERTIFICATE 02</span>
-
-<h2>เกียรติบัตรเข้าร่วม Workshop หัวข้อ ระบบเครือข่ายพื้นฐานจากสายสื่อสารถึงอินเทอร์เน็ต [EE, Computing]</h2>
-
-<p>
-คเกียรติบัตรฉบับนี้ออกโดย คณะวิศวกรรมศาสตร์ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง (KMITL) เพื่อรับรองว่า วรัญชิต วงศ์ศุภเลิศ ได้ผ่านการเข้าร่วมกิจกรรม "K-Engineering World Tour and Competency Challenge 2026" เมื่อวันที่ 5 กรกฎาคม พ.ศ. 2569 ลงนามโดย รองศาสตราจารย์ ดร.สมยศ เกียรติวุฒินนทวิไล คณบดีคณะวิศวกรรมศาสต
-</p>
-
-</div>
-
-</div>
 
 
-<!-- 03 -->
+<!-- =========================================================
+     CERTIFICATE 03
+========================================================= -->
 
 <div class="card certificate-card reveal">
 
-<div class="certificate-img">
+    <div class="certificate-img">
 
-<img src="S__37978136.jpg"
-alt="เกียรติบัตร 3">
+        <img
+            src="S__37978136.jpg"
+            alt="เกียรติบัตร 3"
+        >
+
+    </div>
+
+
+    <div class="certificate-info">
+
+        <span>
+            CERTIFICATE 03
+        </span>
+
+        <h2>
+            เกียรติบัตรเข้าร่วม Workshop หัวข้อ ปัญญาประดิษฐ์พื้นฐานร่วมกับข้อมูลด้านความมั่นคงปลอดภัยทางไซเบอร์ [EE, Computing]
+        </h2>
+
+        <p>
+            เกียรติบัตรฉบับนี้ออกโดย คณะวิศวกรรมศาสตร์
+            สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง (KMITL)
+            เพื่อรับรองว่า วรัญชิต วงศ์ศุภเลิศ
+            ได้เข้าร่วมการฝึกอบรมเชิงปฏิบัติการ (Workshop)
+            หัวข้อ "ปัญญาประดิษฐ์พื้นฐานร่วมกับข้อมูลด้านความมั่นคงปลอดภัยทางไซเบอร์ [EE, Computing]"
+            ในงาน K-ENGINEERING WORLD TOUR AND COMPETENCY CHALLENGE 2026
+            เมื่อวันที่ 5 กรกฎาคม พ.ศ. 2569
+            ลงนามโดย รองศาสตราจารย์ ดร.สมยศ เกียรติวุฒินนทวิไล
+            คณบดีคณะวิศวกรรมศาสตร์
+        </p>
+
+    </div>
 
 </div>
 
-<div class="certificate-info">
-
-<span>CERTIFICATE 03</span>
-
-<h2>เกียรติบัตรเข้าร่วม Workshop หัวข้อ ปัญญาประดิษฐ์พื้นฐานร่วมกับข้อมูลด้านความมั่นคงปลอดภัยทางไซเบอร์ [EE, Computing]</h2>
-
-<p>
-เกียรติบัตรฉบับนี้ออกโดย คณะวิศวกรรมศาสตร์ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง (KMITL) เพื่อรับรองว่า วรัญชิต วงศ์ศุภเลิศ ได้เข้าร่วมการฝึกอบรมเชิงปฏิบัติการ (Workshop) หัวข้อ "ปัญญาประดิษฐ์พื้นฐานร่วมกับข้อมูลด้านความมั่นคงปลอดภัยทางไซเบอร์ [EE, Computing]" ในงาน K-ENGINEERING WORLD TOUR AND COMPETENCY CHALLENGE 2026 เมื่อวันที่ 5 กรกฎาคม พ.ศ. 2569 ลงนามโดย รองศาสตราจารย์ ดร.สมยศ เกียรติวุฒินนทวิไล คณบดีคณะวิศวกรรมศาสตร์
-<p>
-
-</div>
-
-</div>
 
 
-<!-- 04 -->
+<!-- =========================================================
+     CERTIFICATE 04
+========================================================= -->
 
 <div class="card certificate-card reveal">
 
-<div class="certificate-img">
+    <div class="certificate-img">
 
-<img src="S__37978137.jpg"
-alt="เกียรติบัตร 4">
+        <img
+            src="S__37978137.jpg"
+            alt="เกียรติบัตร 4"
+        >
+
+    </div>
+
+
+    <div class="certificate-info">
+
+        <span>
+            CERTIFICATE 04
+        </span>
+
+        <h2>
+            ใบประกาศรับรองการเข้าร่วมอบรมกิจกรรมการป้องกันและรณรงค์ต่อต้านยาเสพติด
+        </h2>
+
+        <p>
+            ใบประกาศฉบับนี้ออกโดย
+            กองอำนวยการรักษาความมั่นคงภายในจังหวัดเพชรบุรี
+            (กอ.รมน.จังหวัด เพชรบุรี)
+            เพื่อแสดงว่า นายวรัญชิต วงศ์ศุภเลิศ
+            ได้เข้าร่วมอบรมกิจกรรมโดยเป็นผู้ที่มีส่วนเกี่ยวข้อง
+            กับการป้องกันและรณรงค์ต่อต้านยาเสพติด
+            มอบให้ไว้ ณ วันที่ 28 เมษายน พ.ศ. 2569
+            ลงนามโดย พันเอกเฉลิมพล สังข์ต้อง
+            รองผู้อำนวยการรักษาความมั่นคงภายในจังหวัดเพชรบุรี
+            ปฏิบัติหน้าที่ ผู้อำนวยการรักษาความมั่นคงภายในจังหวัดเพชรบุรี
+        </p>
+
+    </div>
 
 </div>
 
-<div class="certificate-info">
-
-<span>CERTIFICATE 04</span>
-
-<h2> ใบประกาศรับรองการเข้าร่วมอบรมกิจกรรมการป้องกันและรณรงค์ต่อต้านยาเสพติด</h2>
-
-<p>
-ใบประกาศฉบับนี้ออกโดย กองอำนวยการรักษาความมั่นคงภายในจังหวัดเพชรบุรี (กอ.รมน.จังหวัด เพชรบุรี) เพื่อแสดงว่า นายวรัญชิต วงศ์ศุภเลิศ ได้เข้าร่วมอบรมกิจกรรมโดยเป็นผู้ที่มีส่วนเกี่ยวข้องกับการป้องกันและรณรงค์ต่อต้านยาเสพติด มอบให้ไว้ ณ วันที่ 28 เมษายน พ.ศ. 2569 ลงนามโดย พันเอกเฉลิมพล สังข์ต้อง รองผู้อำนวยการรักษาความมั่นคงภายในจังหวัดเพชรบุรี ปฏิบัติหน้าที่ ผู้อำนวยการรักษาความมั่นคงภายในจังหวัดเพชรบุรี
-</p>
-
-</div>
-
-</div>
 
 
-<!-- 05 -->
+<!-- =========================================================
+     CERTIFICATE 05
+========================================================= -->
 
 <div class="card certificate-card reveal">
 
-<div class="certificate-img">
+    <div class="certificate-img">
 
-<img src="S__37978138.jpg"
-alt="เกียรติบัตร 5">
+        <img
+            src="S__37978138.jpg"
+            alt="เกียรติบัตร 5"
+        >
+
+    </div>
+
+
+    <div class="certificate-info">
+
+        <span>
+            CERTIFICATE 05
+        </span>
+
+        <h2>
+            เกียรติบัตรเข้าร่วมกิจกรรมกับกลุ่มอาสาไทยแลนด์ (R-SA THAILAND)
+        </h2>
+
+        <p>
+            ใบประกาศฉบับนี้ออกโดย
+            กองอำนวยการรักษาความมั่นคงภายในจังหวัดเพชรบุรี
+            (กอ.รมน.จังหวัด เพชรบุรี)
+            เพื่อแสดงว่า นายวรัญชิต วงศ์ศุภเลิศ
+            ได้เข้าร่วมกิจกรรมกับกลุ่มอาสาไทยแลนด์
+            มอบให้ไว้ ณ วันที่ 28 เมษายน พ.ศ. 2569
+        </p>
+
+    </div>
 
 </div>
 
-<div class="certificate-info">
-
-<span>CERTIFICATE 05</span>
-
-<h2>เกียรติบัตรเข้าร่วมกิจกรรมกับกลุ่มอาสาไทยแลนด์ (R-SA THAILAND)</h2>
-
-<p>
-คใบประกาศฉบับนี้ออกโดย กองอำนวยการรักษาความมั่นคงภายในจังหวัดเพชรบุรี (กอ.รมน.จังหวัด เพชรบุรี) เพื่อแสดงว่า นายวรัญชิต วงศ์ศุภเลิศ ได้เข้าร่วมอบรมกิจกรรมโดยเป็นผู้ที่มีส่วนเกี่ยวข้องกับการป้องกันและรณรงค์ต่อต้านยาเสพติด มอบให้ไว้ ณ วันที่ 28 เมษายน พ.ศ. 2569 ลงนามโดย พันเอกเฉลิมพล สังข์ต้อง รองผู้อำนวยการรักษาความมั่นคงภายในจังหวัดเพชรบุรี ปฏิบัติหน้าที่ ผู้อำนวยการรักษาความมั่นคงภายในจังหวัดเพชรบุรี
-</p>
-
-</div>
-
-</div>
 
 
-<!-- 06 -->
+<!-- =========================================================
+     CERTIFICATE 06
+========================================================= -->
 
 <div class="card certificate-card reveal">
 
-<div class="certificate-img">
+    <div class="certificate-img">
 
-<img src="S__37978139.jpg"
-alt="เกียรติบัตร 6">
+        <img
+            src="S__37978139.jpg"
+            alt="เกียรติบัตร 6"
+        >
+
+    </div>
+
+
+    <div class="certificate-info">
+
+        <span>
+            CERTIFICATE 06
+        </span>
+
+        <h2>
+            เกียรติบัตรเข้าร่วมกิจกรรมปลูกต้นโกงกางทำบ้านปลา ค่ายอนุรักษ์ป่าชายเลนเทศบาลบางทราย จ.ชลบุรี
+        </h2>
+
+        <p>
+            เกียรติบัตรฉบับนี้ออกโดย กลุ่มกฤษณ์จิตอาสา
+            เพื่อแสดงว่า นายวรัญชิต วงศ์ศุภเลิศ
+            ได้ปฏิบัติกิจกรรมปลูกต้นโกงกางทำบ้านปลา
+            ณ สะพานป่าชายเลนเทศบาลบางทราย
+            ในค่ายอนุรักษ์ป่าชายเลนเทศบาลบางทราย จ.ชลบุรี
+            ให้ไว้ ณ วันที่ 29 เมษายน พ.ศ. 2569
+            ลงนามโดย นายกฤษณ์วรา รุ่งโรจน์
+            (ประธานกลุ่มกฤษณ์จิตอาสา)
+        </p>
+
+    </div>
 
 </div>
 
-<div class="certificate-info">
-
-<span>CERTIFICATE 06</span>
-
-<h2>เกียรติบัตรเข้าร่วมกิจกรรมปลูกต้นโกงกางทำบ้านปลา ค่ายอนุรักษ์ป่าชายเลนเทศบาลบางทราย จ.ชลบุรี</h2>
-
-<p>
-คเกียรติบัตรฉบับนี้ออกโดย กลุ่มกฤษณ์จิตอาสา เพื่อแสดงว่า นาย วรัญชิต วงศ์ศุภเลิศ ได้ปฏิบัติกิจกรรมปลูกต้นโกงกางทำบ้านปลา ณ สะพานป่าชายเลนเทศบาลบางทราย ในค่ายอนุรักษ์ป่าชายเลนเทศบาลบางทราย จ.ชลบุรี ให้ไว้ ณ วันที่ 29 เมษายน พ.ศ. 2569 ลงนามโดย นายกฤษณ์วรา รุ่งโรจน์ (ประธานกลุ่มกฤษณ์จิตอาสา)
-</p>
-
-</div>
-
-</div>
 
 
-<!-- 07 -->
+<!-- =========================================================
+     CERTIFICATE 07
+========================================================= -->
 
 <div class="card certificate-card reveal">
 
-<div class="certificate-img">
+    <div class="certificate-img">
 
-<img src="S__37978140.jpg"
-alt="เกียรติบัตร 7">
+        <img
+            src="S__37978140.jpg"
+            alt="เกียรติบัตร 7"
+        >
+
+    </div>
+
+
+    <div class="certificate-info">
+
+        <span>
+            CERTIFICATE 07
+        </span>
+
+        <h2>
+            เกียรติบัตรผ่านการอบรมกิจกรรม "ผู้นำรุ่นใหม่ในยุคสื่อดิจิทัล จากรู้เท่าทันสู่ผู้สร้างการเปลี่ยนแปลงทางสังคม"
+        </h2>
+
+        <p>
+            เกียรติบัตรฉบับนี้ออกโดย
+            เครือข่ายนักสื่อสารรุ่นใหม่
+            ภายใต้การสนับสนุนของสำนักงานกองทุนสนับสนุนการสร้างเสริมสุขภาพ (สสส.)
+            เพื่อแสดงว่า วรัญชิต วงศ์ศุภเลิศ
+            ได้ผ่านการอบรมกิจกรรมหัวข้อ
+            "ผู้นำรุ่นใหม่ในยุคสื่อดิจิทัล
+            จากรู้เท่าทันสู่ผู้สร้างการเปลี่ยนแปลงทางสังคม"
+            เมื่อวันที่ 28 เมษายน พ.ศ. 2569
+            ณ ห้องประชุมศูนย์ปฏิบัติการโรงแรมเทา-ทอง
+            มหาวิทยาลัยบูรพา
+        </p>
+
+    </div>
 
 </div>
 
-<div class="certificate-info">
-
-<span>CERTIFICATE 07</span>
-
-<h2>เกียรติบัตรผ่านการอบรมกิจกรรม "ผู้นำรุ่นใหม่ในยุคสื่อดิจิทัล จากรู้เท่าทันสู่ผู้สร้างการเปลี่ยนแปลงทางสังคม"</h2>
-
-<p>
-คเกียรติบัตรฉบับนี้ออกโดย เครือข่ายนักสื่อสารรุ่นใหม่ ภายใต้การสนับสนุนของสำนักงานกองทุนสนับสนุนการสร้างเสริมสุขภาพ (สสส.) เพื่อแสดงว่า วรัญชิต วงศ์ศุภเลิศ ได้ผ่านการอบรมกิจกรรมหัวข้อ "ผู้นำรุ่นใหม่ในยุคสื่อดิจิทัล จากรู้เท่าทันสู่ผู้สร้างการเปลี่ยนแปลงทางสังคม" เมื่อวันที่ 28 เมษายน พ.ศ. 2569 ณ ห้องประชุมศูนย์ปฏิบัติการโรงแรมเทา-ทอง มหาวิทยาลัยบูรพา ลงนามโดย นางสาวยศวดี ดิสสระ ผู้อำนวยการเครือข่ายนักสื่อสารรุ่นใหม
-</p>
-
-</div>
-
-</div>
 
 
-<!-- 08 -->
+<!-- =========================================================
+     CERTIFICATE 08
+========================================================= -->
 
 <div class="card certificate-card reveal">
 
-<div class="certificate-img">
+    <div class="certificate-img">
 
-<img src="S__37978141.jpg"
-alt="เกียรติบัตร 8">
+        <img
+            src="S__37978141.jpg"
+            alt="เกียรติบัตร 8"
+        >
+
+    </div>
+
+
+    <div class="certificate-info">
+
+        <span>
+            CERTIFICATE 08
+        </span>
+
+        <h2>
+            เกียรติบัตรเข้าร่วมกิจกรรมเชิงปฏิบัติการ โครงการ "เปิดโลกวิชาการ 2026"
+        </h2>
+
+        <p>
+            เกียรติบัตรฉบับนี้ออกโดย
+            ศูนย์แนะแนวและเตรียมสอบ ม.บูรพา
+            เพื่อแสดงว่า นายวรัญชิต วงศ์ศุภเลิศ
+            ได้เข้าร่วมกิจกรรมเชิงปฏิบัติการ
+            โครงการ "เปิดโลกวิชาการ 2026"
+            ณ ห้องประชุมเทาทอง 5
+            ศูนย์ปฏิบัติการโรงแรมเทา - ทอง
+            มหาวิทยาลัยบูรพา
+            ในระหว่างวันที่ 28 - 30 เมษายน พ.ศ. 2569
+        </p>
+
+    </div>
 
 </div>
 
-<div class="certificate-info">
-
-<span>CERTIFICATE 08</span>
-
-<h2>เกียรติบัตรเข้าร่วมกิจกรรมเชิงปฏิบัติการ โครงการ "เปิดโลกวิชาการ 2026</h2>
-
-<p>
-คเกียรติบัตรฉบับนี้ออกโดย ศูนย์แนะแนวและเตรียมสอบ ม.บูรพา เพื่อแสดงว่า นายวรัญชิต วงศ์ศุภเลิศ ได้เข้าร่วมกิจกรรมเชิงปฏิบัติการ โครงการ "เปิดโลกวิชาการ 2026" ณ ห้องประชุมเทาทอง 5 ศูนย์ปฏิบัติการโรงแรมเทา - ทอง มหาวิทยาลัยบูรพา ในระหว่างวันที่ 28 - 30 เมษายน พ.ศ. 2569 ลงนามโดย นายธนวัฒน์ นานอก ประธานโครงการเปิดโลกวิชาการ
-</p>
-
-</div>
-
-</div>
 
 
-<!-- 09 -->
+<!-- =========================================================
+     CERTIFICATE 09
+========================================================= -->
 
 <div class="card certificate-card reveal">
 
-<div class="certificate-img">
+    <div class="certificate-img">
 
-<img src="Google_Interland_waranchit wongsupalerd_Certificate_of_Kindness.pdf - Google Chrome 9_6_2026 10_19_14 AM.png"
-alt="เกียรติบัตร 9">
+        <img
+            src="Google_Interland_waranchit wongsupalerd_Certificate_of_Kindness.pdf - Google Chrome 9_6_2026 10_19_14 AM.png"
+            alt="เกียรติบัตร 9"
+        >
+
+    </div>
+
+
+    <div class="certificate-info">
+
+        <span>
+            CERTIFICATE 09
+        </span>
+
+        <h2>
+            เกียรติบัตรรับรองความสามารถด้านความมีน้ำใจบนโลกออนไลน์
+            (Internet Kindness - Be Internet Awesome)
+        </h2>
+
+        <p>
+            เกียรติบัตรฉบับนี้ออกโดย Google
+            ผ่านโปรแกรม Be Internet Awesome / Interland
+            เพื่อรับรองว่า waranchit wongsupalerd
+            ได้แสดงความสามารถด้านความมีน้ำใจบนโลกออนไลน์
+            และมีส่วนช่วยสร้างสภาพแวดล้อมออนไลน์ที่เป็นมิตร
+        </p>
+
+    </div>
 
 </div>
 
-<div class="certificate-info">
-
-<span>CERTIFICATE 09</span>
-
-<h2>เกียรติบัตรรับรองความสามารด้านความมีน้ำใจบนโลกออนไลน์ (Internet Kindness - Be Internet Awesome)</h2>
-
-<p>
-คเกียรติบัตรฉบับนี้ออกโดย ศูนย์แนะแนวและเตรียมสอบ ม.บูรพา เพื่อแสดงว่า นายวรัญชิต วงศ์ศุภเลิศ ได้เข้าร่วมกิจกรรมเชิงปฏิบัติการ โครงการ "เปิดโลกวิชาการ 2026" ณ ห้องประชุมเทาทอง 5 ศูนย์ปฏิบัติการโรงแรมเทา - ทอง มหาวิทยาลัยบูรพา ในระหว่างวันที่ 28 - 30 เมษายน พ.ศ. 2569 ลงนามโดย นายธนวัฒน์ นานอก ประธานโครงการเปิดโลกวิชาการ
-</p>
-
-</div>
-
-</div>
 
 
-<!-- 10 -->
+<!-- =========================================================
+     CERTIFICATE 10
+========================================================= -->
 
 <div class="card certificate-card reveal">
 
-<div class="certificate-img">
+    <div class="certificate-img">
 
-<img src="Google_Interland_waranchit wongsupalerd_Certificate_of_Kindness.pdf - Google Chrome 9_6_2026 10_21_12 AM.png"
-alt="เกียรติบัตร 10">
+        <img
+            src="Google_Interland_waranchit wongsupalerd_Certificate_of_Kindness.pdf - Google Chrome 9_6_2026 10_21_12 AM.png"
+            alt="เกียรติบัตร 10"
+        >
+
+    </div>
+
+
+    <div class="certificate-info">
+
+        <span>
+            CERTIFICATE 10
+        </span>
+
+        <h2>
+            เกียรติบัตรรับรองความสามารถด้านความตื่นตัวและรู้เท่าทันบนโลกออนไลน์
+            (Internet Alertness - Be Internet Awesome)
+        </h2>
+
+        <p>
+            เกียรติบัตรฉบับนี้ออกโดย Google
+            ผ่านโปรแกรม Be Internet Awesome / Interland
+            เพื่อรับรองว่า waranchit wongsupalerd
+            ได้พิสูจน์แล้วว่ามีความตื่นตัวและรู้เท่าทันบนโลกออนไลน์
+            โดยสามารถแยกแยะความแตกต่างระหว่างข้อมูลจริงและข้อมูลปลอมได้
+        </p>
+
+    </div>
 
 </div>
 
-<div class="certificate-info">
-
-<span>CERTIFICATE 10</span>
-
-<h2>เกียรติบัตรรับรองความสามารถด้านความตื่นตัวและรู้เท่าทันบนโลกออนไลน์ (Internet Alertness - Be Internet Awesome)</h2>
-
-<p>
-คเกียรติบัตรฉบับนี้ออกโดย Google (ผ่านโปรแกรม Be Internet Awesome / Interland) เพื่อรับรองว่า waranchit wongsupalerd ได้พิสูจน์แล้วว่ามีความตื่นตัวและรู้เท่าทันบนโลกออนไลน์ (Internet Alert) โดยมีความสามารถในการแยกแยะความแตกต่างระหว่างข้อมูลจริงและข้อมูลปลอม (Tell the difference between the real and the fake) ได้อย่างถูกต้อง
-</p>
-
-</div>
-
-</div>
 
 
-<!-- 11 -->
+<!-- =========================================================
+     CERTIFICATE 11
+========================================================= -->
 
 <div class="card certificate-card reveal">
 
-<div class="certificate-img">
+    <div class="certificate-img">
 
-<img src="Google_Interland_waranchit wongsupalerd_Certificate_of_Smartness.pdf - Google Chrome 9_6_2026 10_21_28 AM.png"
-alt="เกียรติบัตร 11">
+        <img
+            src="Google_Interland_waranchit wongsupalerd_Certificate_of_Smartness.pdf - Google Chrome 9_6_2026 10_21_28 AM.png"
+            alt="เกียรติบัตร 11"
+        >
+
+    </div>
+
+
+    <div class="certificate-info">
+
+        <span>
+            CERTIFICATE 11
+        </span>
+
+        <h2>
+            เกียรติบัตรรับรองความชาญฉลาดในการแบ่งปันข้อมูลบนโลกออนไลน์
+            (Internet Smartness - Be Internet Awesome)
+        </h2>
+
+        <p>
+            เกียรติบัตรฉบับนี้ออกโดย Google
+            ผ่านโปรแกรม Be Internet Awesome / Interland
+            เพื่อรับรองว่า waranchit wongsupalerd
+            ได้แสดงความเข้าใจในการแบ่งปันข้อมูลอย่างเหมาะสม
+            และการใช้งานโลกออนไลน์อย่างปลอดภัย
+        </p>
+
+    </div>
 
 </div>
 
-<div class="certificate-info">
-
-<span>CERTIFICATE 11</span>
-
-<h2>เกียรติบัตรรับรองความชาญฉลาดในการแบ่งปันข้อมูลบนโลกออนไลน์ (Internet Smartness - Be Internet Awesome)</h2>
-
-<p>
-คเกียรติบัตรฉบับนี้ออกโดย Google (ผ่านโปรแกรม Be Internet Awesome / Interland) เพื่อรับรองว่า waranchit wongsupalerd ได้พิสูจน์แล้วว่ามีความเป็นผู้มีน้ำใจบนโลกออนไลน์ (Internet Kind) โดยเป็นผู้สร้างอิทธิพลเชิงบวกต่อผู้อื่นด้วยความมีน้ำใจ และช่วยลด/ต่อต้านพฤติกรรมกลั่นแกล้งบนโลกออนไลน์ (Disempower Bullying Behavior)
-</p>
-
-</div>
-
-</div>
 
 
-<!-- 12 -->
+<!-- =========================================================
+     CERTIFICATE 12
+========================================================= -->
 
 <div class="card certificate-card reveal">
 
-<div class="certificate-img">
+    <div class="certificate-img">
 
-<img src="Google_Interland_waranchit wongsupalerd_Certificate_of_Smartness.pdf - Google Chrome 9_6_2026 10_21_42 AM.png"
-alt="เกียรติบัตร 12">
+        <img
+            src="Google_Interland_waranchit wongsupalerd_Certificate_of_Smartness.pdf - Google Chrome 9_6_2026 10_21_42 AM.png"
+            alt="เกียรติบัตร 12"
+        >
+
+    </div>
+
+
+    <div class="certificate-info">
+
+        <span>
+            CERTIFICATE 12
+        </span>
+
+        <h2>
+            เกียรติบัตรรับรองความเข้มแข็งในการปกป้องข้อมูลส่วนตัวบนโลกออนไลน์
+            (Internet Strength - Be Internet Awesome)
+        </h2>
+
+        <p>
+            เกียรติบัตรฉบับนี้ออกโดย Google
+            ผ่านโปรแกรม Be Internet Awesome / Interland
+            เพื่อรับรองว่า waranchit wongsupalerd
+            ได้แสดงความเข้าใจในการปกป้องข้อมูลส่วนตัว
+            และการรักษาความปลอดภัยของตนเองบนโลกออนไลน์
+        </p>
+
+    </div>
 
 </div>
 
-<div class="certificate-info">
-
-<span>CERTIFICATE 12</span>
-
-<h2>เกียรติบัตรรับรองความเข้มแข็งในการปกป้องข้อมูลส่วนตัวบนโลกออนไลน์ (Internet Strength - Be Internet Awesome)</h2>
-
-<p>
-คเกียรติบัตรฉบับนี้ออกโดย Google (ผ่านโปรแกรม Be Internet Awesome / Interland) เพื่อรับรองว่า waranchit wongsupalerd ได้พิสูจน์แล้วว่ามีความชาญฉลาดบนโลกออนไลน์ (Internet Smart) โดยเข้าใจถึงวิธีการแบ่งปันข้อมูลอย่างเหมาะสมระหว่างคนรู้จักและคนที่ ไม่รู้จัก (Understand how to share with those you know and those you don't)
-</p>
 
 </div>
+<!-- END CERTIFICATE GRID -->
+
+
+
+<!-- =========================================================
+     ACTIVITY GALLERY
+========================================================= -->
+
+<section class="activity-section">
+
+
+    <div class="section-title">
+
+        <small>
+            ACTIVITY GALLERY
+        </small>
+
+        <h1>
+            ภาพกิจกรรม
+        </h1>
+
+        <p>
+            ภาพกิจกรรมและประสบการณ์ที่ได้เข้าร่วม
+        </p>
+
+    </div>
+
+
+
+    <div class="activity-grid">
+
+
+        <!-- ACTIVITY 01 -->
+
+        <div class="activity-card reveal">
+
+            <div class="activity-img">
+
+                <img
+                    src="activity1.jpg"
+                    alt="ภาพกิจกรรม 1"
+                >
+
+            </div>
+
+            <div class="activity-info">
+
+                <span>
+                    ACTIVITY 01
+                </span>
+
+                <h2>
+                    ภาพกิจกรรม
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ACTIVITY 02 -->
+
+        <div class="activity-card reveal">
+
+            <div class="activity-img">
+
+                <img
+                    src="activity2.jpg"
+                    alt="ภาพกิจกรรม 2"
+                >
+
+            </div>
+
+            <div class="activity-info">
+
+                <span>
+                    ACTIVITY 02
+                </span>
+
+                <h2>
+                    ภาพกิจกรรม
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ACTIVITY 03 -->
+
+        <div class="activity-card reveal">
+
+            <div class="activity-img">
+
+                <img
+                    src="activity3.jpg"
+                    alt="ภาพกิจกรรม 3"
+                >
+
+            </div>
+
+            <div class="activity-info">
+
+                <span>
+                    ACTIVITY 03
+                </span>
+
+                <h2>
+                    ภาพกิจกรรม
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ACTIVITY 04 -->
+
+        <div class="activity-card reveal">
+
+            <div class="activity-img">
+
+                <img
+                    src="activity4.jpg"
+                    alt="ภาพกิจกรรม 4"
+                >
+
+            </div>
+
+            <div class="activity-info">
+
+                <span>
+                    ACTIVITY 04
+                </span>
+
+                <h2>
+                    ภาพกิจกรรม
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ACTIVITY 05 -->
+
+        <div class="activity-card reveal">
+
+            <div class="activity-img">
+
+                <img
+                    src="activity5.jpg"
+                    alt="ภาพกิจกรรม 5"
+                >
+
+            </div>
+
+            <div class="activity-info">
+
+                <span>
+                    ACTIVITY 05
+                </span>
+
+                <h2>
+                    ภาพกิจกรรม
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ACTIVITY 06 -->
+
+        <div class="activity-card reveal">
+
+            <div class="activity-img">
+
+                <img
+                    src="activity6.jpg"
+                    alt="ภาพกิจกรรม 6"
+                >
+
+            </div>
+
+            <div class="activity-info">
+
+                <span>
+                    ACTIVITY 06
+                </span>
+
+                <h2>
+                    ภาพกิจกรรม
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ACTIVITY 07 -->
+
+        <div class="activity-card reveal">
+
+            <div class="activity-img">
+
+                <img
+                    src="activity7.jpg"
+                    alt="ภาพกิจกรรม 7"
+                >
+
+            </div>
+
+            <div class="activity-info">
+
+                <span>
+                    ACTIVITY 07
+                </span>
+
+                <h2>
+                    ภาพกิจกรรม
+                </h2>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
 
 </div>
-
-
-</div>
-
-</div>
+<!-- END CONTAINER -->
 
 </main>
 
 
-<!-- LIGHTBOX -->
+
+<!-- =========================================================
+     LIGHTBOX
+========================================================= -->
 
 <div class="lightbox">
 
-<button class="close-lightbox">
-×
-</button>
+    <button
+        class="close-lightbox"
+        aria-label="ปิดรูปภาพ"
+    >
+        ×
+    </button>
 
-<img src="" alt="Certificate Preview">
+    <img
+        src=""
+        alt="Certificate Preview"
+    >
 
 </div>
 
 
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
 <footer>
-© 2026 <span>My Portfolio</span>
+
+    © 2026
+    <span>
+        My Portfolio
+    </span>
+
 </footer>
 
 
+
+<!-- =========================================================
+     SCRIPT
+========================================================= -->
+
 <script src="script.js"></script>
 
-</body>
-</html>
 
+<script>
+
+/* =========================================================
+   LIGHTBOX
+========================================================= */
+
+const lightbox =
+    document.querySelector(".lightbox");
+
+const lightboxImage =
+    lightbox.querySelector("img");
+
+const closeLightbox =
+    document.querySelector(".close-lightbox");
+
+
+
+/* =========================================================
+   CERTIFICATE + ACTIVITY IMAGES
+========================================================= */
+
+const allImages =
+    document.querySelectorAll(
+        ".certificate-img img, .activity-img img"
+    );
+
+
+
+allImages.forEach(img => {
+
+    img.addEventListener("click", () => {
+
+        lightboxImage.src = img.src;
+
+        lightboxImage.alt = img.alt;
+
+        lightbox.classList.add("show");
+
+        document.body.style.overflow = "hidden";
+
+    });
+
+});
+
+
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+closeLightbox.addEventListener("click", () => {
+
+    lightbox.classList.remove("show");
+
+    document.body.style.overflow = "";
+
+});
+
+
+
+/* =========================================================
+   CLICK OUTSIDE IMAGE
+========================================================= */
+
+lightbox.addEventListener("click", (event) => {
+
+    if(event.target === lightbox){
+
+        lightbox.classList.remove("show");
+
+        document.body.style.overflow = "";
+
+    }
+
+});
+
+
+
+/* =========================================================
+   ESC KEY
+========================================================= */
+
+document.addEventListener("keydown", (event) => {
+
+    if(event.key === "Escape"){
+
+        lightbox.classList.remove("show");
+
+        document.body.style.overflow = "";
+
+    }
+
+});
+
+</script>
+
+
+</body>
+
+</html>
